@@ -39,6 +39,10 @@ export class gkInteractor {
 
     console.log(`[${comic.name}] Checking ${comic.name} sanityCheck()`);
 
+    if (!comic.type) {
+      comic.type = "N/A";
+    }
+
     try {
       const { sanityCheck: data } = await client.request<{
         sanityCheck: {

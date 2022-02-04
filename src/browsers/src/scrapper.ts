@@ -155,7 +155,7 @@ export abstract class Scrapper {
         // check gudang can be accessed
 
         try {
-            await axios.get("https://gudangkomik.com")
+            await axios.get("https://backend.gudangkomik.com")
         } catch (error) {
             this._logger.warn('cant access gudangkomik ! is v2 activated ?')
             return;
