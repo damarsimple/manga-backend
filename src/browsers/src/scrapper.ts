@@ -117,7 +117,9 @@ export abstract class Scrapper {
                 )
 
                 if (isNaN(name)) {
-                    throw new Error(`nan Detected ${e}`)
+                    // throw new Error(`nan Detected ${e}`)
+                    console.log(`nan Detected ${e}`)
+                    return 0;
                 }
 
                 return name;
