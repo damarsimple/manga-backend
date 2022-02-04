@@ -1,0 +1,1 @@
+export const APP_ENDPOINT = "https://backend2.gudangkomik.com/graphql";

@@ -1,0 +1,6 @@
+export * from './Chapter'
+export * from './Comic'
+export * from './Ads'
+export * from './Genre'
+export * from './Author'
+export * from './User'

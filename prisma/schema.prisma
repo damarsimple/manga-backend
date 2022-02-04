@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  name        String?
+  isAdmin     Boolean @default(false)
+  allowHentai Boolean @default(false)
+  password    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Author {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  slug String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  comics    Comic[]
+}
+
+model Genre {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  slug String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  comics    Comic[]
+}
+
+enum AdsPosition {
+  TOP
+  BOTTOM
+}
+
+model Ads {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  position AdsPosition @default(TOP)
+  url      String
+  index    Int         @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comic {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  slug        String   @unique
+  thumb       String
+  type        String
+  thumbWide   String?
+  altName     Json?
+  isHentai    Boolean  @default(false)
+  released    DateTime @default(now())
+  author      Author   @relation(fields: [authorId], references: [id])
+  rating      Float    @default(7.5)
+  views       Int      @default(0)
+  viewsWeek   Int      @default(0)
+  description String?
+  status      String?
+  age         String?
+  concept     String?
+
+  lastChapterUpdateAt DateTime @default(now())
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  authorId Int
+  chapters Chapter[]
+  genres   Genre[]
+}
+
+enum ChapterQuality {
+  HQ
+  LQ
+  NORMAL
+}
+
+model Chapter {
+  id    Int     @id @default(autoincrement())
+  name  Float
+  title String?
+  comic Comic   @relation(fields: [comicId], references: [id])
+
+  quality ChapterQuality @default(NORMAL)
+
+  views Int @default(0)
+
+  imageCount         Int     @default(0)
+  originalImageCount Int     @default(0)
+  processed          Boolean @default(false)
+
+  imageUrls    String[]
+  imageDetails Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comicId Int
+}
