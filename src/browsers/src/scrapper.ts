@@ -156,12 +156,12 @@ export abstract class Scrapper {
 
         // check gudang can be accessed
 
-        try {
-            await axios.get("https://backend.gudangkomik.com")
-        } catch (error) {
-            this._logger.warn('cant access gudangkomik ! is v2 activated ?')
-            return;
-        }
+        // try {
+        //     await axios.get("https://backend.gudangkomik.com")
+        // } catch (error) {
+        //     this._logger.warn('cant access gudangkomik ! is v2 activated ?')
+        //     return;
+        // }
 
         const decl = this.getDeclaration();
         const prefix = `[${decl.name}]`
