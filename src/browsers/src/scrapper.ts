@@ -198,7 +198,7 @@ export abstract class Scrapper {
 
         const xd: string[] = [];
 
-        for (const e of this.getPageRangeUrl(10)) {
+        for (const e of this.getPageRangeUrl(2)) {
             console.log(e)
             for (const up of this.getUpdates((new DOMParser).parseFromString(await (await axios.get(e)).data, "text/html"))) {
                 xd.push(up)
