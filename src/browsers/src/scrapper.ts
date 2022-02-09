@@ -234,10 +234,8 @@ export abstract class Scrapper {
 
                 // this._logger.info(`${prefix}${comPrefix} checking chapter`);
 
-                // const { chapterscandidate, status } = await gkInteractor.sanityCheck(comic, comic.chapters);
-                const chapterscandidate = comic.chapters
-                // const status = "old";
-                if (false) {
+                const { chapterscandidate, status } = await gkInteractor.sanityCheck(comic, comic.chapters);
+                if (status == "new") {
 
                     try {
                         const { thumb, slug } = comic;
@@ -271,24 +269,13 @@ export abstract class Scrapper {
                     this._logger.info(`${prefix}${comPrefix} no new chapter`);
                 }
 
-                function chunk<T>(arr: T[], len: number) {
 
-                    var chunks = [],
-                        i = 0,
-                        n = arr.length;
 
-                    while (i < n) {
-                        chunks.push(arr.slice(i, i += len));
-                    }
-
-                    return chunks;
-                }
-
-                for (const x of chunk(chapterscandidate, 2)[0]) {
+                for (const x of chapterscandidate) {
 
                     chaptersBatchJobs.push({
                         comic,
-                        chapter: x.href,
+                        chapter: x,
                     })
 
                 }
