@@ -5,6 +5,17 @@ import { slugify } from "../../modules/Helper";
 
 
 export default class Komicast extends Scrapper {
+  public getPageRangeUrl(x: number): string[] {
+    const rets = []
+
+    for (let index = 1; index <= x; index++) {
+
+      rets.push(`https://komikcast.com/daftar-komik/page/${index}/?sortby=update`);
+
+    }
+
+    return rets;
+  }
   public getDeclaration() {
     return {
       name: "Komikcast",

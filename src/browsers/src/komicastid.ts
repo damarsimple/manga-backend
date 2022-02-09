@@ -5,12 +5,26 @@ import { slugify } from "../../modules/Helper";
 
 
 export default class Komicastid extends Scrapper {
+  public getPageRangeUrl(x: number): string[] {
+    const rets = []
+
+    for (let index = 1; index <= x; index++) {
+
+      rets.push(`https://komikcastid.com/komik-terbaru/page/${index}/`);
+
+    }
+
+    return rets;
+  }
   public getDeclaration() {
     return {
       name: "KomikcastID",
       url: ["https://komikcastid.com/komik-terbaru/"],
     };
   }
+
+
+
   public getUpdates(): string[] {
     const links = new Set<string>();
     document.querySelectorAll("a").forEach((e) => {

@@ -6,6 +6,17 @@ import { slugify } from "../../modules/Helper";
 // SAME TEMPLATE AS MANHWAINDO
 
 export default class Manhwaland extends Scrapper {
+  public getPageRangeUrl(x: number): string[] {
+    const rets = []
+
+    for (let index = 1; index <= x; index++) {
+
+      rets.push(`https://manhwaland.fun/series/?page=${index}&order=update`);
+
+    }
+
+    return rets;
+  }
   public getDeclaration() {
     return {
       name: "Manhwaland",

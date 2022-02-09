@@ -31,9 +31,6 @@ export default class BunnyCDN {
         return this.end.getTime() - this.start.getTime();
     }
 
-    private _log(e: "download" | "upload", extra: string) {
-        logger.info(`${e == "download" ? "📁 Upload " : "📁 Download"} finished at ${this.getElapsed()}ms ${extra}`)
-    }
 
     private filenameGueser(url: string) {
         return url.substring(url.lastIndexOf("/") + 1);
@@ -41,14 +38,12 @@ export default class BunnyCDN {
 
     public async download(url: string) {
         try {
-            this._time();
+
 
             const y = await this.axios.get(url, {
                 responseType: "arraybuffer",
             });
 
-
-            this._log("download", this.filenameGueser(url))
 
 
             return y.data as ArrayBuffer;
@@ -64,15 +59,11 @@ export default class BunnyCDN {
                 });
 
 
-                this._log("download", this.filenameGueser(url))
-
-
                 return y.data as ArrayBuffer;
 
             } catch (error) {
 
-                console.error(error);
-                console.log(url)
+                console.log(`${url} error download ${error} `)
                 throw error;
 
             }
@@ -103,7 +94,6 @@ export default class BunnyCDN {
                     });
 
 
-                this._log("upload", this.filenameGueser(tobeSaved))
 
                 return await res.data;
             } else {
@@ -116,13 +106,16 @@ export default class BunnyCDN {
                     },
                 });
 
+                const ret = await res.json()
 
-                this._log("upload", this.filenameGueser(tobeSaved))
+                if (ret.HttpCode == 400) {
+                    throw new Error(`Bad Request ${ret.Message} ${path}`)
+                }
 
-                return await res.json();
+                return ret;
             }
         } catch (error) {
-            console.error(error);
+            console.log(`${path} error download ${error} `)
             throw error;
         }
 
@@ -130,11 +123,23 @@ export default class BunnyCDN {
 
 
     public async downloadAndUpload(url: string, path: string) {
-        const file = await this.download(url)
-        const result = await this.upload(file, path)
+        this._time();
+        try {
+            console.log(`[BUNNYCDN] 📁 Download and Uploading https://cdn.gudangkomik.com/${path}`)
+            const file = await this.download(url)
+            this._end();
+            const downloadElapsed = this.getElapsed();
+            this._time();
+            const result = await this.upload(file, path)
+            this._end();
+            console.log(`[BUNNYCDN] 📁 Download finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://cdn.gudangkomik.com/${path}`)
+            return result
 
+        } catch (error) {
+            console.log(`[BUNNYCDN] 📁 Error Download ${url} and Uploading https://cdn.gudangkomik.com/${path}`)
 
-        return result
+            throw error;
+        }
 
     }
 

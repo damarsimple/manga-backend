@@ -37,7 +37,7 @@ export class gkInteractor {
 
   public static async sanityCheck(comic: Comic, originalCandidate: ChapterCandidate[]) {
 
-    console.log(`[${comic.name}] Checking ${comic.name} sanityCheck()`);
+    // console.log(`[${comic.name}] Checking ${comic.name} sanityCheck()`);
 
     if (!comic.type) {
       comic.type = "N/A";
@@ -66,11 +66,7 @@ export class gkInteractor {
         }
       }
 
-      console.log(chapterscandidate)
-      console.log(chapters)
-
-
-      console.log(`[${comic.name}] Finish Checking ${comic.name} sanityCheck() status: ${status} length: ${chapterscandidate.length}`);
+      // console.log(`[${comic.name}] Finish Checking ${comic.name} sanityCheck() status: ${status} length: ${chapterscandidate.length}`);
 
 
       return {
@@ -99,7 +95,7 @@ export class gkInteractor {
     if (data) {
       console.log(`Success SanityEclipse ${title} ${chapter.name}`);
     } else {
-      console.log(`Failed SanityEclipse ${title} ${chapter.name}`);;
+      console.log(`Failed SanityEclipse ${title} ${chapter.name} ${data}`);;
     }
 
     return;

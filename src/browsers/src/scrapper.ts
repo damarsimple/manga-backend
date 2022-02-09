@@ -21,9 +21,10 @@ export abstract class Scrapper {
     }
 
     public abstract getDeclaration(): ScrapperDeclaration;
-    public abstract getUpdates(): string[];
+    public abstract getUpdates(dom: Document): string[];
     public abstract parseComic(dom: Document): Comic;
     public abstract parseChapter(dom: Document): Chapter;
+    public abstract getPageRangeUrl(x: number): string[];
 
     public async getDOM(url: string) {
         try {
@@ -94,10 +95,10 @@ export abstract class Scrapper {
     public createImagePath(slug: string, chapIndex: number, imgIndex: number, ext: string) {
         return `/${slug}/${chapIndex}/${imgIndex}.${ext}`
     }
-    public downloadsImages(urls: ImageChapter[]) {
+    public async downloadsImages(urls: ImageChapter[]) {
         const results = [];
         for (const x of urls) {
-            this._bunny.downloadAndUpload(x.url, x.path);
+            await this._bunny.downloadAndUpload(x.url, x.path);
             results.push(x.path);
         }
 
@@ -187,11 +188,36 @@ export abstract class Scrapper {
         const ignores: string[] = [];
         this._logger.info(`${prefix} finish ignores and specials`);
 
-        const urls = [...new Set([...specials, ...this.getUpdates()])];
+
+        try {
+
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+
+        const xd: string[] = [];
+
+        for (const e of this.getPageRangeUrl(10)) {
+            console.log(e)
+            for (const up of this.getUpdates((new DOMParser).parseFromString(await (await axios.get(e)).data, "text/html"))) {
+                xd.push(up)
+            }
+        }
+
+        const urls = [...new Set([...specials, ...this.getUpdates(document)]), ...xd];
 
         let outer = 1;
 
         const bunny = new BunnyCDN();
+
+
+        interface ChapterJob {
+            chapter: string;
+            comic: Comic;
+        }
+
+        const chaptersBatchJobs: ChapterJob[] = [];
 
         for (const x of urls) {
             try {
@@ -202,17 +228,16 @@ export abstract class Scrapper {
 
                 const comic = await this.getComic(x);
 
-                const comPrefix = `[${comic.name}][${outer}/${urls.length}] `
+                const comPrefix = `[${outer}/${urls.length}][${comic.name}] `
 
                 // check 
 
-                this._logger.info(`${prefix}${comPrefix} checking chapter`);
+                // this._logger.info(`${prefix}${comPrefix} checking chapter`);
 
-                console.log(comic.chapters);
-
-                const { chapterscandidate, status } = await gkInteractor.sanityCheck(comic, comic.chapters);
-
-                if (status == "new") {
+                // const { chapterscandidate, status } = await gkInteractor.sanityCheck(comic, comic.chapters);
+                const chapterscandidate = comic.chapters
+                // const status = "old";
+                if (false) {
 
                     try {
                         const { thumb, slug } = comic;
@@ -238,61 +263,88 @@ export abstract class Scrapper {
                     comic.type = "N/A"
                 }
 
-                let chapIdx = 1;
-                const total = chapterscandidate.length;
-
                 if (chapterscandidate.length != 0) {
                     this._logger.info(
                         `${prefix}${comPrefix} found ${chapterscandidate.length} new chapters`
                     );
                 } else {
-                    this._logger.info(`${prefix}${comPrefix} no new chapter for ${comic.name}`);
+                    this._logger.info(`${prefix}${comPrefix} no new chapter`);
                 }
 
-                for (const x of chapterscandidate) {
+                function chunk<T>(arr: T[], len: number) {
 
-                    const chapter = await this.getChapter(x, decl.annoying);
-                    console.log(chapter)
-                    this._logger.info(`${prefix} ${comPrefix} [${chapIdx}/${total}] downloading chapter ${chapter.name}`);
-                    //@ts-ignore
-                    chapter.imageUrls = this.downloadsImages(
-                        chapter.images.map((e, i: number) => {
-                            return {
-                                path: this.createImagePath(
-                                    comic.slug ?? slugify(comic.name),
-                                    chapter.name,
-                                    i,
-                                    this.extExtractor(e)
+                    var chunks = [],
+                        i = 0,
+                        n = arr.length;
 
-                                ),
-                                url: e
-                            }
-                        })
-                    )
-                    //@ts-ignore
-                    chapter.imageUrls = chapter.imageUrls.map(e => `https://cdn.gudangkomik.com${e}`)
+                    while (i < n) {
+                        chunks.push(arr.slice(i, i += len));
+                    }
 
-                    this._logger.info(`${prefix} ${comPrefix} [${chapIdx}/${total}] finish downloading chapter ${chapter.name}`);
+                    return chunks;
+                }
 
+                for (const x of chunk(chapterscandidate, 2)[0]) {
 
-
-
-                    await gkInteractor.sanityEclipse(
-                        comic.name,
-                        chapter
-                    )
-
-                    chapIdx++;
+                    chaptersBatchJobs.push({
+                        comic,
+                        chapter: x.href,
+                    })
 
                 }
 
-                if (comic.slug == slugify("Tale of a Scribe Who Retires to the Countryside")) return;
 
                 // this.removeReq(x)
             } catch (error) {
                 console.error(error)
             }
             outer++;
+        }
+
+
+        this._logger.info(`${prefix} fetching chapters`);
+
+        const total = chaptersBatchJobs.length;
+        let chapIdx = 0;
+        for (const { chapter: x, comic } of chaptersBatchJobs) {
+            try {
+                const chapter = await this.getChapter(x, decl.annoying);
+                console.log(chapter)
+                this._logger.info(`${prefix} ${comic.slug} [${chapIdx}/${total}] downloading chapter ${chapter.name}`);
+
+                const downloadeds = await this.downloadsImages(
+                    chapter.images.map((e, i: number) => {
+                        return {
+                            path: this.createImagePath(
+                                comic.slug ?? slugify(comic.name),
+                                chapter.name,
+                                i,
+                                this.extExtractor(e)
+
+                            ),
+                            url: e
+                        }
+                    })
+                );
+
+                //@ts-ignore
+                chapter.imageUrls = downloadeds
+                //@ts-ignore
+                chapter.imageUrls = chapter.imageUrls.map(e => `https://cdn.gudangkomik.com${e}`)
+
+                if (downloadeds.length == chapter.images.length) {
+                    // await gkInteractor.sanityEclipse(
+                    // comic.name,
+                    // chapter
+                    // )
+                    chapIdx++;
+                } else {
+                    this._logger.info(`${prefix} ${comic.slug} [${chapIdx}/${total}] failed downloading chapter ${chapter.name} [number not match]`);
+
+                }
+            } catch (error) {
+                console.log(`error ${comic.name} ${x} ${error}`)
+            }
         }
 
         this._logger.info("[GK] done");
