@@ -320,10 +320,10 @@ export abstract class Scrapper {
                 chapter.imageUrls = chapter.imageUrls.map(e => `https://cdn.gudangkomik.com${e}`)
 
                 if (downloadeds.length == chapter.images.length) {
-                    // await gkInteractor.sanityEclipse(
-                    // comic.name,
-                    // chapter
-                    // )
+                    await gkInteractor.sanityEclipse(
+                        comic.name,
+                        chapter
+                    )
                     chapIdx++;
                 } else {
                     this._logger.info(`${prefix} ${comic.slug} [${chapIdx}/${total}] failed downloading chapter ${chapter.name} [number not match]`);
