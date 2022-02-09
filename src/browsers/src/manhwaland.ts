@@ -52,7 +52,6 @@ export default class Manhwaland extends Scrapper {
       };
     }, {} as Record<string, string>);
 
-    console.log(info);
 
     if (!info.author) info.author = "N/A"
 
