@@ -20,6 +20,10 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  reports           Report[]
+  comicbookmarks    ComicBookmark[]
+  chpatersbookmarks ChapterBookmark[]
 }
 
 model Author {
@@ -45,6 +49,7 @@ model Genre {
 enum AdsPosition {
   TOP
   BOTTOM
+  TOP_COMIC
 }
 
 model Ads {
@@ -82,9 +87,10 @@ model Comic {
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
-  authorId Int
-  chapters Chapter[]
-  genres   Genre[]
+  authorId      Int
+  chapters      Chapter[]
+  genres        Genre[]
+  userbookmarks ComicBookmark[]
 }
 
 enum ChapterQuality {
@@ -113,5 +119,69 @@ model Chapter {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  comicId         Int
+  ChapterBookmark ChapterBookmark[]
+}
+
+model Missing {
+
+  id Int @id @default(autoincrement())
+
+  data String
+
+  context String
+
+  resolved Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Report {
+  id Int @id @default(autoincrement())
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id])
+
+  name String
+
+  message String?
+
+  contextIdentifier String
+  contextType       String
+
+  resolved Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model ComicBookmark {
+  id Int @id @default(autoincrement())
+
   comicId Int
+  comic   Comic @relation(fields: [comicId], references: [id])
+
+  userId Int
+  users  User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model ChapterBookmark {
+
+  id Int @id @default(autoincrement())
+
+  chapterId Int
+  chapter   Chapter @relation(fields: [chapterId], references: [id])
+
+  userId Int
+  users  User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 }
