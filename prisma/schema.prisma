@@ -119,8 +119,8 @@ model Chapter {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  comicId         Int
-  ChapterBookmark ChapterBookmark[]
+  comicId          Int
+  chapterbookmarks ChapterBookmark[]
 }
 
 model Missing {
