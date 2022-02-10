@@ -1,4 +1,5 @@
 import { mutationField, nonNull } from 'nexus'
+import { deleteDocumentIndex } from '../../../modules/Meilisearch'
 
 export const AuthorDeleteOneMutation = mutationField('deleteOneAuthor', {
   type: 'Author',
@@ -6,9 +7,13 @@ export const AuthorDeleteOneMutation = mutationField('deleteOneAuthor', {
     where: nonNull('AuthorWhereUniqueInput'),
   },
   resolve: async (_parent, { where }, { prisma, select }) => {
-    return prisma.author.delete({
+    const author = await prisma.author.delete({
       where,
       ...select,
     })
+
+    await deleteDocumentIndex(author.id, "authors")
+
+    return author
   },
 })

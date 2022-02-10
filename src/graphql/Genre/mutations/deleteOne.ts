@@ -1,4 +1,5 @@
 import { mutationField, nonNull } from 'nexus'
+import { deleteDocumentIndex } from '../../../modules/Meilisearch'
 
 export const GenreDeleteOneMutation = mutationField('deleteOneGenre', {
   type: 'Genre',
@@ -6,9 +7,13 @@ export const GenreDeleteOneMutation = mutationField('deleteOneGenre', {
     where: nonNull('GenreWhereUniqueInput'),
   },
   resolve: async (_parent, { where }, { prisma, select }) => {
-    return prisma.genre.delete({
+    const genre = await prisma.genre.delete({
       where,
       ...select,
     })
+
+    await deleteDocumentIndex(genre.id, "genres")
+
+    return genre
   },
 })

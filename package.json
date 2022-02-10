@@ -8,22 +8,29 @@
     "dev": "ts-node-dev --transpile-only --no-notify src/server/graphql.ts",
     "seed": "ts-node-dev --transpile-only --no-notify prisma/seed.ts",
     "restore": "ts-node-dev --transpile-only --no-notify prisma/restore.ts",
+    "index:sync": "ts-node-dev --transpile-only --no-notify prisma/meili.ts",
+    "playground": "ts-node-dev --transpile-only --no-notify src/playground.ts",
+    "worker": "ts-node-dev --transpile-only --no-notify src/modules/Worker.ts",
     "build": "tsc"
   },
   "dependencies": {
     "@paljs/cli": "^4.0.13",
     "@paljs/nexus": "^4.0.13",
-    "@prisma/client": "3.8.1",
+    "@prisma/client": "^3.9.1",
     "@types/lodash": "^4.14.178",
     "@types/moment": "^2.13.0",
     "JSONStream": "^1.3.5",
     "apollo-server": "^3.6.2",
     "axios": "^0.25.0",
+    "bull": "^4.5.1",
+    "bullmq": "^1.69.1",
     "graphql": "^16.3.0",
     "graphql-request": "^4.0.0",
     "graphql-scalars": "^1.14.1",
     "graphql-type-json": "^0.3.2",
+    "ioredis": "^4.28.5",
     "lodash": "^4.17.21",
+    "meilisearch": "^0.24.0",
     "momentjs": "^2.0.0",
     "nexus": "^1.2.0",
     "node-fetch": "^3.2.0",
@@ -38,8 +45,9 @@
     "webpack": "^5.67.0"
   },
   "devDependencies": {
+    "@types/bull": "^3.15.7",
     "@types/glob": "^7.2.0",
-    "prisma": "^3.8.1",
+    "prisma": "^3.9.1",
     "webpack-cli": "^4.9.2"
   }
 }

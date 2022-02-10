@@ -3175,6 +3175,7 @@ export interface NexusGenFieldTypes {
     deleteOneComic: NexusGenRootTypes['Comic'] | null; // Comic
     deleteOneGenre: NexusGenRootTypes['Genre'] | null; // Genre
     deleteOneUser: NexusGenRootTypes['User'] | null; // User
+    reportView: boolean | null; // Boolean
     sanityCheck: NexusGenRootTypes['SanityCheck'] | null; // SanityCheck
     sanityEclipse: boolean | null; // Boolean
     updateManyAds: NexusGenRootTypes['BatchPayload']; // BatchPayload!
@@ -3654,6 +3655,7 @@ export interface NexusGenFieldTypeNames {
     deleteOneComic: 'Comic'
     deleteOneGenre: 'Genre'
     deleteOneUser: 'User'
+    reportView: 'Boolean'
     sanityCheck: 'SanityCheck'
     sanityEclipse: 'Boolean'
     updateManyAds: 'BatchPayload'
@@ -3853,6 +3855,9 @@ export interface NexusGenArgTypes {
     }
     deleteOneUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+    reportView: { // args
+      id: number; // Int!
     }
     sanityCheck: { // args
       author: string; // String!

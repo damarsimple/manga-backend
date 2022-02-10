@@ -1,8 +1,10 @@
 import { Chapter } from '@prisma/client';
 import moment from 'moment';
-import { arg, extendType, list, nonNull, stringArg, objectType } from 'nexus';
+import { arg, extendType, list, nonNull, stringArg, objectType, intArg } from 'nexus';
 import BunnyCDN from '../modules/BunnyCDN';
 import { slugify } from '../modules/Helper';
+import { comicIncrementQueue } from '../modules/Queue';
+import { updateDocumentIndex } from '../modules/Meilisearch';
 
 export const SanityCheck = objectType({
   name: 'SanityCheck',
@@ -12,10 +14,28 @@ export const SanityCheck = objectType({
   }
 })
 
-export const ComicScrapper = extendType({
+export const ComicRelated = extendType({
   type: 'Mutation',
   definition(t) {
 
+    t.field('reportView', {
+      type: 'Boolean',
+      args: {
+        id: nonNull(intArg())
+      },
+      resolve: async (_, { id }, __) => {
+
+        const date = new Date().getTime();
+
+
+        comicIncrementQueue.add('increment', { id })
+
+        console.log(`finish at ${new Date().getTime() - date}`);
+
+
+        return true
+      }
+    })
 
     t.field('sanityEclipse', {
       type: 'Boolean',
@@ -49,7 +69,7 @@ export const ComicScrapper = extendType({
         }
 
 
-        const newChap = await ctx.prisma.chapter.create({
+        await ctx.prisma.chapter.create({
           data: {
             name: chapter.name,
             imageUrls: chapter.imageUrls,
@@ -59,7 +79,7 @@ export const ComicScrapper = extendType({
 
 
 
-        await ctx.prisma.comic.update({
+        const updateRes = await ctx.prisma.comic.update({
           where: {
             id: comic.id
           },
@@ -69,7 +89,7 @@ export const ComicScrapper = extendType({
           }
         })
 
-
+        await updateDocumentIndex(comic.id, "comics", updateRes)
 
         return true
 
@@ -120,7 +140,7 @@ export const ComicScrapper = extendType({
 
 
           try {
-            await ctx.prisma.comic.create({
+            const comicNew = await ctx.prisma.comic.create({
               data: {
                 //@ts-ignore
                 type: comicData.type == "" ? "n/a" : comicData.type as string,
@@ -153,14 +173,17 @@ export const ComicScrapper = extendType({
                 },
               },
 
-              include: {
-                chapters: true
-              }
+
             });
+
+            await updateDocumentIndex(comicNew.id, "comics", comicNew)
+
 
           } catch (error) {
             console.error(error)
           }
+
+
 
           return {
             status: "new",

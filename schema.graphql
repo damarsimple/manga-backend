@@ -2588,6 +2588,7 @@ type Mutation {
   deleteOneComic(where: ComicWhereUniqueInput!): Comic
   deleteOneGenre(where: GenreWhereUniqueInput!): Genre
   deleteOneUser(where: UserWhereUniqueInput!): User
+  reportView(id: Int!): Boolean
   sanityCheck(author: String!, description: String, genres: [String], name: String!, released: String, thumb: String!, thumbWide: String, type: String): SanityCheck
   sanityEclipse(chapter: JSONObject, name: String!): Boolean
   updateManyAds(data: AdsUpdateManyMutationInput!, where: AdsWhereInput): BatchPayload!

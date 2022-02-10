@@ -7,7 +7,7 @@ export interface Context {
     gotKey: boolean
 }
 
-const prisma = new PrismaClient({
+export const prisma = new PrismaClient({
     // log: ["query"]
 });
 

@@ -1,4 +1,5 @@
 import { mutationField, nonNull } from 'nexus'
+import { updateDocumentIndex } from '../../../modules/Meilisearch';
 
 export const GenreUpdateOneMutation = mutationField('updateOneGenre', {
   type: nonNull('Genre'),
@@ -6,11 +7,15 @@ export const GenreUpdateOneMutation = mutationField('updateOneGenre', {
     data: nonNull('GenreUpdateInput'),
     where: nonNull('GenreWhereUniqueInput'),
   },
-  resolve(_parent, { data, where }, { prisma, select }) {
-    return prisma.genre.update({
+  resolve: async (_parent, { data, where }, { prisma, select }) => {
+    const genre = await prisma.genre.update({
       where,
       data,
       ...select,
     })
+
+    await updateDocumentIndex(genre.id, "genres", genre);
+
+    return genre;
   },
 })

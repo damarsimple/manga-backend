@@ -5,7 +5,7 @@ import moment from "moment";
 import { slugify } from "../src/modules/Helper";
 async function main() {
     const client = new PrismaClient();
-    const files = glob.sync("./backup/**/**/**.json")
+    const files = glob.sync("./backup/**.json")
     console.log(files)
     for (const bruh of files) {
 
