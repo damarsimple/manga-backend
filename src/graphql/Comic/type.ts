@@ -9,11 +9,11 @@ export const Comic = objectType({
   definition(t) {
     t.int('id')
     t.string('name')
+    t.string('slug')
     t.string('thumb')
     t.string('type')
     t.nullable.string('thumbWide')
     t.nullable.json('altName')
-    t.string('slug')
     t.boolean('isHentai')
     t.field('released', { type: 'DateTime' })
     t.field('author', {
@@ -59,6 +59,20 @@ export const Comic = objectType({
       },
       resolve(root: any) {
         return root.genres
+      },
+    })
+    t.list.field('userbookmarks', {
+      type: 'ComicBookmark',
+      args: {
+        where: 'ComicBookmarkWhereInput',
+        orderBy: 'ComicBookmarkOrderByWithRelationInput',
+        cursor: 'ComicBookmarkWhereUniqueInput',
+        take: 'Int',
+        skip: 'Int',
+        distinct: 'ComicBookmarkScalarFieldEnum',
+      },
+      resolve(root: any) {
+        return root.userbookmarks
       },
     })
     t.field('_count', {

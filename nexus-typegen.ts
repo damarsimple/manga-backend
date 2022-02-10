@@ -395,6 +395,325 @@ export interface NexusGenInputs {
     originalImageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
+  ChapterBookmarkAvgOrderByAggregateInput: { // input type
+    chapterId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterBookmarkCountOrderByAggregateInput: { // input type
+    chapterId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterBookmarkCreateInput: { // input type
+    chapter: NexusGenInputs['ChapterCreateNestedOneWithoutChapterbookmarksInput']; // ChapterCreateNestedOneWithoutChapterbookmarksInput!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    users: NexusGenInputs['UserCreateNestedOneWithoutChapterbookmarksInput']; // UserCreateNestedOneWithoutChapterbookmarksInput!
+  }
+  ChapterBookmarkCreateManyChapterInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ChapterBookmarkCreateManyChapterInputEnvelope: { // input type
+    data: NexusGenInputs['ChapterBookmarkCreateManyChapterInput']; // ChapterBookmarkCreateManyChapterInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ChapterBookmarkCreateManyInput: { // input type
+    chapterId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ChapterBookmarkCreateManyUsersInput: { // input type
+    chapterId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ChapterBookmarkCreateManyUsersInputEnvelope: { // input type
+    data: NexusGenInputs['ChapterBookmarkCreateManyUsersInput']; // ChapterBookmarkCreateManyUsersInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ChapterBookmarkCreateNestedManyWithoutChapterInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutChapterInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateWithoutChapterInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyChapterInputEnvelope'] | null; // ChapterBookmarkCreateManyChapterInputEnvelope
+  }
+  ChapterBookmarkCreateNestedManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyUsersInputEnvelope'] | null; // ChapterBookmarkCreateManyUsersInputEnvelope
+  }
+  ChapterBookmarkCreateOrConnectWithoutChapterInput: { // input type
+    create: NexusGenInputs['ChapterBookmarkUncheckedCreateWithoutChapterInput']; // ChapterBookmarkUncheckedCreateWithoutChapterInput!
+    where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+  }
+  ChapterBookmarkCreateOrConnectWithoutUsersInput: { // input type
+    create: NexusGenInputs['ChapterBookmarkUncheckedCreateWithoutUsersInput']; // ChapterBookmarkUncheckedCreateWithoutUsersInput!
+    where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+  }
+  ChapterBookmarkCreateWithoutChapterInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    users: NexusGenInputs['UserCreateNestedOneWithoutChapterbookmarksInput']; // UserCreateNestedOneWithoutChapterbookmarksInput!
+  }
+  ChapterBookmarkCreateWithoutUsersInput: { // input type
+    chapter: NexusGenInputs['ChapterCreateNestedOneWithoutChapterbookmarksInput']; // ChapterCreateNestedOneWithoutChapterbookmarksInput!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ChapterBookmarkListRelationFilter: { // input type
+    every?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    none?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    some?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+  }
+  ChapterBookmarkMaxOrderByAggregateInput: { // input type
+    chapterId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterBookmarkMinOrderByAggregateInput: { // input type
+    chapterId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterBookmarkOrderByRelationAggregateInput: { // input type
+    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterBookmarkOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['ChapterBookmarkAvgOrderByAggregateInput'] | null; // ChapterBookmarkAvgOrderByAggregateInput
+    _count?: NexusGenInputs['ChapterBookmarkCountOrderByAggregateInput'] | null; // ChapterBookmarkCountOrderByAggregateInput
+    _max?: NexusGenInputs['ChapterBookmarkMaxOrderByAggregateInput'] | null; // ChapterBookmarkMaxOrderByAggregateInput
+    _min?: NexusGenInputs['ChapterBookmarkMinOrderByAggregateInput'] | null; // ChapterBookmarkMinOrderByAggregateInput
+    _sum?: NexusGenInputs['ChapterBookmarkSumOrderByAggregateInput'] | null; // ChapterBookmarkSumOrderByAggregateInput
+    chapterId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterBookmarkOrderByWithRelationInput: { // input type
+    chapter?: NexusGenInputs['ChapterOrderByWithRelationInput'] | null; // ChapterOrderByWithRelationInput
+    chapterId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    users?: NexusGenInputs['UserOrderByWithRelationInput'] | null; // UserOrderByWithRelationInput
+  }
+  ChapterBookmarkScalarWhereInput: { // input type
+    AND?: Array<NexusGenInputs['ChapterBookmarkScalarWhereInput'] | null> | null; // [ChapterBookmarkScalarWhereInput]
+    NOT?: Array<NexusGenInputs['ChapterBookmarkScalarWhereInput'] | null> | null; // [ChapterBookmarkScalarWhereInput]
+    OR?: Array<NexusGenInputs['ChapterBookmarkScalarWhereInput'] | null> | null; // [ChapterBookmarkScalarWhereInput]
+    chapterId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  ChapterBookmarkScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['ChapterBookmarkScalarWhereWithAggregatesInput'] | null> | null; // [ChapterBookmarkScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['ChapterBookmarkScalarWhereWithAggregatesInput'] | null> | null; // [ChapterBookmarkScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['ChapterBookmarkScalarWhereWithAggregatesInput'] | null> | null; // [ChapterBookmarkScalarWhereWithAggregatesInput]
+    chapterId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    updatedAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    userId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+  }
+  ChapterBookmarkSumOrderByAggregateInput: { // input type
+    chapterId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterBookmarkUncheckedCreateInput: { // input type
+    chapterId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutChapterInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateWithoutChapterInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyChapterInputEnvelope'] | null; // ChapterBookmarkCreateManyChapterInputEnvelope
+  }
+  ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyUsersInputEnvelope'] | null; // ChapterBookmarkCreateManyUsersInputEnvelope
+  }
+  ChapterBookmarkUncheckedCreateWithoutChapterInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ChapterBookmarkUncheckedCreateWithoutUsersInput: { // input type
+    chapterId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ChapterBookmarkUncheckedUpdateInput: { // input type
+    chapterId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ChapterBookmarkUncheckedUpdateManyInput: { // input type
+    chapterId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ChapterBookmarkUncheckedUpdateManyWithoutChapterInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutChapterInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateWithoutChapterInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyChapterInputEnvelope'] | null; // ChapterBookmarkCreateManyChapterInputEnvelope
+    delete?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ChapterBookmarkScalarWhereInput'] | null> | null; // [ChapterBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ChapterBookmarkUpdateWithWhereUniqueWithoutChapterInput'] | null> | null; // [ChapterBookmarkUpdateWithWhereUniqueWithoutChapterInput]
+    updateMany?: Array<NexusGenInputs['ChapterBookmarkUpdateManyWithWhereWithoutChapterInput'] | null> | null; // [ChapterBookmarkUpdateManyWithWhereWithoutChapterInput]
+    upsert?: Array<NexusGenInputs['ChapterBookmarkUpsertWithWhereUniqueWithoutChapterInput'] | null> | null; // [ChapterBookmarkUpsertWithWhereUniqueWithoutChapterInput]
+  }
+  ChapterBookmarkUncheckedUpdateManyWithoutChapterbookmarksInput: { // input type
+    chapterId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ChapterBookmarkUncheckedUpdateManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyUsersInputEnvelope'] | null; // ChapterBookmarkCreateManyUsersInputEnvelope
+    delete?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ChapterBookmarkScalarWhereInput'] | null> | null; // [ChapterBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput'] | null> | null; // [ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput]
+    updateMany?: Array<NexusGenInputs['ChapterBookmarkUpdateManyWithWhereWithoutUsersInput'] | null> | null; // [ChapterBookmarkUpdateManyWithWhereWithoutUsersInput]
+    upsert?: Array<NexusGenInputs['ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput'] | null> | null; // [ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput]
+  }
+  ChapterBookmarkUncheckedUpdateWithoutChapterInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ChapterBookmarkUncheckedUpdateWithoutUsersInput: { // input type
+    chapterId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ChapterBookmarkUpdateInput: { // input type
+    chapter?: NexusGenInputs['ChapterUpdateOneRequiredWithoutChapterbookmarksInput'] | null; // ChapterUpdateOneRequiredWithoutChapterbookmarksInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    users?: NexusGenInputs['UserUpdateOneRequiredWithoutChapterbookmarksInput'] | null; // UserUpdateOneRequiredWithoutChapterbookmarksInput
+  }
+  ChapterBookmarkUpdateManyMutationInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ChapterBookmarkUpdateManyWithWhereWithoutChapterInput: { // input type
+    data: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutChapterbookmarksInput']; // ChapterBookmarkUncheckedUpdateManyWithoutChapterbookmarksInput!
+    where: NexusGenInputs['ChapterBookmarkScalarWhereInput']; // ChapterBookmarkScalarWhereInput!
+  }
+  ChapterBookmarkUpdateManyWithWhereWithoutUsersInput: { // input type
+    data: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutChapterbookmarksInput']; // ChapterBookmarkUncheckedUpdateManyWithoutChapterbookmarksInput!
+    where: NexusGenInputs['ChapterBookmarkScalarWhereInput']; // ChapterBookmarkScalarWhereInput!
+  }
+  ChapterBookmarkUpdateManyWithoutChapterInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutChapterInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutChapterInput'] | null> | null; // [ChapterBookmarkCreateWithoutChapterInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyChapterInputEnvelope'] | null; // ChapterBookmarkCreateManyChapterInputEnvelope
+    delete?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ChapterBookmarkScalarWhereInput'] | null> | null; // [ChapterBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ChapterBookmarkUpdateWithWhereUniqueWithoutChapterInput'] | null> | null; // [ChapterBookmarkUpdateWithWhereUniqueWithoutChapterInput]
+    updateMany?: Array<NexusGenInputs['ChapterBookmarkUpdateManyWithWhereWithoutChapterInput'] | null> | null; // [ChapterBookmarkUpdateManyWithWhereWithoutChapterInput]
+    upsert?: Array<NexusGenInputs['ChapterBookmarkUpsertWithWhereUniqueWithoutChapterInput'] | null> | null; // [ChapterBookmarkUpsertWithWhereUniqueWithoutChapterInput]
+  }
+  ChapterBookmarkUpdateManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ChapterBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ChapterBookmarkCreateWithoutUsersInput'] | null> | null; // [ChapterBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ChapterBookmarkCreateManyUsersInputEnvelope'] | null; // ChapterBookmarkCreateManyUsersInputEnvelope
+    delete?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ChapterBookmarkScalarWhereInput'] | null> | null; // [ChapterBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null> | null; // [ChapterBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput'] | null> | null; // [ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput]
+    updateMany?: Array<NexusGenInputs['ChapterBookmarkUpdateManyWithWhereWithoutUsersInput'] | null> | null; // [ChapterBookmarkUpdateManyWithWhereWithoutUsersInput]
+    upsert?: Array<NexusGenInputs['ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput'] | null> | null; // [ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput]
+  }
+  ChapterBookmarkUpdateWithWhereUniqueWithoutChapterInput: { // input type
+    data: NexusGenInputs['ChapterBookmarkUncheckedUpdateWithoutChapterInput']; // ChapterBookmarkUncheckedUpdateWithoutChapterInput!
+    where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+  }
+  ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput: { // input type
+    data: NexusGenInputs['ChapterBookmarkUncheckedUpdateWithoutUsersInput']; // ChapterBookmarkUncheckedUpdateWithoutUsersInput!
+    where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+  }
+  ChapterBookmarkUpdateWithoutChapterInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    users?: NexusGenInputs['UserUpdateOneRequiredWithoutChapterbookmarksInput'] | null; // UserUpdateOneRequiredWithoutChapterbookmarksInput
+  }
+  ChapterBookmarkUpdateWithoutUsersInput: { // input type
+    chapter?: NexusGenInputs['ChapterUpdateOneRequiredWithoutChapterbookmarksInput'] | null; // ChapterUpdateOneRequiredWithoutChapterbookmarksInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ChapterBookmarkUpsertWithWhereUniqueWithoutChapterInput: { // input type
+    create: NexusGenInputs['ChapterBookmarkUncheckedCreateWithoutChapterInput']; // ChapterBookmarkUncheckedCreateWithoutChapterInput!
+    update: NexusGenInputs['ChapterBookmarkUncheckedUpdateWithoutChapterInput']; // ChapterBookmarkUncheckedUpdateWithoutChapterInput!
+    where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+  }
+  ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput: { // input type
+    create: NexusGenInputs['ChapterBookmarkUncheckedCreateWithoutUsersInput']; // ChapterBookmarkUncheckedCreateWithoutUsersInput!
+    update: NexusGenInputs['ChapterBookmarkUncheckedUpdateWithoutUsersInput']; // ChapterBookmarkUncheckedUpdateWithoutUsersInput!
+    where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+  }
+  ChapterBookmarkWhereInput: { // input type
+    AND?: Array<NexusGenInputs['ChapterBookmarkWhereInput'] | null> | null; // [ChapterBookmarkWhereInput]
+    NOT?: Array<NexusGenInputs['ChapterBookmarkWhereInput'] | null> | null; // [ChapterBookmarkWhereInput]
+    OR?: Array<NexusGenInputs['ChapterBookmarkWhereInput'] | null> | null; // [ChapterBookmarkWhereInput]
+    chapter?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
+    chapterId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    users?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  ChapterBookmarkWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
   ChapterCountOrderByAggregateInput: { // input type
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -411,6 +730,7 @@ export interface NexusGenInputs {
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChapterCreateInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkCreateNestedManyWithoutChapterInput
     comic: NexusGenInputs['ComicCreateNestedOneWithoutChaptersInput']; // ComicCreateNestedOneWithoutChaptersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     imageCount?: number | null; // Int
@@ -466,11 +786,35 @@ export interface NexusGenInputs {
     create?: Array<NexusGenInputs['ChapterCreateWithoutComicInput'] | null> | null; // [ChapterCreateWithoutComicInput]
     createMany?: NexusGenInputs['ChapterCreateManyComicInputEnvelope'] | null; // ChapterCreateManyComicInputEnvelope
   }
+  ChapterCreateNestedOneWithoutChapterbookmarksInput: { // input type
+    connect?: NexusGenInputs['ChapterWhereUniqueInput'] | null; // ChapterWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChapterCreateOrConnectWithoutChapterbookmarksInput'] | null; // ChapterCreateOrConnectWithoutChapterbookmarksInput
+    create?: NexusGenInputs['ChapterUncheckedCreateWithoutChapterbookmarksInput'] | null; // ChapterUncheckedCreateWithoutChapterbookmarksInput
+  }
+  ChapterCreateOrConnectWithoutChapterbookmarksInput: { // input type
+    create: NexusGenInputs['ChapterUncheckedCreateWithoutChapterbookmarksInput']; // ChapterUncheckedCreateWithoutChapterbookmarksInput!
+    where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
+  }
   ChapterCreateOrConnectWithoutComicInput: { // input type
     create: NexusGenInputs['ChapterUncheckedCreateWithoutComicInput']; // ChapterUncheckedCreateWithoutComicInput!
     where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
   }
+  ChapterCreateWithoutChapterbookmarksInput: { // input type
+    comic: NexusGenInputs['ComicCreateNestedOneWithoutChaptersInput']; // ComicCreateNestedOneWithoutChaptersInput!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    imageCount?: number | null; // Int
+    imageDetails?: NexusGenScalars['Json'] | null; // Json
+    imageUrls?: Array<string | null> | null; // [String]
+    name: number; // Float!
+    originalImageCount?: number | null; // Int
+    processed?: boolean | null; // Boolean
+    quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
+    title?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    views?: number | null; // Int
+  }
   ChapterCreateWithoutComicInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkCreateNestedManyWithoutChapterInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
@@ -541,6 +885,7 @@ export interface NexusGenInputs {
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChapterOrderByWithRelationInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkOrderByRelationAggregateInput'] | null; // ChapterBookmarkOrderByRelationAggregateInput
     comic?: NexusGenInputs['ComicOrderByWithRelationInput'] | null; // ComicOrderByWithRelationInput
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -555,6 +900,10 @@ export interface NexusGenInputs {
     title?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ChapterRelationFilter: { // input type
+    is?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
+    isNot?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
   }
   ChapterScalarWhereInput: { // input type
     AND?: Array<NexusGenInputs['ChapterScalarWhereInput'] | null> | null; // [ChapterScalarWhereInput]
@@ -601,6 +950,7 @@ export interface NexusGenInputs {
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChapterUncheckedCreateInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput
     comicId: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
@@ -621,7 +971,23 @@ export interface NexusGenInputs {
     create?: Array<NexusGenInputs['ChapterCreateWithoutComicInput'] | null> | null; // [ChapterCreateWithoutComicInput]
     createMany?: NexusGenInputs['ChapterCreateManyComicInputEnvelope'] | null; // ChapterCreateManyComicInputEnvelope
   }
+  ChapterUncheckedCreateWithoutChapterbookmarksInput: { // input type
+    comicId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    imageCount?: number | null; // Int
+    imageDetails?: NexusGenScalars['Json'] | null; // Json
+    imageUrls?: Array<string | null> | null; // [String]
+    name: number; // Float!
+    originalImageCount?: number | null; // Int
+    processed?: boolean | null; // Boolean
+    quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
+    title?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    views?: number | null; // Int
+  }
   ChapterUncheckedCreateWithoutComicInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
@@ -636,6 +1002,7 @@ export interface NexusGenInputs {
     views?: number | null; // Int
   }
   ChapterUncheckedUpdateInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedUpdateManyWithoutChapterInput
     comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -692,7 +1059,23 @@ export interface NexusGenInputs {
     updateMany?: Array<NexusGenInputs['ChapterUpdateManyWithWhereWithoutComicInput'] | null> | null; // [ChapterUpdateManyWithWhereWithoutComicInput]
     upsert?: Array<NexusGenInputs['ChapterUpsertWithWhereUniqueWithoutComicInput'] | null> | null; // [ChapterUpsertWithWhereUniqueWithoutComicInput]
   }
+  ChapterUncheckedUpdateWithoutChapterbookmarksInput: { // input type
+    comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    imageDetails?: NexusGenScalars['Json'] | null; // Json
+    imageUrls?: Array<string | null> | null; // [String]
+    name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
+    title?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
   ChapterUncheckedUpdateWithoutComicInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedUpdateManyWithoutChapterInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -707,6 +1090,7 @@ export interface NexusGenInputs {
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ChapterUpdateInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUpdateManyWithoutChapterInput
     comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutChaptersInput'] | null; // ComicUpdateOneRequiredWithoutChaptersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -750,11 +1134,33 @@ export interface NexusGenInputs {
     updateMany?: Array<NexusGenInputs['ChapterUpdateManyWithWhereWithoutComicInput'] | null> | null; // [ChapterUpdateManyWithWhereWithoutComicInput]
     upsert?: Array<NexusGenInputs['ChapterUpsertWithWhereUniqueWithoutComicInput'] | null> | null; // [ChapterUpsertWithWhereUniqueWithoutComicInput]
   }
+  ChapterUpdateOneRequiredWithoutChapterbookmarksInput: { // input type
+    connect?: NexusGenInputs['ChapterWhereUniqueInput'] | null; // ChapterWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ChapterCreateOrConnectWithoutChapterbookmarksInput'] | null; // ChapterCreateOrConnectWithoutChapterbookmarksInput
+    create?: NexusGenInputs['ChapterUncheckedCreateWithoutChapterbookmarksInput'] | null; // ChapterUncheckedCreateWithoutChapterbookmarksInput
+    update?: NexusGenInputs['ChapterUncheckedUpdateWithoutChapterbookmarksInput'] | null; // ChapterUncheckedUpdateWithoutChapterbookmarksInput
+    upsert?: NexusGenInputs['ChapterUpsertWithoutChapterbookmarksInput'] | null; // ChapterUpsertWithoutChapterbookmarksInput
+  }
   ChapterUpdateWithWhereUniqueWithoutComicInput: { // input type
     data: NexusGenInputs['ChapterUncheckedUpdateWithoutComicInput']; // ChapterUncheckedUpdateWithoutComicInput!
     where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
   }
+  ChapterUpdateWithoutChapterbookmarksInput: { // input type
+    comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutChaptersInput'] | null; // ComicUpdateOneRequiredWithoutChaptersInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    imageDetails?: NexusGenScalars['Json'] | null; // Json
+    imageUrls?: Array<string | null> | null; // [String]
+    name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
+    title?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
   ChapterUpdateWithoutComicInput: { // input type
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUpdateManyWithoutChapterInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
@@ -776,10 +1182,15 @@ export interface NexusGenInputs {
     update: NexusGenInputs['ChapterUncheckedUpdateWithoutComicInput']; // ChapterUncheckedUpdateWithoutComicInput!
     where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
   }
+  ChapterUpsertWithoutChapterbookmarksInput: { // input type
+    create: NexusGenInputs['ChapterUncheckedCreateWithoutChapterbookmarksInput']; // ChapterUncheckedCreateWithoutChapterbookmarksInput!
+    update: NexusGenInputs['ChapterUncheckedUpdateWithoutChapterbookmarksInput']; // ChapterUncheckedUpdateWithoutChapterbookmarksInput!
+  }
   ChapterWhereInput: { // input type
     AND?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
     NOT?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
     OR?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkListRelationFilter'] | null; // ChapterBookmarkListRelationFilter
     comic?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     comicId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
@@ -804,6 +1215,331 @@ export interface NexusGenInputs {
     rating?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkAvgOrderByAggregateInput: { // input type
+    comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkCountOrderByAggregateInput: { // input type
+    comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkCreateInput: { // input type
+    comic: NexusGenInputs['ComicCreateNestedOneWithoutUserbookmarksInput']; // ComicCreateNestedOneWithoutUserbookmarksInput!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    users: NexusGenInputs['UserCreateNestedOneWithoutComicbookmarksInput']; // UserCreateNestedOneWithoutComicbookmarksInput!
+  }
+  ComicBookmarkCreateManyComicInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ComicBookmarkCreateManyComicInputEnvelope: { // input type
+    data: NexusGenInputs['ComicBookmarkCreateManyComicInput']; // ComicBookmarkCreateManyComicInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ComicBookmarkCreateManyInput: { // input type
+    comicId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ComicBookmarkCreateManyUsersInput: { // input type
+    comicId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ComicBookmarkCreateManyUsersInputEnvelope: { // input type
+    data: NexusGenInputs['ComicBookmarkCreateManyUsersInput']; // ComicBookmarkCreateManyUsersInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ComicBookmarkCreateNestedManyWithoutComicInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutComicInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutComicInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutComicInput'] | null> | null; // [ComicBookmarkCreateWithoutComicInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyComicInputEnvelope'] | null; // ComicBookmarkCreateManyComicInputEnvelope
+  }
+  ComicBookmarkCreateNestedManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyUsersInputEnvelope'] | null; // ComicBookmarkCreateManyUsersInputEnvelope
+  }
+  ComicBookmarkCreateOrConnectWithoutComicInput: { // input type
+    create: NexusGenInputs['ComicBookmarkUncheckedCreateWithoutComicInput']; // ComicBookmarkUncheckedCreateWithoutComicInput!
+    where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+  }
+  ComicBookmarkCreateOrConnectWithoutUsersInput: { // input type
+    create: NexusGenInputs['ComicBookmarkUncheckedCreateWithoutUsersInput']; // ComicBookmarkUncheckedCreateWithoutUsersInput!
+    where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+  }
+  ComicBookmarkCreateWithoutComicInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    users: NexusGenInputs['UserCreateNestedOneWithoutComicbookmarksInput']; // UserCreateNestedOneWithoutComicbookmarksInput!
+  }
+  ComicBookmarkCreateWithoutUsersInput: { // input type
+    comic: NexusGenInputs['ComicCreateNestedOneWithoutUserbookmarksInput']; // ComicCreateNestedOneWithoutUserbookmarksInput!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ComicBookmarkListRelationFilter: { // input type
+    every?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    none?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    some?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+  }
+  ComicBookmarkMaxOrderByAggregateInput: { // input type
+    comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkMinOrderByAggregateInput: { // input type
+    comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkOrderByRelationAggregateInput: { // input type
+    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['ComicBookmarkAvgOrderByAggregateInput'] | null; // ComicBookmarkAvgOrderByAggregateInput
+    _count?: NexusGenInputs['ComicBookmarkCountOrderByAggregateInput'] | null; // ComicBookmarkCountOrderByAggregateInput
+    _max?: NexusGenInputs['ComicBookmarkMaxOrderByAggregateInput'] | null; // ComicBookmarkMaxOrderByAggregateInput
+    _min?: NexusGenInputs['ComicBookmarkMinOrderByAggregateInput'] | null; // ComicBookmarkMinOrderByAggregateInput
+    _sum?: NexusGenInputs['ComicBookmarkSumOrderByAggregateInput'] | null; // ComicBookmarkSumOrderByAggregateInput
+    comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkOrderByWithRelationInput: { // input type
+    comic?: NexusGenInputs['ComicOrderByWithRelationInput'] | null; // ComicOrderByWithRelationInput
+    comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    users?: NexusGenInputs['UserOrderByWithRelationInput'] | null; // UserOrderByWithRelationInput
+  }
+  ComicBookmarkScalarWhereInput: { // input type
+    AND?: Array<NexusGenInputs['ComicBookmarkScalarWhereInput'] | null> | null; // [ComicBookmarkScalarWhereInput]
+    NOT?: Array<NexusGenInputs['ComicBookmarkScalarWhereInput'] | null> | null; // [ComicBookmarkScalarWhereInput]
+    OR?: Array<NexusGenInputs['ComicBookmarkScalarWhereInput'] | null> | null; // [ComicBookmarkScalarWhereInput]
+    comicId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  ComicBookmarkScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['ComicBookmarkScalarWhereWithAggregatesInput'] | null> | null; // [ComicBookmarkScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['ComicBookmarkScalarWhereWithAggregatesInput'] | null> | null; // [ComicBookmarkScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['ComicBookmarkScalarWhereWithAggregatesInput'] | null> | null; // [ComicBookmarkScalarWhereWithAggregatesInput]
+    comicId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    updatedAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    userId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+  }
+  ComicBookmarkSumOrderByAggregateInput: { // input type
+    comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ComicBookmarkUncheckedCreateInput: { // input type
+    comicId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ComicBookmarkUncheckedCreateNestedManyWithoutComicInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutComicInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutComicInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutComicInput'] | null> | null; // [ComicBookmarkCreateWithoutComicInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyComicInputEnvelope'] | null; // ComicBookmarkCreateManyComicInputEnvelope
+  }
+  ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyUsersInputEnvelope'] | null; // ComicBookmarkCreateManyUsersInputEnvelope
+  }
+  ComicBookmarkUncheckedCreateWithoutComicInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number; // Int!
+  }
+  ComicBookmarkUncheckedCreateWithoutUsersInput: { // input type
+    comicId: number; // Int!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ComicBookmarkUncheckedUpdateInput: { // input type
+    comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ComicBookmarkUncheckedUpdateManyInput: { // input type
+    comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ComicBookmarkUncheckedUpdateManyWithoutComicInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutComicInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutComicInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutComicInput'] | null> | null; // [ComicBookmarkCreateWithoutComicInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyComicInputEnvelope'] | null; // ComicBookmarkCreateManyComicInputEnvelope
+    delete?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ComicBookmarkScalarWhereInput'] | null> | null; // [ComicBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ComicBookmarkUpdateWithWhereUniqueWithoutComicInput'] | null> | null; // [ComicBookmarkUpdateWithWhereUniqueWithoutComicInput]
+    updateMany?: Array<NexusGenInputs['ComicBookmarkUpdateManyWithWhereWithoutComicInput'] | null> | null; // [ComicBookmarkUpdateManyWithWhereWithoutComicInput]
+    upsert?: Array<NexusGenInputs['ComicBookmarkUpsertWithWhereUniqueWithoutComicInput'] | null> | null; // [ComicBookmarkUpsertWithWhereUniqueWithoutComicInput]
+  }
+  ComicBookmarkUncheckedUpdateManyWithoutComicbookmarksInput: { // input type
+    comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ComicBookmarkUncheckedUpdateManyWithoutUserbookmarksInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ComicBookmarkUncheckedUpdateManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyUsersInputEnvelope'] | null; // ComicBookmarkCreateManyUsersInputEnvelope
+    delete?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ComicBookmarkScalarWhereInput'] | null> | null; // [ComicBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput'] | null> | null; // [ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput]
+    updateMany?: Array<NexusGenInputs['ComicBookmarkUpdateManyWithWhereWithoutUsersInput'] | null> | null; // [ComicBookmarkUpdateManyWithWhereWithoutUsersInput]
+    upsert?: Array<NexusGenInputs['ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput'] | null> | null; // [ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput]
+  }
+  ComicBookmarkUncheckedUpdateWithoutComicInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ComicBookmarkUncheckedUpdateWithoutUsersInput: { // input type
+    comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ComicBookmarkUpdateInput: { // input type
+    comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutUserbookmarksInput'] | null; // ComicUpdateOneRequiredWithoutUserbookmarksInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    users?: NexusGenInputs['UserUpdateOneRequiredWithoutComicbookmarksInput'] | null; // UserUpdateOneRequiredWithoutComicbookmarksInput
+  }
+  ComicBookmarkUpdateManyMutationInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ComicBookmarkUpdateManyWithWhereWithoutComicInput: { // input type
+    data: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutUserbookmarksInput']; // ComicBookmarkUncheckedUpdateManyWithoutUserbookmarksInput!
+    where: NexusGenInputs['ComicBookmarkScalarWhereInput']; // ComicBookmarkScalarWhereInput!
+  }
+  ComicBookmarkUpdateManyWithWhereWithoutUsersInput: { // input type
+    data: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicbookmarksInput']; // ComicBookmarkUncheckedUpdateManyWithoutComicbookmarksInput!
+    where: NexusGenInputs['ComicBookmarkScalarWhereInput']; // ComicBookmarkScalarWhereInput!
+  }
+  ComicBookmarkUpdateManyWithoutComicInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutComicInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutComicInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutComicInput'] | null> | null; // [ComicBookmarkCreateWithoutComicInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyComicInputEnvelope'] | null; // ComicBookmarkCreateManyComicInputEnvelope
+    delete?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ComicBookmarkScalarWhereInput'] | null> | null; // [ComicBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ComicBookmarkUpdateWithWhereUniqueWithoutComicInput'] | null> | null; // [ComicBookmarkUpdateWithWhereUniqueWithoutComicInput]
+    updateMany?: Array<NexusGenInputs['ComicBookmarkUpdateManyWithWhereWithoutComicInput'] | null> | null; // [ComicBookmarkUpdateManyWithWhereWithoutComicInput]
+    upsert?: Array<NexusGenInputs['ComicBookmarkUpsertWithWhereUniqueWithoutComicInput'] | null> | null; // [ComicBookmarkUpsertWithWhereUniqueWithoutComicInput]
+  }
+  ComicBookmarkUpdateManyWithoutUsersInput: { // input type
+    connect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ComicBookmarkCreateOrConnectWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateOrConnectWithoutUsersInput]
+    create?: Array<NexusGenInputs['ComicBookmarkCreateWithoutUsersInput'] | null> | null; // [ComicBookmarkCreateWithoutUsersInput]
+    createMany?: NexusGenInputs['ComicBookmarkCreateManyUsersInputEnvelope'] | null; // ComicBookmarkCreateManyUsersInputEnvelope
+    delete?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ComicBookmarkScalarWhereInput'] | null> | null; // [ComicBookmarkScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    set?: Array<NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null> | null; // [ComicBookmarkWhereUniqueInput]
+    update?: Array<NexusGenInputs['ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput'] | null> | null; // [ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput]
+    updateMany?: Array<NexusGenInputs['ComicBookmarkUpdateManyWithWhereWithoutUsersInput'] | null> | null; // [ComicBookmarkUpdateManyWithWhereWithoutUsersInput]
+    upsert?: Array<NexusGenInputs['ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput'] | null> | null; // [ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput]
+  }
+  ComicBookmarkUpdateWithWhereUniqueWithoutComicInput: { // input type
+    data: NexusGenInputs['ComicBookmarkUncheckedUpdateWithoutComicInput']; // ComicBookmarkUncheckedUpdateWithoutComicInput!
+    where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+  }
+  ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput: { // input type
+    data: NexusGenInputs['ComicBookmarkUncheckedUpdateWithoutUsersInput']; // ComicBookmarkUncheckedUpdateWithoutUsersInput!
+    where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+  }
+  ComicBookmarkUpdateWithoutComicInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    users?: NexusGenInputs['UserUpdateOneRequiredWithoutComicbookmarksInput'] | null; // UserUpdateOneRequiredWithoutComicbookmarksInput
+  }
+  ComicBookmarkUpdateWithoutUsersInput: { // input type
+    comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutUserbookmarksInput'] | null; // ComicUpdateOneRequiredWithoutUserbookmarksInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ComicBookmarkUpsertWithWhereUniqueWithoutComicInput: { // input type
+    create: NexusGenInputs['ComicBookmarkUncheckedCreateWithoutComicInput']; // ComicBookmarkUncheckedCreateWithoutComicInput!
+    update: NexusGenInputs['ComicBookmarkUncheckedUpdateWithoutComicInput']; // ComicBookmarkUncheckedUpdateWithoutComicInput!
+    where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+  }
+  ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput: { // input type
+    create: NexusGenInputs['ComicBookmarkUncheckedCreateWithoutUsersInput']; // ComicBookmarkUncheckedCreateWithoutUsersInput!
+    update: NexusGenInputs['ComicBookmarkUncheckedUpdateWithoutUsersInput']; // ComicBookmarkUncheckedUpdateWithoutUsersInput!
+    where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+  }
+  ComicBookmarkWhereInput: { // input type
+    AND?: Array<NexusGenInputs['ComicBookmarkWhereInput'] | null> | null; // [ComicBookmarkWhereInput]
+    NOT?: Array<NexusGenInputs['ComicBookmarkWhereInput'] | null> | null; // [ComicBookmarkWhereInput]
+    OR?: Array<NexusGenInputs['ComicBookmarkWhereInput'] | null> | null; // [ComicBookmarkWhereInput]
+    comic?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
+    comicId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    users?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+  }
+  ComicBookmarkWhereUniqueInput: { // input type
+    id?: number | null; // Int
   }
   ComicCountOrderByAggregateInput: { // input type
     age?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -847,6 +1583,7 @@ export interface NexusGenInputs {
     thumbWide?: string | null; // String
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
     views?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
@@ -913,6 +1650,11 @@ export interface NexusGenInputs {
     connectOrCreate?: NexusGenInputs['ComicCreateOrConnectWithoutChaptersInput'] | null; // ComicCreateOrConnectWithoutChaptersInput
     create?: NexusGenInputs['ComicUncheckedCreateWithoutChaptersInput'] | null; // ComicUncheckedCreateWithoutChaptersInput
   }
+  ComicCreateNestedOneWithoutUserbookmarksInput: { // input type
+    connect?: NexusGenInputs['ComicWhereUniqueInput'] | null; // ComicWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ComicCreateOrConnectWithoutUserbookmarksInput'] | null; // ComicCreateOrConnectWithoutUserbookmarksInput
+    create?: NexusGenInputs['ComicUncheckedCreateWithoutUserbookmarksInput'] | null; // ComicUncheckedCreateWithoutUserbookmarksInput
+  }
   ComicCreateOrConnectWithoutAuthorInput: { // input type
     create: NexusGenInputs['ComicUncheckedCreateWithoutAuthorInput']; // ComicUncheckedCreateWithoutAuthorInput!
     where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
@@ -923,6 +1665,10 @@ export interface NexusGenInputs {
   }
   ComicCreateOrConnectWithoutGenresInput: { // input type
     create: NexusGenInputs['ComicUncheckedCreateWithoutGenresInput']; // ComicUncheckedCreateWithoutGenresInput!
+    where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
+  }
+  ComicCreateOrConnectWithoutUserbookmarksInput: { // input type
+    create: NexusGenInputs['ComicUncheckedCreateWithoutUserbookmarksInput']; // ComicUncheckedCreateWithoutUserbookmarksInput!
     where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
   }
   ComicCreateWithoutAuthorInput: { // input type
@@ -944,6 +1690,7 @@ export interface NexusGenInputs {
     thumbWide?: string | null; // String
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
     views?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
@@ -966,6 +1713,7 @@ export interface NexusGenInputs {
     thumbWide?: string | null; // String
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
     views?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
@@ -977,6 +1725,30 @@ export interface NexusGenInputs {
     concept?: string | null; // String
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     description?: string | null; // String
+    isHentai?: boolean | null; // Boolean
+    lastChapterUpdateAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    name: string; // String!
+    rating?: number | null; // Float
+    released?: NexusGenScalars['DateTime'] | null; // DateTime
+    slug: string; // String!
+    status?: string | null; // String
+    thumb: string; // String!
+    thumbWide?: string | null; // String
+    type: string; // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
+    views?: number | null; // Int
+    viewsWeek?: number | null; // Int
+  }
+  ComicCreateWithoutUserbookmarksInput: { // input type
+    age?: string | null; // String
+    altName?: NexusGenScalars['Json'] | null; // Json
+    author: NexusGenInputs['AuthorCreateNestedOneWithoutComicsInput']; // AuthorCreateNestedOneWithoutComicsInput!
+    chapters?: NexusGenInputs['ChapterCreateNestedManyWithoutComicInput'] | null; // ChapterCreateNestedManyWithoutComicInput
+    concept?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    description?: string | null; // String
+    genres?: NexusGenInputs['GenreCreateNestedManyWithoutComicsInput'] | null; // GenreCreateNestedManyWithoutComicsInput
     isHentai?: boolean | null; // Boolean
     lastChapterUpdateAt?: NexusGenScalars['DateTime'] | null; // DateTime
     name: string; // String!
@@ -1090,6 +1862,7 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userbookmarks?: NexusGenInputs['ComicBookmarkOrderByRelationAggregateInput'] | null; // ComicBookmarkOrderByRelationAggregateInput
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
@@ -1174,6 +1947,7 @@ export interface NexusGenInputs {
     thumbWide?: string | null; // String
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
     views?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
@@ -1202,6 +1976,7 @@ export interface NexusGenInputs {
     thumbWide?: string | null; // String
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
     views?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
@@ -1224,10 +1999,35 @@ export interface NexusGenInputs {
     thumbWide?: string | null; // String
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
     views?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicUncheckedCreateWithoutGenresInput: { // input type
+    age?: string | null; // String
+    altName?: NexusGenScalars['Json'] | null; // Json
+    authorId: number; // Int!
+    chapters?: NexusGenInputs['ChapterUncheckedCreateNestedManyWithoutComicInput'] | null; // ChapterUncheckedCreateNestedManyWithoutComicInput
+    concept?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    description?: string | null; // String
+    id?: number | null; // Int
+    isHentai?: boolean | null; // Boolean
+    lastChapterUpdateAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    name: string; // String!
+    rating?: number | null; // Float
+    released?: NexusGenScalars['DateTime'] | null; // DateTime
+    slug: string; // String!
+    status?: string | null; // String
+    thumb: string; // String!
+    thumbWide?: string | null; // String
+    type: string; // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
+    views?: number | null; // Int
+    viewsWeek?: number | null; // Int
+  }
+  ComicUncheckedCreateWithoutUserbookmarksInput: { // input type
     age?: string | null; // String
     altName?: NexusGenScalars['Json'] | null; // Json
     authorId: number; // Int!
@@ -1270,6 +2070,7 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
@@ -1348,6 +2149,7 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
@@ -1370,10 +2172,35 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUncheckedUpdateWithoutGenresInput: { // input type
+    age?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    altName?: NexusGenScalars['Json'] | null; // Json
+    authorId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    chapters?: NexusGenInputs['ChapterUncheckedUpdateManyWithoutComicInput'] | null; // ChapterUncheckedUpdateManyWithoutComicInput
+    concept?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    description?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    lastChapterUpdateAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    rating?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    released?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    slug?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    status?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    thumb?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
+    views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ComicUncheckedUpdateWithoutUserbookmarksInput: { // input type
     age?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     altName?: NexusGenScalars['Json'] | null; // Json
     authorId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -1416,6 +2243,7 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
@@ -1479,6 +2307,13 @@ export interface NexusGenInputs {
     update?: NexusGenInputs['ComicUncheckedUpdateWithoutChaptersInput'] | null; // ComicUncheckedUpdateWithoutChaptersInput
     upsert?: NexusGenInputs['ComicUpsertWithoutChaptersInput'] | null; // ComicUpsertWithoutChaptersInput
   }
+  ComicUpdateOneRequiredWithoutUserbookmarksInput: { // input type
+    connect?: NexusGenInputs['ComicWhereUniqueInput'] | null; // ComicWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['ComicCreateOrConnectWithoutUserbookmarksInput'] | null; // ComicCreateOrConnectWithoutUserbookmarksInput
+    create?: NexusGenInputs['ComicUncheckedCreateWithoutUserbookmarksInput'] | null; // ComicUncheckedCreateWithoutUserbookmarksInput
+    update?: NexusGenInputs['ComicUncheckedUpdateWithoutUserbookmarksInput'] | null; // ComicUncheckedUpdateWithoutUserbookmarksInput
+    upsert?: NexusGenInputs['ComicUpsertWithoutUserbookmarksInput'] | null; // ComicUpsertWithoutUserbookmarksInput
+  }
   ComicUpdateWithWhereUniqueWithoutAuthorInput: { // input type
     data: NexusGenInputs['ComicUncheckedUpdateWithoutAuthorInput']; // ComicUncheckedUpdateWithoutAuthorInput!
     where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
@@ -1506,6 +2341,7 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
@@ -1528,6 +2364,7 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
@@ -1539,6 +2376,30 @@ export interface NexusGenInputs {
     concept?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     description?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    isHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    lastChapterUpdateAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    rating?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    released?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    slug?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    status?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    thumb?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    thumbWide?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
+    views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  ComicUpdateWithoutUserbookmarksInput: { // input type
+    age?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    altName?: NexusGenScalars['Json'] | null; // Json
+    author?: NexusGenInputs['AuthorUpdateOneRequiredWithoutComicsInput'] | null; // AuthorUpdateOneRequiredWithoutComicsInput
+    chapters?: NexusGenInputs['ChapterUpdateManyWithoutComicInput'] | null; // ChapterUpdateManyWithoutComicInput
+    concept?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    description?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    genres?: NexusGenInputs['GenreUpdateManyWithoutComicsInput'] | null; // GenreUpdateManyWithoutComicsInput
     isHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     lastChapterUpdateAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1567,6 +2428,10 @@ export interface NexusGenInputs {
     create: NexusGenInputs['ComicUncheckedCreateWithoutChaptersInput']; // ComicUncheckedCreateWithoutChaptersInput!
     update: NexusGenInputs['ComicUncheckedUpdateWithoutChaptersInput']; // ComicUncheckedUpdateWithoutChaptersInput!
   }
+  ComicUpsertWithoutUserbookmarksInput: { // input type
+    create: NexusGenInputs['ComicUncheckedCreateWithoutUserbookmarksInput']; // ComicUncheckedCreateWithoutUserbookmarksInput!
+    update: NexusGenInputs['ComicUncheckedUpdateWithoutUserbookmarksInput']; // ComicUncheckedUpdateWithoutUserbookmarksInput!
+  }
   ComicWhereInput: { // input type
     AND?: Array<NexusGenInputs['ComicWhereInput'] | null> | null; // [ComicWhereInput]
     NOT?: Array<NexusGenInputs['ComicWhereInput'] | null> | null; // [ComicWhereInput]
@@ -1592,6 +2457,7 @@ export interface NexusGenInputs {
     thumbWide?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     type?: NexusGenInputs['StringFilter'] | null; // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    userbookmarks?: NexusGenInputs['ComicBookmarkListRelationFilter'] | null; // ComicBookmarkListRelationFilter
     views?: NexusGenInputs['IntFilter'] | null; // IntFilter
     viewsWeek?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
@@ -1917,6 +2783,31 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
     notIn?: Array<number | null> | null; // [Int]
   }
+  IntNullableFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
+  IntNullableWithAggregatesFilter: { // input type
+    _avg?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    _count?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _max?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _min?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _sum?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableWithAggregatesFilter'] | null; // NestedIntNullableWithAggregatesFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
   IntWithAggregatesFilter: { // input type
     _avg?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     _count?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
@@ -1942,6 +2833,135 @@ export interface NexusGenInputs {
     _min?: NexusGenInputs['NestedJsonNullableFilter'] | null; // NestedJsonNullableFilter
     equals?: NexusGenScalars['Json'] | null; // Json
     not?: NexusGenScalars['Json'] | null; // Json
+  }
+  MissingAvgOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  MissingCountOrderByAggregateInput: { // input type
+    context?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    data?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  MissingCreateInput: { // input type
+    context: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    data: string; // String!
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  MissingCreateManyInput: { // input type
+    context: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    data: string; // String!
+    id?: number | null; // Int
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  MissingMaxOrderByAggregateInput: { // input type
+    context?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    data?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  MissingMinOrderByAggregateInput: { // input type
+    context?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    data?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  MissingOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['MissingAvgOrderByAggregateInput'] | null; // MissingAvgOrderByAggregateInput
+    _count?: NexusGenInputs['MissingCountOrderByAggregateInput'] | null; // MissingCountOrderByAggregateInput
+    _max?: NexusGenInputs['MissingMaxOrderByAggregateInput'] | null; // MissingMaxOrderByAggregateInput
+    _min?: NexusGenInputs['MissingMinOrderByAggregateInput'] | null; // MissingMinOrderByAggregateInput
+    _sum?: NexusGenInputs['MissingSumOrderByAggregateInput'] | null; // MissingSumOrderByAggregateInput
+    context?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    data?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  MissingOrderByWithRelationInput: { // input type
+    context?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    data?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  MissingScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['MissingScalarWhereWithAggregatesInput'] | null> | null; // [MissingScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['MissingScalarWhereWithAggregatesInput'] | null> | null; // [MissingScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['MissingScalarWhereWithAggregatesInput'] | null> | null; // [MissingScalarWhereWithAggregatesInput]
+    context?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    data?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    resolved?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
+    updatedAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+  }
+  MissingSumOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  MissingUncheckedCreateInput: { // input type
+    context: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    data: string; // String!
+    id?: number | null; // Int
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  MissingUncheckedUpdateInput: { // input type
+    context?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    data?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  MissingUncheckedUpdateManyInput: { // input type
+    context?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    data?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  MissingUpdateInput: { // input type
+    context?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    data?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  MissingUpdateManyMutationInput: { // input type
+    context?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    data?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  MissingWhereInput: { // input type
+    AND?: Array<NexusGenInputs['MissingWhereInput'] | null> | null; // [MissingWhereInput]
+    NOT?: Array<NexusGenInputs['MissingWhereInput'] | null> | null; // [MissingWhereInput]
+    OR?: Array<NexusGenInputs['MissingWhereInput'] | null> | null; // [MissingWhereInput]
+    context?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    data?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    resolved?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+  }
+  MissingWhereUniqueInput: { // input type
+    id?: number | null; // Int
   }
   NestedBoolFilter: { // input type
     equals?: boolean | null; // Boolean
@@ -2017,6 +3037,16 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     notIn?: Array<number | null> | null; // [Float]
   }
+  NestedFloatNullableFilter: { // input type
+    equals?: number | null; // Float
+    gt?: number | null; // Float
+    gte?: number | null; // Float
+    in?: Array<number | null> | null; // [Float]
+    lt?: number | null; // Float
+    lte?: number | null; // Float
+    not?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    notIn?: Array<number | null> | null; // [Float]
+  }
   NestedFloatWithAggregatesFilter: { // input type
     _avg?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     _count?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
@@ -2050,6 +3080,21 @@ export interface NexusGenInputs {
     lt?: number | null; // Int
     lte?: number | null; // Int
     not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
+  NestedIntNullableWithAggregatesFilter: { // input type
+    _avg?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    _count?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _max?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _min?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _sum?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableWithAggregatesFilter'] | null; // NestedIntNullableWithAggregatesFilter
     notIn?: Array<number | null> | null; // [Int]
   }
   NestedIntWithAggregatesFilter: { // input type
@@ -2129,8 +3174,328 @@ export interface NexusGenInputs {
     notIn?: Array<string | null> | null; // [String]
     startsWith?: string | null; // String
   }
+  NullableIntFieldUpdateOperationsInput: { // input type
+    decrement?: number | null; // Int
+    divide?: number | null; // Int
+    increment?: number | null; // Int
+    multiply?: number | null; // Int
+    set?: number | null; // Int
+  }
   NullableStringFieldUpdateOperationsInput: { // input type
     set?: string | null; // String
+  }
+  ReportAvgOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportCountOrderByAggregateInput: { // input type
+    contextIdentifier?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    contextType?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    message?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportCreateInput: { // input type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    message?: string | null; // String
+    name: string; // String!
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    user?: NexusGenInputs['UserCreateNestedOneWithoutReportsInput'] | null; // UserCreateNestedOneWithoutReportsInput
+  }
+  ReportCreateManyInput: { // input type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    message?: string | null; // String
+    name: string; // String!
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ReportCreateManyUserInput: { // input type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    message?: string | null; // String
+    name: string; // String!
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ReportCreateManyUserInputEnvelope: { // input type
+    data: NexusGenInputs['ReportCreateManyUserInput']; // ReportCreateManyUserInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  ReportCreateNestedManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ReportCreateOrConnectWithoutUserInput'] | null> | null; // [ReportCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['ReportCreateWithoutUserInput'] | null> | null; // [ReportCreateWithoutUserInput]
+    createMany?: NexusGenInputs['ReportCreateManyUserInputEnvelope'] | null; // ReportCreateManyUserInputEnvelope
+  }
+  ReportCreateOrConnectWithoutUserInput: { // input type
+    create: NexusGenInputs['ReportUncheckedCreateWithoutUserInput']; // ReportUncheckedCreateWithoutUserInput!
+    where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
+  }
+  ReportCreateWithoutUserInput: { // input type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    message?: string | null; // String
+    name: string; // String!
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ReportListRelationFilter: { // input type
+    every?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
+    none?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
+    some?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
+  }
+  ReportMaxOrderByAggregateInput: { // input type
+    contextIdentifier?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    contextType?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    message?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportMinOrderByAggregateInput: { // input type
+    contextIdentifier?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    contextType?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    message?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportOrderByRelationAggregateInput: { // input type
+    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['ReportAvgOrderByAggregateInput'] | null; // ReportAvgOrderByAggregateInput
+    _count?: NexusGenInputs['ReportCountOrderByAggregateInput'] | null; // ReportCountOrderByAggregateInput
+    _max?: NexusGenInputs['ReportMaxOrderByAggregateInput'] | null; // ReportMaxOrderByAggregateInput
+    _min?: NexusGenInputs['ReportMinOrderByAggregateInput'] | null; // ReportMinOrderByAggregateInput
+    _sum?: NexusGenInputs['ReportSumOrderByAggregateInput'] | null; // ReportSumOrderByAggregateInput
+    contextIdentifier?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    contextType?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    message?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportOrderByWithRelationInput: { // input type
+    contextIdentifier?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    contextType?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    message?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    resolved?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    user?: NexusGenInputs['UserOrderByWithRelationInput'] | null; // UserOrderByWithRelationInput
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportScalarWhereInput: { // input type
+    AND?: Array<NexusGenInputs['ReportScalarWhereInput'] | null> | null; // [ReportScalarWhereInput]
+    NOT?: Array<NexusGenInputs['ReportScalarWhereInput'] | null> | null; // [ReportScalarWhereInput]
+    OR?: Array<NexusGenInputs['ReportScalarWhereInput'] | null> | null; // [ReportScalarWhereInput]
+    contextIdentifier?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    contextType?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    message?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    resolved?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    userId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+  }
+  ReportScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['ReportScalarWhereWithAggregatesInput'] | null> | null; // [ReportScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['ReportScalarWhereWithAggregatesInput'] | null> | null; // [ReportScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['ReportScalarWhereWithAggregatesInput'] | null> | null; // [ReportScalarWhereWithAggregatesInput]
+    contextIdentifier?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    contextType?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    message?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
+    name?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    resolved?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
+    updatedAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    userId?: NexusGenInputs['IntNullableWithAggregatesFilter'] | null; // IntNullableWithAggregatesFilter
+  }
+  ReportSumOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  ReportUncheckedCreateInput: { // input type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    message?: string | null; // String
+    name: string; // String!
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ReportUncheckedCreateNestedManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ReportCreateOrConnectWithoutUserInput'] | null> | null; // [ReportCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['ReportCreateWithoutUserInput'] | null> | null; // [ReportCreateWithoutUserInput]
+    createMany?: NexusGenInputs['ReportCreateManyUserInputEnvelope'] | null; // ReportCreateManyUserInputEnvelope
+  }
+  ReportUncheckedCreateWithoutUserInput: { // input type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    message?: string | null; // String
+    name: string; // String!
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  ReportUncheckedUpdateInput: { // input type
+    contextIdentifier?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    contextType?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    message?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+  }
+  ReportUncheckedUpdateManyInput: { // input type
+    contextIdentifier?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    contextType?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    message?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    userId?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
+  }
+  ReportUncheckedUpdateManyWithoutReportsInput: { // input type
+    contextIdentifier?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    contextType?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    message?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ReportUncheckedUpdateManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ReportCreateOrConnectWithoutUserInput'] | null> | null; // [ReportCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['ReportCreateWithoutUserInput'] | null> | null; // [ReportCreateWithoutUserInput]
+    createMany?: NexusGenInputs['ReportCreateManyUserInputEnvelope'] | null; // ReportCreateManyUserInputEnvelope
+    delete?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ReportScalarWhereInput'] | null> | null; // [ReportScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    set?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    update?: Array<NexusGenInputs['ReportUpdateWithWhereUniqueWithoutUserInput'] | null> | null; // [ReportUpdateWithWhereUniqueWithoutUserInput]
+    updateMany?: Array<NexusGenInputs['ReportUpdateManyWithWhereWithoutUserInput'] | null> | null; // [ReportUpdateManyWithWhereWithoutUserInput]
+    upsert?: Array<NexusGenInputs['ReportUpsertWithWhereUniqueWithoutUserInput'] | null> | null; // [ReportUpsertWithWhereUniqueWithoutUserInput]
+  }
+  ReportUncheckedUpdateWithoutUserInput: { // input type
+    contextIdentifier?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    contextType?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    message?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ReportUpdateInput: { // input type
+    contextIdentifier?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    contextType?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    message?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    user?: NexusGenInputs['UserUpdateOneWithoutReportsInput'] | null; // UserUpdateOneWithoutReportsInput
+  }
+  ReportUpdateManyMutationInput: { // input type
+    contextIdentifier?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    contextType?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    message?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ReportUpdateManyWithWhereWithoutUserInput: { // input type
+    data: NexusGenInputs['ReportUncheckedUpdateManyWithoutReportsInput']; // ReportUncheckedUpdateManyWithoutReportsInput!
+    where: NexusGenInputs['ReportScalarWhereInput']; // ReportScalarWhereInput!
+  }
+  ReportUpdateManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['ReportCreateOrConnectWithoutUserInput'] | null> | null; // [ReportCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['ReportCreateWithoutUserInput'] | null> | null; // [ReportCreateWithoutUserInput]
+    createMany?: NexusGenInputs['ReportCreateManyUserInputEnvelope'] | null; // ReportCreateManyUserInputEnvelope
+    delete?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['ReportScalarWhereInput'] | null> | null; // [ReportScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    set?: Array<NexusGenInputs['ReportWhereUniqueInput'] | null> | null; // [ReportWhereUniqueInput]
+    update?: Array<NexusGenInputs['ReportUpdateWithWhereUniqueWithoutUserInput'] | null> | null; // [ReportUpdateWithWhereUniqueWithoutUserInput]
+    updateMany?: Array<NexusGenInputs['ReportUpdateManyWithWhereWithoutUserInput'] | null> | null; // [ReportUpdateManyWithWhereWithoutUserInput]
+    upsert?: Array<NexusGenInputs['ReportUpsertWithWhereUniqueWithoutUserInput'] | null> | null; // [ReportUpsertWithWhereUniqueWithoutUserInput]
+  }
+  ReportUpdateWithWhereUniqueWithoutUserInput: { // input type
+    data: NexusGenInputs['ReportUncheckedUpdateWithoutUserInput']; // ReportUncheckedUpdateWithoutUserInput!
+    where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
+  }
+  ReportUpdateWithoutUserInput: { // input type
+    contextIdentifier?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    contextType?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    message?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    resolved?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  ReportUpsertWithWhereUniqueWithoutUserInput: { // input type
+    create: NexusGenInputs['ReportUncheckedCreateWithoutUserInput']; // ReportUncheckedCreateWithoutUserInput!
+    update: NexusGenInputs['ReportUncheckedUpdateWithoutUserInput']; // ReportUncheckedUpdateWithoutUserInput!
+    where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
+  }
+  ReportWhereInput: { // input type
+    AND?: Array<NexusGenInputs['ReportWhereInput'] | null> | null; // [ReportWhereInput]
+    NOT?: Array<NexusGenInputs['ReportWhereInput'] | null> | null; // [ReportWhereInput]
+    OR?: Array<NexusGenInputs['ReportWhereInput'] | null> | null; // [ReportWhereInput]
+    contextIdentifier?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    contextType?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    message?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    resolved?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+  }
+  ReportWhereUniqueInput: { // input type
+    id?: number | null; // Int
   }
   StringFieldUpdateOperationsInput: { // input type
     set?: string | null; // String
@@ -2219,11 +3584,14 @@ export interface NexusGenInputs {
   }
   UserCreateInput: { // input type
     allowHentai?: boolean | null; // Boolean
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkCreateNestedManyWithoutUsersInput'] | null; // ChapterBookmarkCreateNestedManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutUsersInput'] | null; // ComicBookmarkCreateNestedManyWithoutUsersInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     email: string; // String!
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
     password: string; // String!
+    reports?: NexusGenInputs['ReportCreateNestedManyWithoutUserInput'] | null; // ReportCreateNestedManyWithoutUserInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserCreateManyInput: { // input type
@@ -2231,6 +3599,66 @@ export interface NexusGenInputs {
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     email: string; // String!
     id?: number | null; // Int
+    isAdmin?: boolean | null; // Boolean
+    name?: string | null; // String
+    password: string; // String!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UserCreateNestedOneWithoutChapterbookmarksInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutChapterbookmarksInput'] | null; // UserCreateOrConnectWithoutChapterbookmarksInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutChapterbookmarksInput'] | null; // UserUncheckedCreateWithoutChapterbookmarksInput
+  }
+  UserCreateNestedOneWithoutComicbookmarksInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutComicbookmarksInput'] | null; // UserCreateOrConnectWithoutComicbookmarksInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutComicbookmarksInput'] | null; // UserUncheckedCreateWithoutComicbookmarksInput
+  }
+  UserCreateNestedOneWithoutReportsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutReportsInput'] | null; // UserCreateOrConnectWithoutReportsInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutReportsInput'] | null; // UserUncheckedCreateWithoutReportsInput
+  }
+  UserCreateOrConnectWithoutChapterbookmarksInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutChapterbookmarksInput']; // UserUncheckedCreateWithoutChapterbookmarksInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserCreateOrConnectWithoutComicbookmarksInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutComicbookmarksInput']; // UserUncheckedCreateWithoutComicbookmarksInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserCreateOrConnectWithoutReportsInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutReportsInput']; // UserUncheckedCreateWithoutReportsInput!
+    where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+  }
+  UserCreateWithoutChapterbookmarksInput: { // input type
+    allowHentai?: boolean | null; // Boolean
+    comicbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutUsersInput'] | null; // ComicBookmarkCreateNestedManyWithoutUsersInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    isAdmin?: boolean | null; // Boolean
+    name?: string | null; // String
+    password: string; // String!
+    reports?: NexusGenInputs['ReportCreateNestedManyWithoutUserInput'] | null; // ReportCreateNestedManyWithoutUserInput
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UserCreateWithoutComicbookmarksInput: { // input type
+    allowHentai?: boolean | null; // Boolean
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkCreateNestedManyWithoutUsersInput'] | null; // ChapterBookmarkCreateNestedManyWithoutUsersInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    isAdmin?: boolean | null; // Boolean
+    name?: string | null; // String
+    password: string; // String!
+    reports?: NexusGenInputs['ReportCreateNestedManyWithoutUserInput'] | null; // ReportCreateNestedManyWithoutUserInput
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UserCreateWithoutReportsInput: { // input type
+    allowHentai?: boolean | null; // Boolean
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkCreateNestedManyWithoutUsersInput'] | null; // ChapterBookmarkCreateNestedManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutUsersInput'] | null; // ComicBookmarkCreateNestedManyWithoutUsersInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
     password: string; // String!
@@ -2273,13 +3701,20 @@ export interface NexusGenInputs {
   }
   UserOrderByWithRelationInput: { // input type
     allowHentai?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkOrderByRelationAggregateInput'] | null; // ChapterBookmarkOrderByRelationAggregateInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkOrderByRelationAggregateInput'] | null; // ComicBookmarkOrderByRelationAggregateInput
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     isAdmin?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     password?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    reports?: NexusGenInputs['ReportOrderByRelationAggregateInput'] | null; // ReportOrderByRelationAggregateInput
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  UserRelationFilter: { // input type
+    is?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    isNot?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
   }
   UserScalarWhereWithAggregatesInput: { // input type
     AND?: Array<NexusGenInputs['UserScalarWhereWithAggregatesInput'] | null> | null; // [UserScalarWhereWithAggregatesInput]
@@ -2299,6 +3734,45 @@ export interface NexusGenInputs {
   }
   UserUncheckedCreateInput: { // input type
     allowHentai?: boolean | null; // Boolean
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput'] | null; // ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    id?: number | null; // Int
+    isAdmin?: boolean | null; // Boolean
+    name?: string | null; // String
+    password: string; // String!
+    reports?: NexusGenInputs['ReportUncheckedCreateNestedManyWithoutUserInput'] | null; // ReportUncheckedCreateNestedManyWithoutUserInput
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UserUncheckedCreateWithoutChapterbookmarksInput: { // input type
+    allowHentai?: boolean | null; // Boolean
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    id?: number | null; // Int
+    isAdmin?: boolean | null; // Boolean
+    name?: string | null; // String
+    password: string; // String!
+    reports?: NexusGenInputs['ReportUncheckedCreateNestedManyWithoutUserInput'] | null; // ReportUncheckedCreateNestedManyWithoutUserInput
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UserUncheckedCreateWithoutComicbookmarksInput: { // input type
+    allowHentai?: boolean | null; // Boolean
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput'] | null; // ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email: string; // String!
+    id?: number | null; // Int
+    isAdmin?: boolean | null; // Boolean
+    name?: string | null; // String
+    password: string; // String!
+    reports?: NexusGenInputs['ReportUncheckedCreateNestedManyWithoutUserInput'] | null; // ReportUncheckedCreateNestedManyWithoutUserInput
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  UserUncheckedCreateWithoutReportsInput: { // input type
+    allowHentai?: boolean | null; // Boolean
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput'] | null; // ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     email: string; // String!
     id?: number | null; // Int
@@ -2309,12 +3783,15 @@ export interface NexusGenInputs {
   }
   UserUncheckedUpdateInput: { // input type
     allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutUsersInput'] | null; // ChapterBookmarkUncheckedUpdateManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutUsersInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutUsersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reports?: NexusGenInputs['ReportUncheckedUpdateManyWithoutUserInput'] | null; // ReportUncheckedUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   UserUncheckedUpdateManyInput: { // input type
@@ -2327,13 +3804,52 @@ export interface NexusGenInputs {
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
+  UserUncheckedUpdateWithoutChapterbookmarksInput: { // input type
+    allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutUsersInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutUsersInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reports?: NexusGenInputs['ReportUncheckedUpdateManyWithoutUserInput'] | null; // ReportUncheckedUpdateManyWithoutUserInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  UserUncheckedUpdateWithoutComicbookmarksInput: { // input type
+    allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutUsersInput'] | null; // ChapterBookmarkUncheckedUpdateManyWithoutUsersInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reports?: NexusGenInputs['ReportUncheckedUpdateManyWithoutUserInput'] | null; // ReportUncheckedUpdateManyWithoutUserInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  UserUncheckedUpdateWithoutReportsInput: { // input type
+    allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutUsersInput'] | null; // ChapterBookmarkUncheckedUpdateManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutUsersInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutUsersInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
   UserUpdateInput: { // input type
     allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUpdateManyWithoutUsersInput'] | null; // ChapterBookmarkUpdateManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutUsersInput'] | null; // ComicBookmarkUpdateManyWithoutUsersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reports?: NexusGenInputs['ReportUpdateManyWithoutUserInput'] | null; // ReportUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   UserUpdateManyMutationInput: { // input type
@@ -2345,17 +3861,88 @@ export interface NexusGenInputs {
     password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
+  UserUpdateOneRequiredWithoutChapterbookmarksInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutChapterbookmarksInput'] | null; // UserCreateOrConnectWithoutChapterbookmarksInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutChapterbookmarksInput'] | null; // UserUncheckedCreateWithoutChapterbookmarksInput
+    update?: NexusGenInputs['UserUncheckedUpdateWithoutChapterbookmarksInput'] | null; // UserUncheckedUpdateWithoutChapterbookmarksInput
+    upsert?: NexusGenInputs['UserUpsertWithoutChapterbookmarksInput'] | null; // UserUpsertWithoutChapterbookmarksInput
+  }
+  UserUpdateOneRequiredWithoutComicbookmarksInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutComicbookmarksInput'] | null; // UserCreateOrConnectWithoutComicbookmarksInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutComicbookmarksInput'] | null; // UserUncheckedCreateWithoutComicbookmarksInput
+    update?: NexusGenInputs['UserUncheckedUpdateWithoutComicbookmarksInput'] | null; // UserUncheckedUpdateWithoutComicbookmarksInput
+    upsert?: NexusGenInputs['UserUpsertWithoutComicbookmarksInput'] | null; // UserUpsertWithoutComicbookmarksInput
+  }
+  UserUpdateOneWithoutReportsInput: { // input type
+    connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutReportsInput'] | null; // UserCreateOrConnectWithoutReportsInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutReportsInput'] | null; // UserUncheckedCreateWithoutReportsInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['UserUncheckedUpdateWithoutReportsInput'] | null; // UserUncheckedUpdateWithoutReportsInput
+    upsert?: NexusGenInputs['UserUpsertWithoutReportsInput'] | null; // UserUpsertWithoutReportsInput
+  }
+  UserUpdateWithoutChapterbookmarksInput: { // input type
+    allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutUsersInput'] | null; // ComicBookmarkUpdateManyWithoutUsersInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reports?: NexusGenInputs['ReportUpdateManyWithoutUserInput'] | null; // ReportUpdateManyWithoutUserInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  UserUpdateWithoutComicbookmarksInput: { // input type
+    allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUpdateManyWithoutUsersInput'] | null; // ChapterBookmarkUpdateManyWithoutUsersInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    reports?: NexusGenInputs['ReportUpdateManyWithoutUserInput'] | null; // ReportUpdateManyWithoutUserInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  UserUpdateWithoutReportsInput: { // input type
+    allowHentai?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkUpdateManyWithoutUsersInput'] | null; // ChapterBookmarkUpdateManyWithoutUsersInput
+    comicbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutUsersInput'] | null; // ComicBookmarkUpdateManyWithoutUsersInput
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+  }
+  UserUpsertWithoutChapterbookmarksInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutChapterbookmarksInput']; // UserUncheckedCreateWithoutChapterbookmarksInput!
+    update: NexusGenInputs['UserUncheckedUpdateWithoutChapterbookmarksInput']; // UserUncheckedUpdateWithoutChapterbookmarksInput!
+  }
+  UserUpsertWithoutComicbookmarksInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutComicbookmarksInput']; // UserUncheckedCreateWithoutComicbookmarksInput!
+    update: NexusGenInputs['UserUncheckedUpdateWithoutComicbookmarksInput']; // UserUncheckedUpdateWithoutComicbookmarksInput!
+  }
+  UserUpsertWithoutReportsInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutReportsInput']; // UserUncheckedCreateWithoutReportsInput!
+    update: NexusGenInputs['UserUncheckedUpdateWithoutReportsInput']; // UserUncheckedUpdateWithoutReportsInput!
+  }
   UserWhereInput: { // input type
     AND?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
     NOT?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
     OR?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
     allowHentai?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    chapterbookmarks?: NexusGenInputs['ChapterBookmarkListRelationFilter'] | null; // ChapterBookmarkListRelationFilter
+    comicbookmarks?: NexusGenInputs['ComicBookmarkListRelationFilter'] | null; // ComicBookmarkListRelationFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     email?: NexusGenInputs['StringFilter'] | null; // StringFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     isAdmin?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     password?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    reports?: NexusGenInputs['ReportListRelationFilter'] | null; // ReportListRelationFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
   UserWhereUniqueInput: { // input type
@@ -2365,16 +3952,20 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  AdsPosition: "BOTTOM" | "TOP"
+  AdsPosition: "BOTTOM" | "TOP" | "TOP_COMIC"
   AdsScalarFieldEnum: "createdAt" | "id" | "index" | "name" | "position" | "updatedAt" | "url"
   AuthorScalarFieldEnum: "createdAt" | "id" | "name" | "slug" | "updatedAt"
+  ChapterBookmarkScalarFieldEnum: "chapterId" | "createdAt" | "id" | "updatedAt" | "userId"
   ChapterQuality: "HQ" | "LQ" | "NORMAL"
   ChapterScalarFieldEnum: "comicId" | "createdAt" | "id" | "imageCount" | "imageDetails" | "imageUrls" | "name" | "originalImageCount" | "processed" | "quality" | "title" | "updatedAt" | "views"
+  ComicBookmarkScalarFieldEnum: "comicId" | "createdAt" | "id" | "updatedAt" | "userId"
   ComicScalarFieldEnum: "age" | "altName" | "authorId" | "concept" | "createdAt" | "description" | "id" | "isHentai" | "lastChapterUpdateAt" | "name" | "rating" | "released" | "slug" | "status" | "thumb" | "thumbWide" | "type" | "updatedAt" | "views" | "viewsWeek"
   GenreScalarFieldEnum: "createdAt" | "id" | "name" | "slug" | "updatedAt"
   JsonNullValueFilter: "AnyNull" | "DbNull" | "JsonNull"
+  MissingScalarFieldEnum: "context" | "createdAt" | "data" | "id" | "resolved" | "updatedAt"
   NullableJsonNullValueInput: "DbNull" | "JsonNull"
   QueryMode: "default" | "insensitive"
+  ReportScalarFieldEnum: "contextIdentifier" | "contextType" | "createdAt" | "id" | "message" | "name" | "resolved" | "updatedAt" | "userId"
   SortOrder: "asc" | "desc"
   UserScalarFieldEnum: "allowHentai" | "createdAt" | "email" | "id" | "isAdmin" | "name" | "password" | "updatedAt"
 }
@@ -2459,6 +4050,13 @@ export interface NexusGenObjects {
     _min?: NexusGenRootTypes['ChapterMinAggregateOutputType'] | null; // ChapterMinAggregateOutputType
     _sum?: NexusGenRootTypes['ChapterSumAggregateOutputType'] | null; // ChapterSumAggregateOutputType
   }
+  AggregateChapterBookmark: { // root type
+    _avg?: NexusGenRootTypes['ChapterBookmarkAvgAggregateOutputType'] | null; // ChapterBookmarkAvgAggregateOutputType
+    _count?: NexusGenRootTypes['ChapterBookmarkCountAggregateOutputType'] | null; // ChapterBookmarkCountAggregateOutputType
+    _max?: NexusGenRootTypes['ChapterBookmarkMaxAggregateOutputType'] | null; // ChapterBookmarkMaxAggregateOutputType
+    _min?: NexusGenRootTypes['ChapterBookmarkMinAggregateOutputType'] | null; // ChapterBookmarkMinAggregateOutputType
+    _sum?: NexusGenRootTypes['ChapterBookmarkSumAggregateOutputType'] | null; // ChapterBookmarkSumAggregateOutputType
+  }
   AggregateComic: { // root type
     _avg?: NexusGenRootTypes['ComicAvgAggregateOutputType'] | null; // ComicAvgAggregateOutputType
     _count?: NexusGenRootTypes['ComicCountAggregateOutputType'] | null; // ComicCountAggregateOutputType
@@ -2466,12 +4064,33 @@ export interface NexusGenObjects {
     _min?: NexusGenRootTypes['ComicMinAggregateOutputType'] | null; // ComicMinAggregateOutputType
     _sum?: NexusGenRootTypes['ComicSumAggregateOutputType'] | null; // ComicSumAggregateOutputType
   }
+  AggregateComicBookmark: { // root type
+    _avg?: NexusGenRootTypes['ComicBookmarkAvgAggregateOutputType'] | null; // ComicBookmarkAvgAggregateOutputType
+    _count?: NexusGenRootTypes['ComicBookmarkCountAggregateOutputType'] | null; // ComicBookmarkCountAggregateOutputType
+    _max?: NexusGenRootTypes['ComicBookmarkMaxAggregateOutputType'] | null; // ComicBookmarkMaxAggregateOutputType
+    _min?: NexusGenRootTypes['ComicBookmarkMinAggregateOutputType'] | null; // ComicBookmarkMinAggregateOutputType
+    _sum?: NexusGenRootTypes['ComicBookmarkSumAggregateOutputType'] | null; // ComicBookmarkSumAggregateOutputType
+  }
   AggregateGenre: { // root type
     _avg?: NexusGenRootTypes['GenreAvgAggregateOutputType'] | null; // GenreAvgAggregateOutputType
     _count?: NexusGenRootTypes['GenreCountAggregateOutputType'] | null; // GenreCountAggregateOutputType
     _max?: NexusGenRootTypes['GenreMaxAggregateOutputType'] | null; // GenreMaxAggregateOutputType
     _min?: NexusGenRootTypes['GenreMinAggregateOutputType'] | null; // GenreMinAggregateOutputType
     _sum?: NexusGenRootTypes['GenreSumAggregateOutputType'] | null; // GenreSumAggregateOutputType
+  }
+  AggregateMissing: { // root type
+    _avg?: NexusGenRootTypes['MissingAvgAggregateOutputType'] | null; // MissingAvgAggregateOutputType
+    _count?: NexusGenRootTypes['MissingCountAggregateOutputType'] | null; // MissingCountAggregateOutputType
+    _max?: NexusGenRootTypes['MissingMaxAggregateOutputType'] | null; // MissingMaxAggregateOutputType
+    _min?: NexusGenRootTypes['MissingMinAggregateOutputType'] | null; // MissingMinAggregateOutputType
+    _sum?: NexusGenRootTypes['MissingSumAggregateOutputType'] | null; // MissingSumAggregateOutputType
+  }
+  AggregateReport: { // root type
+    _avg?: NexusGenRootTypes['ReportAvgAggregateOutputType'] | null; // ReportAvgAggregateOutputType
+    _count?: NexusGenRootTypes['ReportCountAggregateOutputType'] | null; // ReportCountAggregateOutputType
+    _max?: NexusGenRootTypes['ReportMaxAggregateOutputType'] | null; // ReportMaxAggregateOutputType
+    _min?: NexusGenRootTypes['ReportMinAggregateOutputType'] | null; // ReportMinAggregateOutputType
+    _sum?: NexusGenRootTypes['ReportSumAggregateOutputType'] | null; // ReportSumAggregateOutputType
   }
   AggregateUser: { // root type
     _avg?: NexusGenRootTypes['UserAvgAggregateOutputType'] | null; // UserAvgAggregateOutputType
@@ -2544,6 +4163,45 @@ export interface NexusGenObjects {
     originalImageCount?: number | null; // Float
     views?: number | null; // Float
   }
+  ChapterBookmark: { // root type
+    chapterId: number; // Int!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: number; // Int!
+  }
+  ChapterBookmarkAvgAggregateOutputType: { // root type
+    chapterId?: number | null; // Float
+    id?: number | null; // Float
+    userId?: number | null; // Float
+  }
+  ChapterBookmarkCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    chapterId: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    updatedAt: number; // Int!
+    userId: number; // Int!
+  }
+  ChapterBookmarkMaxAggregateOutputType: { // root type
+    chapterId?: number | null; // Int
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ChapterBookmarkMinAggregateOutputType: { // root type
+    chapterId?: number | null; // Int
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ChapterBookmarkSumAggregateOutputType: { // root type
+    chapterId?: number | null; // Int
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
   ChapterCountAggregateOutputType: { // root type
     _all: number; // Int!
     comicId: number; // Int!
@@ -2559,6 +4217,9 @@ export interface NexusGenObjects {
     title: number; // Int!
     updatedAt: number; // Int!
     views: number; // Int!
+  }
+  ChapterCountOutputType: { // root type
+    chapterbookmarks: number; // Int!
   }
   ChapterMaxAggregateOutputType: { // root type
     comicId?: number | null; // Int
@@ -2623,6 +4284,45 @@ export interface NexusGenObjects {
     views?: number | null; // Float
     viewsWeek?: number | null; // Float
   }
+  ComicBookmark: { // root type
+    comicId: number; // Int!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: number; // Int!
+  }
+  ComicBookmarkAvgAggregateOutputType: { // root type
+    comicId?: number | null; // Float
+    id?: number | null; // Float
+    userId?: number | null; // Float
+  }
+  ComicBookmarkCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    comicId: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    updatedAt: number; // Int!
+    userId: number; // Int!
+  }
+  ComicBookmarkMaxAggregateOutputType: { // root type
+    comicId?: number | null; // Int
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ComicBookmarkMinAggregateOutputType: { // root type
+    comicId?: number | null; // Int
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ComicBookmarkSumAggregateOutputType: { // root type
+    comicId?: number | null; // Int
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
   ComicCountAggregateOutputType: { // root type
     _all: number; // Int!
     age: number; // Int!
@@ -2649,6 +4349,7 @@ export interface NexusGenObjects {
   ComicCountOutputType: { // root type
     chapters: number; // Int!
     genres: number; // Int!
+    userbookmarks: number; // Int!
   }
   ComicMaxAggregateOutputType: { // root type
     age?: string | null; // String
@@ -2737,8 +4438,100 @@ export interface NexusGenObjects {
   GenreSumAggregateOutputType: { // root type
     id?: number | null; // Int
   }
+  Missing: { // root type
+    context: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    data: string; // String!
+    id: number; // Int!
+    resolved: boolean; // Boolean!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  MissingAvgAggregateOutputType: { // root type
+    id?: number | null; // Float
+  }
+  MissingCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    context: number; // Int!
+    createdAt: number; // Int!
+    data: number; // Int!
+    id: number; // Int!
+    resolved: number; // Int!
+    updatedAt: number; // Int!
+  }
+  MissingMaxAggregateOutputType: { // root type
+    context?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    data?: string | null; // String
+    id?: number | null; // Int
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  MissingMinAggregateOutputType: { // root type
+    context?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    data?: string | null; // String
+    id?: number | null; // Int
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  MissingSumAggregateOutputType: { // root type
+    id?: number | null; // Int
+  }
   Mutation: {};
   Query: {};
+  Report: { // root type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    message?: string | null; // String
+    name: string; // String!
+    resolved: boolean; // Boolean!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId?: number | null; // Int
+  }
+  ReportAvgAggregateOutputType: { // root type
+    id?: number | null; // Float
+    userId?: number | null; // Float
+  }
+  ReportCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    contextIdentifier: number; // Int!
+    contextType: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    message: number; // Int!
+    name: number; // Int!
+    resolved: number; // Int!
+    updatedAt: number; // Int!
+    userId: number; // Int!
+  }
+  ReportMaxAggregateOutputType: { // root type
+    contextIdentifier?: string | null; // String
+    contextType?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    message?: string | null; // String
+    name?: string | null; // String
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ReportMinAggregateOutputType: { // root type
+    contextIdentifier?: string | null; // String
+    contextType?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    message?: string | null; // String
+    name?: string | null; // String
+    resolved?: boolean | null; // Boolean
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    userId?: number | null; // Int
+  }
+  ReportSumAggregateOutputType: { // root type
+    id?: number | null; // Int
+    userId?: number | null; // Int
+  }
   SanityCheck: { // root type
     chapters?: Array<NexusGenRootTypes['Chapter'] | null> | null; // [Chapter]
     status?: string | null; // String
@@ -2766,6 +4559,11 @@ export interface NexusGenObjects {
     name: number; // Int!
     password: number; // Int!
     updatedAt: number; // Int!
+  }
+  UserCountOutputType: { // root type
+    chapterbookmarks: number; // Int!
+    comicbookmarks: number; // Int!
+    reports: number; // Int!
   }
   UserMaxAggregateOutputType: { // root type
     allowHentai?: boolean | null; // Boolean
@@ -2869,6 +4667,13 @@ export interface NexusGenFieldTypes {
     _min: NexusGenRootTypes['ChapterMinAggregateOutputType'] | null; // ChapterMinAggregateOutputType
     _sum: NexusGenRootTypes['ChapterSumAggregateOutputType'] | null; // ChapterSumAggregateOutputType
   }
+  AggregateChapterBookmark: { // field return type
+    _avg: NexusGenRootTypes['ChapterBookmarkAvgAggregateOutputType'] | null; // ChapterBookmarkAvgAggregateOutputType
+    _count: NexusGenRootTypes['ChapterBookmarkCountAggregateOutputType'] | null; // ChapterBookmarkCountAggregateOutputType
+    _max: NexusGenRootTypes['ChapterBookmarkMaxAggregateOutputType'] | null; // ChapterBookmarkMaxAggregateOutputType
+    _min: NexusGenRootTypes['ChapterBookmarkMinAggregateOutputType'] | null; // ChapterBookmarkMinAggregateOutputType
+    _sum: NexusGenRootTypes['ChapterBookmarkSumAggregateOutputType'] | null; // ChapterBookmarkSumAggregateOutputType
+  }
   AggregateComic: { // field return type
     _avg: NexusGenRootTypes['ComicAvgAggregateOutputType'] | null; // ComicAvgAggregateOutputType
     _count: NexusGenRootTypes['ComicCountAggregateOutputType'] | null; // ComicCountAggregateOutputType
@@ -2876,12 +4681,33 @@ export interface NexusGenFieldTypes {
     _min: NexusGenRootTypes['ComicMinAggregateOutputType'] | null; // ComicMinAggregateOutputType
     _sum: NexusGenRootTypes['ComicSumAggregateOutputType'] | null; // ComicSumAggregateOutputType
   }
+  AggregateComicBookmark: { // field return type
+    _avg: NexusGenRootTypes['ComicBookmarkAvgAggregateOutputType'] | null; // ComicBookmarkAvgAggregateOutputType
+    _count: NexusGenRootTypes['ComicBookmarkCountAggregateOutputType'] | null; // ComicBookmarkCountAggregateOutputType
+    _max: NexusGenRootTypes['ComicBookmarkMaxAggregateOutputType'] | null; // ComicBookmarkMaxAggregateOutputType
+    _min: NexusGenRootTypes['ComicBookmarkMinAggregateOutputType'] | null; // ComicBookmarkMinAggregateOutputType
+    _sum: NexusGenRootTypes['ComicBookmarkSumAggregateOutputType'] | null; // ComicBookmarkSumAggregateOutputType
+  }
   AggregateGenre: { // field return type
     _avg: NexusGenRootTypes['GenreAvgAggregateOutputType'] | null; // GenreAvgAggregateOutputType
     _count: NexusGenRootTypes['GenreCountAggregateOutputType'] | null; // GenreCountAggregateOutputType
     _max: NexusGenRootTypes['GenreMaxAggregateOutputType'] | null; // GenreMaxAggregateOutputType
     _min: NexusGenRootTypes['GenreMinAggregateOutputType'] | null; // GenreMinAggregateOutputType
     _sum: NexusGenRootTypes['GenreSumAggregateOutputType'] | null; // GenreSumAggregateOutputType
+  }
+  AggregateMissing: { // field return type
+    _avg: NexusGenRootTypes['MissingAvgAggregateOutputType'] | null; // MissingAvgAggregateOutputType
+    _count: NexusGenRootTypes['MissingCountAggregateOutputType'] | null; // MissingCountAggregateOutputType
+    _max: NexusGenRootTypes['MissingMaxAggregateOutputType'] | null; // MissingMaxAggregateOutputType
+    _min: NexusGenRootTypes['MissingMinAggregateOutputType'] | null; // MissingMinAggregateOutputType
+    _sum: NexusGenRootTypes['MissingSumAggregateOutputType'] | null; // MissingSumAggregateOutputType
+  }
+  AggregateReport: { // field return type
+    _avg: NexusGenRootTypes['ReportAvgAggregateOutputType'] | null; // ReportAvgAggregateOutputType
+    _count: NexusGenRootTypes['ReportCountAggregateOutputType'] | null; // ReportCountAggregateOutputType
+    _max: NexusGenRootTypes['ReportMaxAggregateOutputType'] | null; // ReportMaxAggregateOutputType
+    _min: NexusGenRootTypes['ReportMinAggregateOutputType'] | null; // ReportMinAggregateOutputType
+    _sum: NexusGenRootTypes['ReportSumAggregateOutputType'] | null; // ReportSumAggregateOutputType
   }
   AggregateUser: { // field return type
     _avg: NexusGenRootTypes['UserAvgAggregateOutputType'] | null; // UserAvgAggregateOutputType
@@ -2934,6 +4760,8 @@ export interface NexusGenFieldTypes {
     count: number; // Int!
   }
   Chapter: { // field return type
+    _count: NexusGenRootTypes['ChapterCountOutputType']; // ChapterCountOutputType!
+    chapterbookmarks: NexusGenRootTypes['ChapterBookmark'][]; // [ChapterBookmark!]!
     comic: NexusGenRootTypes['Comic']; // Comic!
     comicId: number; // Int!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -2957,6 +4785,47 @@ export interface NexusGenFieldTypes {
     originalImageCount: number | null; // Float
     views: number | null; // Float
   }
+  ChapterBookmark: { // field return type
+    chapter: NexusGenRootTypes['Chapter']; // Chapter!
+    chapterId: number; // Int!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: number; // Int!
+    users: NexusGenRootTypes['User']; // User!
+  }
+  ChapterBookmarkAvgAggregateOutputType: { // field return type
+    chapterId: number | null; // Float
+    id: number | null; // Float
+    userId: number | null; // Float
+  }
+  ChapterBookmarkCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    chapterId: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    updatedAt: number; // Int!
+    userId: number; // Int!
+  }
+  ChapterBookmarkMaxAggregateOutputType: { // field return type
+    chapterId: number | null; // Int
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number | null; // Int
+  }
+  ChapterBookmarkMinAggregateOutputType: { // field return type
+    chapterId: number | null; // Int
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number | null; // Int
+  }
+  ChapterBookmarkSumAggregateOutputType: { // field return type
+    chapterId: number | null; // Int
+    id: number | null; // Int
+    userId: number | null; // Int
+  }
   ChapterCountAggregateOutputType: { // field return type
     _all: number; // Int!
     comicId: number; // Int!
@@ -2972,6 +4841,9 @@ export interface NexusGenFieldTypes {
     title: number; // Int!
     updatedAt: number; // Int!
     views: number; // Int!
+  }
+  ChapterCountOutputType: { // field return type
+    chapterbookmarks: number; // Int!
   }
   ChapterMaxAggregateOutputType: { // field return type
     comicId: number | null; // Int
@@ -3030,6 +4902,7 @@ export interface NexusGenFieldTypes {
     thumbWide: string | null; // String
     type: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userbookmarks: NexusGenRootTypes['ComicBookmark'][]; // [ComicBookmark!]!
     views: number; // Int!
     viewsWeek: number; // Int!
   }
@@ -3039,6 +4912,47 @@ export interface NexusGenFieldTypes {
     rating: number | null; // Float
     views: number | null; // Float
     viewsWeek: number | null; // Float
+  }
+  ComicBookmark: { // field return type
+    comic: NexusGenRootTypes['Comic']; // Comic!
+    comicId: number; // Int!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userId: number; // Int!
+    users: NexusGenRootTypes['User']; // User!
+  }
+  ComicBookmarkAvgAggregateOutputType: { // field return type
+    comicId: number | null; // Float
+    id: number | null; // Float
+    userId: number | null; // Float
+  }
+  ComicBookmarkCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    comicId: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    updatedAt: number; // Int!
+    userId: number; // Int!
+  }
+  ComicBookmarkMaxAggregateOutputType: { // field return type
+    comicId: number | null; // Int
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number | null; // Int
+  }
+  ComicBookmarkMinAggregateOutputType: { // field return type
+    comicId: number | null; // Int
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number | null; // Int
+  }
+  ComicBookmarkSumAggregateOutputType: { // field return type
+    comicId: number | null; // Int
+    id: number | null; // Int
+    userId: number | null; // Int
   }
   ComicCountAggregateOutputType: { // field return type
     _all: number; // Int!
@@ -3066,6 +4980,7 @@ export interface NexusGenFieldTypes {
   ComicCountOutputType: { // field return type
     chapters: number; // Int!
     genres: number; // Int!
+    userbookmarks: number; // Int!
   }
   ComicMaxAggregateOutputType: { // field return type
     age: string | null; // String
@@ -3156,24 +5071,75 @@ export interface NexusGenFieldTypes {
   GenreSumAggregateOutputType: { // field return type
     id: number | null; // Int
   }
+  Missing: { // field return type
+    context: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    data: string; // String!
+    id: number; // Int!
+    resolved: boolean; // Boolean!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
+  MissingAvgAggregateOutputType: { // field return type
+    id: number | null; // Float
+  }
+  MissingCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    context: number; // Int!
+    createdAt: number; // Int!
+    data: number; // Int!
+    id: number; // Int!
+    resolved: number; // Int!
+    updatedAt: number; // Int!
+  }
+  MissingMaxAggregateOutputType: { // field return type
+    context: string | null; // String
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    data: string | null; // String
+    id: number | null; // Int
+    resolved: boolean | null; // Boolean
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  MissingMinAggregateOutputType: { // field return type
+    context: string | null; // String
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    data: string | null; // String
+    id: number | null; // Int
+    resolved: boolean | null; // Boolean
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  MissingSumAggregateOutputType: { // field return type
+    id: number | null; // Int
+  }
   Mutation: { // field return type
     createOneAds: NexusGenRootTypes['Ads']; // Ads!
     createOneAuthor: NexusGenRootTypes['Author']; // Author!
     createOneChapter: NexusGenRootTypes['Chapter']; // Chapter!
+    createOneChapterBookmark: NexusGenRootTypes['ChapterBookmark']; // ChapterBookmark!
     createOneComic: NexusGenRootTypes['Comic']; // Comic!
+    createOneComicBookmark: NexusGenRootTypes['ComicBookmark']; // ComicBookmark!
     createOneGenre: NexusGenRootTypes['Genre']; // Genre!
+    createOneMissing: NexusGenRootTypes['Missing']; // Missing!
+    createOneReport: NexusGenRootTypes['Report']; // Report!
     createOneUser: NexusGenRootTypes['User']; // User!
     deleteManyAds: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyAuthor: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyChapter: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    deleteManyChapterBookmark: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyComic: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    deleteManyComicBookmark: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyGenre: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    deleteManyMissing: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    deleteManyReport: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyUser: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteOneAds: NexusGenRootTypes['Ads'] | null; // Ads
     deleteOneAuthor: NexusGenRootTypes['Author'] | null; // Author
     deleteOneChapter: NexusGenRootTypes['Chapter'] | null; // Chapter
+    deleteOneChapterBookmark: NexusGenRootTypes['ChapterBookmark'] | null; // ChapterBookmark
     deleteOneComic: NexusGenRootTypes['Comic'] | null; // Comic
+    deleteOneComicBookmark: NexusGenRootTypes['ComicBookmark'] | null; // ComicBookmark
     deleteOneGenre: NexusGenRootTypes['Genre'] | null; // Genre
+    deleteOneMissing: NexusGenRootTypes['Missing'] | null; // Missing
+    deleteOneReport: NexusGenRootTypes['Report'] | null; // Report
     deleteOneUser: NexusGenRootTypes['User'] | null; // User
     reportView: boolean | null; // Boolean
     sanityCheck: NexusGenRootTypes['SanityCheck'] | null; // SanityCheck
@@ -3181,66 +5147,156 @@ export interface NexusGenFieldTypes {
     updateManyAds: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyAuthor: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyChapter: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    updateManyChapterBookmark: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyComic: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    updateManyComicBookmark: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyGenre: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    updateManyMissing: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    updateManyReport: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyUser: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateOneAds: NexusGenRootTypes['Ads']; // Ads!
     updateOneAuthor: NexusGenRootTypes['Author']; // Author!
     updateOneChapter: NexusGenRootTypes['Chapter']; // Chapter!
+    updateOneChapterBookmark: NexusGenRootTypes['ChapterBookmark']; // ChapterBookmark!
     updateOneComic: NexusGenRootTypes['Comic']; // Comic!
+    updateOneComicBookmark: NexusGenRootTypes['ComicBookmark']; // ComicBookmark!
     updateOneGenre: NexusGenRootTypes['Genre']; // Genre!
+    updateOneMissing: NexusGenRootTypes['Missing']; // Missing!
+    updateOneReport: NexusGenRootTypes['Report']; // Report!
     updateOneUser: NexusGenRootTypes['User']; // User!
     upsertOneAds: NexusGenRootTypes['Ads']; // Ads!
     upsertOneAuthor: NexusGenRootTypes['Author']; // Author!
     upsertOneChapter: NexusGenRootTypes['Chapter']; // Chapter!
+    upsertOneChapterBookmark: NexusGenRootTypes['ChapterBookmark']; // ChapterBookmark!
     upsertOneComic: NexusGenRootTypes['Comic']; // Comic!
+    upsertOneComicBookmark: NexusGenRootTypes['ComicBookmark']; // ComicBookmark!
     upsertOneGenre: NexusGenRootTypes['Genre']; // Genre!
+    upsertOneMissing: NexusGenRootTypes['Missing']; // Missing!
+    upsertOneReport: NexusGenRootTypes['Report']; // Report!
     upsertOneUser: NexusGenRootTypes['User']; // User!
   }
   Query: { // field return type
     aggregateAds: NexusGenRootTypes['AggregateAds'] | null; // AggregateAds
     aggregateAuthor: NexusGenRootTypes['AggregateAuthor'] | null; // AggregateAuthor
     aggregateChapter: NexusGenRootTypes['AggregateChapter'] | null; // AggregateChapter
+    aggregateChapterBookmark: NexusGenRootTypes['AggregateChapterBookmark'] | null; // AggregateChapterBookmark
     aggregateComic: NexusGenRootTypes['AggregateComic'] | null; // AggregateComic
+    aggregateComicBookmark: NexusGenRootTypes['AggregateComicBookmark'] | null; // AggregateComicBookmark
     aggregateGenre: NexusGenRootTypes['AggregateGenre'] | null; // AggregateGenre
+    aggregateMissing: NexusGenRootTypes['AggregateMissing'] | null; // AggregateMissing
+    aggregateReport: NexusGenRootTypes['AggregateReport'] | null; // AggregateReport
     aggregateUser: NexusGenRootTypes['AggregateUser'] | null; // AggregateUser
     findFirstAds: NexusGenRootTypes['Ads'] | null; // Ads
     findFirstAuthor: NexusGenRootTypes['Author'] | null; // Author
     findFirstChapter: NexusGenRootTypes['Chapter'] | null; // Chapter
+    findFirstChapterBookmark: NexusGenRootTypes['ChapterBookmark'] | null; // ChapterBookmark
     findFirstComic: NexusGenRootTypes['Comic'] | null; // Comic
+    findFirstComicBookmark: NexusGenRootTypes['ComicBookmark'] | null; // ComicBookmark
     findFirstGenre: NexusGenRootTypes['Genre'] | null; // Genre
+    findFirstMissing: NexusGenRootTypes['Missing'] | null; // Missing
+    findFirstReport: NexusGenRootTypes['Report'] | null; // Report
     findFirstUser: NexusGenRootTypes['User'] | null; // User
     findManyAds: NexusGenRootTypes['Ads'][]; // [Ads!]!
     findManyAdsCount: number; // Int!
     findManyAuthor: NexusGenRootTypes['Author'][]; // [Author!]!
     findManyAuthorCount: number; // Int!
     findManyChapter: NexusGenRootTypes['Chapter'][]; // [Chapter!]!
+    findManyChapterBookmark: NexusGenRootTypes['ChapterBookmark'][]; // [ChapterBookmark!]!
+    findManyChapterBookmarkCount: number; // Int!
     findManyChapterCount: number; // Int!
     findManyComic: NexusGenRootTypes['Comic'][]; // [Comic!]!
+    findManyComicBookmark: NexusGenRootTypes['ComicBookmark'][]; // [ComicBookmark!]!
+    findManyComicBookmarkCount: number; // Int!
     findManyComicCount: number; // Int!
     findManyGenre: NexusGenRootTypes['Genre'][]; // [Genre!]!
     findManyGenreCount: number; // Int!
+    findManyMissing: NexusGenRootTypes['Missing'][]; // [Missing!]!
+    findManyMissingCount: number; // Int!
+    findManyReport: NexusGenRootTypes['Report'][]; // [Report!]!
+    findManyReportCount: number; // Int!
     findManyUser: NexusGenRootTypes['User'][]; // [User!]!
     findManyUserCount: number; // Int!
     findUniqueAds: NexusGenRootTypes['Ads'] | null; // Ads
     findUniqueAuthor: NexusGenRootTypes['Author'] | null; // Author
     findUniqueChapter: NexusGenRootTypes['Chapter'] | null; // Chapter
+    findUniqueChapterBookmark: NexusGenRootTypes['ChapterBookmark'] | null; // ChapterBookmark
     findUniqueComic: NexusGenRootTypes['Comic'] | null; // Comic
+    findUniqueComicBookmark: NexusGenRootTypes['ComicBookmark'] | null; // ComicBookmark
     findUniqueGenre: NexusGenRootTypes['Genre'] | null; // Genre
+    findUniqueMissing: NexusGenRootTypes['Missing'] | null; // Missing
+    findUniqueReport: NexusGenRootTypes['Report'] | null; // Report
     findUniqueUser: NexusGenRootTypes['User'] | null; // User
+  }
+  Report: { // field return type
+    contextIdentifier: string; // String!
+    contextType: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    message: string | null; // String
+    name: string; // String!
+    resolved: boolean; // Boolean!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: number | null; // Int
+  }
+  ReportAvgAggregateOutputType: { // field return type
+    id: number | null; // Float
+    userId: number | null; // Float
+  }
+  ReportCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    contextIdentifier: number; // Int!
+    contextType: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    message: number; // Int!
+    name: number; // Int!
+    resolved: number; // Int!
+    updatedAt: number; // Int!
+    userId: number; // Int!
+  }
+  ReportMaxAggregateOutputType: { // field return type
+    contextIdentifier: string | null; // String
+    contextType: string | null; // String
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    message: string | null; // String
+    name: string | null; // String
+    resolved: boolean | null; // Boolean
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number | null; // Int
+  }
+  ReportMinAggregateOutputType: { // field return type
+    contextIdentifier: string | null; // String
+    contextType: string | null; // String
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    message: string | null; // String
+    name: string | null; // String
+    resolved: boolean | null; // Boolean
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    userId: number | null; // Int
+  }
+  ReportSumAggregateOutputType: { // field return type
+    id: number | null; // Int
+    userId: number | null; // Int
   }
   SanityCheck: { // field return type
     chapters: Array<NexusGenRootTypes['Chapter'] | null> | null; // [Chapter]
     status: string | null; // String
   }
   User: { // field return type
+    _count: NexusGenRootTypes['UserCountOutputType']; // UserCountOutputType!
     allowHentai: boolean; // Boolean!
+    chapterbookmarks: NexusGenRootTypes['ChapterBookmark'][]; // [ChapterBookmark!]!
+    comicbookmarks: NexusGenRootTypes['ComicBookmark'][]; // [ComicBookmark!]!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     email: string; // String!
     id: number; // Int!
     isAdmin: boolean; // Boolean!
     name: string | null; // String
     password: string; // String!
+    reports: NexusGenRootTypes['Report'][]; // [Report!]!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   UserAvgAggregateOutputType: { // field return type
@@ -3256,6 +5312,11 @@ export interface NexusGenFieldTypes {
     name: number; // Int!
     password: number; // Int!
     updatedAt: number; // Int!
+  }
+  UserCountOutputType: { // field return type
+    chapterbookmarks: number; // Int!
+    comicbookmarks: number; // Int!
+    reports: number; // Int!
   }
   UserMaxAggregateOutputType: { // field return type
     allowHentai: boolean | null; // Boolean
@@ -3349,6 +5410,13 @@ export interface NexusGenFieldTypeNames {
     _min: 'ChapterMinAggregateOutputType'
     _sum: 'ChapterSumAggregateOutputType'
   }
+  AggregateChapterBookmark: { // field return type name
+    _avg: 'ChapterBookmarkAvgAggregateOutputType'
+    _count: 'ChapterBookmarkCountAggregateOutputType'
+    _max: 'ChapterBookmarkMaxAggregateOutputType'
+    _min: 'ChapterBookmarkMinAggregateOutputType'
+    _sum: 'ChapterBookmarkSumAggregateOutputType'
+  }
   AggregateComic: { // field return type name
     _avg: 'ComicAvgAggregateOutputType'
     _count: 'ComicCountAggregateOutputType'
@@ -3356,12 +5424,33 @@ export interface NexusGenFieldTypeNames {
     _min: 'ComicMinAggregateOutputType'
     _sum: 'ComicSumAggregateOutputType'
   }
+  AggregateComicBookmark: { // field return type name
+    _avg: 'ComicBookmarkAvgAggregateOutputType'
+    _count: 'ComicBookmarkCountAggregateOutputType'
+    _max: 'ComicBookmarkMaxAggregateOutputType'
+    _min: 'ComicBookmarkMinAggregateOutputType'
+    _sum: 'ComicBookmarkSumAggregateOutputType'
+  }
   AggregateGenre: { // field return type name
     _avg: 'GenreAvgAggregateOutputType'
     _count: 'GenreCountAggregateOutputType'
     _max: 'GenreMaxAggregateOutputType'
     _min: 'GenreMinAggregateOutputType'
     _sum: 'GenreSumAggregateOutputType'
+  }
+  AggregateMissing: { // field return type name
+    _avg: 'MissingAvgAggregateOutputType'
+    _count: 'MissingCountAggregateOutputType'
+    _max: 'MissingMaxAggregateOutputType'
+    _min: 'MissingMinAggregateOutputType'
+    _sum: 'MissingSumAggregateOutputType'
+  }
+  AggregateReport: { // field return type name
+    _avg: 'ReportAvgAggregateOutputType'
+    _count: 'ReportCountAggregateOutputType'
+    _max: 'ReportMaxAggregateOutputType'
+    _min: 'ReportMinAggregateOutputType'
+    _sum: 'ReportSumAggregateOutputType'
   }
   AggregateUser: { // field return type name
     _avg: 'UserAvgAggregateOutputType'
@@ -3414,6 +5503,8 @@ export interface NexusGenFieldTypeNames {
     count: 'Int'
   }
   Chapter: { // field return type name
+    _count: 'ChapterCountOutputType'
+    chapterbookmarks: 'ChapterBookmark'
     comic: 'Comic'
     comicId: 'Int'
     createdAt: 'DateTime'
@@ -3437,6 +5528,47 @@ export interface NexusGenFieldTypeNames {
     originalImageCount: 'Float'
     views: 'Float'
   }
+  ChapterBookmark: { // field return type name
+    chapter: 'Chapter'
+    chapterId: 'Int'
+    createdAt: 'DateTime'
+    id: 'Int'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+    users: 'User'
+  }
+  ChapterBookmarkAvgAggregateOutputType: { // field return type name
+    chapterId: 'Float'
+    id: 'Float'
+    userId: 'Float'
+  }
+  ChapterBookmarkCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    chapterId: 'Int'
+    createdAt: 'Int'
+    id: 'Int'
+    updatedAt: 'Int'
+    userId: 'Int'
+  }
+  ChapterBookmarkMaxAggregateOutputType: { // field return type name
+    chapterId: 'Int'
+    createdAt: 'DateTime'
+    id: 'Int'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+  }
+  ChapterBookmarkMinAggregateOutputType: { // field return type name
+    chapterId: 'Int'
+    createdAt: 'DateTime'
+    id: 'Int'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+  }
+  ChapterBookmarkSumAggregateOutputType: { // field return type name
+    chapterId: 'Int'
+    id: 'Int'
+    userId: 'Int'
+  }
   ChapterCountAggregateOutputType: { // field return type name
     _all: 'Int'
     comicId: 'Int'
@@ -3452,6 +5584,9 @@ export interface NexusGenFieldTypeNames {
     title: 'Int'
     updatedAt: 'Int'
     views: 'Int'
+  }
+  ChapterCountOutputType: { // field return type name
+    chapterbookmarks: 'Int'
   }
   ChapterMaxAggregateOutputType: { // field return type name
     comicId: 'Int'
@@ -3510,6 +5645,7 @@ export interface NexusGenFieldTypeNames {
     thumbWide: 'String'
     type: 'String'
     updatedAt: 'DateTime'
+    userbookmarks: 'ComicBookmark'
     views: 'Int'
     viewsWeek: 'Int'
   }
@@ -3519,6 +5655,47 @@ export interface NexusGenFieldTypeNames {
     rating: 'Float'
     views: 'Float'
     viewsWeek: 'Float'
+  }
+  ComicBookmark: { // field return type name
+    comic: 'Comic'
+    comicId: 'Int'
+    createdAt: 'DateTime'
+    id: 'Int'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+    users: 'User'
+  }
+  ComicBookmarkAvgAggregateOutputType: { // field return type name
+    comicId: 'Float'
+    id: 'Float'
+    userId: 'Float'
+  }
+  ComicBookmarkCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    comicId: 'Int'
+    createdAt: 'Int'
+    id: 'Int'
+    updatedAt: 'Int'
+    userId: 'Int'
+  }
+  ComicBookmarkMaxAggregateOutputType: { // field return type name
+    comicId: 'Int'
+    createdAt: 'DateTime'
+    id: 'Int'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+  }
+  ComicBookmarkMinAggregateOutputType: { // field return type name
+    comicId: 'Int'
+    createdAt: 'DateTime'
+    id: 'Int'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+  }
+  ComicBookmarkSumAggregateOutputType: { // field return type name
+    comicId: 'Int'
+    id: 'Int'
+    userId: 'Int'
   }
   ComicCountAggregateOutputType: { // field return type name
     _all: 'Int'
@@ -3546,6 +5723,7 @@ export interface NexusGenFieldTypeNames {
   ComicCountOutputType: { // field return type name
     chapters: 'Int'
     genres: 'Int'
+    userbookmarks: 'Int'
   }
   ComicMaxAggregateOutputType: { // field return type name
     age: 'String'
@@ -3636,24 +5814,75 @@ export interface NexusGenFieldTypeNames {
   GenreSumAggregateOutputType: { // field return type name
     id: 'Int'
   }
+  Missing: { // field return type name
+    context: 'String'
+    createdAt: 'DateTime'
+    data: 'String'
+    id: 'Int'
+    resolved: 'Boolean'
+    updatedAt: 'DateTime'
+  }
+  MissingAvgAggregateOutputType: { // field return type name
+    id: 'Float'
+  }
+  MissingCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    context: 'Int'
+    createdAt: 'Int'
+    data: 'Int'
+    id: 'Int'
+    resolved: 'Int'
+    updatedAt: 'Int'
+  }
+  MissingMaxAggregateOutputType: { // field return type name
+    context: 'String'
+    createdAt: 'DateTime'
+    data: 'String'
+    id: 'Int'
+    resolved: 'Boolean'
+    updatedAt: 'DateTime'
+  }
+  MissingMinAggregateOutputType: { // field return type name
+    context: 'String'
+    createdAt: 'DateTime'
+    data: 'String'
+    id: 'Int'
+    resolved: 'Boolean'
+    updatedAt: 'DateTime'
+  }
+  MissingSumAggregateOutputType: { // field return type name
+    id: 'Int'
+  }
   Mutation: { // field return type name
     createOneAds: 'Ads'
     createOneAuthor: 'Author'
     createOneChapter: 'Chapter'
+    createOneChapterBookmark: 'ChapterBookmark'
     createOneComic: 'Comic'
+    createOneComicBookmark: 'ComicBookmark'
     createOneGenre: 'Genre'
+    createOneMissing: 'Missing'
+    createOneReport: 'Report'
     createOneUser: 'User'
     deleteManyAds: 'BatchPayload'
     deleteManyAuthor: 'BatchPayload'
     deleteManyChapter: 'BatchPayload'
+    deleteManyChapterBookmark: 'BatchPayload'
     deleteManyComic: 'BatchPayload'
+    deleteManyComicBookmark: 'BatchPayload'
     deleteManyGenre: 'BatchPayload'
+    deleteManyMissing: 'BatchPayload'
+    deleteManyReport: 'BatchPayload'
     deleteManyUser: 'BatchPayload'
     deleteOneAds: 'Ads'
     deleteOneAuthor: 'Author'
     deleteOneChapter: 'Chapter'
+    deleteOneChapterBookmark: 'ChapterBookmark'
     deleteOneComic: 'Comic'
+    deleteOneComicBookmark: 'ComicBookmark'
     deleteOneGenre: 'Genre'
+    deleteOneMissing: 'Missing'
+    deleteOneReport: 'Report'
     deleteOneUser: 'User'
     reportView: 'Boolean'
     sanityCheck: 'SanityCheck'
@@ -3661,66 +5890,156 @@ export interface NexusGenFieldTypeNames {
     updateManyAds: 'BatchPayload'
     updateManyAuthor: 'BatchPayload'
     updateManyChapter: 'BatchPayload'
+    updateManyChapterBookmark: 'BatchPayload'
     updateManyComic: 'BatchPayload'
+    updateManyComicBookmark: 'BatchPayload'
     updateManyGenre: 'BatchPayload'
+    updateManyMissing: 'BatchPayload'
+    updateManyReport: 'BatchPayload'
     updateManyUser: 'BatchPayload'
     updateOneAds: 'Ads'
     updateOneAuthor: 'Author'
     updateOneChapter: 'Chapter'
+    updateOneChapterBookmark: 'ChapterBookmark'
     updateOneComic: 'Comic'
+    updateOneComicBookmark: 'ComicBookmark'
     updateOneGenre: 'Genre'
+    updateOneMissing: 'Missing'
+    updateOneReport: 'Report'
     updateOneUser: 'User'
     upsertOneAds: 'Ads'
     upsertOneAuthor: 'Author'
     upsertOneChapter: 'Chapter'
+    upsertOneChapterBookmark: 'ChapterBookmark'
     upsertOneComic: 'Comic'
+    upsertOneComicBookmark: 'ComicBookmark'
     upsertOneGenre: 'Genre'
+    upsertOneMissing: 'Missing'
+    upsertOneReport: 'Report'
     upsertOneUser: 'User'
   }
   Query: { // field return type name
     aggregateAds: 'AggregateAds'
     aggregateAuthor: 'AggregateAuthor'
     aggregateChapter: 'AggregateChapter'
+    aggregateChapterBookmark: 'AggregateChapterBookmark'
     aggregateComic: 'AggregateComic'
+    aggregateComicBookmark: 'AggregateComicBookmark'
     aggregateGenre: 'AggregateGenre'
+    aggregateMissing: 'AggregateMissing'
+    aggregateReport: 'AggregateReport'
     aggregateUser: 'AggregateUser'
     findFirstAds: 'Ads'
     findFirstAuthor: 'Author'
     findFirstChapter: 'Chapter'
+    findFirstChapterBookmark: 'ChapterBookmark'
     findFirstComic: 'Comic'
+    findFirstComicBookmark: 'ComicBookmark'
     findFirstGenre: 'Genre'
+    findFirstMissing: 'Missing'
+    findFirstReport: 'Report'
     findFirstUser: 'User'
     findManyAds: 'Ads'
     findManyAdsCount: 'Int'
     findManyAuthor: 'Author'
     findManyAuthorCount: 'Int'
     findManyChapter: 'Chapter'
+    findManyChapterBookmark: 'ChapterBookmark'
+    findManyChapterBookmarkCount: 'Int'
     findManyChapterCount: 'Int'
     findManyComic: 'Comic'
+    findManyComicBookmark: 'ComicBookmark'
+    findManyComicBookmarkCount: 'Int'
     findManyComicCount: 'Int'
     findManyGenre: 'Genre'
     findManyGenreCount: 'Int'
+    findManyMissing: 'Missing'
+    findManyMissingCount: 'Int'
+    findManyReport: 'Report'
+    findManyReportCount: 'Int'
     findManyUser: 'User'
     findManyUserCount: 'Int'
     findUniqueAds: 'Ads'
     findUniqueAuthor: 'Author'
     findUniqueChapter: 'Chapter'
+    findUniqueChapterBookmark: 'ChapterBookmark'
     findUniqueComic: 'Comic'
+    findUniqueComicBookmark: 'ComicBookmark'
     findUniqueGenre: 'Genre'
+    findUniqueMissing: 'Missing'
+    findUniqueReport: 'Report'
     findUniqueUser: 'User'
+  }
+  Report: { // field return type name
+    contextIdentifier: 'String'
+    contextType: 'String'
+    createdAt: 'DateTime'
+    id: 'Int'
+    message: 'String'
+    name: 'String'
+    resolved: 'Boolean'
+    updatedAt: 'DateTime'
+    user: 'User'
+    userId: 'Int'
+  }
+  ReportAvgAggregateOutputType: { // field return type name
+    id: 'Float'
+    userId: 'Float'
+  }
+  ReportCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    contextIdentifier: 'Int'
+    contextType: 'Int'
+    createdAt: 'Int'
+    id: 'Int'
+    message: 'Int'
+    name: 'Int'
+    resolved: 'Int'
+    updatedAt: 'Int'
+    userId: 'Int'
+  }
+  ReportMaxAggregateOutputType: { // field return type name
+    contextIdentifier: 'String'
+    contextType: 'String'
+    createdAt: 'DateTime'
+    id: 'Int'
+    message: 'String'
+    name: 'String'
+    resolved: 'Boolean'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+  }
+  ReportMinAggregateOutputType: { // field return type name
+    contextIdentifier: 'String'
+    contextType: 'String'
+    createdAt: 'DateTime'
+    id: 'Int'
+    message: 'String'
+    name: 'String'
+    resolved: 'Boolean'
+    updatedAt: 'DateTime'
+    userId: 'Int'
+  }
+  ReportSumAggregateOutputType: { // field return type name
+    id: 'Int'
+    userId: 'Int'
   }
   SanityCheck: { // field return type name
     chapters: 'Chapter'
     status: 'String'
   }
   User: { // field return type name
+    _count: 'UserCountOutputType'
     allowHentai: 'Boolean'
+    chapterbookmarks: 'ChapterBookmark'
+    comicbookmarks: 'ComicBookmark'
     createdAt: 'DateTime'
     email: 'String'
     id: 'Int'
     isAdmin: 'Boolean'
     name: 'String'
     password: 'String'
+    reports: 'Report'
     updatedAt: 'DateTime'
   }
   UserAvgAggregateOutputType: { // field return type name
@@ -3736,6 +6055,11 @@ export interface NexusGenFieldTypeNames {
     name: 'Int'
     password: 'Int'
     updatedAt: 'Int'
+  }
+  UserCountOutputType: { // field return type name
+    chapterbookmarks: 'Int'
+    comicbookmarks: 'Int'
+    reports: 'Int'
   }
   UserMaxAggregateOutputType: { // field return type name
     allowHentai: 'Boolean'
@@ -3773,6 +6097,16 @@ export interface NexusGenArgTypes {
       where?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     }
   }
+  Chapter: {
+    chapterbookmarks: { // args
+      cursor?: NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null; // ChapterBookmarkWhereUniqueInput
+      distinct?: NexusGenEnums['ChapterBookmarkScalarFieldEnum'] | null; // ChapterBookmarkScalarFieldEnum
+      orderBy?: NexusGenInputs['ChapterBookmarkOrderByWithRelationInput'] | null; // ChapterBookmarkOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
+  }
   Comic: {
     chapters: { // args
       cursor?: NexusGenInputs['ChapterWhereUniqueInput'] | null; // ChapterWhereUniqueInput
@@ -3789,6 +6123,14 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    }
+    userbookmarks: { // args
+      cursor?: NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null; // ComicBookmarkWhereUniqueInput
+      distinct?: NexusGenEnums['ComicBookmarkScalarFieldEnum'] | null; // ComicBookmarkScalarFieldEnum
+      orderBy?: NexusGenInputs['ComicBookmarkOrderByWithRelationInput'] | null; // ComicBookmarkOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
     }
   }
   Genre: {
@@ -3811,11 +6153,23 @@ export interface NexusGenArgTypes {
     createOneChapter: { // args
       data: NexusGenInputs['ChapterCreateInput']; // ChapterCreateInput!
     }
+    createOneChapterBookmark: { // args
+      data: NexusGenInputs['ChapterBookmarkCreateInput']; // ChapterBookmarkCreateInput!
+    }
     createOneComic: { // args
       data: NexusGenInputs['ComicCreateInput']; // ComicCreateInput!
     }
+    createOneComicBookmark: { // args
+      data: NexusGenInputs['ComicBookmarkCreateInput']; // ComicBookmarkCreateInput!
+    }
     createOneGenre: { // args
       data: NexusGenInputs['GenreCreateInput']; // GenreCreateInput!
+    }
+    createOneMissing: { // args
+      data: NexusGenInputs['MissingCreateInput']; // MissingCreateInput!
+    }
+    createOneReport: { // args
+      data: NexusGenInputs['ReportCreateInput']; // ReportCreateInput!
     }
     createOneUser: { // args
       data: NexusGenInputs['UserCreateInput']; // UserCreateInput!
@@ -3829,11 +6183,23 @@ export interface NexusGenArgTypes {
     deleteManyChapter: { // args
       where?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
     }
+    deleteManyChapterBookmark: { // args
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
     deleteManyComic: { // args
       where?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     }
+    deleteManyComicBookmark: { // args
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    }
     deleteManyGenre: { // args
       where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    }
+    deleteManyMissing: { // args
+      where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    deleteManyReport: { // args
+      where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
     }
     deleteManyUser: { // args
       where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
@@ -3847,11 +6213,23 @@ export interface NexusGenArgTypes {
     deleteOneChapter: { // args
       where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
     }
+    deleteOneChapterBookmark: { // args
+      where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+    }
     deleteOneComic: { // args
       where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
     }
+    deleteOneComicBookmark: { // args
+      where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+    }
     deleteOneGenre: { // args
       where: NexusGenInputs['GenreWhereUniqueInput']; // GenreWhereUniqueInput!
+    }
+    deleteOneMissing: { // args
+      where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    deleteOneReport: { // args
+      where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
     }
     deleteOneUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
@@ -3885,13 +6263,29 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['ChapterUpdateManyMutationInput']; // ChapterUpdateManyMutationInput!
       where?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
     }
+    updateManyChapterBookmark: { // args
+      data: NexusGenInputs['ChapterBookmarkUpdateManyMutationInput']; // ChapterBookmarkUpdateManyMutationInput!
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
     updateManyComic: { // args
       data: NexusGenInputs['ComicUpdateManyMutationInput']; // ComicUpdateManyMutationInput!
       where?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     }
+    updateManyComicBookmark: { // args
+      data: NexusGenInputs['ComicBookmarkUpdateManyMutationInput']; // ComicBookmarkUpdateManyMutationInput!
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    }
     updateManyGenre: { // args
       data: NexusGenInputs['GenreUpdateManyMutationInput']; // GenreUpdateManyMutationInput!
       where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    }
+    updateManyMissing: { // args
+      data: NexusGenInputs['MissingUpdateManyMutationInput']; // MissingUpdateManyMutationInput!
+      where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    updateManyReport: { // args
+      data: NexusGenInputs['ReportUpdateManyMutationInput']; // ReportUpdateManyMutationInput!
+      where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
     }
     updateManyUser: { // args
       data: NexusGenInputs['UserUpdateManyMutationInput']; // UserUpdateManyMutationInput!
@@ -3909,13 +6303,29 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['ChapterUpdateInput']; // ChapterUpdateInput!
       where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
     }
+    updateOneChapterBookmark: { // args
+      data: NexusGenInputs['ChapterBookmarkUpdateInput']; // ChapterBookmarkUpdateInput!
+      where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+    }
     updateOneComic: { // args
       data: NexusGenInputs['ComicUpdateInput']; // ComicUpdateInput!
       where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
     }
+    updateOneComicBookmark: { // args
+      data: NexusGenInputs['ComicBookmarkUpdateInput']; // ComicBookmarkUpdateInput!
+      where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+    }
     updateOneGenre: { // args
       data: NexusGenInputs['GenreUpdateInput']; // GenreUpdateInput!
       where: NexusGenInputs['GenreWhereUniqueInput']; // GenreWhereUniqueInput!
+    }
+    updateOneMissing: { // args
+      data: NexusGenInputs['MissingUpdateInput']; // MissingUpdateInput!
+      where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    updateOneReport: { // args
+      data: NexusGenInputs['ReportUpdateInput']; // ReportUpdateInput!
+      where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
     }
     updateOneUser: { // args
       data: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
@@ -3936,15 +6346,35 @@ export interface NexusGenArgTypes {
       update: NexusGenInputs['ChapterUpdateInput']; // ChapterUpdateInput!
       where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
     }
+    upsertOneChapterBookmark: { // args
+      create: NexusGenInputs['ChapterBookmarkCreateInput']; // ChapterBookmarkCreateInput!
+      update: NexusGenInputs['ChapterBookmarkUpdateInput']; // ChapterBookmarkUpdateInput!
+      where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+    }
     upsertOneComic: { // args
       create: NexusGenInputs['ComicCreateInput']; // ComicCreateInput!
       update: NexusGenInputs['ComicUpdateInput']; // ComicUpdateInput!
       where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
     }
+    upsertOneComicBookmark: { // args
+      create: NexusGenInputs['ComicBookmarkCreateInput']; // ComicBookmarkCreateInput!
+      update: NexusGenInputs['ComicBookmarkUpdateInput']; // ComicBookmarkUpdateInput!
+      where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
+    }
     upsertOneGenre: { // args
       create: NexusGenInputs['GenreCreateInput']; // GenreCreateInput!
       update: NexusGenInputs['GenreUpdateInput']; // GenreUpdateInput!
       where: NexusGenInputs['GenreWhereUniqueInput']; // GenreWhereUniqueInput!
+    }
+    upsertOneMissing: { // args
+      create: NexusGenInputs['MissingCreateInput']; // MissingCreateInput!
+      update: NexusGenInputs['MissingUpdateInput']; // MissingUpdateInput!
+      where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    upsertOneReport: { // args
+      create: NexusGenInputs['ReportCreateInput']; // ReportCreateInput!
+      update: NexusGenInputs['ReportUpdateInput']; // ReportUpdateInput!
+      where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
     }
     upsertOneUser: { // args
       create: NexusGenInputs['UserCreateInput']; // UserCreateInput!
@@ -3974,6 +6404,13 @@ export interface NexusGenArgTypes {
       take?: number | null; // Int
       where?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
     }
+    aggregateChapterBookmark: { // args
+      cursor?: NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null; // ChapterBookmarkWhereUniqueInput
+      orderBy?: Array<NexusGenInputs['ChapterBookmarkOrderByWithRelationInput'] | null> | null; // [ChapterBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
     aggregateComic: { // args
       cursor?: NexusGenInputs['ComicWhereUniqueInput'] | null; // ComicWhereUniqueInput
       orderBy?: Array<NexusGenInputs['ComicOrderByWithRelationInput'] | null> | null; // [ComicOrderByWithRelationInput]
@@ -3981,12 +6418,33 @@ export interface NexusGenArgTypes {
       take?: number | null; // Int
       where?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     }
+    aggregateComicBookmark: { // args
+      cursor?: NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null; // ComicBookmarkWhereUniqueInput
+      orderBy?: Array<NexusGenInputs['ComicBookmarkOrderByWithRelationInput'] | null> | null; // [ComicBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    }
     aggregateGenre: { // args
       cursor?: NexusGenInputs['GenreWhereUniqueInput'] | null; // GenreWhereUniqueInput
       orderBy?: Array<NexusGenInputs['GenreOrderByWithRelationInput'] | null> | null; // [GenreOrderByWithRelationInput]
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    }
+    aggregateMissing: { // args
+      cursor?: NexusGenInputs['MissingWhereUniqueInput'] | null; // MissingWhereUniqueInput
+      orderBy?: Array<NexusGenInputs['MissingOrderByWithRelationInput'] | null> | null; // [MissingOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    aggregateReport: { // args
+      cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
+      orderBy?: Array<NexusGenInputs['ReportOrderByWithRelationInput'] | null> | null; // [ReportOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
     }
     aggregateUser: { // args
       cursor?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -4019,6 +6477,14 @@ export interface NexusGenArgTypes {
       take?: number | null; // Int
       where?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
     }
+    findFirstChapterBookmark: { // args
+      cursor?: NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null; // ChapterBookmarkWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ChapterBookmarkScalarFieldEnum'] | null> | null; // [ChapterBookmarkScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ChapterBookmarkOrderByWithRelationInput'] | null> | null; // [ChapterBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
     findFirstComic: { // args
       cursor?: NexusGenInputs['ComicWhereUniqueInput'] | null; // ComicWhereUniqueInput
       distinct?: Array<NexusGenEnums['ComicScalarFieldEnum'] | null> | null; // [ComicScalarFieldEnum]
@@ -4027,6 +6493,14 @@ export interface NexusGenArgTypes {
       take?: number | null; // Int
       where?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     }
+    findFirstComicBookmark: { // args
+      cursor?: NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null; // ComicBookmarkWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ComicBookmarkScalarFieldEnum'] | null> | null; // [ComicBookmarkScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ComicBookmarkOrderByWithRelationInput'] | null> | null; // [ComicBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    }
     findFirstGenre: { // args
       cursor?: NexusGenInputs['GenreWhereUniqueInput'] | null; // GenreWhereUniqueInput
       distinct?: Array<NexusGenEnums['GenreScalarFieldEnum'] | null> | null; // [GenreScalarFieldEnum]
@@ -4034,6 +6508,22 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    }
+    findFirstMissing: { // args
+      cursor?: NexusGenInputs['MissingWhereUniqueInput'] | null; // MissingWhereUniqueInput
+      distinct?: Array<NexusGenEnums['MissingScalarFieldEnum'] | null> | null; // [MissingScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['MissingOrderByWithRelationInput'] | null> | null; // [MissingOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    findFirstReport: { // args
+      cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ReportScalarFieldEnum'] | null> | null; // [ReportScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ReportOrderByWithRelationInput'] | null> | null; // [ReportOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
     }
     findFirstUser: { // args
       cursor?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -4083,6 +6573,22 @@ export interface NexusGenArgTypes {
       take?: number | null; // Int
       where?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
     }
+    findManyChapterBookmark: { // args
+      cursor?: NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null; // ChapterBookmarkWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ChapterBookmarkScalarFieldEnum'] | null> | null; // [ChapterBookmarkScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ChapterBookmarkOrderByWithRelationInput'] | null> | null; // [ChapterBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
+    findManyChapterBookmarkCount: { // args
+      cursor?: NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null; // ChapterBookmarkWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ChapterBookmarkScalarFieldEnum'] | null> | null; // [ChapterBookmarkScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ChapterBookmarkOrderByWithRelationInput'] | null> | null; // [ChapterBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
     findManyChapterCount: { // args
       cursor?: NexusGenInputs['ChapterWhereUniqueInput'] | null; // ChapterWhereUniqueInput
       distinct?: Array<NexusGenEnums['ChapterScalarFieldEnum'] | null> | null; // [ChapterScalarFieldEnum]
@@ -4098,6 +6604,22 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
+    }
+    findManyComicBookmark: { // args
+      cursor?: NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null; // ComicBookmarkWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ComicBookmarkScalarFieldEnum'] | null> | null; // [ComicBookmarkScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ComicBookmarkOrderByWithRelationInput'] | null> | null; // [ComicBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    }
+    findManyComicBookmarkCount: { // args
+      cursor?: NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null; // ComicBookmarkWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ComicBookmarkScalarFieldEnum'] | null> | null; // [ComicBookmarkScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ComicBookmarkOrderByWithRelationInput'] | null> | null; // [ComicBookmarkOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
     }
     findManyComicCount: { // args
       cursor?: NexusGenInputs['ComicWhereUniqueInput'] | null; // ComicWhereUniqueInput
@@ -4122,6 +6644,38 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['GenreWhereInput'] | null; // GenreWhereInput
+    }
+    findManyMissing: { // args
+      cursor?: NexusGenInputs['MissingWhereUniqueInput'] | null; // MissingWhereUniqueInput
+      distinct?: Array<NexusGenEnums['MissingScalarFieldEnum'] | null> | null; // [MissingScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['MissingOrderByWithRelationInput'] | null> | null; // [MissingOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    findManyMissingCount: { // args
+      cursor?: NexusGenInputs['MissingWhereUniqueInput'] | null; // MissingWhereUniqueInput
+      distinct?: Array<NexusGenEnums['MissingScalarFieldEnum'] | null> | null; // [MissingScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['MissingOrderByWithRelationInput'] | null> | null; // [MissingOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    findManyReport: { // args
+      cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ReportScalarFieldEnum'] | null> | null; // [ReportScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ReportOrderByWithRelationInput'] | null> | null; // [ReportOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
+    }
+    findManyReportCount: { // args
+      cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
+      distinct?: Array<NexusGenEnums['ReportScalarFieldEnum'] | null> | null; // [ReportScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['ReportOrderByWithRelationInput'] | null> | null; // [ReportOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
     }
     findManyUser: { // args
       cursor?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
@@ -4148,14 +6702,52 @@ export interface NexusGenArgTypes {
     findUniqueChapter: { // args
       where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
     }
+    findUniqueChapterBookmark: { // args
+      where: NexusGenInputs['ChapterBookmarkWhereUniqueInput']; // ChapterBookmarkWhereUniqueInput!
+    }
     findUniqueComic: { // args
       where: NexusGenInputs['ComicWhereUniqueInput']; // ComicWhereUniqueInput!
+    }
+    findUniqueComicBookmark: { // args
+      where: NexusGenInputs['ComicBookmarkWhereUniqueInput']; // ComicBookmarkWhereUniqueInput!
     }
     findUniqueGenre: { // args
       where: NexusGenInputs['GenreWhereUniqueInput']; // GenreWhereUniqueInput!
     }
+    findUniqueMissing: { // args
+      where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    findUniqueReport: { // args
+      where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
+    }
     findUniqueUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+  }
+  User: {
+    chapterbookmarks: { // args
+      cursor?: NexusGenInputs['ChapterBookmarkWhereUniqueInput'] | null; // ChapterBookmarkWhereUniqueInput
+      distinct?: NexusGenEnums['ChapterBookmarkScalarFieldEnum'] | null; // ChapterBookmarkScalarFieldEnum
+      orderBy?: NexusGenInputs['ChapterBookmarkOrderByWithRelationInput'] | null; // ChapterBookmarkOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ChapterBookmarkWhereInput'] | null; // ChapterBookmarkWhereInput
+    }
+    comicbookmarks: { // args
+      cursor?: NexusGenInputs['ComicBookmarkWhereUniqueInput'] | null; // ComicBookmarkWhereUniqueInput
+      distinct?: NexusGenEnums['ComicBookmarkScalarFieldEnum'] | null; // ComicBookmarkScalarFieldEnum
+      orderBy?: NexusGenInputs['ComicBookmarkOrderByWithRelationInput'] | null; // ComicBookmarkOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ComicBookmarkWhereInput'] | null; // ComicBookmarkWhereInput
+    }
+    reports: { // args
+      cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
+      distinct?: NexusGenEnums['ReportScalarFieldEnum'] | null; // ReportScalarFieldEnum
+      orderBy?: NexusGenInputs['ReportOrderByWithRelationInput'] | null; // ReportOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
     }
   }
 }

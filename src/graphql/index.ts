@@ -1,3 +1,7 @@
+export * from './ChapterBookmark'
+export * from './ComicBookmark'
+export * from './Report'
+export * from './Missing'
 export * from './Chapter'
 export * from './Comic'
 export * from './Ads'
