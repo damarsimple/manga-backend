@@ -463,6 +463,15 @@ input AuthorScalarWhereWithAggregatesInput {
   updatedAt: DateTimeWithAggregatesFilter
 }
 
+type AuthorSearch {
+  authors: [Author]
+  exhaustiveNbHits: Boolean
+  limit: Int
+  offset: Int
+  processingTimeMs: Int
+  total: Int
+}
+
 type AuthorSumAggregateOutputType {
   id: Int
 }
@@ -2647,6 +2656,15 @@ input ComicScalarWhereWithAggregatesInput {
   viewsWeek: IntWithAggregatesFilter
 }
 
+type ComicSearch {
+  comics: [Comic]
+  exhaustiveNbHits: Boolean
+  limit: Int
+  offset: Int
+  processingTimeMs: Int
+  total: Int
+}
+
 type ComicSumAggregateOutputType {
   authorId: Int
   id: Int
@@ -3515,6 +3533,15 @@ input GenreScalarWhereWithAggregatesInput {
   updatedAt: DateTimeWithAggregatesFilter
 }
 
+type GenreSearch {
+  authors: [Genre]
+  exhaustiveNbHits: Boolean
+  limit: Int
+  offset: Int
+  processingTimeMs: Int
+  total: Int
+}
+
 type GenreSumAggregateOutputType {
   id: Int
 }
@@ -3960,6 +3987,7 @@ type Mutation {
   deleteOneMissing(where: MissingWhereUniqueInput!): Missing
   deleteOneReport(where: ReportWhereUniqueInput!): Report
   deleteOneUser(where: UserWhereUniqueInput!): User
+  reportMissing(context: String!, data: String!): Boolean
   reportView(id: Int!): Boolean
   sanityCheck(author: String!, description: String, genres: [String], name: String!, released: String, thumb: String!, thumbWide: String, type: String): SanityCheck
   sanityEclipse(chapter: JSONObject, name: String!): Boolean
@@ -4254,6 +4282,8 @@ type Query {
   aggregateMissing(cursor: MissingWhereUniqueInput, orderBy: [MissingOrderByWithRelationInput], skip: Int, take: Int, where: MissingWhereInput): AggregateMissing
   aggregateReport(cursor: ReportWhereUniqueInput, orderBy: [ReportOrderByWithRelationInput], skip: Int, take: Int, where: ReportWhereInput): AggregateReport
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): AggregateUser
+  authorSearch(limit: Int, offset: Int, query: String!): AuthorSearch
+  comicSearch(allowHentai: Boolean = false, limit: Int, offset: Int, query: String!, type: String): ComicSearch
   findFirstAds(cursor: AdsWhereUniqueInput, distinct: [AdsScalarFieldEnum], orderBy: [AdsOrderByWithRelationInput], skip: Int, take: Int, where: AdsWhereInput): Ads
   findFirstAuthor(cursor: AuthorWhereUniqueInput, distinct: [AuthorScalarFieldEnum], orderBy: [AuthorOrderByWithRelationInput], skip: Int, take: Int, where: AuthorWhereInput): Author
   findFirstChapter(cursor: ChapterWhereUniqueInput, distinct: [ChapterScalarFieldEnum], orderBy: [ChapterOrderByWithRelationInput], skip: Int, take: Int, where: ChapterWhereInput): Chapter
@@ -4294,6 +4324,7 @@ type Query {
   findUniqueMissing(where: MissingWhereUniqueInput!): Missing
   findUniqueReport(where: ReportWhereUniqueInput!): Report
   findUniqueUser(where: UserWhereUniqueInput!): User
+  genreSearch(limit: Int, offset: Int, query: String!): AuthorSearch
 }
 
 enum QueryMode {

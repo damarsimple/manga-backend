@@ -4134,6 +4134,14 @@ export interface NexusGenObjects {
     slug?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
+  AuthorSearch: { // root type
+    authors?: Array<NexusGenRootTypes['Author'] | null> | null; // [Author]
+    exhaustiveNbHits?: boolean | null; // Boolean
+    limit?: number | null; // Int
+    offset?: number | null; // Int
+    processingTimeMs?: number | null; // Int
+    total?: number | null; // Int
+  }
   AuthorSumAggregateOutputType: { // root type
     id?: number | null; // Int
   }
@@ -4393,6 +4401,14 @@ export interface NexusGenObjects {
     views?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
+  ComicSearch: { // root type
+    comics?: Array<NexusGenRootTypes['Comic'] | null> | null; // [Comic]
+    exhaustiveNbHits?: boolean | null; // Boolean
+    limit?: number | null; // Int
+    offset?: number | null; // Int
+    processingTimeMs?: number | null; // Int
+    total?: number | null; // Int
+  }
   ComicSumAggregateOutputType: { // root type
     authorId?: number | null; // Int
     id?: number | null; // Int
@@ -4434,6 +4450,14 @@ export interface NexusGenObjects {
     name?: string | null; // String
     slug?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  GenreSearch: { // root type
+    authors?: Array<NexusGenRootTypes['Genre'] | null> | null; // [Genre]
+    exhaustiveNbHits?: boolean | null; // Boolean
+    limit?: number | null; // Int
+    offset?: number | null; // Int
+    processingTimeMs?: number | null; // Int
+    total?: number | null; // Int
   }
   GenreSumAggregateOutputType: { // root type
     id?: number | null; // Int
@@ -4753,6 +4777,14 @@ export interface NexusGenFieldTypes {
     slug: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
+  AuthorSearch: { // field return type
+    authors: Array<NexusGenRootTypes['Author'] | null> | null; // [Author]
+    exhaustiveNbHits: boolean | null; // Boolean
+    limit: number | null; // Int
+    offset: number | null; // Int
+    processingTimeMs: number | null; // Int
+    total: number | null; // Int
+  }
   AuthorSumAggregateOutputType: { // field return type
     id: number | null; // Int
   }
@@ -5024,6 +5056,14 @@ export interface NexusGenFieldTypes {
     views: number | null; // Int
     viewsWeek: number | null; // Int
   }
+  ComicSearch: { // field return type
+    comics: Array<NexusGenRootTypes['Comic'] | null> | null; // [Comic]
+    exhaustiveNbHits: boolean | null; // Boolean
+    limit: number | null; // Int
+    offset: number | null; // Int
+    processingTimeMs: number | null; // Int
+    total: number | null; // Int
+  }
   ComicSumAggregateOutputType: { // field return type
     authorId: number | null; // Int
     id: number | null; // Int
@@ -5067,6 +5107,14 @@ export interface NexusGenFieldTypes {
     name: string | null; // String
     slug: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+  }
+  GenreSearch: { // field return type
+    authors: Array<NexusGenRootTypes['Genre'] | null> | null; // [Genre]
+    exhaustiveNbHits: boolean | null; // Boolean
+    limit: number | null; // Int
+    offset: number | null; // Int
+    processingTimeMs: number | null; // Int
+    total: number | null; // Int
   }
   GenreSumAggregateOutputType: { // field return type
     id: number | null; // Int
@@ -5141,6 +5189,7 @@ export interface NexusGenFieldTypes {
     deleteOneMissing: NexusGenRootTypes['Missing'] | null; // Missing
     deleteOneReport: NexusGenRootTypes['Report'] | null; // Report
     deleteOneUser: NexusGenRootTypes['User'] | null; // User
+    reportMissing: boolean | null; // Boolean
     reportView: boolean | null; // Boolean
     sanityCheck: NexusGenRootTypes['SanityCheck'] | null; // SanityCheck
     sanityEclipse: boolean | null; // Boolean
@@ -5186,6 +5235,8 @@ export interface NexusGenFieldTypes {
     aggregateMissing: NexusGenRootTypes['AggregateMissing'] | null; // AggregateMissing
     aggregateReport: NexusGenRootTypes['AggregateReport'] | null; // AggregateReport
     aggregateUser: NexusGenRootTypes['AggregateUser'] | null; // AggregateUser
+    authorSearch: NexusGenRootTypes['AuthorSearch'] | null; // AuthorSearch
+    comicSearch: NexusGenRootTypes['ComicSearch'] | null; // ComicSearch
     findFirstAds: NexusGenRootTypes['Ads'] | null; // Ads
     findFirstAuthor: NexusGenRootTypes['Author'] | null; // Author
     findFirstChapter: NexusGenRootTypes['Chapter'] | null; // Chapter
@@ -5226,6 +5277,7 @@ export interface NexusGenFieldTypes {
     findUniqueMissing: NexusGenRootTypes['Missing'] | null; // Missing
     findUniqueReport: NexusGenRootTypes['Report'] | null; // Report
     findUniqueUser: NexusGenRootTypes['User'] | null; // User
+    genreSearch: NexusGenRootTypes['AuthorSearch'] | null; // AuthorSearch
   }
   Report: { // field return type
     contextIdentifier: string; // String!
@@ -5495,6 +5547,14 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     slug: 'String'
     updatedAt: 'DateTime'
+  }
+  AuthorSearch: { // field return type name
+    authors: 'Author'
+    exhaustiveNbHits: 'Boolean'
+    limit: 'Int'
+    offset: 'Int'
+    processingTimeMs: 'Int'
+    total: 'Int'
   }
   AuthorSumAggregateOutputType: { // field return type name
     id: 'Int'
@@ -5767,6 +5827,14 @@ export interface NexusGenFieldTypeNames {
     views: 'Int'
     viewsWeek: 'Int'
   }
+  ComicSearch: { // field return type name
+    comics: 'Comic'
+    exhaustiveNbHits: 'Boolean'
+    limit: 'Int'
+    offset: 'Int'
+    processingTimeMs: 'Int'
+    total: 'Int'
+  }
   ComicSumAggregateOutputType: { // field return type name
     authorId: 'Int'
     id: 'Int'
@@ -5810,6 +5878,14 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     slug: 'String'
     updatedAt: 'DateTime'
+  }
+  GenreSearch: { // field return type name
+    authors: 'Genre'
+    exhaustiveNbHits: 'Boolean'
+    limit: 'Int'
+    offset: 'Int'
+    processingTimeMs: 'Int'
+    total: 'Int'
   }
   GenreSumAggregateOutputType: { // field return type name
     id: 'Int'
@@ -5884,6 +5960,7 @@ export interface NexusGenFieldTypeNames {
     deleteOneMissing: 'Missing'
     deleteOneReport: 'Report'
     deleteOneUser: 'User'
+    reportMissing: 'Boolean'
     reportView: 'Boolean'
     sanityCheck: 'SanityCheck'
     sanityEclipse: 'Boolean'
@@ -5929,6 +6006,8 @@ export interface NexusGenFieldTypeNames {
     aggregateMissing: 'AggregateMissing'
     aggregateReport: 'AggregateReport'
     aggregateUser: 'AggregateUser'
+    authorSearch: 'AuthorSearch'
+    comicSearch: 'ComicSearch'
     findFirstAds: 'Ads'
     findFirstAuthor: 'Author'
     findFirstChapter: 'Chapter'
@@ -5969,6 +6048,7 @@ export interface NexusGenFieldTypeNames {
     findUniqueMissing: 'Missing'
     findUniqueReport: 'Report'
     findUniqueUser: 'User'
+    genreSearch: 'AuthorSearch'
   }
   Report: { // field return type name
     contextIdentifier: 'String'
@@ -6234,6 +6314,10 @@ export interface NexusGenArgTypes {
     deleteOneUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
     }
+    reportMissing: { // args
+      context: string; // String!
+      data: string; // String!
+    }
     reportView: { // args
       id: number; // Int!
     }
@@ -6452,6 +6536,18 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    }
+    authorSearch: { // args
+      limit?: number | null; // Int
+      offset?: number | null; // Int
+      query: string; // String!
+    }
+    comicSearch: { // args
+      allowHentai?: boolean | null; // Boolean
+      limit?: number | null; // Int
+      offset?: number | null; // Int
+      query: string; // String!
+      type?: string | null; // String
     }
     findFirstAds: { // args
       cursor?: NexusGenInputs['AdsWhereUniqueInput'] | null; // AdsWhereUniqueInput
@@ -6722,6 +6818,11 @@ export interface NexusGenArgTypes {
     }
     findUniqueUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+    genreSearch: { // args
+      limit?: number | null; // Int
+      offset?: number | null; // Int
+      query: string; // String!
     }
   }
   User: {

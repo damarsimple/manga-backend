@@ -1,10 +1,11 @@
-import { Chapter } from '@prisma/client';
+import { Chapter, Comic, Author } from '@prisma/client';
 import moment from 'moment';
-import { arg, extendType, list, nonNull, stringArg, objectType, intArg } from 'nexus';
+import { arg, extendType, list, nonNull, stringArg, objectType, intArg, booleanArg } from 'nexus';
 import BunnyCDN from '../modules/BunnyCDN';
 import { slugify } from '../modules/Helper';
 import { comicIncrementQueue } from '../modules/Queue';
 import { updateDocumentIndex } from '../modules/Meilisearch';
+import { connection } from '../modules/Redis';
 
 export const SanityCheck = objectType({
   name: 'SanityCheck',
@@ -14,9 +15,215 @@ export const SanityCheck = objectType({
   }
 })
 
-export const ComicRelated = extendType({
+export const ComicSearch = objectType({
+  name: 'ComicSearch',
+  definition(t) {
+    t.list.field('comics', { type: 'Comic' })
+    t.int('offset')
+    t.int('limit')
+    t.int('processingTimeMs')
+    t.int('total')
+    t.boolean('exhaustiveNbHits')
+  }
+})
+
+export const AuthorSearch = objectType({
+  name: 'AuthorSearch',
+  definition(t) {
+    t.list.field('authors', { type: 'Author' })
+    t.int('offset')
+    t.int('limit')
+    t.int('processingTimeMs')
+    t.int('total')
+    t.boolean('exhaustiveNbHits')
+  }
+})
+
+export const GenreSearch = objectType({
+  name: 'GenreSearch',
+  definition(t) {
+    t.list.field('authors', { type: 'Genre' })
+    t.int('offset')
+    t.int('limit')
+    t.int('processingTimeMs')
+    t.int('total')
+    t.boolean('exhaustiveNbHits')
+  }
+})
+
+
+export const ComicQueryRelated = extendType({
+  type: 'Query',
+  definition(t) {
+
+    t.field('comicSearch', {
+      type: ComicSearch,
+      args: {
+        query: nonNull(stringArg()),
+        offset: intArg(),
+        limit: intArg(),
+        type: stringArg(),
+        allowHentai: booleanArg({ default: false })
+      },
+      resolve: async (_, {
+        query, offset, limit, type,
+        allowHentai
+      }, { comicsIndex }) => {
+
+
+
+
+        let filter = ""
+
+        if (type) {
+          filter += `type = ${type} AND `
+        }
+
+        if (!allowHentai) {
+          filter += `isHentai = false `
+        }
+
+        if (limit == 10000) {
+          const key = `comicSearchAll`
+
+          const cache = await connection.get(key)
+
+          if (!cache) {
+            const save = await comicsIndex.search<Comic>(query, {
+              attributesToHighlight: ["name", "author", "description"],
+              limit: limit,
+              sort: [
+                "lastChapterUpdatedAt:desc"
+              ]
+            });
+
+            await connection.set(key, JSON.stringify(save));
+
+            return {
+              ...save,
+              total: save.nbHits,
+              comics: save.hits.map(e => e._formatted as Comic)
+            }
+          }
+          const data = JSON.parse(cache)
+          return {
+            ...data,
+            total: data.nbHits,
+            //@ts-ignore
+            comics: data.hits.map(e => e._formatted as Comic)
+          }
+
+
+        }
+
+        const result = await comicsIndex.search<Comic>(query, {
+          attributesToHighlight: ["name", "author", "description"],
+          offset: offset ?? 0,
+          limit: limit ?? 10,
+          filter: filter.length > 0 ? filter : undefined,
+          sort: [
+            "lastChapterUpdatedAt:desc"
+          ]
+        });
+
+        return {
+          ...result,
+          total: result.nbHits,
+          comics: result.hits.map(e => e._formatted as Comic)
+        }
+
+      }
+    });
+
+    t.field('genreSearch', {
+      type: AuthorSearch,
+      args: {
+        query: nonNull(stringArg()),
+        offset: intArg(),
+        limit: intArg(),
+      },
+      resolve: async (_, {
+        query, offset, limit
+      }, { authorsIndex }) => {
+
+        const result = await authorsIndex.search<Author>(query, {
+          attributesToHighlight: ["name",],
+          offset: offset ?? 0,
+          limit: limit ?? 10,
+        });
+
+        return {
+          ...result,
+          total: result.nbHits,
+          comics: result.hits.map(e => e._formatted as Comic)
+        }
+
+      }
+    });
+
+    t.field('authorSearch', {
+      type: AuthorSearch,
+      args: {
+        query: nonNull(stringArg()),
+        offset: intArg(),
+        limit: intArg(),
+      },
+      resolve: async (_, {
+        query, offset, limit
+      }, { authorsIndex }) => {
+
+        const result = await authorsIndex.search<Author>(query, {
+          attributesToHighlight: ["name",],
+          offset: offset ?? 0,
+          limit: limit ?? 10,
+        });
+
+        return {
+          ...result,
+          total: result.nbHits,
+          comics: result.hits.map(e => e._formatted as Comic)
+        }
+
+      }
+    });
+
+  }
+})
+
+
+export const ComicMutationRelated = extendType({
   type: 'Mutation',
   definition(t) {
+
+    t.field('reportMissing', {
+      type: 'Boolean',
+      args: {
+        context: nonNull(stringArg()),
+        data: nonNull(stringArg()),
+      },
+      resolve: async (_, { context, data }, {
+        prisma
+      }) => {
+
+        let missing = await prisma.missing.findFirst({
+          where: {
+            context,
+            data
+          }
+        })
+
+        if (!missing) {
+          missing = await prisma.missing.create({
+            data: {
+              context,
+              data
+            }
+          })
+        }
+
+        return true
+      }
+    })
 
     t.field('reportView', {
       type: 'Boolean',

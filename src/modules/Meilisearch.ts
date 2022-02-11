@@ -25,7 +25,10 @@ const commonFilter = [
 
 const wrap = async () => {
 
-    await comicsIndex.updateFilterableAttributes(commonFilter)
+    await comicsIndex.updateFilterableAttributes([
+        'isHentai',
+        'type',
+        ...commonFilter])
     await genresIndex.updateFilterableAttributes(commonFilter)
     await authorsIndex.updateFilterableAttributes(commonFilter)
 
@@ -34,6 +37,7 @@ const wrap = async () => {
         'rating',
         'viewsWeek',
         'lastChapterUpdatedAt',
+
         ...commonSort
     ])
 

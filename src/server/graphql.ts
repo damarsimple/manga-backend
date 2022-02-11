@@ -64,7 +64,7 @@ export const server = new ApolloServer({
   plugins: [{
     // Fires whenever a GraphQL request is received from a client.
     async requestDidStart(requestContext) {
-      // if (requestContext.request.operationName == "IntrospectionQuery") return {};
+      if (requestContext.request.operationName == "IntrospectionQuery") return {};
       const start = new Date().getTime()
       console.log('Request started! Query:\n' +
         requestContext.request.query);
