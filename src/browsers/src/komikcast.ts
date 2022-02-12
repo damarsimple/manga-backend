@@ -61,9 +61,9 @@ export default class Komicast extends Scrapper {
 
 
 
-    
 
-    
+
+
 
     for (const e of Array.from(doc?.querySelectorAll("a")) ?? []) {
 
@@ -75,18 +75,18 @@ export default class Komicast extends Scrapper {
       const text = e.textContent ?? ""
       const name = `${this.chapterGuesser(text)}`
 
-      if(text.includes("HQ")) hqChapters.push({
-        name,href
+      if (text.includes("HQ")) hqChapters.push({
+        name, href
       })
-    
+
 
     }
 
-    
+
     let hqChaptersStringMap: string[] = hqChapters.map(e => e.name);
 
 
-    if(hqChaptersStringMap.length > 0 ){
+    if (hqChaptersStringMap.length > 0) {
       console.log(`found ${hqChaptersStringMap.length} HQ Chapter ${title}`);
     }
 
@@ -98,7 +98,7 @@ export default class Komicast extends Scrapper {
       const text = e.textContent ?? ""
       const name = `${this.chapterGuesser(text)}`
 
-      if(hqChaptersStringMap.includes(name)) chapters.push({
+      if (!hqChaptersStringMap.includes(name)) chapters.push({
         name,
         href
       })
