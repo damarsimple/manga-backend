@@ -57,44 +57,54 @@ export default class Komicast extends Scrapper {
     }, {} as Record<string, string>);
 
     let chapters: ChapterCandidate[] = [];
-
-    const HQChapter: ChapterCandidate[] = [];
-
-
-    const HQStrings = HQChapter.map((e) => e.name);
-
-    if (HQStrings.length > 0)
-      this._logger.info(`HQ ${title} detected ${HQStrings.length}`);
+    let hqChapters: ChapterCandidate[] = [];
 
 
-    for (const e of doc?.querySelectorAll("a") ?? []) {
+
+    
+
+    
+
+    for (const e of Array.from(doc?.querySelectorAll("a")) ?? []) {
 
       const href = e.getAttribute("href");
-
-
       if (!href) continue;
 
       if (!href.includes("https://komikcast.com/chapter/")) continue;
 
-      const name = parseFloat(e?.textContent?.replace("Chapter", "") ?? "");
+      const text = e.textContent ?? ""
+      const name = `${this.chapterGuesser(text)}`
 
-      if (HQStrings.includes(`${name}`)) {
-        HQChapter.push({
-          //@ts-ignore
-          name,
-          href,
-        });
-      } else {
-        chapters.push({
-          //@ts-ignore
-          name,
-          href,
-        });
-      }
+      if(text.includes("HQ")) hqChapters.push({
+        name,href
+      })
+    
+
     }
 
+    
+    let hqChaptersStringMap: string[] = hqChapters.map(e => e.name);
 
-    chapters = uniq([...chapters, ...HQChapter]);
+
+    if(hqChaptersStringMap.length > 0 ){
+      console.log(`found ${hqChaptersStringMap.length} HQ Chapter ${title}`);
+    }
+
+    for (const e of Array.from(doc?.querySelectorAll("a")) ?? []) {
+      const href = e.getAttribute("href");
+      if (!href) continue;
+      if (!href.includes("https://komikcast.com/chapter/")) continue;
+
+      const text = e.textContent ?? ""
+      const name = `${this.chapterGuesser(text)}`
+
+      if(hqChaptersStringMap.includes(name)) chapters.push({
+        name,
+        href
+      })
+    }
+
+    chapters = uniq([...chapters, ...hqChapters]);
 
     if (!title) {
       throw new Error("title not found");

@@ -17,7 +17,7 @@
       "matches": [
         "*://*.komikcast.com/*",
         "*://*.manhwaindo.id/*",
-        "*://*.manhwaland.fun/*",
+        "*://*.manhwaland.bar/*",
         "*://*.komikcastid.com/*"
       ],
       "js": ["dist/main.js"]
