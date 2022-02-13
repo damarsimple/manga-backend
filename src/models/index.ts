@@ -6,3 +6,4 @@ export const jsonScalar = asNexusMethod(JSONObjectResolver, "json");
 
 
 export * from "./Comic";
+export * from "./Auth";

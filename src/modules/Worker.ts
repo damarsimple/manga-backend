@@ -37,3 +37,5 @@ worker.on('completed', (job: Job, returnvalue: any) => {
 worker.on('active', function () {
     console.log(`job  increment active  `);
 })
+
+console.log('worker starting .....');

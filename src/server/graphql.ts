@@ -7,6 +7,8 @@ import * as types from "../graphql";
 import { context } from "../modules/Context";
 import { paljs } from '@paljs/nexus';
 import { SECRET_KEY } from '../modules/Key';
+import { parseToken } from '../modules/JWT';
+import { User } from "@prisma/client";
 
 export const schema = makeSchema({
 
@@ -41,21 +43,15 @@ export const server = new ApolloServer({
     // Get the user token from the headers.
     const token = req.headers.authorization || "";
 
-    // if (!token) return context;
+    if (!token) return context;
 
-    // // Try to retrieve a user with the token
-    // const user = (await verifyJWT(token)) as User | undefined;
-
-    // if (user) {
-    //   // console.log(`logged ${user?.name}`);
-    // } else {
-    //   console.log(`not logged ${token}`);
-    // }
+    // Try to retrieve a user with the token
+    const user = (await parseToken<User>(token))
 
     return {
-      // user,
-      // isLogged: !!user,
-      // isAdmin: user?.isAdmin || false,
+      user,
+      isLogged: !!user,
+      isAdmin: user?.isAdmin || false,
       gotKey: req.headers.authorization == SECRET_KEY,
       ...context,
     };

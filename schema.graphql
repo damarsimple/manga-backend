@@ -312,6 +312,13 @@ type AggregateUser {
   _sum: UserSumAggregateOutputType
 }
 
+type AuthResponse {
+  message: String
+  status: Boolean
+  token: String
+  user: User
+}
+
 type Author {
   _count: AuthorCountOutputType!
   comics(cursor: ComicWhereUniqueInput, distinct: ComicScalarFieldEnum, orderBy: ComicOrderByWithRelationInput, skip: Int, take: Int, where: ComicWhereInput): [Comic!]!
@@ -3987,6 +3994,8 @@ type Mutation {
   deleteOneMissing(where: MissingWhereUniqueInput!): Missing
   deleteOneReport(where: ReportWhereUniqueInput!): Report
   deleteOneUser(where: UserWhereUniqueInput!): User
+  login(email: String!, password: String!): AuthResponse
+  register(email: String!, name: String!, password: String!): AuthResponse
   reportMissing(context: String!, data: String!): Boolean
   reportView(id: Int!): Boolean
   sanityCheck(author: String!, description: String, genres: [String], name: String!, released: String, thumb: String!, thumbWide: String, type: String): SanityCheck

@@ -4099,6 +4099,12 @@ export interface NexusGenObjects {
     _min?: NexusGenRootTypes['UserMinAggregateOutputType'] | null; // UserMinAggregateOutputType
     _sum?: NexusGenRootTypes['UserSumAggregateOutputType'] | null; // UserSumAggregateOutputType
   }
+  AuthResponse: { // root type
+    message?: string | null; // String
+    status?: boolean | null; // Boolean
+    token?: string | null; // String
+    user?: NexusGenRootTypes['User'] | null; // User
+  }
   Author: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: number; // Int!
@@ -4740,6 +4746,12 @@ export interface NexusGenFieldTypes {
     _min: NexusGenRootTypes['UserMinAggregateOutputType'] | null; // UserMinAggregateOutputType
     _sum: NexusGenRootTypes['UserSumAggregateOutputType'] | null; // UserSumAggregateOutputType
   }
+  AuthResponse: { // field return type
+    message: string | null; // String
+    status: boolean | null; // Boolean
+    token: string | null; // String
+    user: NexusGenRootTypes['User'] | null; // User
+  }
   Author: { // field return type
     _count: NexusGenRootTypes['AuthorCountOutputType']; // AuthorCountOutputType!
     comics: NexusGenRootTypes['Comic'][]; // [Comic!]!
@@ -5189,6 +5201,8 @@ export interface NexusGenFieldTypes {
     deleteOneMissing: NexusGenRootTypes['Missing'] | null; // Missing
     deleteOneReport: NexusGenRootTypes['Report'] | null; // Report
     deleteOneUser: NexusGenRootTypes['User'] | null; // User
+    login: NexusGenRootTypes['AuthResponse'] | null; // AuthResponse
+    register: NexusGenRootTypes['AuthResponse'] | null; // AuthResponse
     reportMissing: boolean | null; // Boolean
     reportView: boolean | null; // Boolean
     sanityCheck: NexusGenRootTypes['SanityCheck'] | null; // SanityCheck
@@ -5510,6 +5524,12 @@ export interface NexusGenFieldTypeNames {
     _max: 'UserMaxAggregateOutputType'
     _min: 'UserMinAggregateOutputType'
     _sum: 'UserSumAggregateOutputType'
+  }
+  AuthResponse: { // field return type name
+    message: 'String'
+    status: 'Boolean'
+    token: 'String'
+    user: 'User'
   }
   Author: { // field return type name
     _count: 'AuthorCountOutputType'
@@ -5960,6 +5980,8 @@ export interface NexusGenFieldTypeNames {
     deleteOneMissing: 'Missing'
     deleteOneReport: 'Report'
     deleteOneUser: 'User'
+    login: 'AuthResponse'
+    register: 'AuthResponse'
     reportMissing: 'Boolean'
     reportView: 'Boolean'
     sanityCheck: 'SanityCheck'
@@ -6313,6 +6335,15 @@ export interface NexusGenArgTypes {
     }
     deleteOneUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+    login: { // args
+      email: string; // String!
+      password: string; // String!
+    }
+    register: { // args
+      email: string; // String!
+      name: string; // String!
+      password: string; // String!
     }
     reportMissing: { // args
       context: string; // String!

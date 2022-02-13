@@ -77,12 +77,7 @@ export default class BunnyCDN {
 
         try {
             const tobeSaved = `https://sg.storage.bunnycdn.com/komikgudang${path}`;
-
-            // await axios.get(`https://api.bunny.net/purge?url=${tobeSaved}`, {
-            //     headers: {
-            //         AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
-            //     }
-            // })
+            const tobePurged = `https://cdn.gudangkomik.com${path}`;
 
 
             if (typeof process != "undefined") {
@@ -111,6 +106,15 @@ export default class BunnyCDN {
                 if (ret.HttpCode == 400) {
                     throw new Error(`Bad Request ${ret.Message} ${path}`)
                 }
+
+                if (ret)
+                    await axios.post(tobePurged, {
+                        headers: {
+                            AccessKey: "99bef15d-1931-4e36-869e-747941ed0ab0",
+                        }
+                    })
+
+
 
                 return ret;
             }

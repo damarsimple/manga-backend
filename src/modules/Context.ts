@@ -1,5 +1,5 @@
-import { comicsIndex,genresIndex,authorsIndex } from './Meilisearch';
-import { PrismaClient } from "@prisma/client"
+import { comicsIndex, genresIndex, authorsIndex } from './Meilisearch';
+import { PrismaClient, User } from "@prisma/client"
 
 export interface Context {
 
@@ -7,9 +7,13 @@ export interface Context {
     select: any
     gotKey: boolean
 
-    comicsIndex: typeof comicsIndex, 
+    comicsIndex: typeof comicsIndex,
     genresIndex: typeof genresIndex,
-    authorsIndex: typeof authorsIndex, 
+    authorsIndex: typeof authorsIndex,
+
+    user?: User,
+    isLogged: boolean,
+    isAdmin: boolean,
 
 }
 
