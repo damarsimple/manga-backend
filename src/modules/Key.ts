@@ -1,1 +1,1 @@
-export const SECRET_KEY = process.env.SECRET_TOKEN || "lil bit sus isn't it";
+export const SECRET_KEY = "lil bit sus isn't it";
