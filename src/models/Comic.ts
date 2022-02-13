@@ -76,7 +76,7 @@ export const ComicQueryRelated = extendType({
         let filter = ""
 
         if (type) {
-          filter += `type = ${type} AND `
+          filter += `type = ${type} ${!allowHentai && "AND"} `
         }
 
         if (!allowHentai) {
