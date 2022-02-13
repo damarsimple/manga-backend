@@ -73,15 +73,19 @@ export const ComicQueryRelated = extendType({
 
 
 
-        let filter = ""
+
+        const filters = [];
 
         if (type) {
-          filter += `type = ${type} ${!allowHentai && "AND"} `
+          filters.push(`type = ${type}`)
         }
 
         if (!allowHentai) {
-          filter += `isHentai = false `
+          filters.push(`isHentai = false`)
         }
+
+        let filter = filters.join(" AND ")
+
 
         if (limit == 10000) {
           const key = `comicSearchAll`
