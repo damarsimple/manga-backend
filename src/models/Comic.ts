@@ -72,7 +72,7 @@ export const ComicQueryRelated = extendType({
 
 
 
-
+        console.log(`search called with liit of ${limit} and query of ${query} `)
 
         const filters = [];
 
