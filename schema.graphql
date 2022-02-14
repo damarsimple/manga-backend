@@ -3997,7 +3997,7 @@ type Mutation {
   login(email: String!, password: String!): AuthResponse
   register(email: String!, name: String!, password: String!): AuthResponse
   reportMissing(context: String!, data: String!): Boolean
-  reportView(id: Int!): Boolean
+  reportView(context: String!, id: Int!): Boolean
   sanityCheck(author: String!, description: String, genres: [String], name: String!, released: String, thumb: String!, thumbWide: String, type: String): SanityCheck
   sanityEclipse(chapter: JSONObject, name: String!): Boolean
   updateManyAds(data: AdsUpdateManyMutationInput!, where: AdsWhereInput): BatchPayload!

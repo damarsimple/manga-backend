@@ -3,7 +3,7 @@ import moment from 'moment';
 import { arg, extendType, list, nonNull, stringArg, objectType, intArg, booleanArg } from 'nexus';
 import BunnyCDN from '../modules/BunnyCDN';
 import { slugify } from '../modules/Helper';
-import { comicIncrementQueue } from '../modules/Queue';
+import { comicIncrementQueue, chapterIncrementQueue } from '../modules/Queue';
 import { updateDocumentIndex } from '../modules/Meilisearch';
 import { connection } from '../modules/Redis';
 
@@ -232,16 +232,17 @@ export const ComicMutationRelated = extendType({
     t.field('reportView', {
       type: 'Boolean',
       args: {
-        id: nonNull(intArg())
+        id: nonNull(intArg()),
+        context: nonNull(stringArg())
       },
-      resolve: async (_, { id }, __) => {
-
-        const date = new Date().getTime();
+      resolve: async (_, { id, context }, __) => {
 
 
-        comicIncrementQueue.add('increment', { id })
-
-        console.log(`finish at ${new Date().getTime() - date}`);
+        if (context == "comic") {
+          comicIncrementQueue.add('increment', { id })
+        } else {
+          chapterIncrementQueue.add('increment', { id })
+        }
 
 
         return true

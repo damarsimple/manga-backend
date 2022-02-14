@@ -5,7 +5,7 @@ import { prisma } from './Context';
 import { updateDocumentIndex } from './Meilisearch';
 import { connection } from './Redis';
 
-const worker = new Worker<{ id: string }>('comic increment', async (job: Job) => {
+const comicWorker = new Worker<{ id: string }>('comic increment', async (job: Job) => {
 
     const update = await prisma.comic.update({
         where: {
@@ -30,12 +30,37 @@ const worker = new Worker<{ id: string }>('comic increment', async (job: Job) =>
     connection
 })
 
-worker.on('completed', (job: Job, returnvalue: any) => {
-    console.log(`job finished increment ${job.data.id}  ${returnvalue}`);
+
+const chapterWorker = new Worker<{ id: string }>('chapter increment', async (job: Job) => {
+
+    await prisma.chapter.update({
+        where: {
+            id: job.data.id
+        },
+        data: {
+            views: {
+                increment: 1
+            },
+        }
+    })
+
+    return true;
+
+}, {
+    concurrency: 10,
+    connection
+})
+
+
+comicWorker.on('completed', (job: Job, returnvalue: any) => {
+    console.log(`job finished increment comic ${job.data.id}`);
 });
 
-worker.on('active', function () {
-    console.log(`job  increment active  `);
-})
+chapterWorker.on('completed', (job: Job, returnvalue: any) => {
+    console.log(`job finished increment chapter ${job.data.id}`);
+});
+
+
+
 
 console.log('worker starting .....');

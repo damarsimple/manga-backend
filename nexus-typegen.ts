@@ -6350,6 +6350,7 @@ export interface NexusGenArgTypes {
       data: string; // String!
     }
     reportView: { // args
+      context: string; // String!
       id: number; // Int!
     }
     sanityCheck: { // args
