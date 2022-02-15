@@ -3184,6 +3184,151 @@ export interface NexusGenInputs {
   NullableStringFieldUpdateOperationsInput: { // input type
     set?: string | null; // String
   }
+  PerfomanceAnalyticAvgOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  PerfomanceAnalyticCountOrderByAggregateInput: { // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    operationName?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    query?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    variables?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  PerfomanceAnalyticCreateInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    operationName: string; // String!
+    query: string; // String!
+    time: number; // Float!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    variables: string; // String!
+  }
+  PerfomanceAnalyticCreateManyInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    operationName: string; // String!
+    query: string; // String!
+    time: number; // Float!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    variables: string; // String!
+  }
+  PerfomanceAnalyticMaxOrderByAggregateInput: { // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    operationName?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    query?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    variables?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  PerfomanceAnalyticMinOrderByAggregateInput: { // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    operationName?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    query?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    variables?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  PerfomanceAnalyticOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['PerfomanceAnalyticAvgOrderByAggregateInput'] | null; // PerfomanceAnalyticAvgOrderByAggregateInput
+    _count?: NexusGenInputs['PerfomanceAnalyticCountOrderByAggregateInput'] | null; // PerfomanceAnalyticCountOrderByAggregateInput
+    _max?: NexusGenInputs['PerfomanceAnalyticMaxOrderByAggregateInput'] | null; // PerfomanceAnalyticMaxOrderByAggregateInput
+    _min?: NexusGenInputs['PerfomanceAnalyticMinOrderByAggregateInput'] | null; // PerfomanceAnalyticMinOrderByAggregateInput
+    _sum?: NexusGenInputs['PerfomanceAnalyticSumOrderByAggregateInput'] | null; // PerfomanceAnalyticSumOrderByAggregateInput
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    operationName?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    query?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    variables?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  PerfomanceAnalyticOrderByWithRelationInput: { // input type
+    createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    operationName?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    query?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    variables?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  PerfomanceAnalyticScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['PerfomanceAnalyticScalarWhereWithAggregatesInput'] | null> | null; // [PerfomanceAnalyticScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['PerfomanceAnalyticScalarWhereWithAggregatesInput'] | null> | null; // [PerfomanceAnalyticScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['PerfomanceAnalyticScalarWhereWithAggregatesInput'] | null> | null; // [PerfomanceAnalyticScalarWhereWithAggregatesInput]
+    createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    operationName?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    query?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    time?: NexusGenInputs['FloatWithAggregatesFilter'] | null; // FloatWithAggregatesFilter
+    updatedAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
+    variables?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+  }
+  PerfomanceAnalyticSumOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    time?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  PerfomanceAnalyticUncheckedCreateInput: { // input type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    operationName: string; // String!
+    query: string; // String!
+    time: number; // Float!
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    variables: string; // String!
+  }
+  PerfomanceAnalyticUncheckedUpdateInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    operationName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    query?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    time?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    variables?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  PerfomanceAnalyticUncheckedUpdateManyInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    operationName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    query?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    time?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    variables?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  PerfomanceAnalyticUpdateInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    operationName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    query?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    time?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    variables?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  PerfomanceAnalyticUpdateManyMutationInput: { // input type
+    createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    operationName?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    query?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    time?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    variables?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+  }
+  PerfomanceAnalyticWhereInput: { // input type
+    AND?: Array<NexusGenInputs['PerfomanceAnalyticWhereInput'] | null> | null; // [PerfomanceAnalyticWhereInput]
+    NOT?: Array<NexusGenInputs['PerfomanceAnalyticWhereInput'] | null> | null; // [PerfomanceAnalyticWhereInput]
+    OR?: Array<NexusGenInputs['PerfomanceAnalyticWhereInput'] | null> | null; // [PerfomanceAnalyticWhereInput]
+    createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    operationName?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    query?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    time?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+    updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
+    variables?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  PerfomanceAnalyticWhereUniqueInput: { // input type
+    id?: number | null; // Int
+  }
   ReportAvgOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -3964,6 +4109,7 @@ export interface NexusGenEnums {
   JsonNullValueFilter: "AnyNull" | "DbNull" | "JsonNull"
   MissingScalarFieldEnum: "context" | "createdAt" | "data" | "id" | "resolved" | "updatedAt"
   NullableJsonNullValueInput: "DbNull" | "JsonNull"
+  PerfomanceAnalyticScalarFieldEnum: "createdAt" | "id" | "operationName" | "query" | "time" | "updatedAt" | "variables"
   QueryMode: "default" | "insensitive"
   ReportScalarFieldEnum: "contextIdentifier" | "contextType" | "createdAt" | "id" | "message" | "name" | "resolved" | "updatedAt" | "userId"
   SortOrder: "asc" | "desc"
@@ -4084,6 +4230,13 @@ export interface NexusGenObjects {
     _max?: NexusGenRootTypes['MissingMaxAggregateOutputType'] | null; // MissingMaxAggregateOutputType
     _min?: NexusGenRootTypes['MissingMinAggregateOutputType'] | null; // MissingMinAggregateOutputType
     _sum?: NexusGenRootTypes['MissingSumAggregateOutputType'] | null; // MissingSumAggregateOutputType
+  }
+  AggregatePerfomanceAnalytic: { // root type
+    _avg?: NexusGenRootTypes['PerfomanceAnalyticAvgAggregateOutputType'] | null; // PerfomanceAnalyticAvgAggregateOutputType
+    _count?: NexusGenRootTypes['PerfomanceAnalyticCountAggregateOutputType'] | null; // PerfomanceAnalyticCountAggregateOutputType
+    _max?: NexusGenRootTypes['PerfomanceAnalyticMaxAggregateOutputType'] | null; // PerfomanceAnalyticMaxAggregateOutputType
+    _min?: NexusGenRootTypes['PerfomanceAnalyticMinAggregateOutputType'] | null; // PerfomanceAnalyticMinAggregateOutputType
+    _sum?: NexusGenRootTypes['PerfomanceAnalyticSumAggregateOutputType'] | null; // PerfomanceAnalyticSumAggregateOutputType
   }
   AggregateReport: { // root type
     _avg?: NexusGenRootTypes['ReportAvgAggregateOutputType'] | null; // ReportAvgAggregateOutputType
@@ -4508,6 +4661,42 @@ export interface NexusGenObjects {
     id?: number | null; // Int
   }
   Mutation: {};
+  PerfomanceAnalyticAvgAggregateOutputType: { // root type
+    id?: number | null; // Float
+    time?: number | null; // Float
+  }
+  PerfomanceAnalyticCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    operationName: number; // Int!
+    query: number; // Int!
+    time: number; // Int!
+    updatedAt: number; // Int!
+    variables: number; // Int!
+  }
+  PerfomanceAnalyticMaxAggregateOutputType: { // root type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    operationName?: string | null; // String
+    query?: string | null; // String
+    time?: number | null; // Float
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    variables?: string | null; // String
+  }
+  PerfomanceAnalyticMinAggregateOutputType: { // root type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    id?: number | null; // Int
+    operationName?: string | null; // String
+    query?: string | null; // String
+    time?: number | null; // Float
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    variables?: string | null; // String
+  }
+  PerfomanceAnalyticSumAggregateOutputType: { // root type
+    id?: number | null; // Int
+    time?: number | null; // Float
+  }
   Query: {};
   Report: { // root type
     contextIdentifier: string; // String!
@@ -4731,6 +4920,13 @@ export interface NexusGenFieldTypes {
     _max: NexusGenRootTypes['MissingMaxAggregateOutputType'] | null; // MissingMaxAggregateOutputType
     _min: NexusGenRootTypes['MissingMinAggregateOutputType'] | null; // MissingMinAggregateOutputType
     _sum: NexusGenRootTypes['MissingSumAggregateOutputType'] | null; // MissingSumAggregateOutputType
+  }
+  AggregatePerfomanceAnalytic: { // field return type
+    _avg: NexusGenRootTypes['PerfomanceAnalyticAvgAggregateOutputType'] | null; // PerfomanceAnalyticAvgAggregateOutputType
+    _count: NexusGenRootTypes['PerfomanceAnalyticCountAggregateOutputType'] | null; // PerfomanceAnalyticCountAggregateOutputType
+    _max: NexusGenRootTypes['PerfomanceAnalyticMaxAggregateOutputType'] | null; // PerfomanceAnalyticMaxAggregateOutputType
+    _min: NexusGenRootTypes['PerfomanceAnalyticMinAggregateOutputType'] | null; // PerfomanceAnalyticMinAggregateOutputType
+    _sum: NexusGenRootTypes['PerfomanceAnalyticSumAggregateOutputType'] | null; // PerfomanceAnalyticSumAggregateOutputType
   }
   AggregateReport: { // field return type
     _avg: NexusGenRootTypes['ReportAvgAggregateOutputType'] | null; // ReportAvgAggregateOutputType
@@ -5238,6 +5434,42 @@ export interface NexusGenFieldTypes {
     upsertOneReport: NexusGenRootTypes['Report']; // Report!
     upsertOneUser: NexusGenRootTypes['User']; // User!
   }
+  PerfomanceAnalyticAvgAggregateOutputType: { // field return type
+    id: number | null; // Float
+    time: number | null; // Float
+  }
+  PerfomanceAnalyticCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    createdAt: number; // Int!
+    id: number; // Int!
+    operationName: number; // Int!
+    query: number; // Int!
+    time: number; // Int!
+    updatedAt: number; // Int!
+    variables: number; // Int!
+  }
+  PerfomanceAnalyticMaxAggregateOutputType: { // field return type
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    operationName: string | null; // String
+    query: string | null; // String
+    time: number | null; // Float
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    variables: string | null; // String
+  }
+  PerfomanceAnalyticMinAggregateOutputType: { // field return type
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    id: number | null; // Int
+    operationName: string | null; // String
+    query: string | null; // String
+    time: number | null; // Float
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    variables: string | null; // String
+  }
+  PerfomanceAnalyticSumAggregateOutputType: { // field return type
+    id: number | null; // Int
+    time: number | null; // Float
+  }
   Query: { // field return type
     aggregateAds: NexusGenRootTypes['AggregateAds'] | null; // AggregateAds
     aggregateAuthor: NexusGenRootTypes['AggregateAuthor'] | null; // AggregateAuthor
@@ -5510,6 +5742,13 @@ export interface NexusGenFieldTypeNames {
     _max: 'MissingMaxAggregateOutputType'
     _min: 'MissingMinAggregateOutputType'
     _sum: 'MissingSumAggregateOutputType'
+  }
+  AggregatePerfomanceAnalytic: { // field return type name
+    _avg: 'PerfomanceAnalyticAvgAggregateOutputType'
+    _count: 'PerfomanceAnalyticCountAggregateOutputType'
+    _max: 'PerfomanceAnalyticMaxAggregateOutputType'
+    _min: 'PerfomanceAnalyticMinAggregateOutputType'
+    _sum: 'PerfomanceAnalyticSumAggregateOutputType'
   }
   AggregateReport: { // field return type name
     _avg: 'ReportAvgAggregateOutputType'
@@ -6016,6 +6255,42 @@ export interface NexusGenFieldTypeNames {
     upsertOneMissing: 'Missing'
     upsertOneReport: 'Report'
     upsertOneUser: 'User'
+  }
+  PerfomanceAnalyticAvgAggregateOutputType: { // field return type name
+    id: 'Float'
+    time: 'Float'
+  }
+  PerfomanceAnalyticCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    createdAt: 'Int'
+    id: 'Int'
+    operationName: 'Int'
+    query: 'Int'
+    time: 'Int'
+    updatedAt: 'Int'
+    variables: 'Int'
+  }
+  PerfomanceAnalyticMaxAggregateOutputType: { // field return type name
+    createdAt: 'DateTime'
+    id: 'Int'
+    operationName: 'String'
+    query: 'String'
+    time: 'Float'
+    updatedAt: 'DateTime'
+    variables: 'String'
+  }
+  PerfomanceAnalyticMinAggregateOutputType: { // field return type name
+    createdAt: 'DateTime'
+    id: 'Int'
+    operationName: 'String'
+    query: 'String'
+    time: 'Float'
+    updatedAt: 'DateTime'
+    variables: 'String'
+  }
+  PerfomanceAnalyticSumAggregateOutputType: { // field return type name
+    id: 'Int'
+    time: 'Float'
   }
   Query: { // field return type name
     aggregateAds: 'AggregateAds'

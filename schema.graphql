@@ -296,6 +296,14 @@ type AggregateMissing {
   _sum: MissingSumAggregateOutputType
 }
 
+type AggregatePerfomanceAnalytic {
+  _avg: PerfomanceAnalyticAvgAggregateOutputType
+  _count: PerfomanceAnalyticCountAggregateOutputType
+  _max: PerfomanceAnalyticMaxAggregateOutputType
+  _min: PerfomanceAnalyticMinAggregateOutputType
+  _sum: PerfomanceAnalyticSumAggregateOutputType
+}
+
 type AggregateReport {
   _avg: ReportAvgAggregateOutputType
   _count: ReportCountAggregateOutputType
@@ -4278,6 +4286,219 @@ enum NullableJsonNullValueInput {
 
 input NullableStringFieldUpdateOperationsInput {
   set: String
+}
+
+type PerfomanceAnalyticAvgAggregateOutputType {
+  id: Float
+  time: Float
+}
+
+input PerfomanceAnalyticAvgOrderByAggregateInput {
+  id: SortOrder
+  time: SortOrder
+}
+
+type PerfomanceAnalyticCountAggregateOutputType {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  operationName: Int!
+  query: Int!
+  time: Int!
+  updatedAt: Int!
+  variables: Int!
+}
+
+input PerfomanceAnalyticCountOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  operationName: SortOrder
+  query: SortOrder
+  time: SortOrder
+  updatedAt: SortOrder
+  variables: SortOrder
+}
+
+input PerfomanceAnalyticCreateInput {
+  createdAt: DateTime
+  operationName: String!
+  query: String!
+  time: Float!
+  updatedAt: DateTime
+  variables: String!
+}
+
+input PerfomanceAnalyticCreateManyInput {
+  createdAt: DateTime
+  id: Int
+  operationName: String!
+  query: String!
+  time: Float!
+  updatedAt: DateTime
+  variables: String!
+}
+
+type PerfomanceAnalyticMaxAggregateOutputType {
+  createdAt: DateTime
+  id: Int
+  operationName: String
+  query: String
+  time: Float
+  updatedAt: DateTime
+  variables: String
+}
+
+input PerfomanceAnalyticMaxOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  operationName: SortOrder
+  query: SortOrder
+  time: SortOrder
+  updatedAt: SortOrder
+  variables: SortOrder
+}
+
+type PerfomanceAnalyticMinAggregateOutputType {
+  createdAt: DateTime
+  id: Int
+  operationName: String
+  query: String
+  time: Float
+  updatedAt: DateTime
+  variables: String
+}
+
+input PerfomanceAnalyticMinOrderByAggregateInput {
+  createdAt: SortOrder
+  id: SortOrder
+  operationName: SortOrder
+  query: SortOrder
+  time: SortOrder
+  updatedAt: SortOrder
+  variables: SortOrder
+}
+
+input PerfomanceAnalyticOrderByWithAggregationInput {
+  _avg: PerfomanceAnalyticAvgOrderByAggregateInput
+  _count: PerfomanceAnalyticCountOrderByAggregateInput
+  _max: PerfomanceAnalyticMaxOrderByAggregateInput
+  _min: PerfomanceAnalyticMinOrderByAggregateInput
+  _sum: PerfomanceAnalyticSumOrderByAggregateInput
+  createdAt: SortOrder
+  id: SortOrder
+  operationName: SortOrder
+  query: SortOrder
+  time: SortOrder
+  updatedAt: SortOrder
+  variables: SortOrder
+}
+
+input PerfomanceAnalyticOrderByWithRelationInput {
+  createdAt: SortOrder
+  id: SortOrder
+  operationName: SortOrder
+  query: SortOrder
+  time: SortOrder
+  updatedAt: SortOrder
+  variables: SortOrder
+}
+
+enum PerfomanceAnalyticScalarFieldEnum {
+  createdAt
+  id
+  operationName
+  query
+  time
+  updatedAt
+  variables
+}
+
+input PerfomanceAnalyticScalarWhereWithAggregatesInput {
+  AND: [PerfomanceAnalyticScalarWhereWithAggregatesInput]
+  NOT: [PerfomanceAnalyticScalarWhereWithAggregatesInput]
+  OR: [PerfomanceAnalyticScalarWhereWithAggregatesInput]
+  createdAt: DateTimeWithAggregatesFilter
+  id: IntWithAggregatesFilter
+  operationName: StringWithAggregatesFilter
+  query: StringWithAggregatesFilter
+  time: FloatWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
+  variables: StringWithAggregatesFilter
+}
+
+type PerfomanceAnalyticSumAggregateOutputType {
+  id: Int
+  time: Float
+}
+
+input PerfomanceAnalyticSumOrderByAggregateInput {
+  id: SortOrder
+  time: SortOrder
+}
+
+input PerfomanceAnalyticUncheckedCreateInput {
+  createdAt: DateTime
+  id: Int
+  operationName: String!
+  query: String!
+  time: Float!
+  updatedAt: DateTime
+  variables: String!
+}
+
+input PerfomanceAnalyticUncheckedUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: IntFieldUpdateOperationsInput
+  operationName: StringFieldUpdateOperationsInput
+  query: StringFieldUpdateOperationsInput
+  time: FloatFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  variables: StringFieldUpdateOperationsInput
+}
+
+input PerfomanceAnalyticUncheckedUpdateManyInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: IntFieldUpdateOperationsInput
+  operationName: StringFieldUpdateOperationsInput
+  query: StringFieldUpdateOperationsInput
+  time: FloatFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  variables: StringFieldUpdateOperationsInput
+}
+
+input PerfomanceAnalyticUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  operationName: StringFieldUpdateOperationsInput
+  query: StringFieldUpdateOperationsInput
+  time: FloatFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  variables: StringFieldUpdateOperationsInput
+}
+
+input PerfomanceAnalyticUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  operationName: StringFieldUpdateOperationsInput
+  query: StringFieldUpdateOperationsInput
+  time: FloatFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  variables: StringFieldUpdateOperationsInput
+}
+
+input PerfomanceAnalyticWhereInput {
+  AND: [PerfomanceAnalyticWhereInput]
+  NOT: [PerfomanceAnalyticWhereInput]
+  OR: [PerfomanceAnalyticWhereInput]
+  createdAt: DateTimeFilter
+  id: IntFilter
+  operationName: StringFilter
+  query: StringFilter
+  time: FloatFilter
+  updatedAt: DateTimeFilter
+  variables: StringFilter
+}
+
+input PerfomanceAnalyticWhereUniqueInput {
+  id: Int
 }
 
 type Query {

@@ -4,7 +4,7 @@ import { ApolloServer } from "apollo-server";
 
 import * as  customtypes from "../models";
 import * as types from "../graphql";
-import { context } from "../modules/Context";
+import { context, prisma } from "../modules/Context";
 import { paljs } from '@paljs/nexus';
 import { SECRET_KEY } from '../modules/Key';
 import { parseToken } from '../modules/JWT';
@@ -64,8 +64,18 @@ export const server = new ApolloServer({
       const start = new Date().getTime()
 
       return {
-
         async willSendResponse(requestContext) {
+          const end = new Date().getTime()
+
+          await prisma.perfomanceAnalytic.create({
+            data: {
+              operationName: requestContext.request.operationName ?? "unnamed",
+              query: requestContext.request.query ?? "noquery",
+              variables: JSON.stringify(requestContext.request.variables),
+              time: end - start,
+            }
+          })
+
           console.log(`Operation resolved! ${requestContext.operationName} ${new Date().getTime() - start}ms`);
         }
       }
