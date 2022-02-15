@@ -1,3 +1,4 @@
+export * from './PerfomanceAnalytic'
 export * from './ChapterBookmark'
 export * from './ComicBookmark'
 export * from './Report'
