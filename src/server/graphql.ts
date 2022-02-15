@@ -71,7 +71,7 @@ export const server = new ApolloServer({
             data: {
               operationName: requestContext.request.operationName ?? "unnamed",
               query: requestContext.request.query ?? "noquery",
-              variables: JSON.stringify(requestContext.request.variables),
+              variables: JSON.stringify(requestContext?.request?.variables ?? {}),
               time: end - start,
             }
           })
