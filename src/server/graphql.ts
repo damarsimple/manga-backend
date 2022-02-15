@@ -57,30 +57,20 @@ export const server = new ApolloServer({
     };
   },
 
-  // plugins: [{
-  //   // Fires whenever a GraphQL request is received from a client.
-  //   async requestDidStart(requestContext) {
-  //     if (requestContext.request.operationName == "IntrospectionQuery") return {};
-  //     const start = new Date().getTime()
-  //     console.log('Request started! Query:\n' +
-  //       requestContext.request.query);
+  plugins: [{
+    // Fires whenever a GraphQL request is received from a client.
+    async requestDidStart(requestContext) {
+      if (requestContext.request.operationName == "IntrospectionQuery") return {};
+      const start = new Date().getTime()
 
-  //     return {
-  //       // Fires whenever Apollo Server will parse a GraphQL
-  //       // request to create its associated document AST.
-  //       async parsingDidStart(requestContext) {
-  //         console.log(`Parsing started! ${new Date().getTime() - start}`);
-  //       },
+      return {
 
-  //       // Fires whenever Apollo Server will validate a
-  //       // request's document AST against your GraphQL schema.
-  //       async validationDidStart(requestContext) {
-  //         console.log(`Validation started! ${new Date().getTime() - start}`);
-  //       },
-
-  //     }
-  //   },
-  // }]
+        async willSendResponse(requestContext) {
+          console.log(`Operation resolved! ${requestContext.operationName} ${new Date().getTime() - start}ms`);
+        }
+      }
+    },
+  }]
 
 });
 
