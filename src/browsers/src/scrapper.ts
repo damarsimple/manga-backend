@@ -219,10 +219,13 @@ export abstract class Scrapper {
 
         const chaptersBatchJobs: ChapterJob[] = [];
 
+        const ignoresS = ["https://komikcast.com/komik/megami-no-kafeterasu-goddess-cafe-terrace/"];
+
         for (const x of urls) {
+            if (ignores.includes(x)) continue;
             try {
 
-                if (ignores.includes(x)) {
+                if ([...ignoresS, ...ignores].includes(x)) {
                     this._logger.info(`${prefix} logger ignores ${x}`)
                 };
 
