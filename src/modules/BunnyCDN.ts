@@ -80,44 +80,55 @@ export default class BunnyCDN {
             const tobePurged = `https://cdn.gudangkomik.com${path}`;
 
 
-            if (typeof process != "undefined") {
-                const res = await axios.put(tobeSaved, Buffer.from(file)
-                    , {
-                        headers: {
-                            AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
-                        },
-                    });
-
-
-
-                return await res.data;
-            } else {
-                const res = await fetch(tobeSaved, {
-                    method: "PUT",
-                    body: file,
+            const res = await axios.put(tobeSaved, Buffer.from(file)
+                , {
                     headers: {
                         AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
-                        "Content-Type": "application/octet-stream",
                     },
                 });
 
-                const ret = await res.json()
-
-                if (ret.HttpCode == 400) {
-                    throw new Error(`Bad Request ${ret.Message} ${path}`)
-                }
-
-                if (ret)
-                    await axios.post(tobePurged, {
-                        headers: {
-                            AccessKey: "99bef15d-1931-4e36-869e-747941ed0ab0",
-                        }
-                    })
 
 
+            return await res.data;
 
-                return ret;
-            }
+            // if (typeof process != "undefined") {
+            //     const res = await axios.put(tobeSaved, Buffer.from(file)
+            //         , {
+            //             headers: {
+            //                 AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
+            //             },
+            //         });
+
+
+
+            //     return await res.data;
+            // } else {
+            //     const res = await fetch(tobeSaved, {
+            //         method: "PUT",
+            //         body: file,
+            //         headers: {
+            //             AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
+            //             "Content-Type": "application/octet-stream",
+            //         },
+            //     });
+
+            //     const ret = await res.json()
+
+            //     if (ret.HttpCode == 400) {
+            //         throw new Error(`Bad Request ${ret.Message} ${path}`)
+            //     }
+
+            //     if (ret)
+            //         await axios.post(tobePurged, {
+            //             headers: {
+            //                 AccessKey: "99bef15d-1931-4e36-869e-747941ed0ab0",
+            //             }
+            //         })
+
+
+
+            //     return ret;
+            // }
         } catch (error) {
             console.log(`${path} error download ${error} `)
             throw error;
