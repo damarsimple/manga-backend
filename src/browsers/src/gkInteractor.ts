@@ -69,7 +69,6 @@ export class gkInteractor {
 
       const maps = chapters.map(e => e.name)
 
-      console.log(maps, originalCandidate.map(e => e.name))
 
       for (let i of originalCandidate) {
         if (!maps.includes(parseFloat(i.name))) {
@@ -77,7 +76,6 @@ export class gkInteractor {
         }
       }
 
-      console.log(chapterscandidate)
 
       // console.log(`[${comic.name}] Finish Checking ${comic.name} sanityCheck() status: ${status} length: ${chapterscandidate.length}`);
 

@@ -198,7 +198,7 @@ export abstract class Scrapper {
 
         const xd: string[] = [];
 
-        for (const e of this.getPageRangeUrl(2)) {
+        for (const e of this.getPageRangeUrl(1)) {
             console.log(e)
             for (const up of this.getUpdates((new DOMParser).parseFromString(await (await axios.get(e)).data, "text/html"))) {
                 xd.push(up)
@@ -299,7 +299,6 @@ export abstract class Scrapper {
         for (const { chapter: x, comic } of chaptersBatchJobs) {
             try {
                 const chapter = await this.getChapter(x, decl.annoying);
-                console.log(chapter)
                 this._logger.info(`${prefix} ${comic.slug} [${chapIdx}/${total}] downloading chapter ${chapter.name}`);
 
                 const downloadeds = await this.downloadsImages(

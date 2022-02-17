@@ -83,7 +83,7 @@ export default class BunnyCDN {
             const res = await axios.put(tobeSaved, file
                 , {
                     headers: {
-                        AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
+                        AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
                         "Content-Type": "application/octet-stream",
                     },
                 });
@@ -96,7 +96,7 @@ export default class BunnyCDN {
             //     const res = await axios.put(tobeSaved, Buffer.from(file)
             //         , {
             //             headers: {
-            //                 AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
+            //                 AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
             //             },
             //         });
 
@@ -108,7 +108,7 @@ export default class BunnyCDN {
             //         method: "PUT",
             //         body: file,
             //         headers: {
-            //             AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
+            //             AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
             //             "Content-Type": "application/octet-stream",
             //         },
             //     });
