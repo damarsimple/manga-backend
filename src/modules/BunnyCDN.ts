@@ -79,11 +79,14 @@ export default class BunnyCDN {
             const tobeSaved = `https://sg.storage.bunnycdn.com/komikgudang${path}`;
             const tobePurged = `https://cdn.gudangkomik.com${path}`;
 
+            console.log(file)
+            console.log(typeof file);
 
-            const res = await axios.put(tobeSaved, Buffer.from(file)
+            const res = await axios.put(tobeSaved, file
                 , {
                     headers: {
                         AccessKey: "b7405229-91f9-483b-811f63397040-ad00-4247",
+                        "Content-Type": "application/octet-stream",
                     },
                 });
 
