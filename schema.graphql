@@ -3980,6 +3980,7 @@ type Mutation {
   createOneComicBookmark(data: ComicBookmarkCreateInput!): ComicBookmark!
   createOneGenre(data: GenreCreateInput!): Genre!
   createOneMissing(data: MissingCreateInput!): Missing!
+  createOnePerfomanceAnalytic(data: PerfomanceAnalyticCreateInput!): PerfomanceAnalytic!
   createOneReport(data: ReportCreateInput!): Report!
   createOneUser(data: UserCreateInput!): User!
   deleteManyAds(where: AdsWhereInput): BatchPayload!
@@ -3990,6 +3991,7 @@ type Mutation {
   deleteManyComicBookmark(where: ComicBookmarkWhereInput): BatchPayload!
   deleteManyGenre(where: GenreWhereInput): BatchPayload!
   deleteManyMissing(where: MissingWhereInput): BatchPayload!
+  deleteManyPerfomanceAnalytic(where: PerfomanceAnalyticWhereInput): BatchPayload!
   deleteManyReport(where: ReportWhereInput): BatchPayload!
   deleteManyUser(where: UserWhereInput): BatchPayload!
   deleteOneAds(where: AdsWhereUniqueInput!): Ads
@@ -4000,6 +4002,7 @@ type Mutation {
   deleteOneComicBookmark(where: ComicBookmarkWhereUniqueInput!): ComicBookmark
   deleteOneGenre(where: GenreWhereUniqueInput!): Genre
   deleteOneMissing(where: MissingWhereUniqueInput!): Missing
+  deleteOnePerfomanceAnalytic(where: PerfomanceAnalyticWhereUniqueInput!): PerfomanceAnalytic
   deleteOneReport(where: ReportWhereUniqueInput!): Report
   deleteOneUser(where: UserWhereUniqueInput!): User
   login(email: String!, password: String!): AuthResponse
@@ -4007,7 +4010,7 @@ type Mutation {
   reportMissing(context: String!, data: String!): Boolean
   reportView(context: String!, id: Int!): Boolean
   sanityCheck(author: String!, description: String, genres: [String], name: String!, released: String, thumb: String!, thumbWide: String, type: String): SanityCheck
-  sanityEclipse(chapter: JSONObject, name: String!): Boolean
+  sanityEclipse(chapter: JSONObject, slug: String!): SanityEclipse
   updateManyAds(data: AdsUpdateManyMutationInput!, where: AdsWhereInput): BatchPayload!
   updateManyAuthor(data: AuthorUpdateManyMutationInput!, where: AuthorWhereInput): BatchPayload!
   updateManyChapter(data: ChapterUpdateManyMutationInput!, where: ChapterWhereInput): BatchPayload!
@@ -4016,6 +4019,7 @@ type Mutation {
   updateManyComicBookmark(data: ComicBookmarkUpdateManyMutationInput!, where: ComicBookmarkWhereInput): BatchPayload!
   updateManyGenre(data: GenreUpdateManyMutationInput!, where: GenreWhereInput): BatchPayload!
   updateManyMissing(data: MissingUpdateManyMutationInput!, where: MissingWhereInput): BatchPayload!
+  updateManyPerfomanceAnalytic(data: PerfomanceAnalyticUpdateManyMutationInput!, where: PerfomanceAnalyticWhereInput): BatchPayload!
   updateManyReport(data: ReportUpdateManyMutationInput!, where: ReportWhereInput): BatchPayload!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateOneAds(data: AdsUpdateInput!, where: AdsWhereUniqueInput!): Ads!
@@ -4026,6 +4030,7 @@ type Mutation {
   updateOneComicBookmark(data: ComicBookmarkUpdateInput!, where: ComicBookmarkWhereUniqueInput!): ComicBookmark!
   updateOneGenre(data: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre!
   updateOneMissing(data: MissingUpdateInput!, where: MissingWhereUniqueInput!): Missing!
+  updateOnePerfomanceAnalytic(data: PerfomanceAnalyticUpdateInput!, where: PerfomanceAnalyticWhereUniqueInput!): PerfomanceAnalytic!
   updateOneReport(data: ReportUpdateInput!, where: ReportWhereUniqueInput!): Report!
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   upsertOneAds(create: AdsCreateInput!, update: AdsUpdateInput!, where: AdsWhereUniqueInput!): Ads!
@@ -4036,6 +4041,7 @@ type Mutation {
   upsertOneComicBookmark(create: ComicBookmarkCreateInput!, update: ComicBookmarkUpdateInput!, where: ComicBookmarkWhereUniqueInput!): ComicBookmark!
   upsertOneGenre(create: GenreCreateInput!, update: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre!
   upsertOneMissing(create: MissingCreateInput!, update: MissingUpdateInput!, where: MissingWhereUniqueInput!): Missing!
+  upsertOnePerfomanceAnalytic(create: PerfomanceAnalyticCreateInput!, update: PerfomanceAnalyticUpdateInput!, where: PerfomanceAnalyticWhereUniqueInput!): PerfomanceAnalytic!
   upsertOneReport(create: ReportCreateInput!, update: ReportUpdateInput!, where: ReportWhereUniqueInput!): Report!
   upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
 }
@@ -4288,6 +4294,16 @@ input NullableStringFieldUpdateOperationsInput {
   set: String
 }
 
+type PerfomanceAnalytic {
+  createdAt: DateTime!
+  id: Int!
+  operationName: String!
+  query: String!
+  time: Float!
+  updatedAt: DateTime!
+  variables: String!
+}
+
 type PerfomanceAnalyticAvgAggregateOutputType {
   id: Float
   time: Float
@@ -4510,6 +4526,7 @@ type Query {
   aggregateComicBookmark(cursor: ComicBookmarkWhereUniqueInput, orderBy: [ComicBookmarkOrderByWithRelationInput], skip: Int, take: Int, where: ComicBookmarkWhereInput): AggregateComicBookmark
   aggregateGenre(cursor: GenreWhereUniqueInput, orderBy: [GenreOrderByWithRelationInput], skip: Int, take: Int, where: GenreWhereInput): AggregateGenre
   aggregateMissing(cursor: MissingWhereUniqueInput, orderBy: [MissingOrderByWithRelationInput], skip: Int, take: Int, where: MissingWhereInput): AggregateMissing
+  aggregatePerfomanceAnalytic(cursor: PerfomanceAnalyticWhereUniqueInput, orderBy: [PerfomanceAnalyticOrderByWithRelationInput], skip: Int, take: Int, where: PerfomanceAnalyticWhereInput): AggregatePerfomanceAnalytic
   aggregateReport(cursor: ReportWhereUniqueInput, orderBy: [ReportOrderByWithRelationInput], skip: Int, take: Int, where: ReportWhereInput): AggregateReport
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): AggregateUser
   authorSearch(limit: Int, offset: Int, query: String!): AuthorSearch
@@ -4522,6 +4539,7 @@ type Query {
   findFirstComicBookmark(cursor: ComicBookmarkWhereUniqueInput, distinct: [ComicBookmarkScalarFieldEnum], orderBy: [ComicBookmarkOrderByWithRelationInput], skip: Int, take: Int, where: ComicBookmarkWhereInput): ComicBookmark
   findFirstGenre(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum], orderBy: [GenreOrderByWithRelationInput], skip: Int, take: Int, where: GenreWhereInput): Genre
   findFirstMissing(cursor: MissingWhereUniqueInput, distinct: [MissingScalarFieldEnum], orderBy: [MissingOrderByWithRelationInput], skip: Int, take: Int, where: MissingWhereInput): Missing
+  findFirstPerfomanceAnalytic(cursor: PerfomanceAnalyticWhereUniqueInput, distinct: [PerfomanceAnalyticScalarFieldEnum], orderBy: [PerfomanceAnalyticOrderByWithRelationInput], skip: Int, take: Int, where: PerfomanceAnalyticWhereInput): PerfomanceAnalytic
   findFirstReport(cursor: ReportWhereUniqueInput, distinct: [ReportScalarFieldEnum], orderBy: [ReportOrderByWithRelationInput], skip: Int, take: Int, where: ReportWhereInput): Report
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): User
   findManyAds(cursor: AdsWhereUniqueInput, distinct: [AdsScalarFieldEnum], orderBy: [AdsOrderByWithRelationInput], skip: Int, take: Int, where: AdsWhereInput): [Ads!]!
@@ -4540,6 +4558,8 @@ type Query {
   findManyGenreCount(cursor: GenreWhereUniqueInput, distinct: [GenreScalarFieldEnum], orderBy: [GenreOrderByWithRelationInput], skip: Int, take: Int, where: GenreWhereInput): Int!
   findManyMissing(cursor: MissingWhereUniqueInput, distinct: [MissingScalarFieldEnum], orderBy: [MissingOrderByWithRelationInput], skip: Int, take: Int, where: MissingWhereInput): [Missing!]!
   findManyMissingCount(cursor: MissingWhereUniqueInput, distinct: [MissingScalarFieldEnum], orderBy: [MissingOrderByWithRelationInput], skip: Int, take: Int, where: MissingWhereInput): Int!
+  findManyPerfomanceAnalytic(cursor: PerfomanceAnalyticWhereUniqueInput, distinct: [PerfomanceAnalyticScalarFieldEnum], orderBy: [PerfomanceAnalyticOrderByWithRelationInput], skip: Int, take: Int, where: PerfomanceAnalyticWhereInput): [PerfomanceAnalytic!]!
+  findManyPerfomanceAnalyticCount(cursor: PerfomanceAnalyticWhereUniqueInput, distinct: [PerfomanceAnalyticScalarFieldEnum], orderBy: [PerfomanceAnalyticOrderByWithRelationInput], skip: Int, take: Int, where: PerfomanceAnalyticWhereInput): Int!
   findManyReport(cursor: ReportWhereUniqueInput, distinct: [ReportScalarFieldEnum], orderBy: [ReportOrderByWithRelationInput], skip: Int, take: Int, where: ReportWhereInput): [Report!]!
   findManyReportCount(cursor: ReportWhereUniqueInput, distinct: [ReportScalarFieldEnum], orderBy: [ReportOrderByWithRelationInput], skip: Int, take: Int, where: ReportWhereInput): Int!
   findManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): [User!]!
@@ -4552,6 +4572,7 @@ type Query {
   findUniqueComicBookmark(where: ComicBookmarkWhereUniqueInput!): ComicBookmark
   findUniqueGenre(where: GenreWhereUniqueInput!): Genre
   findUniqueMissing(where: MissingWhereUniqueInput!): Missing
+  findUniquePerfomanceAnalytic(where: PerfomanceAnalyticWhereUniqueInput!): PerfomanceAnalytic
   findUniqueReport(where: ReportWhereUniqueInput!): Report
   findUniqueUser(where: UserWhereUniqueInput!): User
   genreSearch(limit: Int, offset: Int, query: String!): AuthorSearch
@@ -4985,6 +5006,11 @@ input ReportWhereUniqueInput {
 type SanityCheck {
   chapters: [Chapter]
   status: String
+}
+
+type SanityEclipse {
+  message: String
+  status: Boolean
 }
 
 enum SortOrder {

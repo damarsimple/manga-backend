@@ -4661,6 +4661,15 @@ export interface NexusGenObjects {
     id?: number | null; // Int
   }
   Mutation: {};
+  PerfomanceAnalytic: { // root type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    operationName: string; // String!
+    query: string; // String!
+    time: number; // Float!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    variables: string; // String!
+  }
   PerfomanceAnalyticAvgAggregateOutputType: { // root type
     id?: number | null; // Float
     time?: number | null; // Float
@@ -4754,6 +4763,10 @@ export interface NexusGenObjects {
   SanityCheck: { // root type
     chapters?: Array<NexusGenRootTypes['Chapter'] | null> | null; // [Chapter]
     status?: string | null; // String
+  }
+  SanityEclipse: { // root type
+    message?: string | null; // String
+    status?: boolean | null; // Boolean
   }
   User: { // root type
     allowHentai: boolean; // Boolean!
@@ -5375,6 +5388,7 @@ export interface NexusGenFieldTypes {
     createOneComicBookmark: NexusGenRootTypes['ComicBookmark']; // ComicBookmark!
     createOneGenre: NexusGenRootTypes['Genre']; // Genre!
     createOneMissing: NexusGenRootTypes['Missing']; // Missing!
+    createOnePerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic']; // PerfomanceAnalytic!
     createOneReport: NexusGenRootTypes['Report']; // Report!
     createOneUser: NexusGenRootTypes['User']; // User!
     deleteManyAds: NexusGenRootTypes['BatchPayload']; // BatchPayload!
@@ -5385,6 +5399,7 @@ export interface NexusGenFieldTypes {
     deleteManyComicBookmark: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyGenre: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyMissing: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    deleteManyPerfomanceAnalytic: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyReport: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyUser: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteOneAds: NexusGenRootTypes['Ads'] | null; // Ads
@@ -5395,6 +5410,7 @@ export interface NexusGenFieldTypes {
     deleteOneComicBookmark: NexusGenRootTypes['ComicBookmark'] | null; // ComicBookmark
     deleteOneGenre: NexusGenRootTypes['Genre'] | null; // Genre
     deleteOneMissing: NexusGenRootTypes['Missing'] | null; // Missing
+    deleteOnePerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic'] | null; // PerfomanceAnalytic
     deleteOneReport: NexusGenRootTypes['Report'] | null; // Report
     deleteOneUser: NexusGenRootTypes['User'] | null; // User
     login: NexusGenRootTypes['AuthResponse'] | null; // AuthResponse
@@ -5402,7 +5418,7 @@ export interface NexusGenFieldTypes {
     reportMissing: boolean | null; // Boolean
     reportView: boolean | null; // Boolean
     sanityCheck: NexusGenRootTypes['SanityCheck'] | null; // SanityCheck
-    sanityEclipse: boolean | null; // Boolean
+    sanityEclipse: NexusGenRootTypes['SanityEclipse'] | null; // SanityEclipse
     updateManyAds: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyAuthor: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyChapter: NexusGenRootTypes['BatchPayload']; // BatchPayload!
@@ -5411,6 +5427,7 @@ export interface NexusGenFieldTypes {
     updateManyComicBookmark: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyGenre: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyMissing: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    updateManyPerfomanceAnalytic: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyReport: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyUser: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateOneAds: NexusGenRootTypes['Ads']; // Ads!
@@ -5421,6 +5438,7 @@ export interface NexusGenFieldTypes {
     updateOneComicBookmark: NexusGenRootTypes['ComicBookmark']; // ComicBookmark!
     updateOneGenre: NexusGenRootTypes['Genre']; // Genre!
     updateOneMissing: NexusGenRootTypes['Missing']; // Missing!
+    updateOnePerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic']; // PerfomanceAnalytic!
     updateOneReport: NexusGenRootTypes['Report']; // Report!
     updateOneUser: NexusGenRootTypes['User']; // User!
     upsertOneAds: NexusGenRootTypes['Ads']; // Ads!
@@ -5431,8 +5449,18 @@ export interface NexusGenFieldTypes {
     upsertOneComicBookmark: NexusGenRootTypes['ComicBookmark']; // ComicBookmark!
     upsertOneGenre: NexusGenRootTypes['Genre']; // Genre!
     upsertOneMissing: NexusGenRootTypes['Missing']; // Missing!
+    upsertOnePerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic']; // PerfomanceAnalytic!
     upsertOneReport: NexusGenRootTypes['Report']; // Report!
     upsertOneUser: NexusGenRootTypes['User']; // User!
+  }
+  PerfomanceAnalytic: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    operationName: string; // String!
+    query: string; // String!
+    time: number; // Float!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    variables: string; // String!
   }
   PerfomanceAnalyticAvgAggregateOutputType: { // field return type
     id: number | null; // Float
@@ -5479,6 +5507,7 @@ export interface NexusGenFieldTypes {
     aggregateComicBookmark: NexusGenRootTypes['AggregateComicBookmark'] | null; // AggregateComicBookmark
     aggregateGenre: NexusGenRootTypes['AggregateGenre'] | null; // AggregateGenre
     aggregateMissing: NexusGenRootTypes['AggregateMissing'] | null; // AggregateMissing
+    aggregatePerfomanceAnalytic: NexusGenRootTypes['AggregatePerfomanceAnalytic'] | null; // AggregatePerfomanceAnalytic
     aggregateReport: NexusGenRootTypes['AggregateReport'] | null; // AggregateReport
     aggregateUser: NexusGenRootTypes['AggregateUser'] | null; // AggregateUser
     authorSearch: NexusGenRootTypes['AuthorSearch'] | null; // AuthorSearch
@@ -5491,6 +5520,7 @@ export interface NexusGenFieldTypes {
     findFirstComicBookmark: NexusGenRootTypes['ComicBookmark'] | null; // ComicBookmark
     findFirstGenre: NexusGenRootTypes['Genre'] | null; // Genre
     findFirstMissing: NexusGenRootTypes['Missing'] | null; // Missing
+    findFirstPerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic'] | null; // PerfomanceAnalytic
     findFirstReport: NexusGenRootTypes['Report'] | null; // Report
     findFirstUser: NexusGenRootTypes['User'] | null; // User
     findManyAds: NexusGenRootTypes['Ads'][]; // [Ads!]!
@@ -5509,6 +5539,8 @@ export interface NexusGenFieldTypes {
     findManyGenreCount: number; // Int!
     findManyMissing: NexusGenRootTypes['Missing'][]; // [Missing!]!
     findManyMissingCount: number; // Int!
+    findManyPerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic'][]; // [PerfomanceAnalytic!]!
+    findManyPerfomanceAnalyticCount: number; // Int!
     findManyReport: NexusGenRootTypes['Report'][]; // [Report!]!
     findManyReportCount: number; // Int!
     findManyUser: NexusGenRootTypes['User'][]; // [User!]!
@@ -5521,6 +5553,7 @@ export interface NexusGenFieldTypes {
     findUniqueComicBookmark: NexusGenRootTypes['ComicBookmark'] | null; // ComicBookmark
     findUniqueGenre: NexusGenRootTypes['Genre'] | null; // Genre
     findUniqueMissing: NexusGenRootTypes['Missing'] | null; // Missing
+    findUniquePerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic'] | null; // PerfomanceAnalytic
     findUniqueReport: NexusGenRootTypes['Report'] | null; // Report
     findUniqueUser: NexusGenRootTypes['User'] | null; // User
     genreSearch: NexusGenRootTypes['AuthorSearch'] | null; // AuthorSearch
@@ -5582,6 +5615,10 @@ export interface NexusGenFieldTypes {
   SanityCheck: { // field return type
     chapters: Array<NexusGenRootTypes['Chapter'] | null> | null; // [Chapter]
     status: string | null; // String
+  }
+  SanityEclipse: { // field return type
+    message: string | null; // String
+    status: boolean | null; // Boolean
   }
   User: { // field return type
     _count: NexusGenRootTypes['UserCountOutputType']; // UserCountOutputType!
@@ -6197,6 +6234,7 @@ export interface NexusGenFieldTypeNames {
     createOneComicBookmark: 'ComicBookmark'
     createOneGenre: 'Genre'
     createOneMissing: 'Missing'
+    createOnePerfomanceAnalytic: 'PerfomanceAnalytic'
     createOneReport: 'Report'
     createOneUser: 'User'
     deleteManyAds: 'BatchPayload'
@@ -6207,6 +6245,7 @@ export interface NexusGenFieldTypeNames {
     deleteManyComicBookmark: 'BatchPayload'
     deleteManyGenre: 'BatchPayload'
     deleteManyMissing: 'BatchPayload'
+    deleteManyPerfomanceAnalytic: 'BatchPayload'
     deleteManyReport: 'BatchPayload'
     deleteManyUser: 'BatchPayload'
     deleteOneAds: 'Ads'
@@ -6217,6 +6256,7 @@ export interface NexusGenFieldTypeNames {
     deleteOneComicBookmark: 'ComicBookmark'
     deleteOneGenre: 'Genre'
     deleteOneMissing: 'Missing'
+    deleteOnePerfomanceAnalytic: 'PerfomanceAnalytic'
     deleteOneReport: 'Report'
     deleteOneUser: 'User'
     login: 'AuthResponse'
@@ -6224,7 +6264,7 @@ export interface NexusGenFieldTypeNames {
     reportMissing: 'Boolean'
     reportView: 'Boolean'
     sanityCheck: 'SanityCheck'
-    sanityEclipse: 'Boolean'
+    sanityEclipse: 'SanityEclipse'
     updateManyAds: 'BatchPayload'
     updateManyAuthor: 'BatchPayload'
     updateManyChapter: 'BatchPayload'
@@ -6233,6 +6273,7 @@ export interface NexusGenFieldTypeNames {
     updateManyComicBookmark: 'BatchPayload'
     updateManyGenre: 'BatchPayload'
     updateManyMissing: 'BatchPayload'
+    updateManyPerfomanceAnalytic: 'BatchPayload'
     updateManyReport: 'BatchPayload'
     updateManyUser: 'BatchPayload'
     updateOneAds: 'Ads'
@@ -6243,6 +6284,7 @@ export interface NexusGenFieldTypeNames {
     updateOneComicBookmark: 'ComicBookmark'
     updateOneGenre: 'Genre'
     updateOneMissing: 'Missing'
+    updateOnePerfomanceAnalytic: 'PerfomanceAnalytic'
     updateOneReport: 'Report'
     updateOneUser: 'User'
     upsertOneAds: 'Ads'
@@ -6253,8 +6295,18 @@ export interface NexusGenFieldTypeNames {
     upsertOneComicBookmark: 'ComicBookmark'
     upsertOneGenre: 'Genre'
     upsertOneMissing: 'Missing'
+    upsertOnePerfomanceAnalytic: 'PerfomanceAnalytic'
     upsertOneReport: 'Report'
     upsertOneUser: 'User'
+  }
+  PerfomanceAnalytic: { // field return type name
+    createdAt: 'DateTime'
+    id: 'Int'
+    operationName: 'String'
+    query: 'String'
+    time: 'Float'
+    updatedAt: 'DateTime'
+    variables: 'String'
   }
   PerfomanceAnalyticAvgAggregateOutputType: { // field return type name
     id: 'Float'
@@ -6301,6 +6353,7 @@ export interface NexusGenFieldTypeNames {
     aggregateComicBookmark: 'AggregateComicBookmark'
     aggregateGenre: 'AggregateGenre'
     aggregateMissing: 'AggregateMissing'
+    aggregatePerfomanceAnalytic: 'AggregatePerfomanceAnalytic'
     aggregateReport: 'AggregateReport'
     aggregateUser: 'AggregateUser'
     authorSearch: 'AuthorSearch'
@@ -6313,6 +6366,7 @@ export interface NexusGenFieldTypeNames {
     findFirstComicBookmark: 'ComicBookmark'
     findFirstGenre: 'Genre'
     findFirstMissing: 'Missing'
+    findFirstPerfomanceAnalytic: 'PerfomanceAnalytic'
     findFirstReport: 'Report'
     findFirstUser: 'User'
     findManyAds: 'Ads'
@@ -6331,6 +6385,8 @@ export interface NexusGenFieldTypeNames {
     findManyGenreCount: 'Int'
     findManyMissing: 'Missing'
     findManyMissingCount: 'Int'
+    findManyPerfomanceAnalytic: 'PerfomanceAnalytic'
+    findManyPerfomanceAnalyticCount: 'Int'
     findManyReport: 'Report'
     findManyReportCount: 'Int'
     findManyUser: 'User'
@@ -6343,6 +6399,7 @@ export interface NexusGenFieldTypeNames {
     findUniqueComicBookmark: 'ComicBookmark'
     findUniqueGenre: 'Genre'
     findUniqueMissing: 'Missing'
+    findUniquePerfomanceAnalytic: 'PerfomanceAnalytic'
     findUniqueReport: 'Report'
     findUniqueUser: 'User'
     genreSearch: 'AuthorSearch'
@@ -6404,6 +6461,10 @@ export interface NexusGenFieldTypeNames {
   SanityCheck: { // field return type name
     chapters: 'Chapter'
     status: 'String'
+  }
+  SanityEclipse: { // field return type name
+    message: 'String'
+    status: 'Boolean'
   }
   User: { // field return type name
     _count: 'UserCountOutputType'
@@ -6545,6 +6606,9 @@ export interface NexusGenArgTypes {
     createOneMissing: { // args
       data: NexusGenInputs['MissingCreateInput']; // MissingCreateInput!
     }
+    createOnePerfomanceAnalytic: { // args
+      data: NexusGenInputs['PerfomanceAnalyticCreateInput']; // PerfomanceAnalyticCreateInput!
+    }
     createOneReport: { // args
       data: NexusGenInputs['ReportCreateInput']; // ReportCreateInput!
     }
@@ -6575,6 +6639,9 @@ export interface NexusGenArgTypes {
     deleteManyMissing: { // args
       where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
     }
+    deleteManyPerfomanceAnalytic: { // args
+      where?: NexusGenInputs['PerfomanceAnalyticWhereInput'] | null; // PerfomanceAnalyticWhereInput
+    }
     deleteManyReport: { // args
       where?: NexusGenInputs['ReportWhereInput'] | null; // ReportWhereInput
     }
@@ -6604,6 +6671,9 @@ export interface NexusGenArgTypes {
     }
     deleteOneMissing: { // args
       where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    deleteOnePerfomanceAnalytic: { // args
+      where: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput']; // PerfomanceAnalyticWhereUniqueInput!
     }
     deleteOneReport: { // args
       where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!
@@ -6640,7 +6710,7 @@ export interface NexusGenArgTypes {
     }
     sanityEclipse: { // args
       chapter?: NexusGenScalars['JSONObject'] | null; // JSONObject
-      name: string; // String!
+      slug: string; // String!
     }
     updateManyAds: { // args
       data: NexusGenInputs['AdsUpdateManyMutationInput']; // AdsUpdateManyMutationInput!
@@ -6673,6 +6743,10 @@ export interface NexusGenArgTypes {
     updateManyMissing: { // args
       data: NexusGenInputs['MissingUpdateManyMutationInput']; // MissingUpdateManyMutationInput!
       where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    updateManyPerfomanceAnalytic: { // args
+      data: NexusGenInputs['PerfomanceAnalyticUpdateManyMutationInput']; // PerfomanceAnalyticUpdateManyMutationInput!
+      where?: NexusGenInputs['PerfomanceAnalyticWhereInput'] | null; // PerfomanceAnalyticWhereInput
     }
     updateManyReport: { // args
       data: NexusGenInputs['ReportUpdateManyMutationInput']; // ReportUpdateManyMutationInput!
@@ -6713,6 +6787,10 @@ export interface NexusGenArgTypes {
     updateOneMissing: { // args
       data: NexusGenInputs['MissingUpdateInput']; // MissingUpdateInput!
       where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    updateOnePerfomanceAnalytic: { // args
+      data: NexusGenInputs['PerfomanceAnalyticUpdateInput']; // PerfomanceAnalyticUpdateInput!
+      where: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput']; // PerfomanceAnalyticWhereUniqueInput!
     }
     updateOneReport: { // args
       data: NexusGenInputs['ReportUpdateInput']; // ReportUpdateInput!
@@ -6761,6 +6839,11 @@ export interface NexusGenArgTypes {
       create: NexusGenInputs['MissingCreateInput']; // MissingCreateInput!
       update: NexusGenInputs['MissingUpdateInput']; // MissingUpdateInput!
       where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    upsertOnePerfomanceAnalytic: { // args
+      create: NexusGenInputs['PerfomanceAnalyticCreateInput']; // PerfomanceAnalyticCreateInput!
+      update: NexusGenInputs['PerfomanceAnalyticUpdateInput']; // PerfomanceAnalyticUpdateInput!
+      where: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput']; // PerfomanceAnalyticWhereUniqueInput!
     }
     upsertOneReport: { // args
       create: NexusGenInputs['ReportCreateInput']; // ReportCreateInput!
@@ -6829,6 +6912,13 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    aggregatePerfomanceAnalytic: { // args
+      cursor?: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput'] | null; // PerfomanceAnalyticWhereUniqueInput
+      orderBy?: Array<NexusGenInputs['PerfomanceAnalyticOrderByWithRelationInput'] | null> | null; // [PerfomanceAnalyticOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['PerfomanceAnalyticWhereInput'] | null; // PerfomanceAnalyticWhereInput
     }
     aggregateReport: { // args
       cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
@@ -6919,6 +7009,14 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
+    }
+    findFirstPerfomanceAnalytic: { // args
+      cursor?: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput'] | null; // PerfomanceAnalyticWhereUniqueInput
+      distinct?: Array<NexusGenEnums['PerfomanceAnalyticScalarFieldEnum'] | null> | null; // [PerfomanceAnalyticScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['PerfomanceAnalyticOrderByWithRelationInput'] | null> | null; // [PerfomanceAnalyticOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['PerfomanceAnalyticWhereInput'] | null; // PerfomanceAnalyticWhereInput
     }
     findFirstReport: { // args
       cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
@@ -7064,6 +7162,22 @@ export interface NexusGenArgTypes {
       take?: number | null; // Int
       where?: NexusGenInputs['MissingWhereInput'] | null; // MissingWhereInput
     }
+    findManyPerfomanceAnalytic: { // args
+      cursor?: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput'] | null; // PerfomanceAnalyticWhereUniqueInput
+      distinct?: Array<NexusGenEnums['PerfomanceAnalyticScalarFieldEnum'] | null> | null; // [PerfomanceAnalyticScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['PerfomanceAnalyticOrderByWithRelationInput'] | null> | null; // [PerfomanceAnalyticOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['PerfomanceAnalyticWhereInput'] | null; // PerfomanceAnalyticWhereInput
+    }
+    findManyPerfomanceAnalyticCount: { // args
+      cursor?: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput'] | null; // PerfomanceAnalyticWhereUniqueInput
+      distinct?: Array<NexusGenEnums['PerfomanceAnalyticScalarFieldEnum'] | null> | null; // [PerfomanceAnalyticScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['PerfomanceAnalyticOrderByWithRelationInput'] | null> | null; // [PerfomanceAnalyticOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['PerfomanceAnalyticWhereInput'] | null; // PerfomanceAnalyticWhereInput
+    }
     findManyReport: { // args
       cursor?: NexusGenInputs['ReportWhereUniqueInput'] | null; // ReportWhereUniqueInput
       distinct?: Array<NexusGenEnums['ReportScalarFieldEnum'] | null> | null; // [ReportScalarFieldEnum]
@@ -7119,6 +7233,9 @@ export interface NexusGenArgTypes {
     }
     findUniqueMissing: { // args
       where: NexusGenInputs['MissingWhereUniqueInput']; // MissingWhereUniqueInput!
+    }
+    findUniquePerfomanceAnalytic: { // args
+      where: NexusGenInputs['PerfomanceAnalyticWhereUniqueInput']; // PerfomanceAnalyticWhereUniqueInput!
     }
     findUniqueReport: { // args
       where: NexusGenInputs['ReportWhereUniqueInput']; // ReportWhereUniqueInput!

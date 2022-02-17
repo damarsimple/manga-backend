@@ -1,6 +1,6 @@
 import { Chapter, Comic, Author } from '@prisma/client';
 import moment from 'moment';
-import { arg, extendType, list, nonNull, stringArg, objectType, intArg, booleanArg } from 'nexus';
+import { arg, extendType, list, nonNull, stringArg, objectType, intArg, booleanArg, floatArg } from 'nexus';
 import BunnyCDN from '../modules/BunnyCDN';
 import { slugify } from '../modules/Helper';
 import { comicIncrementQueue, chapterIncrementQueue } from '../modules/Queue';
@@ -14,6 +14,14 @@ export const SanityCheck = objectType({
     t.list.field('chapters', { type: 'Chapter' })
   }
 })
+export const SanityEclipse = objectType({
+  name: 'SanityEclipse',
+  definition(t) {
+    t.boolean('status')
+    t.nullable.string('message')
+  }
+})
+
 
 export const ComicSearch = objectType({
   name: 'ComicSearch',
@@ -250,16 +258,16 @@ export const ComicMutationRelated = extendType({
     })
 
     t.field('sanityEclipse', {
-      type: 'Boolean',
+      type: 'SanityEclipse',
       authorize: (_, __, ctx) => ctx.gotKey,
       args: {
-        name: nonNull(stringArg()),
+        slug: nonNull(stringArg()),
         chapter: arg({ type: 'JSONObject' }),
       },
-      resolve: async (_, { name, chapter }, ctx) => {
+      resolve: async (_, { slug, chapter }, ctx) => {
         const comic = await ctx.prisma.comic.findFirst({
           where: {
-            slug: slugify(name)
+            slug: slugify(slug)
           },
           include: {
             chapters: true
@@ -267,17 +275,21 @@ export const ComicMutationRelated = extendType({
         });
 
         if (!comic) {
-          console.log(`${slugify(name)} not found`);
 
-          return false
+          return {
+            status: false,
+            message: `${slugify(slug)} not found`
+          }
         };
 
 
         const chaps = comic.chapters.map(e => e.name);
 
         if (chaps.includes(chapter.name)) {
-          console.log(`${slugify(name)} chapter ${chapter.name} already exists`);
-          return false
+          return {
+            status: false,
+            message: `${slugify(slug)} chapter ${chapter.name} already exists`
+          }
         }
 
 
@@ -303,7 +315,10 @@ export const ComicMutationRelated = extendType({
 
         await updateDocumentIndex(comic.id, "comics", updateRes)
 
-        return true
+        return {
+          status: true,
+          message: `${slugify(slug)} chapter ${chapter.name} added`
+        }
 
 
       },

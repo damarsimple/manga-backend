@@ -4,6 +4,7 @@ import { host } from "./env";
 import { Comic, Chapter, ChapterCandidate } from './types';
 import { APP_ENDPOINT } from '../../modules/Env';
 import { SECRET_KEY } from '../../modules/Key';
+import { slugify } from '../../modules/Helper';
 
 
 const client = new GraphQLClient(APP_ENDPOINT, {
@@ -26,8 +27,11 @@ mutation SanityCheck($name: String!, $thumb: String!, $author: String!, $genres:
 `
 
 const sanityEclipse = gql`
-mutation SanityEclipse($name: String!, $chapter: JSONObject) {
-  sanityEclipse(name: $name, chapter: $chapter)
+mutation SanityEclipse($slug: String!, $chapter: JSONObject) {
+  sanityEclipse(slug: $slug, chapter: $chapter){
+    status
+    message
+  }
 }
 `
 
@@ -46,7 +50,6 @@ export class gkInteractor {
     try {
       const { sanityCheck: data } = await client.request<{
         sanityCheck: {
-
           status: string,
           chapters: ChapterCandidate[]
 
@@ -89,13 +92,21 @@ export class gkInteractor {
       console.log("no image found");
       return;
     }
-    const { sanityEclipse: data } = await client.request<{ sanityEclipse: boolean }>(sanityEclipse, { name: title, chapter })
+    const { sanityEclipse: {
+      status,
+      message
+    } = {} } = await client.request<{
+      sanityEclipse: {
+        status: boolean;
+        message: string
+      }
+    }>(sanityEclipse, { slug: slugify(title), chapter })
 
 
-    if (data) {
-      console.log(`Success SanityEclipse ${title} ${chapter.name}`);
+    if (status) {
+      console.log(`Success SanityEclipse ${message}`);
     } else {
-      console.log(`Failed SanityEclipse ${title} ${chapter.name} ${data}`);;
+      console.log(`Failed SanityEclipse ${message}`);
     }
 
     return;
