@@ -36,6 +36,10 @@ mutation SanityEclipse($slug: String!, $chapter: JSONObject) {
 `
 
 
+const map = new Map()
+
+map.set('megami-no-kafeterasu-goddess-caf-terrace', 'megami-no-kafeterasu')
+
 
 export class gkInteractor {
 
@@ -47,6 +51,9 @@ export class gkInteractor {
       comic.type = "N/A";
     }
 
+    let slug = map.get(comic.slug) || comic.slug;
+
+
     try {
       const { sanityCheck: data } = await client.request<{
         sanityCheck: {
@@ -54,7 +61,7 @@ export class gkInteractor {
           chapters: ChapterCandidate[]
 
         }
-      }>(sanityCheck, comic)
+      }>(sanityCheck, { ...comic, slug })
       const chapterscandidate: string[] = [];
 
       const { chapters, status } = data;
@@ -92,6 +99,10 @@ export class gkInteractor {
       console.log("no image found");
       return;
     }
+
+    let slug = map.get(slugify(title)) || slugify(title);
+
+
     const { sanityEclipse: {
       status,
       message
@@ -100,7 +111,7 @@ export class gkInteractor {
         status: boolean;
         message: string
       }
-    }>(sanityEclipse, { slug: slugify(title), chapter })
+    }>(sanityEclipse, { slug, chapter })
 
 
     if (status) {
