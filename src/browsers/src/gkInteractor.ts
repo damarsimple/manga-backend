@@ -1,10 +1,11 @@
 import axios from "axios";
 import { gql, GraphQLClient } from "graphql-request";
 import { host } from "./env";
-import { Comic, Chapter, ChapterCandidate } from './types';
+import { Comic, ChapterCandidate, Chapter as ChapterScrapepr } from './types';
 import { APP_ENDPOINT } from '../../modules/Env';
 import { SECRET_KEY } from '../../modules/Key';
 import { slugify } from '../../modules/Helper';
+import { Chapter } from '@prisma/client';
 
 
 const client = new GraphQLClient(APP_ENDPOINT, {
@@ -58,7 +59,7 @@ export class gkInteractor {
       const { sanityCheck: data } = await client.request<{
         sanityCheck: {
           status: string,
-          chapters: ChapterCandidate[]
+          chapters: Chapter[]
 
         }
       }>(sanityCheck, { ...comic, slug })
@@ -66,15 +67,17 @@ export class gkInteractor {
 
       const { chapters, status } = data;
 
-      //@ts-ignore
-      const maps = chapters.map(e => parseFloat(e.name))
+      const maps = chapters.map(e => e.name)
+
+      console.log(maps, originalCandidate.map(e => e.name))
 
       for (let i of originalCandidate) {
-        //@ts-ignore
         if (!maps.includes(parseFloat(i.name))) {
           chapterscandidate.push(i.href);
         }
       }
+
+      console.log(chapterscandidate)
 
       // console.log(`[${comic.name}] Finish Checking ${comic.name} sanityCheck() status: ${status} length: ${chapterscandidate.length}`);
 
@@ -94,7 +97,8 @@ export class gkInteractor {
 
   }
 
-  public static async sanityEclipse(title: string, chapter: Chapter) {
+  public static async sanityEclipse(title: string, chapter: ChapterScrapepr) {
+    //@ts-ignore
     if (chapter.image_count == 0) {
       console.log("no image found");
       return;
