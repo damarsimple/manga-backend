@@ -67,16 +67,19 @@ export const server = new ApolloServer({
         async willSendResponse(requestContext) {
           const end = new Date().getTime()
 
-          await prisma.perfomanceAnalytic.create({
-            data: {
-              operationName: requestContext.request.operationName ?? "unnamed",
-              query: requestContext.request.query ?? "noquery",
-              variables: JSON.stringify(requestContext?.request?.variables ?? {}),
-              time: end - start,
-            }
-          })
+          const elapsed = end - start;
 
-          console.log(`Operation resolved! ${requestContext.operationName} ${new Date().getTime() - start}ms`);
+          if (elapsed > 5000) {
+            await prisma.perfomanceAnalytic.create({
+              data: {
+                operationName: requestContext.request.operationName ?? "unnamed",
+                query: requestContext.request.query ?? "noquery",
+                variables: JSON.stringify(requestContext?.request?.variables ?? {}),
+                time: end - start,
+              }
+            })
+            console.log(`Operation resolved! ${requestContext.operationName} ${end - start} ms`);
+          }
         }
       }
     },
