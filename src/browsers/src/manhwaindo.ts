@@ -61,7 +61,7 @@ export default class Manhwaindo extends Scrapper {
       if (!e.textContent) return;
       if (href?.includes("chapter"))
         chapters.push({
-          name: `${parseFloat(e?.textContent?.replace("Chapter", ""))}`,
+          name: this.chapterGuesser(e?.textContent),
           href,
         });
     });

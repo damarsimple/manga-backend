@@ -62,12 +62,18 @@ export default class Komicastid extends Scrapper {
     let chapters: ChapterCandidate[] = [];
 
 
-    doc?.querySelector("#chapter_list")?.querySelector("ul")?.querySelectorAll("li")?.forEach((e) => {
+    doc?.querySelector("#chapter_list")?.querySelector("ul")?.querySelectorAll("li")?.forEach((x) => {
+
+      const e = x.querySelector(".lchx");
+
+      if (!e) return;
+
+
       const href = e.querySelector("a")?.getAttribute("href");
 
       if (!e.textContent || !href) return;
 
-      const name = `${parseFloat(e.textContent.replace("Chapter", ""))}`;
+      const name = this.chapterGuesser(e.textContent);
 
       chapters.push({
         href,

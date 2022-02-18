@@ -73,7 +73,7 @@ export default class Komicast extends Scrapper {
       if (!href.includes("https://komikcast.com/chapter/")) continue;
 
       const text = e.textContent ?? ""
-      const name = `${this.chapterGuesser(text)}`
+      const name = this.chapterGuesser(text)
 
       if (text.includes("HQ")) hqChapters.push({
         name, href
@@ -83,7 +83,7 @@ export default class Komicast extends Scrapper {
     }
 
 
-    let hqChaptersStringMap: string[] = hqChapters.map(e => e.name);
+    let hqChaptersStringMap: number[] = hqChapters.map(e => e.name);
 
 
     if (hqChaptersStringMap.length > 0) {
@@ -96,7 +96,7 @@ export default class Komicast extends Scrapper {
       if (!href.includes("https://komikcast.com/chapter/")) continue;
 
       const text = e.textContent ?? ""
-      const name = `${this.chapterGuesser(text)}`
+      const name = this.chapterGuesser(text)
 
       if (!hqChaptersStringMap.includes(name)) chapters.push({
         name,

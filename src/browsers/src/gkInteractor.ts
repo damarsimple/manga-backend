@@ -63,18 +63,32 @@ export class gkInteractor {
 
         }
       }>(sanityCheck, { ...comic, slug })
-      const chapterscandidate: string[] = [];
+
+
+
+      const chapterscandidate: ChapterCandidate[] = [];
 
       const { chapters, status } = data;
 
       const maps = chapters.map(e => e.name)
 
 
+
       for (let i of originalCandidate) {
-        if (!maps.includes(parseFloat(i.name))) {
-          chapterscandidate.push(i.href);
+        if (!maps.includes(i.name)) {
+          chapterscandidate.push({
+            href: i.href,
+            name: i.name
+          });
         }
       }
+
+      // if (chapterscandidate.length > 0) {
+      //   console.log(originalCandidate.sort((a, b) => a.name - b.name));
+      //   console.log(maps.sort())
+      //   console.log(chapterscandidate)
+
+      // }
 
 
       // console.log(`[${comic.name}] Finish Checking ${comic.name} sanityCheck() status: ${status} length: ${chapterscandidate.length}`);
@@ -83,6 +97,7 @@ export class gkInteractor {
       return {
         status,
         chapterscandidate,
+        chaptersList: maps
       };
 
     } catch (error) {

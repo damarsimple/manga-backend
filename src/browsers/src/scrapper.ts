@@ -110,6 +110,7 @@ export abstract class Scrapper {
 
         const splits = e.split(" ");
         let idx = 0;
+
         for (const x of splits) {
 
             if (x.toLocaleLowerCase() == "chapter") {
@@ -128,7 +129,8 @@ export abstract class Scrapper {
 
             idx++;
         }
-        throw new Error("Chapter name cant be guessed");
+
+        throw new Error(`Chapter name cant be guessed ${e}`);
     }
 
 
@@ -212,9 +214,13 @@ export abstract class Scrapper {
         const bunny = new BunnyCDN();
 
 
+        interface ComicJob extends Comic {
+            chaptersList: number[];
+        }
+
         interface ChapterJob {
-            chapter: string;
-            comic: Comic;
+            chapter: ChapterCandidate;
+            comic: ComicJob;
         }
 
         const chaptersBatchJobs: ChapterJob[] = [];
@@ -237,7 +243,7 @@ export abstract class Scrapper {
 
                 // this._logger.info(`${prefix}${comPrefix} checking chapter`);
 
-                const { chapterscandidate, status } = await gkInteractor.sanityCheck(comic, comic.chapters);
+                const { chapterscandidate, status, chaptersList } = await gkInteractor.sanityCheck(comic, comic.chapters);
                 if (status == "new") {
 
                     try {
@@ -266,7 +272,7 @@ export abstract class Scrapper {
 
                 if (chapterscandidate.length != 0) {
                     this._logger.info(
-                        `${prefix}${comPrefix} found ${chapterscandidate.length} new chapters`
+                        `${prefix}${comPrefix} found ${chapterscandidate.length} new chapters that is ${chapterscandidate.map(x => x.name).join(", ")}`
                     );
                 } else {
                     this._logger.info(`${prefix}${comPrefix} no new chapter`);
@@ -277,7 +283,7 @@ export abstract class Scrapper {
                 for (const x of chapterscandidate) {
 
                     chaptersBatchJobs.push({
-                        comic,
+                        comic: { ...comic, chaptersList },
                         chapter: x,
                     })
 
@@ -296,9 +302,44 @@ export abstract class Scrapper {
 
         const total = chaptersBatchJobs.length;
         let chapIdx = 0;
+
+        const chaptersExistMap = new Map<string, number[]>();
+
         for (const { chapter: x, comic } of chaptersBatchJobs) {
             try {
-                const chapter = await this.getChapter(x, decl.annoying);
+
+
+                const chapterExist = chaptersExistMap.get(comic.slug)
+
+                if (!chapterExist) chaptersExistMap.set(comic.slug, [])
+
+
+
+                const chapter = await this.getChapter(x.href, decl.annoying);
+
+
+                if (x.name != chapter.name) {
+                    if (comic.chaptersList.includes(chapter.name) || comic.chaptersList.includes(x.name)) {
+                        this._logger.warn(`${prefix} ${comic.slug} chapter name mismatch ${x.name} ${chapter.name} already exists skipping ...`)
+                        chapIdx++;
+                        continue
+                    }
+                    chapterExist?.push(chapter.name)
+                    chapterExist?.push(x.name)
+                } else {
+                    chapterExist?.push(chapter.name)
+                }
+
+                if (chapterExist && chapterExist.includes(chapter.name)) {
+
+                    this._logger.warn(`${prefix} ${comic.slug} chapter name ${x.name} ${chapter.name} already scrapped skipping ...`)
+                    chapIdx++;
+                    continue
+                }
+
+
+
+
                 this._logger.info(`${prefix} ${comic.slug} [${chapIdx}/${total}] downloading chapter ${chapter.name}`);
 
                 const downloadeds = await this.downloadsImages(

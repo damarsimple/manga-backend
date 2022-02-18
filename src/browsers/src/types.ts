@@ -35,7 +35,7 @@ export interface Chapter {
 }
 
 export interface ChapterCandidate {
-    name: string
+    name: number
     href: string
 }
 export interface ImageChapter {
