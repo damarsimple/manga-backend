@@ -1,15 +1,14 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../src/modules/Context";
 import { authorsIndex, comicsIndex, genresIndex } from "../src/modules/Meilisearch"
 
 async function main() {
 
-    const client = await new PrismaClient();
 
 
     console.log(`begin fetching`);
 
 
-    const comicsDatas = await client.comic.findMany({
+    const comicsDatas = await prisma.comic.findMany({
         include: {
             genres: true,
             author: true,
@@ -18,8 +17,8 @@ async function main() {
 
 
 
-    const genresData = await client.genre.findMany()
-    const authorsData = await client.author.findMany()
+    const genresData = await prisma.genre.findMany()
+    const authorsData = await prisma.author.findMany()
 
 
     console.log(`begin transforming`);

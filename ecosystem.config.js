@@ -2,8 +2,7 @@ module.exports = {
   apps: [
     {
       name: "graphql",
-      script: "yarn",
-      args: "dev",
+      script: "dist/src/server/graphql.js",
       exec_mode: "cluster",
       instances: "max",
     },
@@ -14,8 +13,7 @@ module.exports = {
     },
     {
       name: "cron",
-      script: "yarn",
-      args: "cron",
+      script: "dist/src/scripts/cron.js",
     },
   ],
 };

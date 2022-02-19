@@ -3,10 +3,10 @@ import Sitemap from '../../modules/Sitemap';
 import {
     writeFileSync
 } from "fs"
+import { prisma } from '../../modules/Context';
 
-const client = new PrismaClient()
 
-const { INIT_CWD } = process.env;
+const { SITEMAP_PATH } = process.env;
 
 const generate = async () => {
 
@@ -15,9 +15,9 @@ const generate = async () => {
     const sitemap = new Sitemap();
 
 
-    const comics = await client.comic.findMany();
-    const genres = await client.genre.findMany();
-    const authors = await client.author.findMany();
+    const comics = await prisma.comic.findMany();
+    const genres = await prisma.genre.findMany();
+    const authors = await prisma.author.findMany();
 
 
     sitemap.add({
@@ -64,7 +64,7 @@ const generate = async () => {
     }
 
 
-    writeFileSync(`${INIT_CWD}/target/sitemap.xml`, sitemap.generate());
+    writeFileSync(`${SITEMAP_PATH}/sitemap.xml`, sitemap.generate());
 
     console.log(`sitemap generated ${(new Date).toISOString()}`);
 }

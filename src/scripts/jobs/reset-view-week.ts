@@ -1,10 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../../modules/Context';
 
-const client = new PrismaClient()
 
 const main = async () => {
 
-    await client.comic.updateMany({
+    await prisma.comic.updateMany({
         data: {
             viewsWeek: 0
         }

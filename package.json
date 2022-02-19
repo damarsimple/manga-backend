@@ -7,12 +7,15 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "ts-node-dev --transpile-only --no-notify src/server/graphql.ts",
         "seed": "ts-node-dev --transpile-only --no-notify prisma/seed.ts",
+
         "restore": "ts-node-dev --transpile-only --no-notify prisma/restore.ts",
         "index:sync": "ts-node-dev --transpile-only --no-notify prisma/meili.ts",
         "playground": "ts-node-dev --transpile-only --no-notify src/playground.ts",
         "worker": "ts-node-dev --transpile-only --no-notify src/modules/Worker.ts",
+
+        "start": "tsc && node  dist/src/server/graphql.js",
         "build": "tsc",
-        "cron": "TS_NODE=true NODE_OPTIONS=\"-r ts-node/register\" node src/scripts/cron.ts"
+        "cron": "tsc && TS_NODE=true NODE_OPTIONS=\"-r ts-node/register\" node src/scripts/cron.ts"
     },
     "dependencies": {
         "@breejs/ts-worker": "^1.1.1",

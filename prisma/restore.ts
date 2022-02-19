@@ -1,10 +1,9 @@
-import { prisma, PrismaClient } from "@prisma/client";
 import glob from "glob";
 import { readFileSync } from "fs";
 import moment from "moment";
 import { slugify } from "../src/modules/Helper";
+import { prisma } from "../src/modules/Context";
 async function main() {
-    const client = new PrismaClient();
     const files = glob.sync("./backup/**.json")
     console.log(files)
     for (const bruh of files) {
@@ -14,7 +13,7 @@ async function main() {
         for (const x of test) {
 
             try {
-                const comic = await client.comic.create({
+                const comic = await prisma.comic.create({
                     data: {
                         name: x.name,
                         slug: `${x.slug}`.trim(),
@@ -68,14 +67,14 @@ async function main() {
 
             } catch (error) {
 
-                const check = await client.comic.findFirst({
+                const check = await prisma.comic.findFirst({
                     where: {
                         slug: `${x.slug}`.trim()
                     }
                 })
 
 
-                const check2 = await client.comic.findFirst({
+                const check2 = await prisma.comic.findFirst({
                     where: {
                         name: `${x.name}`
                     }
@@ -99,23 +98,23 @@ async function main() {
 
 
 
-    // const author = await client.author.create({
+    // const author = await prisma.author.create({
     //     data: {
     //         name: "test12",
     //         slug: "test12"
     //     }
     // })
 
-    // await client.genre.createMany({
+    // await prisma.genre.createMany({
     //     data: [...Array(10)].map((e, i) => ({
     //         name: `test saga ${i}`,
     //         slug: `test-saga-${i}`,
     //     }))
     // })
 
-    // const genres = await client.genre.findMany();
+    // const genres = await prisma.genre.findMany();
 
-    // await client.comic.createMany({
+    // await prisma.comic.createMany({
     //     data: [...Array(10)].map((_, i) => ({
     //         authorId: author.id,
 
@@ -127,8 +126,8 @@ async function main() {
 
 
 
-    // for (const x of await client.comic.findMany()) {
-    //     await client.chapter.createMany({
+    // for (const x of await prisma.comic.findMany()) {
+    //     await prisma.chapter.createMany({
     //         data: [...Array(100)].map(e => ({
     //             comicId: x.id,
     //             name: 1.1,
@@ -137,7 +136,7 @@ async function main() {
     //         }))
     //     })
 
-    //     await client.comic.update({
+    //     await prisma.comic.update({
     //         where: {
     //             id: x.id
     //         },
