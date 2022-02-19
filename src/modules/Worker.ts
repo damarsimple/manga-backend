@@ -21,7 +21,7 @@ const comicWorker = new Worker<{ id: string }>('comic increment', async (job: Jo
         }
     })
 
-    await updateDocumentIndex(job.data.id, "comics", update)
+    // await updateDocumentIndex(job.data.id, "comics", update)
 
     return true;
 
