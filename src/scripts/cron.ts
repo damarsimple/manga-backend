@@ -1,88 +1,38 @@
 import { PrismaClient } from '@prisma/client';
-import cron from "node-cron"
-import Sitemap from '../modules/Sitemap';
-import {
-    writeFileSync
-} from "fs"
 
-const client = new PrismaClient()
 
 console.log(`cron started ${(new Date).toISOString()}`);
 
+
+import Graceful from "@ladjs/graceful"
+import Bree from "bree";
+
 const { INIT_CWD } = process.env;
 
-const generate = async () => {
+Bree.extend(require('@breejs/ts-worker'));
 
-    console.log(`generating sitemaps ${(new Date).toISOString()}`);
+const bree = new Bree({
+    root: `${INIT_CWD}/src/scripts/jobs`,
+    defaultExtension: process.env.TS_NODE ? 'ts' : 'js',
+    jobs: [
 
-    const sitemap = new Sitemap();
+        {
+            name: 'sitemap',
+            interval: 'every 10 seconds',
 
+        },
+        {
+            name: 'reset-view-week',
+            interval: 'every 10 seconds',
 
-    const comics = await client.comic.findMany();
-    const genres = await client.genre.findMany();
-    const authors = await client.author.findMany();
+        },
 
-
-    sitemap.add({
-        loc: `${process.env.APP_HOST}/`,
-        lastmod: (new Date).toISOString(),
-        changefreq: "daily",
-        priority: 1
-    })
-
-    for (const x of ["hot", "rekomendasi", "terbaru", "all"]) {
-        sitemap.add({
-            loc: `${process.env.APP_HOST}/list/comic/${x}`,
-            lastmod: (new Date).toISOString(),
-            changefreq: "daily",
-            priority: 0.8
-        })
-    }
-
-    for (const comic of comics) {
-        sitemap.add({
-            loc: `${process.env.APP_HOST}/comic/${comic.slug}`,
-            lastmod: comic.updatedAt.toISOString(),
-            changefreq: "monthly",
-            priority: 0.8
-        })
-    }
-
-    for (const genre of genres) {
-        sitemap.add({
-            loc: `${process.env.APP_HOST}/list/genre/${genre.slug}`,
-            lastmod: genre.updatedAt.toISOString(),
-            changefreq: "monthly",
-            priority: 0.8
-        })
-    }
-
-    for (const author of authors) {
-        sitemap.add({
-            loc: `${process.env.APP_HOST}/list/author/${author.slug}`,
-            lastmod: author.updatedAt.toISOString(),
-            changefreq: "monthly",
-            priority: 0.8
-        })
-    }
-
-
-    writeFileSync(`${INIT_CWD}/target/sitemap.xml`, sitemap.generate());
-
-    console.log(`sitemap generated ${(new Date).toISOString()}`);
-}
-
-
-
-cron.schedule('5 8 * * Sun', generate);
-
-cron.schedule('0 12 * * 0', async () => {
-
-    await client.comic.updateMany({
-        data: {
-            viewsWeek: 0
-        }
-    })
-
-    console.log(`reset viewsWeek ${(new Date).toISOString()}`);
+    ]
 });
+
+// handle graceful reloads, pm2 support, and events like SIGHUP, SIGINT, etc.
+const graceful = new Graceful({ brees: [bree] });
+graceful.listen();
+
+// start all jobs (this is the equivalent of reloading a crontab):
+bree.start();
