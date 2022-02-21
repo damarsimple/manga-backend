@@ -118,6 +118,8 @@ const main = async () => {
 
         index++;
 
+        if (chapters.length == 0) break;
+
     }
 
 }
