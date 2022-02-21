@@ -10,7 +10,7 @@ async function main() {
         const count = await cont.count()
         console.log(`count ${count}`);
     }
-        , 3000)
+        , 1000)
 }
 
 main();
