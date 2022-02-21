@@ -109,7 +109,7 @@ const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migrati
 
     for (const img of chapter.imageUrls) {
         await t.downloadAndUpload(
-            img.replace("https://cdn.gudangkomik.com/", "https://gudangkomik.b-cdn.net/"),
+            img,
             img.replace("https://cdn.gudangkomik.com/", ""),
             compress
         )
