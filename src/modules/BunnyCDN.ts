@@ -151,7 +151,7 @@ export default class BunnyCDN {
             return result
 
         } catch (error) {
-            console.log(`[BUNNYCDN] 📁 Error Download ${url} and Uploading https://cdn.gudangkomik.com/${path}`)
+            console.log(`[BUNNYCDN] 📁 Error Download ${url} and Uploading https://cdn.gudangkomik.com/${path} ${error}`)
 
             throw error;
         }
