@@ -48,7 +48,7 @@ const main = async () => {
 
                 for (const img of chapter.imageUrls) {
                     await t.downloadAndUpload(
-                        img,
+                        img.replace("https://cdn.gudangkomik.com/", "https://gudangkomik.b-cdn.net/"),
                         img.replace("https://cdn.gudangkomik.com/", ""),
                         compress
                     )
