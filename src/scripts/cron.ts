@@ -19,6 +19,9 @@ const bree = new Bree({
         {
             name: 'reset-view-week',
             interval: 'every 1 weeks',
+        }, {
+            name: 'reset-view-daily',
+            interval: 'every 1 days',
         },
         {
             name: 'reset-perfomance-report',
@@ -34,6 +37,7 @@ const bree = new Bree({
 
 // handle graceful reloads, pm2 support, and events like SIGHUP, SIGINT, etc.
 const graceful = new Graceful({ brees: [bree] });
+
 graceful.listen();
 
 // start all jobs (this is the equivalent of reloading a crontab):

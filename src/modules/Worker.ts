@@ -20,7 +20,10 @@ const comicWorker = new Worker<{ id: string }>('comic increment', async (job: Jo
             },
             viewsWeek: {
                 increment: 1
-            }
+            },
+            viewsDaily: {
+                increment: 1
+            },
         }
     })
 
@@ -41,9 +44,13 @@ const chapterWorker = new Worker<{ id: string }>('chapter increment', async (job
             id: job.data.id
         },
         data: {
+
             views: {
                 increment: 1
             },
+
+
+
         }
     })
 
@@ -105,7 +112,7 @@ const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migrati
     return chapter;
 
 }, {
-    concurrency: 20,
+    concurrency: 10,
     connection
 })
 

@@ -89,6 +89,8 @@ model Comic {
   author      Author   @relation(fields: [authorId], references: [id])
   rating      Float    @default(7.5)
   views       Int      @default(0)
+  viewsHourly Int      @default(0)
+  viewsDaily  Int      @default(0)
   viewsWeek   Int      @default(0)
   description String?
   status      String?
