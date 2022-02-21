@@ -19,21 +19,6 @@ query Query($where: ChapterWhereInput, $take: Int, $skip: Int) {
 `
 
 
-const updateChapter = gql`
-mutation UpdateOneChapter($data: ChapterUpdateInput!, $where: ChapterWhereUniqueInput!) {
-    updateOneChapter(data: $data, where: $where) {
-        id
-    }
-}
-
-`
-
-const compress = async (e: Buffer) => {
-    return await sharp(e).webp({
-        quality: 80
-    }).toBuffer()
-}
-
 
 const client = new GraphQLClient(APP_ENDPOINT, {
     headers: {
@@ -72,35 +57,8 @@ const main = async () => {
 
             try {
 
-                // chapterMigrationQueue.add("chapter migration", { chapter })
+                chapterMigrationQueue.add("chapter migration", { chapter })
 
-                const innerStart = new Date().getTime()
-
-
-                for (const img of chapter.imageUrls) {
-                    await t.downloadAndUpload(
-                        img.replace("https://cdn.gudangkomik.com/", "https://gudangkomik.b-cdn.net/"),
-                        img.replace("https://cdn.gudangkomik.com/", ""),
-                        compress
-                    )
-                }
-
-
-
-                const innerDiff = new Date().getTime() - innerStart;
-
-                await client.request(updateChapter, {
-                    "data": {
-                        "processed": {
-                            "set": true
-                        }
-                    },
-                    "where": {
-                        "id": chapter.id
-                    }
-                })
-
-                console.log(`Processed ${chapter.name} time ${innerDiff}`)
 
             } catch (error) {
                 console.log(error);
@@ -114,7 +72,7 @@ const main = async () => {
 
 
 
-        console.log(`migrate-to-do finish ${index} at${diff}`);
+        console.log(`migrate-batch-do finish ${index} at${diff}`);
 
         index++;
 

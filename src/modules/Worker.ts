@@ -2,9 +2,12 @@
 
 import { Chapter } from '@prisma/client';
 import { Worker, Job } from 'bullmq';
+import { GraphQLClient, gql } from 'graphql-request';
 import sharp from 'sharp';
 import { prisma } from './Context';
 import { DOSpaces } from './DOSpaces';
+import { APP_ENDPOINT } from './Env';
+import { SECRET_KEY } from './Key';
 import { updateDocumentIndex } from './Meilisearch';
 import { connection } from './Redis';
 
@@ -70,13 +73,31 @@ chapterWorker.on('completed', (job: Job, returnvalue: any) => {
     console.log(`job finished increment chapter ${job.data.id}`);
 });
 
+
+const t = new DOSpaces()
+
+
+const client = new GraphQLClient(APP_ENDPOINT, {
+    headers: {
+        authorization: SECRET_KEY
+    }
+})
+
+
+const updateChapter = gql`
+mutation UpdateOneChapter($data: ChapterUpdateInput!, $where: ChapterWhereUniqueInput!) {
+    updateOneChapter(data: $data, where: $where) {
+        id
+    }
+}
+
+`
+
 const compress = async (e: Buffer) => {
     return await sharp(e).webp({
         quality: 80
     }).toBuffer()
 }
-
-const t = new DOSpaces()
 
 
 
@@ -84,9 +105,7 @@ const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migrati
 
     const innerStart = new Date().getTime()
 
-    const chapter = job.data.chapter;
-
-
+    const { chapter } = job.data
 
     for (const img of chapter.imageUrls) {
         await t.downloadAndUpload(
@@ -96,23 +115,27 @@ const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migrati
         )
     }
 
-    await prisma.chapter.update({
-        where: {
-            id: chapter.id
-        }, data: {
-            processed: true
-        }
-    })
+
 
     const innerDiff = new Date().getTime() - innerStart;
 
-    console.log(`Processed ${chapter.name} time ${innerDiff}`)
+    await client.request(updateChapter, {
+        "data": {
+            "processed": {
+                "set": true
+            }
+        },
+        "where": {
+            "id": chapter.id
+        }
+    })
 
+    console.log(`Processed ${chapter.name} time ${innerDiff}`)
 
     return chapter;
 
 }, {
-    concurrency: 10,
+    concurrency: 20,
     connection
 })
 
