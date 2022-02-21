@@ -14,50 +14,63 @@ const main = async () => {
     const t = new DOSpaces()
 
 
-    const chapters = await prisma.chapter.findMany({
-        where: {
-            processed: false
-        }
-    });
 
-
-    const length = chapters.length;
-
-    let index = 0;
 
     const start = new Date().getTime()
 
+    let skip = 0;
 
-    for (const chapter of chapters) {
+    while (true) {
 
-        try {
+        const chapters = await prisma.chapter.findMany({
+            where: {
+                processed: false
+            },
+            take: 100,
+            skip: 100 * skip
+        });
 
-            const innerStart = new Date().getTime()
+        if (chapters.length == 0) break;
+
+        skip++;
+
+        const length = chapters.length;
+
+        let index = 0;
 
 
-            for (const img of chapter.imageUrls) {
-                await t.downloadAndUpload(
-                    img,
-                    img.replace("https://cdn.gudangkomik.com/", ""),
-                    compress
-                )
-            }
+        for (const chapter of chapters) {
 
-            await prisma.chapter.update({
-                where: {
-                    id: chapter.id
-                }, data: {
-                    processed: true
+            try {
+
+                const innerStart = new Date().getTime()
+
+
+                for (const img of chapter.imageUrls) {
+                    await t.downloadAndUpload(
+                        img,
+                        img.replace("https://cdn.gudangkomik.com/", ""),
+                        compress
+                    )
                 }
-            })
 
-            const innerDiff = new Date().getTime() - innerStart;
+                await prisma.chapter.update({
+                    where: {
+                        id: chapter.id
+                    }, data: {
+                        processed: true
+                    }
+                })
+
+                const innerDiff = new Date().getTime() - innerStart;
 
 
-            console.log(`[${index}/${length}] Processed ${chapter.name} time ${innerDiff}`)
+                console.log(`[${index}/${length}] Processed ${chapter.name} time ${innerDiff}`)
 
-        } catch (error) {
-            console.log(error);
+            } catch (error) {
+                console.log(error);
+
+            }
 
         }
 
