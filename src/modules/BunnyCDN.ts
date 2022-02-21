@@ -11,7 +11,12 @@ export default class BunnyCDN {
 
 
     constructor() {
-        this.axios = axios.create()
+        this.axios = axios.create({
+            headers: {
+                AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
+                "Content-Type": "application/octet-stream",
+            },
+        })
 
         // this.axios.interceptors.response.use((e) => {
         //     logger.error(`SCRAPPER Error : 📁 ${e.config.url}, ${e.status} , ${e.statusText} `)
@@ -80,13 +85,7 @@ export default class BunnyCDN {
             const tobePurged = `https://cdn.gudangkomik.com${path}`;
 
 
-            const res = await axios.put(tobeSaved, file
-                , {
-                    headers: {
-                        AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
-                        "Content-Type": "application/octet-stream",
-                    },
-                });
+            const res = await this.axios.put(tobeSaved, file);
 
 
 
@@ -159,4 +158,8 @@ export default class BunnyCDN {
 
     }
 
+
+    public getAxios() {
+        return this.axios
+    }
 }
