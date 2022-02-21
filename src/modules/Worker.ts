@@ -94,9 +94,16 @@ mutation UpdateOneChapter($data: ChapterUpdateInput!, $where: ChapterWhereUnique
 `
 
 const compress = async (e: Buffer) => {
-    return await sharp(e).webp({
-        quality: 80
-    }).toBuffer()
+
+    try {
+        return await sharp(e).webp({
+            quality: 80
+        }).toBuffer()
+    } catch (error) {
+        return await sharp(e).jpeg({
+            quality: 80
+        }).toBuffer()
+    }
 }
 
 
