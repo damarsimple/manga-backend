@@ -6,8 +6,8 @@ async function main() {
         connection
     })
 
-    setInterval(() => {
-        const count = cont.count()
+    setInterval(async () => {
+        const count = await cont.count()
         console.log(`count ${count}`);
     }
         , 3000)
