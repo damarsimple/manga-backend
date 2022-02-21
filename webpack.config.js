@@ -33,6 +33,7 @@ const config = {
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
+        fallback: { os: require.resolve("os-browserify/browser") },
     },
 };
 
