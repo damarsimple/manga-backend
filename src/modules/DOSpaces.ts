@@ -127,24 +127,3 @@ export class DOSpaces {
 
 
 }
-
-async function main() {
-
-    const t = new DOSpaces()
-
-    const compress = async (e: Buffer) => {
-        return await sharp(e).webp({
-            quality: 80
-        }).toBuffer()
-    }
-
-
-    for (let index = 0; index < 10; index++) {
-        await t.downloadAndUpload("https://cdn.gudangkomik.com/test.jpg", `/test0${index}.webp`, compress)
-
-    }
-
-}
-
-
-main()
