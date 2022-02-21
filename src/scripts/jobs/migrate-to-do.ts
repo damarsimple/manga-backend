@@ -1,17 +1,10 @@
-import sharp from 'sharp';
 import { prisma } from '../../modules/Context';
-import { DOSpaces } from '../../modules/DOSpaces';
+import { chapterMigrationQueue } from '../../modules/Queue';
 
 
-const compress = async (e: Buffer) => {
-    return await sharp(e).webp({
-        quality: 80
-    }).toBuffer()
-}
 
 
 const main = async () => {
-    const t = new DOSpaces()
 
 
 
@@ -34,38 +27,13 @@ const main = async () => {
 
         skip++;
 
-        const length = chapters.length;
-
-        let index = 0;
 
 
         for (const chapter of chapters) {
 
             try {
 
-                const innerStart = new Date().getTime()
-
-
-                for (const img of chapter.imageUrls) {
-                    await t.downloadAndUpload(
-                        img.replace("https://cdn.gudangkomik.com/", "https://gudangkomik.b-cdn.net/"),
-                        img.replace("https://cdn.gudangkomik.com/", ""),
-                        compress
-                    )
-                }
-
-                await prisma.chapter.update({
-                    where: {
-                        id: chapter.id
-                    }, data: {
-                        processed: true
-                    }
-                })
-
-                const innerDiff = new Date().getTime() - innerStart;
-
-
-                console.log(`[${index}/${length}] Processed ${chapter.name} time ${innerDiff}`)
+                chapterMigrationQueue.add("chapter migration", { chapter })
 
             } catch (error) {
                 console.log(error);
