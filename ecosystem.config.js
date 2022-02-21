@@ -10,8 +10,6 @@ module.exports = {
       name: "worker",
       script: "yarn",
       args: "worker",
-      exec_mode: "cluster",
-      instances: "max",
     },
     {
       name: "cron",
