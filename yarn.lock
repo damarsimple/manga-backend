@@ -2917,7 +2917,7 @@ dotenv-defaults@^2.0.2:
 
 dotenv-webpack@^7.1.0:
   version "7.1.0"
-  resolved "https://registry.npmjs.org/dotenv-webpack/-/dotenv-webpack-7.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-7.1.0.tgz#211fefac6bf500bf3bb66b286e1b12a23a2a70c0"
   integrity sha512-+aUOe+nqgLerA/n611oyC15fY79BIkGm2fOxJAcHDonMZ7AtDpnzv/Oe591eHAenIE0t6w03UyxDnLs/YUxx5Q==
   dependencies:
     dotenv-defaults "^2.0.2"
