@@ -41,7 +41,7 @@ export default class BunnyCDN {
 
 
             const y = await this.axios.get(url, {
-                responseType: "arraybuffer",
+                responseType: "blob",
             });
 
 
