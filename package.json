@@ -13,6 +13,7 @@
         "worker": "ts-node-dev --transpile-only --no-notify src/modules/Worker.ts",
         "start": "tsc && node  dist/src/server/graphql.js",
         "testdo": "tsc && node  dist/src/scripts/jobs/migrate-to-do.js",
+        "queuesize": "tsc && node  dist/src/scripts/jobs/check-size-migration.js",
         "build": "tsc",
         "cron": "tsc && TS_NODE=true NODE_OPTIONS=\"-r ts-node/register\" node src/scripts/cron.ts"
     },

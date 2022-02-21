@@ -6,6 +6,7 @@ import { APP_ENDPOINT } from '../../modules/Env';
 import { SECRET_KEY } from '../../modules/Key';
 import sharp from 'sharp';
 import { DOSpaces } from '../../modules/DOSpaces';
+import { QueueGetters } from 'bullmq';
 
 
 const sanityEclipse = gql`
