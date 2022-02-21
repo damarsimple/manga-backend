@@ -100,9 +100,13 @@ const compress = async (e: Buffer) => {
             quality: 80
         }).toBuffer()
     } catch (error) {
-        return await sharp(e).jpeg({
-            quality: 80
-        }).toBuffer()
+        try {
+            return await sharp(e).jpeg({
+                quality: 80
+            }).toBuffer()
+        } catch (error) {
+            return e
+        }
     }
 }
 
