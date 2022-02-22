@@ -3,6 +3,7 @@
 import { Chapter } from '@prisma/client';
 import { Worker, Job } from 'bullmq';
 import { GraphQLClient, gql } from 'graphql-request';
+import { join } from 'path';
 import sharp from 'sharp';
 import { prisma } from './Context';
 import { DOSpaces } from './DOSpaces';
@@ -74,78 +75,11 @@ chapterWorker.on('completed', (job: Job, returnvalue: any) => {
 });
 
 
-const t = new DOSpaces()
-
-
-const client = new GraphQLClient(APP_ENDPOINT, {
-    headers: {
-        authorization: SECRET_KEY
-    }
-})
-
-
-const updateChapter = gql`
-mutation UpdateOneChapter($data: ChapterUpdateInput!, $where: ChapterWhereUniqueInput!) {
-    updateOneChapter(data: $data, where: $where) {
-        id
-    }
-}
-
-`
-
-const compress = async (e: Buffer) => {
-
-    try {
-        return await sharp(e).webp({
-            quality: 80
-        }).toBuffer()
-    } catch (error) {
-        try {
-            return await sharp(e).jpeg({
-                quality: 80
-            }).toBuffer()
-        } catch (error) {
-            return e
-        }
-    }
-}
 
 
 
-const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migration', async (job: Job) => {
 
-    const innerStart = new Date().getTime()
-
-    const { chapter } = job.data
-
-    for (const img of chapter.imageUrls) {
-        await t.downloadAndUpload(
-            img,
-            img.replace("https://cdn.gudangkomik.com/", ""),
-            compress
-        )
-    }
-
-
-
-    const innerDiff = new Date().getTime() - innerStart;
-
-    await client.request(updateChapter, {
-        "data": {
-            "processed": {
-                "set": true
-            }
-        },
-        "where": {
-            "id": chapter.id
-        }
-    })
-
-    console.log(`Processed ${chapter.name} time ${innerDiff}`)
-
-    return chapter;
-
-}, {
+const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migration', join(__dirname, "../scripts/jobs", "process-chapter-migration.ts"), {
     lockDuration: 1000 * 60 * 3,
     lockRenewTime: 1000 * 60 * 1,
     concurrency: 5,
