@@ -114,11 +114,11 @@ export class DOSpaces {
 
             const result = await this.upload(pipe ? await pipe(file) : file, path)
             this._end();
-            console.log(`[BUNNYCDN] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://testcdn.gudangkomik.com${path}`)
+            // console.log(`[DOSpaces] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://testcdn.gudangkomik.com${path}`)
             return result
 
         } catch (error) {
-            console.log(`[BUNNYCDN] 📁 Error Download ${url} and Uploading https://testcdn.gudangkomik.com${path} ${error}`)
+            console.log(`[DOSpaces] 📁 Error Download ${url} and Uploading https://testcdn.gudangkomik.com${path} ${error}`)
 
             throw error;
         }

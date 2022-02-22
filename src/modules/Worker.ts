@@ -79,16 +79,16 @@ chapterWorker.on('completed', (job: Job, returnvalue: any) => {
 
 
 
-const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migration', join(__dirname, "../scripts/jobs", "process-chapter-migration.ts"), {
-    lockDuration: 1000 * 60 * 3,
-    lockRenewTime: 1000 * 60 * 1,
-    concurrency: 5,
-    connection
-})
+// const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migration', join(__dirname, "../scripts/jobs", "process-chapter-migration.ts"), {
+//     lockDuration: 1000 * 60 * 3,
+//     lockRenewTime: 1000 * 60 * 1,
+//     concurrency: 5,
+//     connection
+// })
 
-chapterMigrationWorker.on('completed', (job: Job, returnvalue: Chapter) => {
-    console.log(`job finished migration chapter ${returnvalue.name}`);
-});
+// chapterMigrationWorker.on('completed', (job: Job, returnvalue: Chapter) => {
+//     console.log(`job finished migration chapter ${returnvalue.name}`);
+// });
 
 
 console.log('worker starting .....');
