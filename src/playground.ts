@@ -1,21 +1,59 @@
+import { GraphQLClient, gql } from 'graphql-request';
+import { exit } from 'process';
 import BunnyCDN from './modules/BunnyCDN';
+import { APP_ENDPOINT } from './modules/Env';
+import { SECRET_KEY } from './modules/Key';
+
+const client = new GraphQLClient(APP_ENDPOINT, {
+    headers: {
+        authorization: SECRET_KEY
+    }
+})
+
+
+
+const sanityCheck = gql`
+query Query($where: ChapterWhereInput) {
+  findManyChapterCount(where: $where)
+}
+`
 
 async function main() {
 
-    const b = new BunnyCDN();
 
-    const axios = b.getAxios()
+    const datas: number[] = []
+    const start = new Date().getTime()
+    let prev = 0;
+    await setInterval(async () => {
+        const { findManyChapterCount: data } = await client.request<{
+            findManyChapterCount: number
+        }>(sanityCheck, {
+            "where": {
+                "processed": {
+                    "equals": true
+                }
+            }
 
-    const start = new Date().getTime();
+        })
 
-    const x = await b.download("https://cdn.gudangkomik.com/test.jpg");
+        datas.push(data - prev);
 
-    console.log(`${new Date().getTime() - start}`);
+        prev = data;
 
 
-    // const d = await axios.get("https://sg.storage.bunnycdn.com/komikgudang/07-ghost/?download")
+        console.log(`count ${data}`);
 
-    // console.log(d.data)
+        if (new Date().getTime() - start > 100000) {
+            console.log(datas)
+            console.log(`avg ${datas.reduce((a, b) => a + b, 0) / datas.length}/sec`)
+
+            exit()
+        }
+
+    }, 1000)
+
+
+
 
 
 }

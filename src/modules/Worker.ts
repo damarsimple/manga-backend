@@ -146,6 +146,7 @@ const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migrati
     return chapter;
 
 }, {
+    lockDuration: 1000 * 60,
     concurrency: 5,
     connection
 })
