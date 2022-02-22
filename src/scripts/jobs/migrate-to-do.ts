@@ -117,7 +117,7 @@ const main = async () => {
         })
 
 
-        console.log(`${index}/${total} start `)
+        console.log(`${index}/${total} start order:  ${MIGRATION_ORDER}`)
 
         await mapLimit(chapters, 30, async (chapter, done) => {
             try {
