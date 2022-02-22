@@ -303,7 +303,7 @@ export abstract class Scrapper {
         const total = chaptersBatchJobs.length;
         let chapIdx = 0;
 
-        const chaptersExistMap = new Map<string, number[]>();
+        const chaptersExistMap = new Map<string, string[]>();
 
         for (const { chapter: x, comic } of chaptersBatchJobs) {
             try {
@@ -324,13 +324,13 @@ export abstract class Scrapper {
                         chapIdx++;
                         continue
                     }
-                    chapterExist?.push(chapter.name)
-                    chapterExist?.push(x.name)
+                    chapterExist?.push(`${comic.slug}-${chapter.name}`)
+                    chapterExist?.push(`${comic.slug}-${x.name}`)
                 } else {
-                    chapterExist?.push(chapter.name)
+                    chapterExist?.push(`${comic.slug}-${chapter.name}`)
                 }
 
-                if (chapterExist && chapterExist.includes(chapter.name)) {
+                if (chapterExist && chapterExist.includes(`${comic.slug}-${chapter.name}`)) {
 
                     this._logger.warn(`${prefix} ${comic.slug} chapter name ${x.name} ${chapter.name} already scrapped skipping ...`)
                     chapIdx++;
