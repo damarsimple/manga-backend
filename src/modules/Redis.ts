@@ -5,5 +5,6 @@ export const connection = new IORedis({
     password: "",
     port: 6379,
     maxRetriesPerRequest: null,
-    enableReadyCheck: false
+    enableReadyCheck: false,
+
 });

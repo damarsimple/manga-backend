@@ -146,7 +146,7 @@ const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migrati
     return chapter;
 
 }, {
-    concurrency: 20,
+    concurrency: 5,
     connection
 })
 
