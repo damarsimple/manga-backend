@@ -119,7 +119,7 @@ const main = async () => {
 
         console.log(`${index}/${total} start `)
 
-        await mapLimit(chapters, 20, async (chapter, done) => {
+        await mapLimit(chapters, 30, async (chapter, done) => {
             try {
                 const innerStart = new Date().getTime()
                 for (const img of chapter.imageUrls) {
