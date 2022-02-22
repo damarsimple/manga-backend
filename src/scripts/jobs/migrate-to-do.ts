@@ -10,8 +10,8 @@ import { QueueGetters } from 'bullmq';
 import { parallelLimit, map, mapLimit } from 'async';
 
 const sanityEclipse = gql`
-query Query($where: ChapterWhereInput, $take: Int, $skip: Int) {
-  findManyChapter(where: $where, take: $take, skip: $skip) {
+query Query($where: ChapterWhereInput, $take: Int, $skip: Int,$orderBy: [ChapterOrderByWithRelationInput]) {
+  findManyChapter(where: $where, take: $take, skip: $skip, orderBy:$orderBy) {
     name
     id
     imageUrls
@@ -64,6 +64,8 @@ mutation UpdateOneChapter($data: ChapterUpdateInput!, $where: ChapterWhereUnique
 
 `
 
+const { MIGRATION_ORDER } = process.env;
+
 const main = async () => {
 
 
@@ -106,7 +108,12 @@ const main = async () => {
                 },
             },
             "take": 500,
-            "skip": index * 500
+            "skip": index * 500,
+            "orderBy": [
+                {
+                    "createdAt": MIGRATION_ORDER
+                }
+            ]
         })
 
 
