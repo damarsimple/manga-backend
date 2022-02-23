@@ -21,6 +21,7 @@ export const Chapter = objectType({
     t.int('imageCount')
     t.int('originalImageCount')
     t.boolean('processed')
+    t.nullable.string('batchs')
     t.list.string('imageUrls')
     t.nullable.json('imageDetails')
     t.field('createdAt', { type: 'DateTime' })

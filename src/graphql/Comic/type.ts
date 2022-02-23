@@ -24,6 +24,8 @@ export const Comic = objectType({
     })
     t.float('rating')
     t.int('views')
+    t.int('viewsHourly')
+    t.int('viewsDaily')
     t.int('viewsWeek')
     t.nullable.string('description')
     t.nullable.string('status')
