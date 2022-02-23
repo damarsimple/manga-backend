@@ -1,6 +1,6 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import { exit } from 'process';
-import BunnyCDN from './modules/BunnyCDN';
+import { prisma } from './modules/Context';
 import { APP_ENDPOINT } from './modules/Env';
 import { SECRET_KEY } from './modules/Key';
 
@@ -21,38 +21,49 @@ query Query($where: ChapterWhereInput) {
 async function main() {
 
 
-    const datas: number[] = []
-    const start = new Date().getTime()
-    let prev = 0;
-    await setInterval(async () => {
-        const { findManyChapterCount: data } = await client.request<{
-            findManyChapterCount: number
-        }>(sanityCheck, {
-            "where": {
-                "processed": {
-                    "equals": true
-                }
-            }
+    const count = await prisma.chapter.count({
+        where: {
+            processed: false
+        }
+    })
 
+    const section = Math.floor(count / 10);
+
+    let hasMore = false
+
+    let batch = 1;
+
+    do {
+
+        const chapters =
+            await prisma.chapter.findMany({
+                where: {
+                    processed: false
+                },
+                take: section
+            })
+
+        hasMore = chapters.length > 0;
+
+        const ids = chapters.map(c => c.id)
+
+        await prisma.chapter.updateMany({
+            where: {
+                id: {
+                    in: ids
+                }
+            },
+            data: {
+                batchs: `${batch}`
+            }
         })
 
-        datas.push(data - prev);
+        batch++;
 
-        prev = data;
-
-
-        console.log(`count ${data}`);
-
-        if (new Date().getTime() - start > 100000) {
-            console.log(datas)
-            console.log(`avg ${datas.reduce((a, b) => a + b, 0) / datas.length}/sec`)
-
-            exit()
-        }
-
-    }, 1000)
+        console.log(`Updated Batch ${batch} of ${section} of total ${chapters.length}`)
 
 
+    } while (hasMore)
 
 
 

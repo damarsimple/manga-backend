@@ -123,9 +123,11 @@ model Chapter {
 
   views Int @default(0)
 
-  imageCount         Int     @default(0)
-  originalImageCount Int     @default(0)
-  processed          Boolean @default(false)
+  imageCount         Int @default(0)
+  originalImageCount Int @default(0)
+
+  processed Boolean @default(false)
+  batchs    String?
 
   imageUrls    String[]
   imageDetails Json?

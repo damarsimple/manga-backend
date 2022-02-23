@@ -64,7 +64,7 @@ mutation UpdateOneChapter($data: ChapterUpdateInput!, $where: ChapterWhereUnique
 
 `
 
-const { MIGRATION_ORDER } = process.env;
+const { MIGRATION_BATCH } = process.env;
 
 const main = async () => {
 
@@ -86,6 +86,9 @@ const main = async () => {
             "processed": {
                 "equals": false
             },
+            "batch": {
+                "equals": `${MIGRATION_BATCH}`
+            }
         },
 
     })
@@ -96,7 +99,15 @@ const main = async () => {
     const times: number[] = [];
 
 
+
+    const perBatch = 500;
+
+    console.log(`${index}/${total} start migrate batch :  ${MIGRATION_BATCH} total ${total}`)
+
+
     do {
+
+        const batchTimer = new Date().getTime();
 
 
         const { findManyChapter: chapters } = await client.request<{
@@ -106,18 +117,16 @@ const main = async () => {
                 "processed": {
                     "equals": false
                 },
-            },
-            "take": 500,
-            "skip": index * 500,
-            "orderBy": [
-                {
-                    "createdAt": MIGRATION_ORDER
+                "batch": {
+                    "equals": `${MIGRATION_BATCH}`
                 }
-            ]
+            },
+            "take": perBatch,
+            "skip": index * perBatch,
+
         })
 
 
-        console.log(`${index}/${total} start order:  ${MIGRATION_ORDER}`)
 
         await mapLimit(chapters, 30, async (chapter, done) => {
             try {
@@ -148,7 +157,7 @@ const main = async () => {
 
                 curIdx++;
 
-                console.log(`${curIdx}/${total} Processed ${chapter.name} time ${innerDiff}`)
+                console.log(`${curIdx}/${perBatch}/${total} Processed ${chapter.name} time ${innerDiff} batch ${MIGRATION_BATCH}`)
 
                 times.push(innerDiff)
 
@@ -156,16 +165,19 @@ const main = async () => {
 
             } catch (error) {
                 console.log(error);
-
-
             }
         });
 
+        const diff = new Date().getTime() - batchTimer;
+
+        console.log(`${index}/${total} batch :  ${MIGRATION_BATCH} diff ${diff}`)
+
 
         hasMore = chapters.length > 0
+
         index++;
 
-        console.log(`current batch ${index * 500}/${total} avg ${times.reduce((a, b) => a + b, 0) / times.length}`)
+        console.log(`current batch ${index * perBatch}/${total} avg ${times.reduce((a, b) => a + b, 0) / times.length}`)
 
     } while (hasMore)
 
@@ -174,7 +186,7 @@ const main = async () => {
 
 
 
-    console.log(`migrate-batch-do finish ${index} at${diff}`);
+    console.log(`migrate-batch-do ${MIGRATION_BATCH} finish ${index} at ${diff}`);
 
     index++;
 

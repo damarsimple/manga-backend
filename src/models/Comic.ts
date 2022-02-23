@@ -297,7 +297,8 @@ export const ComicMutationRelated = extendType({
           data: {
             name: chapter.name,
             imageUrls: chapter.imageUrls,
-            comicId: comic.id
+            comicId: comic.id,
+            batchs: `${11}`
           }
         });
 
