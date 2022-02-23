@@ -86,7 +86,7 @@ const main = async () => {
             "processed": {
                 "equals": false
             },
-            "batch": {
+            "batchs": {
                 "equals": `${MIGRATION_BATCH}`
             }
         },
@@ -117,7 +117,7 @@ const main = async () => {
                 "processed": {
                     "equals": false
                 },
-                "batch": {
+                "batchs": {
                     "equals": `${MIGRATION_BATCH}`
                 }
             },
