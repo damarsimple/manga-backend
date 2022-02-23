@@ -132,15 +132,11 @@ const main = async () => {
             try {
                 const innerStart = new Date().getTime()
                 for (const img of chapter.imageUrls) {
-                    try {
-                        await t.downloadAndUpload(
-                            img,
-                            img.replace("https://cdn.gudangkomik.com/", ""),
-                            compress
-                        )
-                    } catch (error) {
-
-                    }
+                    await t.downloadAndUpload(
+                        img,
+                        img.replace("https://cdn.gudangkomik.com/", ""),
+                        compress
+                    )
                 }
 
                 const innerDiff = new Date().getTime() - innerStart;
