@@ -21,17 +21,17 @@ query Query($where: ChapterWhereInput) {
 async function main() {
 
 
-    const count = await prisma.chapter.count({
-        where: {
-            processed: false
-        }
-    })
+    // const count = await prisma.chapter.count({
+    //     where: {
+    //         processed: false
+    //     }
+    // })
 
-    const section = Math.floor(count / 10);
+    const section = Math.floor(301115 / 10);
 
     let hasMore = false
 
-    let batch = 1;
+    let batch = 0;
 
     do {
 
@@ -40,7 +40,8 @@ async function main() {
                 where: {
                     processed: false
                 },
-                take: section
+                take: section,
+                skip: batch * section
             })
 
         hasMore = chapters.length > 0;
@@ -54,13 +55,16 @@ async function main() {
                 }
             },
             data: {
-                batchs: `${batch}`
+                batchs: {
+                    set: `${batch}`
+                }
             }
         })
 
-        batch++;
 
-        console.log(`Updated Batch ${batch} of ${section} of total ${chapters.length}`)
+        console.log(`Updated Batch ${batch} of total ${batch * section}/301115`)
+
+        batch++;
 
 
     } while (hasMore)
