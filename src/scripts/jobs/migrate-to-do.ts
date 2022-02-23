@@ -129,8 +129,9 @@ const main = async () => {
 
 
         await mapLimit(chapters, 30, async (chapter, done) => {
+            const innerStart = new Date().getTime()
+            let success = true;
             try {
-                const innerStart = new Date().getTime()
                 for (const img of chapter.imageUrls) {
                     await t.downloadAndUpload(
                         img,
@@ -139,7 +140,6 @@ const main = async () => {
                     )
                 }
 
-                const innerDiff = new Date().getTime() - innerStart;
                 await client.request(updateChapter, {
                     "data": {
                         "processed": {
@@ -151,17 +151,22 @@ const main = async () => {
                     }
                 })
 
-                curIdx++;
 
-                console.log(`${curIdx}/${perBatch}/${total} Processed ${chapter.name} time ${innerDiff} batch ${MIGRATION_BATCH}`)
-
-                times.push(innerDiff)
 
 
 
             } catch (error) {
                 console.log(error);
+                success = false;
             }
+
+            const innerDiff = new Date().getTime() - innerStart;
+
+            curIdx++;
+
+            console.log(`${curIdx}/${perBatch}/${total} ${success ? "Processed" : "Failed"} ${chapter.name} time ${innerDiff} batch ${MIGRATION_BATCH}`)
+
+            times.push(innerDiff)
         });
 
         const diff = new Date().getTime() - batchTimer;
