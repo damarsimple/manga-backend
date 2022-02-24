@@ -15,7 +15,9 @@
         "testdo": "prisma generate && tsc && node  dist/src/scripts/jobs/migrate-to-do.js",
         "queuesize": "node  dist/src/scripts/jobs/check-size-migration.js",
         "build": "tsc",
-        "cron": "tsc && TS_NODE=true NODE_OPTIONS=\"-r ts-node/register\" node src/scripts/cron.ts"
+        "cron": "tsc && TS_NODE=true NODE_OPTIONS=\"-r ts-node/register\" node src/scripts/cron.ts",
+        "ext:compile": "WEBPACK=true webpack",
+        "ext:watch": "WEBPACK=true webpack --watch"
     },
     "dependencies": {
         "@aws-sdk/client-s3": "^3.52.0",

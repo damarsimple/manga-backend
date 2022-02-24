@@ -330,6 +330,7 @@ export abstract class Scrapper {
                     chapterExist?.push(`${comic.slug}-${chapter.name}`)
                 }
 
+
                 if (chapterExist && chapterExist.includes(`${comic.slug}-${chapter.name}`)) {
 
                     this._logger.warn(`${prefix} ${comic.slug} chapter name ${x.name} ${chapter.name} already scrapped skipping ...`)

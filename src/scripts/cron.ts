@@ -17,6 +17,10 @@ const bree = new Bree({
             interval: 'every 3 days',
         },
         {
+            name: 'increments-view',
+            interval: 'every 1 hours',
+        },
+        {
             name: 'reset-view-week',
             interval: 'every 1 weeks',
         }, {

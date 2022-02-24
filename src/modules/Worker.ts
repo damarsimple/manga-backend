@@ -1,35 +1,12 @@
 
 
-import { Chapter } from '@prisma/client';
 import { Worker, Job } from 'bullmq';
-import { GraphQLClient, gql } from 'graphql-request';
-import { join } from 'path';
-import sharp from 'sharp';
 import { prisma } from './Context';
-import { DOSpaces } from './DOSpaces';
-import { APP_ENDPOINT } from './Env';
-import { SECRET_KEY } from './Key';
-import { updateDocumentIndex } from './Meilisearch';
 import { connection } from './Redis';
 
 const comicWorker = new Worker<{ id: string }>('comic increment', async (job: Job) => {
 
-    const update = await prisma.comic.update({
-        where: {
-            id: job.data.id
-        },
-        data: {
-            views: {
-                increment: 1
-            },
-            viewsWeek: {
-                increment: 1
-            },
-            viewsDaily: {
-                increment: 1
-            },
-        }
-    })
+    await connection.lpush(`comic-views`, job.data.id)
 
     // await updateDocumentIndex(job.data.id, "comics", update)
 
@@ -43,20 +20,7 @@ const comicWorker = new Worker<{ id: string }>('comic increment', async (job: Jo
 
 const chapterWorker = new Worker<{ id: string }>('chapter increment', async (job: Job) => {
 
-    await prisma.chapter.update({
-        where: {
-            id: job.data.id
-        },
-        data: {
-
-            views: {
-                increment: 1
-            },
-
-
-
-        }
-    })
+    await connection.lpush(`chapter-views`, job.data.id)
 
     return true;
 

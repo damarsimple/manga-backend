@@ -33,3 +33,22 @@ export const context = {
     authorsIndex,
 
 }
+// prisma.$use((params, next) => {
+//     const isFindMany = params.action === 'findMany';
+
+//     if (params.model !== "Comic") return next(params);
+
+//     if (!isFindMany) return next(params);
+
+//     const takeParameter = params.args.take;
+
+//     const takeParameterIsUndefined = takeParameter === undefined;
+
+//     if (takeParameterIsUndefined || takeParameter > 30) {
+//         params.args.take = 30;
+//     }
+
+
+
+//     return next(params);
+// });

@@ -13,7 +13,9 @@ import { User } from "@prisma/client";
 export const schema = makeSchema({
 
   types: [types, customtypes], // 1
-  plugins: [paljs(), fieldAuthorizePlugin(),],
+  plugins: [paljs({
+    excludeFields: ['password'],
+  }), fieldAuthorizePlugin(),],
   outputs: {
     typegen: join(__dirname, "../../", "nexus-typegen.ts"), // 2
 
