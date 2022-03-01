@@ -37,10 +37,9 @@ export const schema = makeSchema({
 export const server = new ApolloServer({
   //@ts-ignore
   schema,
-  formatError: (e) => {
-    console.log(e)
-    return e;
-  },
+  // formatError: (e) => {
+  // return e;
+  // },
   context: async ({ req }) => {
     // Get the user token from the headers.
     const token = req.headers.authorization || "";
@@ -80,7 +79,7 @@ export const server = new ApolloServer({
                 time: end - start,
               }
             })
-            console.log(`Operation resolved! ${requestContext.operationName} ${end - start} ms`);
+            // console.log(`Operation resolved! ${requestContext.operationName} ${end - start} ms`);
           }
         }
       }

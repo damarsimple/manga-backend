@@ -5,7 +5,7 @@ import BunnyCDN from '../modules/BunnyCDN';
 import { slugify } from '../modules/Helper';
 import { comicIncrementQueue, chapterIncrementQueue } from '../modules/Queue';
 import { updateDocumentIndex } from '../modules/Meilisearch';
-import { connection } from '../modules/Redis';
+import { connection, resetComicSets } from '../modules/Redis';
 
 export const SanityCheck = objectType({
   name: 'SanityCheck',
@@ -63,6 +63,14 @@ export const GenreSearch = objectType({
 export const ComicQueryRelated = extendType({
   type: 'Query',
   definition(t) {
+
+    t.field('test', {
+      type: 'Boolean',
+      resolve: async () => {
+        await resetComicSets()
+        return true
+      }
+    })
 
     t.field('comicSearch', {
       type: ComicSearch,

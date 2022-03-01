@@ -17,8 +17,11 @@ const main = async () => {
         }
     }
 
+
     for (const [id, arr] of remaps) {
         const increment = arr.length
+        console.log(increment)
+
         await prisma.comic.update({
             where: {
                 id: parseInt(id)
@@ -40,7 +43,7 @@ const main = async () => {
 
     await connection.del('comic-views')
 
-    const chaptersIds = await connection.lrange(`comic-views`, 0, -1)
+    const chaptersIds = await connection.lrange(`chapters-views`, 0, -1)
 
     const remapsChap = new Map<string, number[]>()
 
@@ -68,7 +71,7 @@ const main = async () => {
     }
 
 
-    await connection.del('comic-views')
+    await connection.del('chapters-views')
 
     console.log(`add views ${(new Date).toISOString()}`);
 }

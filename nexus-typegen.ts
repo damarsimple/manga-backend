@@ -715,6 +715,7 @@ export interface NexusGenInputs {
     id?: number | null; // Int
   }
   ChapterCountOrderByAggregateInput: { // input type
+    batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -730,6 +731,7 @@ export interface NexusGenInputs {
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChapterCreateInput: { // input type
+    batchs?: string | null; // String
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkCreateNestedManyWithoutChapterInput
     comic: NexusGenInputs['ComicCreateNestedOneWithoutChaptersInput']; // ComicCreateNestedOneWithoutChaptersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -745,6 +747,7 @@ export interface NexusGenInputs {
     views?: number | null; // Int
   }
   ChapterCreateManyComicInput: { // input type
+    batchs?: string | null; // String
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
@@ -763,6 +766,7 @@ export interface NexusGenInputs {
     skipDuplicates?: boolean | null; // Boolean
   }
   ChapterCreateManyInput: { // input type
+    batchs?: string | null; // String
     comicId: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
@@ -800,6 +804,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
   }
   ChapterCreateWithoutChapterbookmarksInput: { // input type
+    batchs?: string | null; // String
     comic: NexusGenInputs['ComicCreateNestedOneWithoutChaptersInput']; // ComicCreateNestedOneWithoutChaptersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     imageCount?: number | null; // Int
@@ -814,6 +819,7 @@ export interface NexusGenInputs {
     views?: number | null; // Int
   }
   ChapterCreateWithoutComicInput: { // input type
+    batchs?: string | null; // String
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkCreateNestedManyWithoutChapterInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     imageCount?: number | null; // Int
@@ -836,6 +842,7 @@ export interface NexusGenInputs {
     some?: NexusGenInputs['ChapterWhereInput'] | null; // ChapterWhereInput
   }
   ChapterMaxOrderByAggregateInput: { // input type
+    batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -849,6 +856,7 @@ export interface NexusGenInputs {
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChapterMinOrderByAggregateInput: { // input type
+    batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -870,6 +878,7 @@ export interface NexusGenInputs {
     _max?: NexusGenInputs['ChapterMaxOrderByAggregateInput'] | null; // ChapterMaxOrderByAggregateInput
     _min?: NexusGenInputs['ChapterMinOrderByAggregateInput'] | null; // ChapterMinOrderByAggregateInput
     _sum?: NexusGenInputs['ChapterSumOrderByAggregateInput'] | null; // ChapterSumOrderByAggregateInput
+    batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -885,6 +894,7 @@ export interface NexusGenInputs {
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChapterOrderByWithRelationInput: { // input type
+    batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkOrderByRelationAggregateInput'] | null; // ChapterBookmarkOrderByRelationAggregateInput
     comic?: NexusGenInputs['ComicOrderByWithRelationInput'] | null; // ComicOrderByWithRelationInput
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -909,6 +919,7 @@ export interface NexusGenInputs {
     AND?: Array<NexusGenInputs['ChapterScalarWhereInput'] | null> | null; // [ChapterScalarWhereInput]
     NOT?: Array<NexusGenInputs['ChapterScalarWhereInput'] | null> | null; // [ChapterScalarWhereInput]
     OR?: Array<NexusGenInputs['ChapterScalarWhereInput'] | null> | null; // [ChapterScalarWhereInput]
+    batchs?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     comicId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -927,6 +938,7 @@ export interface NexusGenInputs {
     AND?: Array<NexusGenInputs['ChapterScalarWhereWithAggregatesInput'] | null> | null; // [ChapterScalarWhereWithAggregatesInput]
     NOT?: Array<NexusGenInputs['ChapterScalarWhereWithAggregatesInput'] | null> | null; // [ChapterScalarWhereWithAggregatesInput]
     OR?: Array<NexusGenInputs['ChapterScalarWhereWithAggregatesInput'] | null> | null; // [ChapterScalarWhereWithAggregatesInput]
+    batchs?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
     comicId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
     id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
@@ -950,6 +962,7 @@ export interface NexusGenInputs {
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ChapterUncheckedCreateInput: { // input type
+    batchs?: string | null; // String
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput
     comicId: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -972,6 +985,7 @@ export interface NexusGenInputs {
     createMany?: NexusGenInputs['ChapterCreateManyComicInputEnvelope'] | null; // ChapterCreateManyComicInputEnvelope
   }
   ChapterUncheckedCreateWithoutChapterbookmarksInput: { // input type
+    batchs?: string | null; // String
     comicId: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
@@ -987,6 +1001,7 @@ export interface NexusGenInputs {
     views?: number | null; // Int
   }
   ChapterUncheckedCreateWithoutComicInput: { // input type
+    batchs?: string | null; // String
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
@@ -1002,6 +1017,7 @@ export interface NexusGenInputs {
     views?: number | null; // Int
   }
   ChapterUncheckedUpdateInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedUpdateManyWithoutChapterInput
     comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -1018,6 +1034,7 @@ export interface NexusGenInputs {
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ChapterUncheckedUpdateManyInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -1033,6 +1050,7 @@ export interface NexusGenInputs {
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ChapterUncheckedUpdateManyWithoutChaptersInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -1060,6 +1078,7 @@ export interface NexusGenInputs {
     upsert?: Array<NexusGenInputs['ChapterUpsertWithWhereUniqueWithoutComicInput'] | null> | null; // [ChapterUpsertWithWhereUniqueWithoutComicInput]
   }
   ChapterUncheckedUpdateWithoutChapterbookmarksInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -1075,6 +1094,7 @@ export interface NexusGenInputs {
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ChapterUncheckedUpdateWithoutComicInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkUncheckedUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUncheckedUpdateManyWithoutChapterInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -1090,6 +1110,7 @@ export interface NexusGenInputs {
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ChapterUpdateInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUpdateManyWithoutChapterInput
     comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutChaptersInput'] | null; // ComicUpdateOneRequiredWithoutChaptersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
@@ -1105,6 +1126,7 @@ export interface NexusGenInputs {
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ChapterUpdateManyMutationInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
@@ -1146,6 +1168,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['ChapterWhereUniqueInput']; // ChapterWhereUniqueInput!
   }
   ChapterUpdateWithoutChapterbookmarksInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutChaptersInput'] | null; // ComicUpdateOneRequiredWithoutChaptersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -1160,6 +1183,7 @@ export interface NexusGenInputs {
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ChapterUpdateWithoutComicInput: { // input type
+    batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkUpdateManyWithoutChapterInput'] | null; // ChapterBookmarkUpdateManyWithoutChapterInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -1190,6 +1214,7 @@ export interface NexusGenInputs {
     AND?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
     NOT?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
     OR?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
+    batchs?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     chapterbookmarks?: NexusGenInputs['ChapterBookmarkListRelationFilter'] | null; // ChapterBookmarkListRelationFilter
     comic?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     comicId?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -1214,6 +1239,8 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     rating?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsDaily?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsHourly?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ComicBookmarkAvgOrderByAggregateInput: { // input type
@@ -1561,6 +1588,8 @@ export interface NexusGenInputs {
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsDaily?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsHourly?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ComicCreateInput: { // input type
@@ -1585,6 +1614,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicCreateManyAuthorInput: { // input type
@@ -1606,6 +1637,8 @@ export interface NexusGenInputs {
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicCreateManyAuthorInputEnvelope: { // input type
@@ -1632,6 +1665,8 @@ export interface NexusGenInputs {
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicCreateNestedManyWithoutAuthorInput: { // input type
@@ -1692,6 +1727,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicCreateWithoutChaptersInput: { // input type
@@ -1715,6 +1752,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicCreateWithoutGenresInput: { // input type
@@ -1738,6 +1777,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicCreateWithoutUserbookmarksInput: { // input type
@@ -1761,6 +1802,8 @@ export interface NexusGenInputs {
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicListRelationFilter: { // input type
@@ -1787,6 +1830,8 @@ export interface NexusGenInputs {
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsDaily?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsHourly?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ComicMinOrderByAggregateInput: { // input type
@@ -1808,6 +1853,8 @@ export interface NexusGenInputs {
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsDaily?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsHourly?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ComicOrderByRelationAggregateInput: { // input type
@@ -1838,6 +1885,8 @@ export interface NexusGenInputs {
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsDaily?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsHourly?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ComicOrderByWithRelationInput: { // input type
@@ -1864,6 +1913,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     userbookmarks?: NexusGenInputs['ComicBookmarkOrderByRelationAggregateInput'] | null; // ComicBookmarkOrderByRelationAggregateInput
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsDaily?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsHourly?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ComicRelationFilter: { // input type
@@ -1893,6 +1944,8 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['StringFilter'] | null; // StringFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     views?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    viewsDaily?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    viewsHourly?: NexusGenInputs['IntFilter'] | null; // IntFilter
     viewsWeek?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   ComicScalarWhereWithAggregatesInput: { // input type
@@ -1918,6 +1971,8 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     updatedAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
     views?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    viewsDaily?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    viewsHourly?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     viewsWeek?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
   }
   ComicSumOrderByAggregateInput: { // input type
@@ -1925,6 +1980,8 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     rating?: NexusGenEnums['SortOrder'] | null; // SortOrder
     views?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsDaily?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    viewsHourly?: NexusGenEnums['SortOrder'] | null; // SortOrder
     viewsWeek?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ComicUncheckedCreateInput: { // input type
@@ -1949,6 +2006,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicUncheckedCreateNestedManyWithoutAuthorInput: { // input type
@@ -1978,6 +2037,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicUncheckedCreateWithoutChaptersInput: { // input type
@@ -2001,6 +2062,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicUncheckedCreateWithoutGenresInput: { // input type
@@ -2025,6 +2088,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedCreateNestedManyWithoutComicInput'] | null; // ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicUncheckedCreateWithoutUserbookmarksInput: { // input type
@@ -2048,6 +2113,8 @@ export interface NexusGenInputs {
     type: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicUncheckedUpdateInput: { // input type
@@ -2072,6 +2139,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUncheckedUpdateManyInput: { // input type
@@ -2094,6 +2163,8 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUncheckedUpdateManyWithoutAuthorInput: { // input type
@@ -2128,6 +2199,8 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUncheckedUpdateWithoutAuthorInput: { // input type
@@ -2151,6 +2224,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUncheckedUpdateWithoutChaptersInput: { // input type
@@ -2174,6 +2249,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUncheckedUpdateWithoutGenresInput: { // input type
@@ -2198,6 +2275,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUncheckedUpdateManyWithoutComicInput'] | null; // ComicBookmarkUncheckedUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUncheckedUpdateWithoutUserbookmarksInput: { // input type
@@ -2221,6 +2300,8 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUpdateInput: { // input type
@@ -2245,6 +2326,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUpdateManyMutationInput: { // input type
@@ -2265,6 +2348,8 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUpdateManyWithWhereWithoutAuthorInput: { // input type
@@ -2343,6 +2428,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUpdateWithoutChaptersInput: { // input type
@@ -2366,6 +2453,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUpdateWithoutGenresInput: { // input type
@@ -2389,6 +2478,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     userbookmarks?: NexusGenInputs['ComicBookmarkUpdateManyWithoutComicInput'] | null; // ComicBookmarkUpdateManyWithoutComicInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUpdateWithoutUserbookmarksInput: { // input type
@@ -2412,6 +2503,8 @@ export interface NexusGenInputs {
     type?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     views?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsDaily?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    viewsHourly?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     viewsWeek?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   ComicUpsertWithWhereUniqueWithoutAuthorInput: { // input type
@@ -2459,6 +2552,8 @@ export interface NexusGenInputs {
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     userbookmarks?: NexusGenInputs['ComicBookmarkListRelationFilter'] | null; // ComicBookmarkListRelationFilter
     views?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    viewsDaily?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    viewsHourly?: NexusGenInputs['IntFilter'] | null; // IntFilter
     viewsWeek?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   ComicWhereUniqueInput: { // input type
@@ -3724,7 +3819,6 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     isAdmin?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    password?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserCreateInput: { // input type
@@ -3735,7 +3829,6 @@ export interface NexusGenInputs {
     email: string; // String!
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     reports?: NexusGenInputs['ReportCreateNestedManyWithoutUserInput'] | null; // ReportCreateNestedManyWithoutUserInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -3746,7 +3839,6 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserCreateNestedOneWithoutChapterbookmarksInput: { // input type
@@ -3783,7 +3875,6 @@ export interface NexusGenInputs {
     email: string; // String!
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     reports?: NexusGenInputs['ReportCreateNestedManyWithoutUserInput'] | null; // ReportCreateNestedManyWithoutUserInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -3794,7 +3885,6 @@ export interface NexusGenInputs {
     email: string; // String!
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     reports?: NexusGenInputs['ReportCreateNestedManyWithoutUserInput'] | null; // ReportCreateNestedManyWithoutUserInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -3806,7 +3896,6 @@ export interface NexusGenInputs {
     email: string; // String!
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserMaxOrderByAggregateInput: { // input type
@@ -3816,7 +3905,6 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     isAdmin?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    password?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserMinOrderByAggregateInput: { // input type
@@ -3826,7 +3914,6 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     isAdmin?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    password?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserOrderByWithAggregationInput: { // input type
@@ -3841,7 +3928,6 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     isAdmin?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    password?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserOrderByWithRelationInput: { // input type
@@ -3853,7 +3939,6 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     isAdmin?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    password?: NexusGenEnums['SortOrder'] | null; // SortOrder
     reports?: NexusGenInputs['ReportOrderByRelationAggregateInput'] | null; // ReportOrderByRelationAggregateInput
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
@@ -3871,7 +3956,6 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     isAdmin?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
     name?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
-    password?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     updatedAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
   }
   UserSumOrderByAggregateInput: { // input type
@@ -3886,7 +3970,6 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     reports?: NexusGenInputs['ReportUncheckedCreateNestedManyWithoutUserInput'] | null; // ReportUncheckedCreateNestedManyWithoutUserInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -3898,7 +3981,6 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     reports?: NexusGenInputs['ReportUncheckedCreateNestedManyWithoutUserInput'] | null; // ReportUncheckedCreateNestedManyWithoutUserInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -3910,7 +3992,6 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     reports?: NexusGenInputs['ReportUncheckedCreateNestedManyWithoutUserInput'] | null; // ReportUncheckedCreateNestedManyWithoutUserInput
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -3923,7 +4004,6 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password: string; // String!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserUncheckedUpdateInput: { // input type
@@ -3935,7 +4015,6 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     reports?: NexusGenInputs['ReportUncheckedUpdateManyWithoutUserInput'] | null; // ReportUncheckedUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -3946,7 +4025,6 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   UserUncheckedUpdateWithoutChapterbookmarksInput: { // input type
@@ -3957,7 +4035,6 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     reports?: NexusGenInputs['ReportUncheckedUpdateManyWithoutUserInput'] | null; // ReportUncheckedUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -3969,7 +4046,6 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     reports?: NexusGenInputs['ReportUncheckedUpdateManyWithoutUserInput'] | null; // ReportUncheckedUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -3982,7 +4058,6 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   UserUpdateInput: { // input type
@@ -3993,7 +4068,6 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     reports?: NexusGenInputs['ReportUpdateManyWithoutUserInput'] | null; // ReportUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -4003,7 +4077,6 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   UserUpdateOneRequiredWithoutChapterbookmarksInput: { // input type
@@ -4036,7 +4109,6 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     reports?: NexusGenInputs['ReportUpdateManyWithoutUserInput'] | null; // ReportUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -4047,7 +4119,6 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     reports?: NexusGenInputs['ReportUpdateManyWithoutUserInput'] | null; // ReportUpdateManyWithoutUserInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
@@ -4059,7 +4130,6 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     isAdmin?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    password?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     updatedAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
   }
   UserUpsertWithoutChapterbookmarksInput: { // input type
@@ -4086,7 +4156,6 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     isAdmin?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     name?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    password?: NexusGenInputs['StringFilter'] | null; // StringFilter
     reports?: NexusGenInputs['ReportListRelationFilter'] | null; // ReportListRelationFilter
     updatedAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
   }
@@ -4102,9 +4171,9 @@ export interface NexusGenEnums {
   AuthorScalarFieldEnum: "createdAt" | "id" | "name" | "slug" | "updatedAt"
   ChapterBookmarkScalarFieldEnum: "chapterId" | "createdAt" | "id" | "updatedAt" | "userId"
   ChapterQuality: "HQ" | "LQ" | "NORMAL"
-  ChapterScalarFieldEnum: "comicId" | "createdAt" | "id" | "imageCount" | "imageDetails" | "imageUrls" | "name" | "originalImageCount" | "processed" | "quality" | "title" | "updatedAt" | "views"
+  ChapterScalarFieldEnum: "batchs" | "comicId" | "createdAt" | "id" | "imageCount" | "imageDetails" | "imageUrls" | "name" | "originalImageCount" | "processed" | "quality" | "title" | "updatedAt" | "views"
   ComicBookmarkScalarFieldEnum: "comicId" | "createdAt" | "id" | "updatedAt" | "userId"
-  ComicScalarFieldEnum: "age" | "altName" | "authorId" | "concept" | "createdAt" | "description" | "id" | "isHentai" | "lastChapterUpdateAt" | "name" | "rating" | "released" | "slug" | "status" | "thumb" | "thumbWide" | "type" | "updatedAt" | "views" | "viewsWeek"
+  ComicScalarFieldEnum: "age" | "altName" | "authorId" | "concept" | "createdAt" | "description" | "id" | "isHentai" | "lastChapterUpdateAt" | "name" | "rating" | "released" | "slug" | "status" | "thumb" | "thumbWide" | "type" | "updatedAt" | "views" | "viewsDaily" | "viewsHourly" | "viewsWeek"
   GenreScalarFieldEnum: "createdAt" | "id" | "name" | "slug" | "updatedAt"
   JsonNullValueFilter: "AnyNull" | "DbNull" | "JsonNull"
   MissingScalarFieldEnum: "context" | "createdAt" | "data" | "id" | "resolved" | "updatedAt"
@@ -4308,6 +4377,7 @@ export interface NexusGenObjects {
     count: number; // Int!
   }
   Chapter: { // root type
+    batchs?: string | null; // String
     comicId: number; // Int!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: number; // Int!
@@ -4371,6 +4441,7 @@ export interface NexusGenObjects {
   }
   ChapterCountAggregateOutputType: { // root type
     _all: number; // Int!
+    batchs: number; // Int!
     comicId: number; // Int!
     createdAt: number; // Int!
     id: number; // Int!
@@ -4389,6 +4460,7 @@ export interface NexusGenObjects {
     chapterbookmarks: number; // Int!
   }
   ChapterMaxAggregateOutputType: { // root type
+    batchs?: string | null; // String
     comicId?: number | null; // Int
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
@@ -4402,6 +4474,7 @@ export interface NexusGenObjects {
     views?: number | null; // Int
   }
   ChapterMinAggregateOutputType: { // root type
+    batchs?: string | null; // String
     comicId?: number | null; // Int
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
@@ -4442,6 +4515,8 @@ export interface NexusGenObjects {
     type: string; // String!
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     views: number; // Int!
+    viewsDaily: number; // Int!
+    viewsHourly: number; // Int!
     viewsWeek: number; // Int!
   }
   ComicAvgAggregateOutputType: { // root type
@@ -4449,6 +4524,8 @@ export interface NexusGenObjects {
     id?: number | null; // Float
     rating?: number | null; // Float
     views?: number | null; // Float
+    viewsDaily?: number | null; // Float
+    viewsHourly?: number | null; // Float
     viewsWeek?: number | null; // Float
   }
   ComicBookmark: { // root type
@@ -4511,6 +4588,8 @@ export interface NexusGenObjects {
     type: number; // Int!
     updatedAt: number; // Int!
     views: number; // Int!
+    viewsDaily: number; // Int!
+    viewsHourly: number; // Int!
     viewsWeek: number; // Int!
   }
   ComicCountOutputType: { // root type
@@ -4537,6 +4616,8 @@ export interface NexusGenObjects {
     type?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicMinAggregateOutputType: { // root type
@@ -4558,6 +4639,8 @@ export interface NexusGenObjects {
     type?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   ComicSearch: { // root type
@@ -4573,6 +4656,8 @@ export interface NexusGenObjects {
     id?: number | null; // Int
     rating?: number | null; // Float
     views?: number | null; // Int
+    viewsDaily?: number | null; // Int
+    viewsHourly?: number | null; // Int
     viewsWeek?: number | null; // Int
   }
   Genre: { // root type
@@ -4789,7 +4874,6 @@ export interface NexusGenObjects {
     id: number; // Int!
     isAdmin: number; // Int!
     name: number; // Int!
-    password: number; // Int!
     updatedAt: number; // Int!
   }
   UserCountOutputType: { // root type
@@ -4804,7 +4888,6 @@ export interface NexusGenObjects {
     id?: number | null; // Int
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserMinAggregateOutputType: { // root type
@@ -4814,7 +4897,6 @@ export interface NexusGenObjects {
     id?: number | null; // Int
     isAdmin?: boolean | null; // Boolean
     name?: string | null; // String
-    password?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserSumAggregateOutputType: { // root type
@@ -5014,6 +5096,7 @@ export interface NexusGenFieldTypes {
   }
   Chapter: { // field return type
     _count: NexusGenRootTypes['ChapterCountOutputType']; // ChapterCountOutputType!
+    batchs: string | null; // String
     chapterbookmarks: NexusGenRootTypes['ChapterBookmark'][]; // [ChapterBookmark!]!
     comic: NexusGenRootTypes['Comic']; // Comic!
     comicId: number; // Int!
@@ -5081,6 +5164,7 @@ export interface NexusGenFieldTypes {
   }
   ChapterCountAggregateOutputType: { // field return type
     _all: number; // Int!
+    batchs: number; // Int!
     comicId: number; // Int!
     createdAt: number; // Int!
     id: number; // Int!
@@ -5099,6 +5183,7 @@ export interface NexusGenFieldTypes {
     chapterbookmarks: number; // Int!
   }
   ChapterMaxAggregateOutputType: { // field return type
+    batchs: string | null; // String
     comicId: number | null; // Int
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: number | null; // Int
@@ -5112,6 +5197,7 @@ export interface NexusGenFieldTypes {
     views: number | null; // Int
   }
   ChapterMinAggregateOutputType: { // field return type
+    batchs: string | null; // String
     comicId: number | null; // Int
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: number | null; // Int
@@ -5157,6 +5243,8 @@ export interface NexusGenFieldTypes {
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     userbookmarks: NexusGenRootTypes['ComicBookmark'][]; // [ComicBookmark!]!
     views: number; // Int!
+    viewsDaily: number; // Int!
+    viewsHourly: number; // Int!
     viewsWeek: number; // Int!
   }
   ComicAvgAggregateOutputType: { // field return type
@@ -5164,6 +5252,8 @@ export interface NexusGenFieldTypes {
     id: number | null; // Float
     rating: number | null; // Float
     views: number | null; // Float
+    viewsDaily: number | null; // Float
+    viewsHourly: number | null; // Float
     viewsWeek: number | null; // Float
   }
   ComicBookmark: { // field return type
@@ -5228,6 +5318,8 @@ export interface NexusGenFieldTypes {
     type: number; // Int!
     updatedAt: number; // Int!
     views: number; // Int!
+    viewsDaily: number; // Int!
+    viewsHourly: number; // Int!
     viewsWeek: number; // Int!
   }
   ComicCountOutputType: { // field return type
@@ -5254,6 +5346,8 @@ export interface NexusGenFieldTypes {
     type: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
     views: number | null; // Int
+    viewsDaily: number | null; // Int
+    viewsHourly: number | null; // Int
     viewsWeek: number | null; // Int
   }
   ComicMinAggregateOutputType: { // field return type
@@ -5275,6 +5369,8 @@ export interface NexusGenFieldTypes {
     type: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
     views: number | null; // Int
+    viewsDaily: number | null; // Int
+    viewsHourly: number | null; // Int
     viewsWeek: number | null; // Int
   }
   ComicSearch: { // field return type
@@ -5290,6 +5386,8 @@ export interface NexusGenFieldTypes {
     id: number | null; // Int
     rating: number | null; // Float
     views: number | null; // Int
+    viewsDaily: number | null; // Int
+    viewsHourly: number | null; // Int
     viewsWeek: number | null; // Int
   }
   Genre: { // field return type
@@ -5557,6 +5655,7 @@ export interface NexusGenFieldTypes {
     findUniqueReport: NexusGenRootTypes['Report'] | null; // Report
     findUniqueUser: NexusGenRootTypes['User'] | null; // User
     genreSearch: NexusGenRootTypes['AuthorSearch'] | null; // AuthorSearch
+    test: boolean | null; // Boolean
   }
   Report: { // field return type
     contextIdentifier: string; // String!
@@ -5645,7 +5744,6 @@ export interface NexusGenFieldTypes {
     id: number; // Int!
     isAdmin: number; // Int!
     name: number; // Int!
-    password: number; // Int!
     updatedAt: number; // Int!
   }
   UserCountOutputType: { // field return type
@@ -5660,7 +5758,6 @@ export interface NexusGenFieldTypes {
     id: number | null; // Int
     isAdmin: boolean | null; // Boolean
     name: string | null; // String
-    password: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserMinAggregateOutputType: { // field return type
@@ -5670,7 +5767,6 @@ export interface NexusGenFieldTypes {
     id: number | null; // Int
     isAdmin: boolean | null; // Boolean
     name: string | null; // String
-    password: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
   UserSumAggregateOutputType: { // field return type
@@ -5860,6 +5956,7 @@ export interface NexusGenFieldTypeNames {
   }
   Chapter: { // field return type name
     _count: 'ChapterCountOutputType'
+    batchs: 'String'
     chapterbookmarks: 'ChapterBookmark'
     comic: 'Comic'
     comicId: 'Int'
@@ -5927,6 +6024,7 @@ export interface NexusGenFieldTypeNames {
   }
   ChapterCountAggregateOutputType: { // field return type name
     _all: 'Int'
+    batchs: 'Int'
     comicId: 'Int'
     createdAt: 'Int'
     id: 'Int'
@@ -5945,6 +6043,7 @@ export interface NexusGenFieldTypeNames {
     chapterbookmarks: 'Int'
   }
   ChapterMaxAggregateOutputType: { // field return type name
+    batchs: 'String'
     comicId: 'Int'
     createdAt: 'DateTime'
     id: 'Int'
@@ -5958,6 +6057,7 @@ export interface NexusGenFieldTypeNames {
     views: 'Int'
   }
   ChapterMinAggregateOutputType: { // field return type name
+    batchs: 'String'
     comicId: 'Int'
     createdAt: 'DateTime'
     id: 'Int'
@@ -6003,6 +6103,8 @@ export interface NexusGenFieldTypeNames {
     updatedAt: 'DateTime'
     userbookmarks: 'ComicBookmark'
     views: 'Int'
+    viewsDaily: 'Int'
+    viewsHourly: 'Int'
     viewsWeek: 'Int'
   }
   ComicAvgAggregateOutputType: { // field return type name
@@ -6010,6 +6112,8 @@ export interface NexusGenFieldTypeNames {
     id: 'Float'
     rating: 'Float'
     views: 'Float'
+    viewsDaily: 'Float'
+    viewsHourly: 'Float'
     viewsWeek: 'Float'
   }
   ComicBookmark: { // field return type name
@@ -6074,6 +6178,8 @@ export interface NexusGenFieldTypeNames {
     type: 'Int'
     updatedAt: 'Int'
     views: 'Int'
+    viewsDaily: 'Int'
+    viewsHourly: 'Int'
     viewsWeek: 'Int'
   }
   ComicCountOutputType: { // field return type name
@@ -6100,6 +6206,8 @@ export interface NexusGenFieldTypeNames {
     type: 'String'
     updatedAt: 'DateTime'
     views: 'Int'
+    viewsDaily: 'Int'
+    viewsHourly: 'Int'
     viewsWeek: 'Int'
   }
   ComicMinAggregateOutputType: { // field return type name
@@ -6121,6 +6229,8 @@ export interface NexusGenFieldTypeNames {
     type: 'String'
     updatedAt: 'DateTime'
     views: 'Int'
+    viewsDaily: 'Int'
+    viewsHourly: 'Int'
     viewsWeek: 'Int'
   }
   ComicSearch: { // field return type name
@@ -6136,6 +6246,8 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     rating: 'Float'
     views: 'Int'
+    viewsDaily: 'Int'
+    viewsHourly: 'Int'
     viewsWeek: 'Int'
   }
   Genre: { // field return type name
@@ -6403,6 +6515,7 @@ export interface NexusGenFieldTypeNames {
     findUniqueReport: 'Report'
     findUniqueUser: 'User'
     genreSearch: 'AuthorSearch'
+    test: 'Boolean'
   }
   Report: { // field return type name
     contextIdentifier: 'String'
@@ -6491,7 +6604,6 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     isAdmin: 'Int'
     name: 'Int'
-    password: 'Int'
     updatedAt: 'Int'
   }
   UserCountOutputType: { // field return type name
@@ -6506,7 +6618,6 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     isAdmin: 'Boolean'
     name: 'String'
-    password: 'String'
     updatedAt: 'DateTime'
   }
   UserMinAggregateOutputType: { // field return type name
@@ -6516,7 +6627,6 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     isAdmin: 'Boolean'
     name: 'String'
-    password: 'String'
     updatedAt: 'DateTime'
   }
   UserSumAggregateOutputType: { // field return type name

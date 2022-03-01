@@ -616,6 +616,7 @@ input BoolWithAggregatesFilter {
 
 type Chapter {
   _count: ChapterCountOutputType!
+  batchs: String
   chapterbookmarks(cursor: ChapterBookmarkWhereUniqueInput, distinct: ChapterBookmarkScalarFieldEnum, orderBy: ChapterBookmarkOrderByWithRelationInput, skip: Int, take: Int, where: ChapterBookmarkWhereInput): [ChapterBookmark!]!
   comic: Comic!
   comicId: Int!
@@ -1076,6 +1077,7 @@ input ChapterBookmarkWhereUniqueInput {
 
 type ChapterCountAggregateOutputType {
   _all: Int!
+  batchs: Int!
   comicId: Int!
   createdAt: Int!
   id: Int!
@@ -1092,6 +1094,7 @@ type ChapterCountAggregateOutputType {
 }
 
 input ChapterCountOrderByAggregateInput {
+  batchs: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
@@ -1112,6 +1115,7 @@ type ChapterCountOutputType {
 }
 
 input ChapterCreateInput {
+  batchs: String
   chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutChapterInput
   comic: ComicCreateNestedOneWithoutChaptersInput!
   createdAt: DateTime
@@ -1128,6 +1132,7 @@ input ChapterCreateInput {
 }
 
 input ChapterCreateManyComicInput {
+  batchs: String
   createdAt: DateTime
   id: Int
   imageCount: Int
@@ -1148,6 +1153,7 @@ input ChapterCreateManyComicInputEnvelope {
 }
 
 input ChapterCreateManyInput {
+  batchs: String
   comicId: Int!
   createdAt: DateTime
   id: Int
@@ -1191,6 +1197,7 @@ input ChapterCreateOrConnectWithoutComicInput {
 }
 
 input ChapterCreateWithoutChapterbookmarksInput {
+  batchs: String
   comic: ComicCreateNestedOneWithoutChaptersInput!
   createdAt: DateTime
   imageCount: Int
@@ -1206,6 +1213,7 @@ input ChapterCreateWithoutChapterbookmarksInput {
 }
 
 input ChapterCreateWithoutComicInput {
+  batchs: String
   chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutChapterInput
   createdAt: DateTime
   imageCount: Int
@@ -1231,6 +1239,7 @@ input ChapterListRelationFilter {
 }
 
 type ChapterMaxAggregateOutputType {
+  batchs: String
   comicId: Int
   createdAt: DateTime
   id: Int
@@ -1245,6 +1254,7 @@ type ChapterMaxAggregateOutputType {
 }
 
 input ChapterMaxOrderByAggregateInput {
+  batchs: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
@@ -1259,6 +1269,7 @@ input ChapterMaxOrderByAggregateInput {
 }
 
 type ChapterMinAggregateOutputType {
+  batchs: String
   comicId: Int
   createdAt: DateTime
   id: Int
@@ -1273,6 +1284,7 @@ type ChapterMinAggregateOutputType {
 }
 
 input ChapterMinOrderByAggregateInput {
+  batchs: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
@@ -1296,6 +1308,7 @@ input ChapterOrderByWithAggregationInput {
   _max: ChapterMaxOrderByAggregateInput
   _min: ChapterMinOrderByAggregateInput
   _sum: ChapterSumOrderByAggregateInput
+  batchs: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
@@ -1312,6 +1325,7 @@ input ChapterOrderByWithAggregationInput {
 }
 
 input ChapterOrderByWithRelationInput {
+  batchs: SortOrder
   chapterbookmarks: ChapterBookmarkOrderByRelationAggregateInput
   comic: ComicOrderByWithRelationInput
   comicId: SortOrder
@@ -1341,6 +1355,7 @@ input ChapterRelationFilter {
 }
 
 enum ChapterScalarFieldEnum {
+  batchs
   comicId
   createdAt
   id
@@ -1360,6 +1375,7 @@ input ChapterScalarWhereInput {
   AND: [ChapterScalarWhereInput]
   NOT: [ChapterScalarWhereInput]
   OR: [ChapterScalarWhereInput]
+  batchs: StringNullableFilter
   comicId: IntFilter
   createdAt: DateTimeFilter
   id: IntFilter
@@ -1379,6 +1395,7 @@ input ChapterScalarWhereWithAggregatesInput {
   AND: [ChapterScalarWhereWithAggregatesInput]
   NOT: [ChapterScalarWhereWithAggregatesInput]
   OR: [ChapterScalarWhereWithAggregatesInput]
+  batchs: StringNullableWithAggregatesFilter
   comicId: IntWithAggregatesFilter
   createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
@@ -1413,6 +1430,7 @@ input ChapterSumOrderByAggregateInput {
 }
 
 input ChapterUncheckedCreateInput {
+  batchs: String
   chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput
   comicId: Int!
   createdAt: DateTime
@@ -1437,6 +1455,7 @@ input ChapterUncheckedCreateNestedManyWithoutComicInput {
 }
 
 input ChapterUncheckedCreateWithoutChapterbookmarksInput {
+  batchs: String
   comicId: Int!
   createdAt: DateTime
   id: Int
@@ -1453,6 +1472,7 @@ input ChapterUncheckedCreateWithoutChapterbookmarksInput {
 }
 
 input ChapterUncheckedCreateWithoutComicInput {
+  batchs: String
   chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput
   createdAt: DateTime
   id: Int
@@ -1469,6 +1489,7 @@ input ChapterUncheckedCreateWithoutComicInput {
 }
 
 input ChapterUncheckedUpdateInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutChapterInput
   comicId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -1486,6 +1507,7 @@ input ChapterUncheckedUpdateInput {
 }
 
 input ChapterUncheckedUpdateManyInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   comicId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -1502,6 +1524,7 @@ input ChapterUncheckedUpdateManyInput {
 }
 
 input ChapterUncheckedUpdateManyWithoutChaptersInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
@@ -1531,6 +1554,7 @@ input ChapterUncheckedUpdateManyWithoutComicInput {
 }
 
 input ChapterUncheckedUpdateWithoutChapterbookmarksInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   comicId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -1547,6 +1571,7 @@ input ChapterUncheckedUpdateWithoutChapterbookmarksInput {
 }
 
 input ChapterUncheckedUpdateWithoutComicInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutChapterInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -1563,6 +1588,7 @@ input ChapterUncheckedUpdateWithoutComicInput {
 }
 
 input ChapterUpdateInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   chapterbookmarks: ChapterBookmarkUpdateManyWithoutChapterInput
   comic: ComicUpdateOneRequiredWithoutChaptersInput
   createdAt: DateTimeFieldUpdateOperationsInput
@@ -1579,6 +1605,7 @@ input ChapterUpdateInput {
 }
 
 input ChapterUpdateManyMutationInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
@@ -1625,6 +1652,7 @@ input ChapterUpdateWithWhereUniqueWithoutComicInput {
 }
 
 input ChapterUpdateWithoutChapterbookmarksInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   comic: ComicUpdateOneRequiredWithoutChaptersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
@@ -1640,6 +1668,7 @@ input ChapterUpdateWithoutChapterbookmarksInput {
 }
 
 input ChapterUpdateWithoutComicInput {
+  batchs: NullableStringFieldUpdateOperationsInput
   chapterbookmarks: ChapterBookmarkUpdateManyWithoutChapterInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
@@ -1674,6 +1703,7 @@ input ChapterWhereInput {
   AND: [ChapterWhereInput]
   NOT: [ChapterWhereInput]
   OR: [ChapterWhereInput]
+  batchs: StringNullableFilter
   chapterbookmarks: ChapterBookmarkListRelationFilter
   comic: ComicWhereInput
   comicId: IntFilter
@@ -1720,6 +1750,8 @@ type Comic {
   updatedAt: DateTime!
   userbookmarks(cursor: ComicBookmarkWhereUniqueInput, distinct: ComicBookmarkScalarFieldEnum, orderBy: ComicBookmarkOrderByWithRelationInput, skip: Int, take: Int, where: ComicBookmarkWhereInput): [ComicBookmark!]!
   views: Int!
+  viewsDaily: Int!
+  viewsHourly: Int!
   viewsWeek: Int!
 }
 
@@ -1728,6 +1760,8 @@ type ComicAvgAggregateOutputType {
   id: Float
   rating: Float
   views: Float
+  viewsDaily: Float
+  viewsHourly: Float
   viewsWeek: Float
 }
 
@@ -1736,6 +1770,8 @@ input ComicAvgOrderByAggregateInput {
   id: SortOrder
   rating: SortOrder
   views: SortOrder
+  viewsDaily: SortOrder
+  viewsHourly: SortOrder
   viewsWeek: SortOrder
 }
 
@@ -2190,6 +2226,8 @@ type ComicCountAggregateOutputType {
   type: Int!
   updatedAt: Int!
   views: Int!
+  viewsDaily: Int!
+  viewsHourly: Int!
   viewsWeek: Int!
 }
 
@@ -2213,6 +2251,8 @@ input ComicCountOrderByAggregateInput {
   type: SortOrder
   updatedAt: SortOrder
   views: SortOrder
+  viewsDaily: SortOrder
+  viewsHourly: SortOrder
   viewsWeek: SortOrder
 }
 
@@ -2244,6 +2284,8 @@ input ComicCreateInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2266,6 +2308,8 @@ input ComicCreateManyAuthorInput {
   type: String!
   updatedAt: DateTime
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2294,6 +2338,8 @@ input ComicCreateManyInput {
   type: String!
   updatedAt: DateTime
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2363,6 +2409,8 @@ input ComicCreateWithoutAuthorInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2387,6 +2435,8 @@ input ComicCreateWithoutChaptersInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2411,6 +2461,8 @@ input ComicCreateWithoutGenresInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2435,6 +2487,8 @@ input ComicCreateWithoutUserbookmarksInput {
   type: String!
   updatedAt: DateTime
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2463,6 +2517,8 @@ type ComicMaxAggregateOutputType {
   type: String
   updatedAt: DateTime
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2485,6 +2541,8 @@ input ComicMaxOrderByAggregateInput {
   type: SortOrder
   updatedAt: SortOrder
   views: SortOrder
+  viewsDaily: SortOrder
+  viewsHourly: SortOrder
   viewsWeek: SortOrder
 }
 
@@ -2507,6 +2565,8 @@ type ComicMinAggregateOutputType {
   type: String
   updatedAt: DateTime
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2529,6 +2589,8 @@ input ComicMinOrderByAggregateInput {
   type: SortOrder
   updatedAt: SortOrder
   views: SortOrder
+  viewsDaily: SortOrder
+  viewsHourly: SortOrder
   viewsWeek: SortOrder
 }
 
@@ -2561,6 +2623,8 @@ input ComicOrderByWithAggregationInput {
   type: SortOrder
   updatedAt: SortOrder
   views: SortOrder
+  viewsDaily: SortOrder
+  viewsHourly: SortOrder
   viewsWeek: SortOrder
 }
 
@@ -2588,6 +2652,8 @@ input ComicOrderByWithRelationInput {
   updatedAt: SortOrder
   userbookmarks: ComicBookmarkOrderByRelationAggregateInput
   views: SortOrder
+  viewsDaily: SortOrder
+  viewsHourly: SortOrder
   viewsWeek: SortOrder
 }
 
@@ -2616,6 +2682,8 @@ enum ComicScalarFieldEnum {
   type
   updatedAt
   views
+  viewsDaily
+  viewsHourly
   viewsWeek
 }
 
@@ -2642,6 +2710,8 @@ input ComicScalarWhereInput {
   type: StringFilter
   updatedAt: DateTimeFilter
   views: IntFilter
+  viewsDaily: IntFilter
+  viewsHourly: IntFilter
   viewsWeek: IntFilter
 }
 
@@ -2668,6 +2738,8 @@ input ComicScalarWhereWithAggregatesInput {
   type: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
   views: IntWithAggregatesFilter
+  viewsDaily: IntWithAggregatesFilter
+  viewsHourly: IntWithAggregatesFilter
   viewsWeek: IntWithAggregatesFilter
 }
 
@@ -2685,6 +2757,8 @@ type ComicSumAggregateOutputType {
   id: Int
   rating: Float
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2693,6 +2767,8 @@ input ComicSumOrderByAggregateInput {
   id: SortOrder
   rating: SortOrder
   views: SortOrder
+  viewsDaily: SortOrder
+  viewsHourly: SortOrder
   viewsWeek: SortOrder
 }
 
@@ -2718,6 +2794,8 @@ input ComicUncheckedCreateInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2749,6 +2827,8 @@ input ComicUncheckedCreateWithoutAuthorInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2773,6 +2853,8 @@ input ComicUncheckedCreateWithoutChaptersInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2798,6 +2880,8 @@ input ComicUncheckedCreateWithoutGenresInput {
   updatedAt: DateTime
   userbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutComicInput
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2822,6 +2906,8 @@ input ComicUncheckedCreateWithoutUserbookmarksInput {
   type: String!
   updatedAt: DateTime
   views: Int
+  viewsDaily: Int
+  viewsHourly: Int
   viewsWeek: Int
 }
 
@@ -2847,6 +2933,8 @@ input ComicUncheckedUpdateInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUncheckedUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -2870,6 +2958,8 @@ input ComicUncheckedUpdateManyInput {
   type: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -2906,6 +2996,8 @@ input ComicUncheckedUpdateManyWithoutComicsInput {
   type: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -2930,6 +3022,8 @@ input ComicUncheckedUpdateWithoutAuthorInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUncheckedUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -2954,6 +3048,8 @@ input ComicUncheckedUpdateWithoutChaptersInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUncheckedUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -2979,6 +3075,8 @@ input ComicUncheckedUpdateWithoutGenresInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUncheckedUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3003,6 +3101,8 @@ input ComicUncheckedUpdateWithoutUserbookmarksInput {
   type: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3028,6 +3128,8 @@ input ComicUpdateInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3049,6 +3151,8 @@ input ComicUpdateManyMutationInput {
   type: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3136,6 +3240,8 @@ input ComicUpdateWithoutAuthorInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3160,6 +3266,8 @@ input ComicUpdateWithoutChaptersInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3184,6 +3292,8 @@ input ComicUpdateWithoutGenresInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
   userbookmarks: ComicBookmarkUpdateManyWithoutComicInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3208,6 +3318,8 @@ input ComicUpdateWithoutUserbookmarksInput {
   type: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   views: IntFieldUpdateOperationsInput
+  viewsDaily: IntFieldUpdateOperationsInput
+  viewsHourly: IntFieldUpdateOperationsInput
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
@@ -3260,6 +3372,8 @@ input ComicWhereInput {
   updatedAt: DateTimeFilter
   userbookmarks: ComicBookmarkListRelationFilter
   views: IntFilter
+  viewsDaily: IntFilter
+  viewsHourly: IntFilter
   viewsWeek: IntFilter
 }
 
@@ -4576,6 +4690,7 @@ type Query {
   findUniqueReport(where: ReportWhereUniqueInput!): Report
   findUniqueUser(where: UserWhereUniqueInput!): User
   genreSearch(limit: Int, offset: Int, query: String!): AuthorSearch
+  test: Boolean
 }
 
 enum QueryMode {
@@ -5127,7 +5242,6 @@ type UserCountAggregateOutputType {
   id: Int!
   isAdmin: Int!
   name: Int!
-  password: Int!
   updatedAt: Int!
 }
 
@@ -5138,7 +5252,6 @@ input UserCountOrderByAggregateInput {
   id: SortOrder
   isAdmin: SortOrder
   name: SortOrder
-  password: SortOrder
   updatedAt: SortOrder
 }
 
@@ -5156,7 +5269,6 @@ input UserCreateInput {
   email: String!
   isAdmin: Boolean
   name: String
-  password: String!
   reports: ReportCreateNestedManyWithoutUserInput
   updatedAt: DateTime
 }
@@ -5168,7 +5280,6 @@ input UserCreateManyInput {
   id: Int
   isAdmin: Boolean
   name: String
-  password: String!
   updatedAt: DateTime
 }
 
@@ -5212,7 +5323,6 @@ input UserCreateWithoutChapterbookmarksInput {
   email: String!
   isAdmin: Boolean
   name: String
-  password: String!
   reports: ReportCreateNestedManyWithoutUserInput
   updatedAt: DateTime
 }
@@ -5224,7 +5334,6 @@ input UserCreateWithoutComicbookmarksInput {
   email: String!
   isAdmin: Boolean
   name: String
-  password: String!
   reports: ReportCreateNestedManyWithoutUserInput
   updatedAt: DateTime
 }
@@ -5237,7 +5346,6 @@ input UserCreateWithoutReportsInput {
   email: String!
   isAdmin: Boolean
   name: String
-  password: String!
   updatedAt: DateTime
 }
 
@@ -5248,7 +5356,6 @@ type UserMaxAggregateOutputType {
   id: Int
   isAdmin: Boolean
   name: String
-  password: String
   updatedAt: DateTime
 }
 
@@ -5259,7 +5366,6 @@ input UserMaxOrderByAggregateInput {
   id: SortOrder
   isAdmin: SortOrder
   name: SortOrder
-  password: SortOrder
   updatedAt: SortOrder
 }
 
@@ -5270,7 +5376,6 @@ type UserMinAggregateOutputType {
   id: Int
   isAdmin: Boolean
   name: String
-  password: String
   updatedAt: DateTime
 }
 
@@ -5281,7 +5386,6 @@ input UserMinOrderByAggregateInput {
   id: SortOrder
   isAdmin: SortOrder
   name: SortOrder
-  password: SortOrder
   updatedAt: SortOrder
 }
 
@@ -5297,7 +5401,6 @@ input UserOrderByWithAggregationInput {
   id: SortOrder
   isAdmin: SortOrder
   name: SortOrder
-  password: SortOrder
   updatedAt: SortOrder
 }
 
@@ -5310,7 +5413,6 @@ input UserOrderByWithRelationInput {
   id: SortOrder
   isAdmin: SortOrder
   name: SortOrder
-  password: SortOrder
   reports: ReportOrderByRelationAggregateInput
   updatedAt: SortOrder
 }
@@ -5341,7 +5443,6 @@ input UserScalarWhereWithAggregatesInput {
   id: IntWithAggregatesFilter
   isAdmin: BoolWithAggregatesFilter
   name: StringNullableWithAggregatesFilter
-  password: StringWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
 }
 
@@ -5362,7 +5463,6 @@ input UserUncheckedCreateInput {
   id: Int
   isAdmin: Boolean
   name: String
-  password: String!
   reports: ReportUncheckedCreateNestedManyWithoutUserInput
   updatedAt: DateTime
 }
@@ -5375,7 +5475,6 @@ input UserUncheckedCreateWithoutChapterbookmarksInput {
   id: Int
   isAdmin: Boolean
   name: String
-  password: String!
   reports: ReportUncheckedCreateNestedManyWithoutUserInput
   updatedAt: DateTime
 }
@@ -5388,7 +5487,6 @@ input UserUncheckedCreateWithoutComicbookmarksInput {
   id: Int
   isAdmin: Boolean
   name: String
-  password: String!
   reports: ReportUncheckedCreateNestedManyWithoutUserInput
   updatedAt: DateTime
 }
@@ -5402,7 +5500,6 @@ input UserUncheckedCreateWithoutReportsInput {
   id: Int
   isAdmin: Boolean
   name: String
-  password: String!
   updatedAt: DateTime
 }
 
@@ -5415,7 +5512,6 @@ input UserUncheckedUpdateInput {
   id: IntFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   reports: ReportUncheckedUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -5427,7 +5523,6 @@ input UserUncheckedUpdateManyInput {
   id: IntFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -5439,7 +5534,6 @@ input UserUncheckedUpdateWithoutChapterbookmarksInput {
   id: IntFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   reports: ReportUncheckedUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -5452,7 +5546,6 @@ input UserUncheckedUpdateWithoutComicbookmarksInput {
   id: IntFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   reports: ReportUncheckedUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -5466,7 +5559,6 @@ input UserUncheckedUpdateWithoutReportsInput {
   id: IntFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -5478,7 +5570,6 @@ input UserUpdateInput {
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   reports: ReportUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -5489,7 +5580,6 @@ input UserUpdateManyMutationInput {
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -5526,7 +5616,6 @@ input UserUpdateWithoutChapterbookmarksInput {
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   reports: ReportUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -5538,7 +5627,6 @@ input UserUpdateWithoutComicbookmarksInput {
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   reports: ReportUpdateManyWithoutUserInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -5551,7 +5639,6 @@ input UserUpdateWithoutReportsInput {
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
   name: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -5582,7 +5669,6 @@ input UserWhereInput {
   id: IntFilter
   isAdmin: BoolFilter
   name: StringNullableFilter
-  password: StringFilter
   reports: ReportListRelationFilter
   updatedAt: DateTimeFilter
 }
