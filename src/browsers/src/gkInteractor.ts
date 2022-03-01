@@ -110,6 +110,31 @@ export class gkInteractor {
 
   }
 
+
+  public static async uploadImage(url: string, path: string) {
+
+    try {
+      const { data: {
+        status,
+        message
+      } } = await axios.post(`${host}/upload`, {
+        url,
+        path
+      })
+
+      if (status) {
+        console.log(`Success Upload ${message}`);
+      }
+
+
+      return true;
+
+    } catch (error) {
+      throw error;
+    }
+
+  }
+
   public static async sanityEclipse(title: string, chapter: ChapterScrapepr) {
     //@ts-ignore
     if (chapter.image_count == 0) {

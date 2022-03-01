@@ -1,17 +1,17 @@
 import axios, { Axios, AxiosInstance } from "axios";
 import BunnyCDN from "../../modules/BunnyCDN";
-import { gkInteractor } from "./gkInteractor";
+import { gkInteractor } from './gkInteractor';
 import { Chapter, ChapterCandidate, Comic, ImageChapter } from './types';
 import Logger from "../../modules/Logger";
 import { slugify } from "../../modules/Helper";
+import { DOSpaces } from "../../modules/DOSpaces";
 export abstract class Scrapper {
 
-    private _bunny: BunnyCDN
     private _axios: AxiosInstance
     public _logger: Logger
 
     constructor() {
-        this._bunny = new BunnyCDN();
+
         this._axios = axios.create();
         this._logger = new Logger();
 
@@ -98,7 +98,7 @@ export abstract class Scrapper {
     public async downloadsImages(urls: ImageChapter[]) {
         const results = [];
         for (const x of urls) {
-            await this._bunny.downloadAndUpload(x.url, x.path);
+            await gkInteractor.uploadImage(x.url, x.path);
             results.push(x.path);
         }
 

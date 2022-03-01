@@ -72,7 +72,6 @@ async function main() {
 
             console.log(`${idx}/${length} processed ${comic.slug} ${comic.thumb} ${comic.thumbWide}`)
         } catch (error: any) {
-            console.log(error.response.status == 404 ? "404" : error.response.status)
             notFound.push(comic.slug)
         }
 

@@ -2,15 +2,19 @@ import { PutObjectCommandInput, S3Client } from '@aws-sdk/client-s3';
 import { Upload } from "@aws-sdk/lib-storage";
 import axios, { AxiosInstance } from 'axios';
 import { SPACES_MAIN_KEY, SPACES_SECRET } from './Key';
-import sharp from "sharp";
 
+interface ClassProp {
+    downloadResponseType?: "arraybuffer" | "blob" | "document" | "json" | "text"
+}
 export class DOSpaces {
     private s3Client: S3Client;
     private start = new Date()
     private end = new Date()
     private axios: AxiosInstance
+    private downloadResponseType
 
-    constructor() {
+
+    constructor({ downloadResponseType }: ClassProp = {}) {
         if (!SPACES_MAIN_KEY || !SPACES_SECRET) {
 
             throw Error('SPACES KEY NOT FOUND')
@@ -27,6 +31,8 @@ export class DOSpaces {
                 secretAccessKey: SPACES_SECRET
             }
         });
+
+        this.downloadResponseType = downloadResponseType || "arraybuffer"
     }
 
 
@@ -50,6 +56,7 @@ export class DOSpaces {
 
         if (path.startsWith("/")) path = path.substring(1)
 
+        console.log(typeof f)
 
         const params: PutObjectCommandInput = {
             Bucket: "gudangkomik",
@@ -94,7 +101,7 @@ export class DOSpaces {
 
 
         const y = await this.axios.get(url, {
-            responseType: "arraybuffer",
+            responseType: this.downloadResponseType,
         });
 
 
@@ -114,7 +121,7 @@ export class DOSpaces {
 
             const result = await this.upload(pipe ? await pipe(file) : file, path)
             this._end();
-            // console.log(`[DOSpaces] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://testcdn.gudangkomik.com${path}`)
+            console.log(`[DOSpaces] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://testcdn.gudangkomik.com${path}`)
             return result
 
         } catch (error) {
