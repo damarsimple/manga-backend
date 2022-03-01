@@ -1,17 +1,21 @@
 import axios, { Axios, AxiosInstance } from "axios";
 import BunnyCDN from "../../modules/BunnyCDN";
-import { gkInteractor } from './gkInteractor';
+import { gkInteractor } from "./gkInteractor";
 import { Chapter, ChapterCandidate, Comic, ImageChapter } from './types';
 import Logger from "../../modules/Logger";
 import { slugify } from "../../modules/Helper";
 import { DOSpaces } from "../../modules/DOSpaces";
 export abstract class Scrapper {
 
+    private _bunny: DOSpaces
     private _axios: AxiosInstance
     public _logger: Logger
 
     constructor() {
-
+        this._bunny = new DOSpaces({
+            downloadResponseType: "blob",
+            log: true
+        });
         this._axios = axios.create();
         this._logger = new Logger();
 
@@ -98,7 +102,7 @@ export abstract class Scrapper {
     public async downloadsImages(urls: ImageChapter[]) {
         const results = [];
         for (const x of urls) {
-            await gkInteractor.uploadImage(x.url, x.path);
+            await this._bunny.downloadAndUpload(x.url, x.path);
             results.push(x.path);
         }
 
@@ -211,7 +215,6 @@ export abstract class Scrapper {
 
         let outer = 1;
 
-        const bunny = new BunnyCDN();
 
 
         interface ComicJob extends Comic {
@@ -248,7 +251,7 @@ export abstract class Scrapper {
 
                     try {
                         const { thumb, slug } = comic;
-                        bunny.downloadAndUpload(thumb, `/${slug}/thumb.jpg`);
+                        this._bunny.downloadAndUpload(thumb, `/${slug}/thumb.jpg`);
 
                         // if (thumbWide) {
 
@@ -318,17 +321,19 @@ export abstract class Scrapper {
                 const chapter = await this.getChapter(x.href, decl.annoying);
 
 
-                if (x.name != chapter.name) {
-                    if (comic.chaptersList.includes(chapter.name) || comic.chaptersList.includes(x.name)) {
-                        this._logger.warn(`${prefix} ${comic.slug} chapter name mismatch ${x.name} ${chapter.name} already exists skipping ...`)
-                        chapIdx++;
-                        continue
-                    }
-                    chapterExist?.push(`${comic.slug}-${chapter.name}`)
-                    chapterExist?.push(`${comic.slug}-${x.name}`)
-                } else {
-                    chapterExist?.push(`${comic.slug}-${chapter.name}`)
-                }
+                console.log(`sanity-check ${x.name} ${chapter.name}`)
+
+                // if (x.name != chapter.name) {
+                //     if (comic.chaptersList.includes(chapter.name) || comic.chaptersList.includes(x.name)) {
+                //         this._logger.warn(`${prefix} ${comic.slug} chapter name mismatch ${x.name} ${chapter.name} already exists skipping ...`)
+                //         chapIdx++;
+                //         continue
+                //     }
+                //     chapterExist?.push(`${comic.slug}-${chapter.name}`)
+                //     chapterExist?.push(`${comic.slug}-${x.name}`)
+                // } else {
+                //     chapterExist?.push(`${comic.slug}-${chapter.name}`)
+                // }
 
 
                 if (chapterExist && chapterExist.includes(`${comic.slug}-${chapter.name}`)) {

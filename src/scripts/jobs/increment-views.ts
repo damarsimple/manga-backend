@@ -20,7 +20,7 @@ const main = async () => {
 
     for (const [id, arr] of remaps) {
         const increment = arr.length
-        console.log(increment)
+
 
         await prisma.comic.update({
             where: {

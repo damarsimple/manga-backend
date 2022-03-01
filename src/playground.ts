@@ -1,4 +1,5 @@
 import { Comic } from "@prisma/client";
+import { mapLimit } from "async";
 import { gql, GraphQLClient } from "graphql-request";
 import sharp from "sharp";
 import { prisma } from "./modules/Context"
@@ -52,31 +53,49 @@ async function main() {
 
     const comics = findManyComic
 
-    const spaces = new DOSpaces()
+    const spaces = new DOSpaces({
+        log: true
+    })
 
-    let idx = 0;
+    // let idx = 0;
 
-    const length = comics.length
+    // const length = comics.length
 
-    const notFound = [];
+    // const notFound: string[] = [];
 
-    for (const comic of comics) {
-        try {
-            if (comic.thumb)
-                await spaces.downloadAndUpload(comic.thumb, comic.thumb.replace("https://cdn.gudangkomik.com", ""), compress)
+    // await mapLimit(comics, 30, async (comic, d) => {
+    //     try {
+    //         if (comic.thumb)
+    //             await spaces.downloadAndUpload(comic.thumb.replace("https://cdn.gudangkomik.com", "https://backupcdn.gudangkomik.com"), comic.thumb.replace("https://cdn.gudangkomik.com", ""), compress)
 
-            if (comic.thumbWide)
-                await spaces.downloadAndUpload(comic.thumbWide, comic.thumbWide.replace("https://cdn.gudangkomik.com", ""), compress)
+    //         if (comic.thumbWide)
+    //             await spaces.downloadAndUpload(comic.thumbWide.replace("https://cdn.gudangkomik.com", "https://backupcdn.gudangkomik.com"), comic.thumbWide.replace("https://cdn.gudangkomik.com", ""), compress)
 
 
 
-            console.log(`${idx}/${length} processed ${comic.slug} ${comic.thumb} ${comic.thumbWide}`)
-        } catch (error: any) {
-            notFound.push(comic.slug)
+    //         console.log(`${idx}/${length} processed ${comic.slug} ${comic.thumb} ${comic.thumbWide}`)
+    //     } catch (error: any) {
+    //         notFound.push(comic.slug)
+    //     }
+
+    //     idx++;
+    // })
+
+    // console.log(notFound)
+
+    const x = [
+        {
+            slug: "gyakkou-shita-akuyaku-reijou-wa-naze-ka-maryoku-wo-ushinattanode-shinsou-no-reijou-ni-narimasu",
+            thumb: "https://i2.wp.com/badut.towewew.xyz/uploads/2021/07/Komik-Gyakkou-Shita-Akuyaku-Reijou-wa-Naze-ka-Maryoku-wo-Ushinattanode-Shinsou-no-Reijou-ni-Narimasu.jpg?resize=214,315"
+        },
+        {
+            slug: "jiandao-lingtian",
+            thumb: "https://thumbnail.komiku.id/wp-content/uploads/2020/06/Manhua-Jiandao-Lingtian.jpg?w=225&quality=60"
         }
+    ]
 
-        idx++;
-
+    for (const b of x) {
+        await spaces.downloadAndUpload(b.thumb, `${b.slug}/thumb.jpg`, compress)
     }
 
 }

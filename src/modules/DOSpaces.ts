@@ -5,6 +5,7 @@ import { SPACES_MAIN_KEY, SPACES_SECRET } from './Key';
 
 interface ClassProp {
     downloadResponseType?: "arraybuffer" | "blob" | "document" | "json" | "text"
+    log?: boolean
 }
 export class DOSpaces {
     private s3Client: S3Client;
@@ -12,9 +13,10 @@ export class DOSpaces {
     private end = new Date()
     private axios: AxiosInstance
     private downloadResponseType
+    private log: boolean;
 
 
-    constructor({ downloadResponseType }: ClassProp = {}) {
+    constructor({ downloadResponseType, log }: ClassProp = {}) {
         if (!SPACES_MAIN_KEY || !SPACES_SECRET) {
 
             throw Error('SPACES KEY NOT FOUND')
@@ -33,6 +35,7 @@ export class DOSpaces {
         });
 
         this.downloadResponseType = downloadResponseType || "arraybuffer"
+        this.log = log || false
     }
 
 
@@ -56,7 +59,6 @@ export class DOSpaces {
 
         if (path.startsWith("/")) path = path.substring(1)
 
-        console.log(typeof f)
 
         const params: PutObjectCommandInput = {
             Bucket: "gudangkomik",
@@ -94,7 +96,8 @@ export class DOSpaces {
 
 
         } catch (err) {
-            console.log("Error", err);
+            this.log && console.log("Error", err);
+            throw err;
         }
     };
     public async download(url: string): Promise<Buffer> {
@@ -121,11 +124,11 @@ export class DOSpaces {
 
             const result = await this.upload(pipe ? await pipe(file) : file, path)
             this._end();
-            console.log(`[DOSpaces] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://testcdn.gudangkomik.com${path}`)
+            this.log && console.log(`[DOSpaces] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://testcdn.gudangkomik.com${path}`)
             return result
 
         } catch (error) {
-            console.log(`[DOSpaces] 📁 Error Download ${url} and Uploading https://testcdn.gudangkomik.com${path} ${error}`)
+            this.log && console.log(`[DOSpaces] 📁 Error Download ${url} and Uploading https://testcdn.gudangkomik.com${path} ${error}`)
 
             throw error;
         }
