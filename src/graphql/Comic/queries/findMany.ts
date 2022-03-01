@@ -12,33 +12,39 @@ export const ComicFindManyQuery = queryField('findManyComic', {
     distinct: list('ComicScalarFieldEnum'),
   },
   async resolve(_parent, args, { prisma, select, }, { operation }) {
-    const key = `${operation.name?.value}`
 
-    if (!key) {
-      return await prisma.comic.findMany({
-        ...args,
-        ...select,
-      })
-    }
+    return await prisma.comic.findMany({
+      ...args,
+      ...select,
+    })
 
-    connection.sadd('COMIC_FINDMANY', key);
+    // const key = `${operation.name?.value}`
 
+    // if (!key) {
+    //   return await prisma.comic.findMany({
+    //     ...args,
+    //     ...select,
+    //   })
+    // }
 
-    const data = await connection.get(key) as any
-
-
-    if (!data) {
-      const data = await prisma.comic.findMany({
-        ...args,
-        ...select,
-      })
-      connection.set(key, JSON.stringify(data), "EX", 60 * 5);
-
-      return data;
-    }
+    // connection.sadd('COMIC_FINDMANY', key);
 
 
-    return JSON.parse(data);
+    // const data = await connection.get(key) as any
+
+
+    // if (!data) {
+    //   const data = await prisma.comic.findMany({
+    //     ...args,
+    //     ...select,
+    //   })
+    //   connection.set(key, JSON.stringify(data), "EX", 60 * 5);
+
+    //   return data;
+    // }
+
+
+    // return JSON.parse(data);
   },
 })
 
