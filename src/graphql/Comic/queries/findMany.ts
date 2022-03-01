@@ -13,38 +13,38 @@ export const ComicFindManyQuery = queryField('findManyComic', {
   },
   async resolve(_parent, args, { prisma, select, }, { operation }) {
 
-    return await prisma.comic.findMany({
-      ...args,
-      ...select,
-    })
 
-    // const key = `${operation.name?.value}`
+    const isHentai = args.where?.isHentai?.equals ?? true
 
-    // if (!key) {
-    //   return await prisma.comic.findMany({
-    //     ...args,
-    //     ...select,
-    //   })
-    // }
+    const key = `${operation.name?.value}-${isHentai ? "with-hentai" : "without-hentai"}-${args.take}-${args.skip}-${Object.keys(select.select).join(",")}`
 
-    // connection.sadd('COMIC_FINDMANY', key);
+    console.log(key)
 
+    if (!key) {
+      return await prisma.comic.findMany({
+        ...args,
+        ...select,
+      })
+    }
 
-    // const data = await connection.get(key) as any
+    connection.sadd('COMIC_FINDMANY', key);
 
 
-    // if (!data) {
-    //   const data = await prisma.comic.findMany({
-    //     ...args,
-    //     ...select,
-    //   })
-    //   connection.set(key, JSON.stringify(data), "EX", 60 * 5);
-
-    //   return data;
-    // }
+    const data = await connection.get(key) as any
 
 
-    // return JSON.parse(data);
+    if (!data) {
+      const data = await prisma.comic.findMany({
+        ...args,
+        ...select,
+      })
+      connection.set(key, JSON.stringify(data), "EX", 60 * 5);
+
+      return data;
+    }
+
+
+    return JSON.parse(data);
   },
 })
 
