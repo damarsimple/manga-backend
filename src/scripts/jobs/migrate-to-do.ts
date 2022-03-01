@@ -8,6 +8,7 @@ import sharp from 'sharp';
 import { DOSpaces } from '../../modules/DOSpaces';
 import { QueueGetters } from 'bullmq';
 import { parallelLimit, map, mapLimit } from 'async';
+import { AxiosError, AxiosResponse } from 'axios';
 
 const sanityEclipse = gql`
 query Query($where: ChapterWhereInput, $take: Int, $skip: Int,$orderBy: [ChapterOrderByWithRelationInput]) {
@@ -126,9 +127,11 @@ const main = async () => {
 
         })
 
+        const notFound: number[] = [];
 
 
-        await mapLimit(chapters, 30, async (chapter, done) => {
+
+        await mapLimit(chapters, 15, async (chapter, done) => {
             const innerStart = new Date().getTime()
             let success = true;
             try {
@@ -156,7 +159,10 @@ const main = async () => {
 
 
             } catch (error) {
-                console.log(error);
+                const y = (error as any).response as AxiosResponse
+                if (y.status == 404) {
+                    notFound.push(chapter.id)
+                }
                 success = false;
             }
 
@@ -168,6 +174,24 @@ const main = async () => {
 
             times.push(innerDiff)
         });
+
+        for (const id of notFound) {
+
+            await client.request(updateChapter, {
+                "data": {
+                    "processed": {
+                        "set": false
+                    },
+                    "batchs": {
+                        "set": "404"
+                    }
+                },
+                "where": {
+                    "id": id
+                }
+            })
+
+        }
 
         const diff = new Date().getTime() - batchTimer;
 
