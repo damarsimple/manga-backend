@@ -18,9 +18,8 @@ export const ComicFindManyQuery = queryField('findManyComic', {
 
     const key = `${operation.name?.value}-${isHentai ? "with-hentai" : "without-hentai"}-${args.take}-${args.skip}-${Object.keys(select.select).join(",")}`
 
-    console.log(key)
 
-    if (!key) {
+    if (!operation.name?.value) {
       return await prisma.comic.findMany({
         ...args,
         ...select,
