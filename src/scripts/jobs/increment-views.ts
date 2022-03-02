@@ -1,5 +1,6 @@
 import { prisma } from '../../modules/Context';
 import { connection } from '../../modules/Redis';
+import { parentPort } from "worker_threads";
 
 
 const main = async () => {
@@ -74,6 +75,9 @@ const main = async () => {
     await connection.del('chapters-views')
 
     console.log(`add views ${(new Date).toISOString()}`);
+
+    if (parentPort) parentPort.postMessage('done');
+    else process.exit(0);
 }
 
 main()

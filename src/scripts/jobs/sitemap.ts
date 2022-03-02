@@ -4,6 +4,7 @@ import {
     writeFileSync
 } from "fs"
 import { prisma } from '../../modules/Context';
+import { parentPort } from "worker_threads";
 
 
 const { SITEMAP_PATH } = process.env;
@@ -67,6 +68,11 @@ const generate = async () => {
     writeFileSync(`${SITEMAP_PATH}/sitemap.xml`, sitemap.generate());
 
     console.log(`sitemap generated ${(new Date).toISOString()}`);
+
+
+    if (parentPort) parentPort.postMessage('done');
+    else process.exit(0);
+
 }
 
 generate()

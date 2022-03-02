@@ -6,6 +6,7 @@ import { SPACES_MAIN_KEY, SPACES_SECRET } from './Key';
 interface ClassProp {
     downloadResponseType?: "arraybuffer" | "blob" | "document" | "json" | "text"
     log?: boolean
+    spoof?: boolean
 }
 export class DOSpaces {
     private s3Client: S3Client;
@@ -14,9 +15,10 @@ export class DOSpaces {
     private axios: AxiosInstance
     private downloadResponseType
     private log: boolean;
+    private spoof: boolean;
 
 
-    constructor({ downloadResponseType, log }: ClassProp = {}) {
+    constructor({ downloadResponseType, log, spoof }: ClassProp = {}) {
         if (!SPACES_MAIN_KEY || !SPACES_SECRET) {
 
             throw Error('SPACES KEY NOT FOUND')
@@ -36,6 +38,7 @@ export class DOSpaces {
 
         this.downloadResponseType = downloadResponseType || "arraybuffer"
         this.log = log || false
+        this.spoof = spoof || false
     }
 
     get client() {
@@ -108,6 +111,9 @@ export class DOSpaces {
 
         const y = await this.axios.get(url, {
             responseType: this.downloadResponseType,
+            headers: this.spoof ? {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
+            } : {}
         });
 
 

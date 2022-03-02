@@ -3,7 +3,7 @@ import { prisma } from '../../modules/Context';
 import { exec } from "child_process";
 import moment from "moment";
 import { readdirSync, unlinkSync } from 'fs';
-
+import { parentPort } from "worker_threads";
 const { PG_BACKUP_PATH, PG_PASSWORD, PG_USER, PG_DB, PG_HOST, PG_PORT } = process.env;
 
 const main = async () => {
@@ -39,6 +39,8 @@ const main = async () => {
 
     });
 
+    if (parentPort) parentPort.postMessage('done');
+    else process.exit(0);
 
 
 }
