@@ -7,8 +7,12 @@ export const connection = new IORedis({
 });
 
 export const resetComicSets = async () => {
-    await connection.spop("COMIC_FINDMANY", 1, async (e) => {
-        if (!e) return;
-        await connection.del(e as unknown as string)
-    });
+
+    const keys = await connection.smembers("COMIC_FINDMANY");
+
+    for (const key of keys) {
+        await connection.del(key as unknown as string)
+    }
+
+    await connection.del("COMIC_FINDMANY");
 }
