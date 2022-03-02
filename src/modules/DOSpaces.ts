@@ -38,6 +38,9 @@ export class DOSpaces {
         this.log = log || false
     }
 
+    get client() {
+        return this.s3Client;
+    }
 
     private _time() {
         this.start = new Date()
@@ -124,11 +127,11 @@ export class DOSpaces {
 
             const result = await this.upload(pipe ? await pipe(file) : file, path)
             this._end();
-            this.log && console.log(`[DOSpaces] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://testcdn.gudangkomik.com${path}`)
+            this.log && console.log(`[DOSpaces] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://cdn.gudangkomik.com${path}`)
             return result
 
         } catch (error) {
-            this.log && console.log(`[DOSpaces] 📁 Error Download ${url} and Uploading https://testcdn.gudangkomik.com${path} ${error}`)
+            this.log && console.log(`[DOSpaces] 📁 Error Download ${url} and Uploading https://cdn.gudangkomik.com${path} ${error}`)
 
             throw error;
         }
