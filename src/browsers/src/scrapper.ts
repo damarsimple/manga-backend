@@ -4,16 +4,16 @@ import { gkInteractor } from "./gkInteractor";
 import { Chapter, ChapterCandidate, Comic, ImageChapter } from './types';
 import Logger from "../../modules/Logger";
 import { slugify } from "../../modules/Helper";
-import { DOSpaces } from "../../modules/DOSpaces";
+// import { DOSpaces } from "../../modules/DOSpaces";
 export abstract class Scrapper {
 
-    private _bunny: DOSpaces
+    private _bunny: BunnyCDN
     private _axios: AxiosInstance
     public _logger: Logger
 
     constructor() {
-        this._bunny = new DOSpaces({
-            downloadResponseType: "blob",
+        this._bunny = new BunnyCDN({
+            // downloadResponseType: "blob",
             log: true
         });
         this._axios = axios.create();

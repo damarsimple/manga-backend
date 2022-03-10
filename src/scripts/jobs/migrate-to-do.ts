@@ -130,7 +130,7 @@ const main = async () => {
 
 
 
-        await mapLimit(chapters, 15, async (chapter, done) => {
+        await mapLimit(chapters, 30, async (chapter, done) => {
             const innerStart = new Date().getTime()
             let success = true;
             try {
