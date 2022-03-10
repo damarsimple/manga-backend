@@ -159,7 +159,7 @@ const main = async () => {
 
             } catch (error) {
                 const y = (error as any).response as AxiosResponse
-                if (y.status == 404) {
+                if (y?.status == 404) {
                     notFound.push(chapter.id)
                 }
                 success = false;

@@ -19,6 +19,7 @@
             "*://*.komikcast.com/*",
             "*://*.manhwaindo.id/*",
             "*://*.manhwaland.bar/*",
+            "*://*.manhwaland.*",
             "*://*.komikcastid.com/*"
         ],
         "js": ["dist/main.js"]
