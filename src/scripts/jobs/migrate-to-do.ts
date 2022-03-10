@@ -5,10 +5,9 @@ import { Chapter } from '@prisma/client';
 import { APP_ENDPOINT } from '../../modules/Env';
 import { SECRET_KEY } from '../../modules/Key';
 import sharp from 'sharp';
-import { DOSpaces } from '../../modules/DOSpaces';
-import { QueueGetters } from 'bullmq';
 import { parallelLimit, map, mapLimit } from 'async';
 import { AxiosError, AxiosResponse } from 'axios';
+import BunnyCDN from '../../modules/BunnyCDN';
 
 const sanityEclipse = gql`
 query Query($where: ChapterWhereInput, $take: Int, $skip: Int,$orderBy: [ChapterOrderByWithRelationInput]) {
@@ -34,7 +33,7 @@ const client = new GraphQLClient(APP_ENDPOINT, {
 })
 
 
-const t = new DOSpaces()
+const t = new BunnyCDN({ log: false })
 
 
 const compress = async (e: Buffer) => {
@@ -138,21 +137,21 @@ const main = async () => {
                 for (const img of chapter.imageUrls) {
                     await t.downloadAndUpload(
                         img,
-                        img.replace("https://cdn.gudangkomik.com/", ""),
+                        img.replace("https://cdn.gudangkomik.com", ""),
                         compress
                     )
                 }
 
-                await client.request(updateChapter, {
-                    "data": {
-                        "processed": {
-                            "set": true
-                        }
-                    },
-                    "where": {
-                        "id": chapter.id
-                    }
-                })
+                // await client.request(updateChapter, {
+                //     "data": {
+                //         "processed": {
+                //             "set": true
+                //         }
+                //     },
+                //     "where": {
+                //         "id": chapter.id
+                //     }
+                // })
 
 
 
