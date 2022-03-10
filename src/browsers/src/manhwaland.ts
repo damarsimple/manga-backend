@@ -11,7 +11,7 @@ export default class Manhwaland extends Scrapper {
 
     for (let index = 1; index <= x; index++) {
 
-      rets.push(`https://manhwaland.xyz/series/?page=${index}&order=update`);
+      rets.push(`https://manhwalands.xyz/series/?page=${index}&order=update`);
 
     }
 
@@ -20,7 +20,7 @@ export default class Manhwaland extends Scrapper {
   public getDeclaration() {
     return {
       name: "Manhwaland",
-      url: ["https://manhwaland.xyz/", "https://manhwaland.xyz/series/list-mode/"],
+      url: ["https://manhwalands.xyz/", "https://manhwalands.xyz/series/list-mode/"],
       annoying: true
     };
   }
@@ -28,7 +28,7 @@ export default class Manhwaland extends Scrapper {
     const links = new Set<string>();
     document.querySelectorAll("a").forEach((e) => {
       const link = e.getAttribute("href");
-      if (link && link.includes("https://manhwaland.xyz/series/") && link !== "https://manhwaland.xyz/series/list-mode/") {
+      if (link && link.includes("https://manhwalands.xyz/series/") && link !== "https://manhwalands.xyz/series/list-mode/") {
         links.add(link);
       }
     });
