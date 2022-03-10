@@ -142,16 +142,16 @@ const main = async () => {
                     )
                 }
 
-                // await client.request(updateChapter, {
-                //     "data": {
-                //         "processed": {
-                //             "set": true
-                //         }
-                //     },
-                //     "where": {
-                //         "id": chapter.id
-                //     }
-                // })
+                await client.request(updateChapter, {
+                    "data": {
+                        "processed": {
+                            "set": true
+                        }
+                    },
+                    "where": {
+                        "id": chapter.id
+                    }
+                })
 
 
 
