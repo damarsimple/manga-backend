@@ -47,17 +47,19 @@ model Genre {
 }
 
 enum AdsPosition {
-  TOP
-  BOTTOM
-  TOP_COMIC
+  CHAPTER_BOTTOM
+  CHAPTER_TOP
+  COMIC_RECOMENDATION
+  HOME_TOP_COMIC
 }
 
 model Ads {
   id   Int    @id @default(autoincrement())
   name String @unique
 
-  position AdsPosition @default(TOP)
+  position AdsPosition
   url      String
+  image    String?
   index    Int         @default(0)
 
   createdAt DateTime @default(now())

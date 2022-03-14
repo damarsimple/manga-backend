@@ -5,6 +5,7 @@
 type Ads {
   createdAt: DateTime!
   id: Int!
+  image: String
   index: Int!
   name: String!
   position: AdsPosition!
@@ -26,6 +27,7 @@ type AdsCountAggregateOutputType {
   _all: Int!
   createdAt: Int!
   id: Int!
+  image: Int!
   index: Int!
   name: Int!
   position: Int!
@@ -36,6 +38,7 @@ type AdsCountAggregateOutputType {
 input AdsCountOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  image: SortOrder
   index: SortOrder
   name: SortOrder
   position: SortOrder
@@ -45,9 +48,10 @@ input AdsCountOrderByAggregateInput {
 
 input AdsCreateInput {
   createdAt: DateTime
+  image: String
   index: Int
   name: String!
-  position: AdsPosition
+  position: AdsPosition!
   updatedAt: DateTime
   url: String!
 }
@@ -55,9 +59,10 @@ input AdsCreateInput {
 input AdsCreateManyInput {
   createdAt: DateTime
   id: Int
+  image: String
   index: Int
   name: String!
-  position: AdsPosition
+  position: AdsPosition!
   updatedAt: DateTime
   url: String!
 }
@@ -65,6 +70,7 @@ input AdsCreateManyInput {
 type AdsMaxAggregateOutputType {
   createdAt: DateTime
   id: Int
+  image: String
   index: Int
   name: String
   position: AdsPosition
@@ -75,6 +81,7 @@ type AdsMaxAggregateOutputType {
 input AdsMaxOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  image: SortOrder
   index: SortOrder
   name: SortOrder
   position: SortOrder
@@ -85,6 +92,7 @@ input AdsMaxOrderByAggregateInput {
 type AdsMinAggregateOutputType {
   createdAt: DateTime
   id: Int
+  image: String
   index: Int
   name: String
   position: AdsPosition
@@ -95,6 +103,7 @@ type AdsMinAggregateOutputType {
 input AdsMinOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  image: SortOrder
   index: SortOrder
   name: SortOrder
   position: SortOrder
@@ -110,6 +119,7 @@ input AdsOrderByWithAggregationInput {
   _sum: AdsSumOrderByAggregateInput
   createdAt: SortOrder
   id: SortOrder
+  image: SortOrder
   index: SortOrder
   name: SortOrder
   position: SortOrder
@@ -120,6 +130,7 @@ input AdsOrderByWithAggregationInput {
 input AdsOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
+  image: SortOrder
   index: SortOrder
   name: SortOrder
   position: SortOrder
@@ -128,14 +139,16 @@ input AdsOrderByWithRelationInput {
 }
 
 enum AdsPosition {
-  BOTTOM
-  TOP
-  TOP_COMIC
+  CHAPTER_BOTTOM
+  CHAPTER_TOP
+  COMIC_RECOMENDATION
+  HOME_TOP_COMIC
 }
 
 enum AdsScalarFieldEnum {
   createdAt
   id
+  image
   index
   name
   position
@@ -149,6 +162,7 @@ input AdsScalarWhereWithAggregatesInput {
   OR: [AdsScalarWhereWithAggregatesInput]
   createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
+  image: StringNullableWithAggregatesFilter
   index: IntWithAggregatesFilter
   name: StringWithAggregatesFilter
   position: EnumAdsPositionWithAggregatesFilter
@@ -169,9 +183,10 @@ input AdsSumOrderByAggregateInput {
 input AdsUncheckedCreateInput {
   createdAt: DateTime
   id: Int
+  image: String
   index: Int
   name: String!
-  position: AdsPosition
+  position: AdsPosition!
   updatedAt: DateTime
   url: String!
 }
@@ -179,6 +194,7 @@ input AdsUncheckedCreateInput {
 input AdsUncheckedUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   position: EnumAdsPositionFieldUpdateOperationsInput
@@ -189,6 +205,7 @@ input AdsUncheckedUpdateInput {
 input AdsUncheckedUpdateManyInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   position: EnumAdsPositionFieldUpdateOperationsInput
@@ -198,6 +215,7 @@ input AdsUncheckedUpdateManyInput {
 
 input AdsUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   position: EnumAdsPositionFieldUpdateOperationsInput
@@ -207,6 +225,7 @@ input AdsUpdateInput {
 
 input AdsUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   position: EnumAdsPositionFieldUpdateOperationsInput
@@ -220,6 +239,7 @@ input AdsWhereInput {
   OR: [AdsWhereInput]
   createdAt: DateTimeFilter
   id: IntFilter
+  image: StringNullableFilter
   index: IntFilter
   name: StringFilter
   position: EnumAdsPositionFilter

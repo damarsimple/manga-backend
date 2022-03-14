@@ -69,6 +69,7 @@ export interface NexusGenInputs {
   AdsCountOrderByAggregateInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
     index?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     position?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -77,24 +78,27 @@ export interface NexusGenInputs {
   }
   AdsCreateInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    image?: string | null; // String
     index?: number | null; // Int
     name: string; // String!
-    position?: NexusGenEnums['AdsPosition'] | null; // AdsPosition
+    position: NexusGenEnums['AdsPosition']; // AdsPosition!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     url: string; // String!
   }
   AdsCreateManyInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
+    image?: string | null; // String
     index?: number | null; // Int
     name: string; // String!
-    position?: NexusGenEnums['AdsPosition'] | null; // AdsPosition
+    position: NexusGenEnums['AdsPosition']; // AdsPosition!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     url: string; // String!
   }
   AdsMaxOrderByAggregateInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
     index?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     position?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -104,6 +108,7 @@ export interface NexusGenInputs {
   AdsMinOrderByAggregateInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
     index?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     position?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -118,6 +123,7 @@ export interface NexusGenInputs {
     _sum?: NexusGenInputs['AdsSumOrderByAggregateInput'] | null; // AdsSumOrderByAggregateInput
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
     index?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     position?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -127,6 +133,7 @@ export interface NexusGenInputs {
   AdsOrderByWithRelationInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    image?: NexusGenEnums['SortOrder'] | null; // SortOrder
     index?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
     position?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -139,6 +146,7 @@ export interface NexusGenInputs {
     OR?: Array<NexusGenInputs['AdsScalarWhereWithAggregatesInput'] | null> | null; // [AdsScalarWhereWithAggregatesInput]
     createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
     id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    image?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
     index?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     name?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
     position?: NexusGenInputs['EnumAdsPositionWithAggregatesFilter'] | null; // EnumAdsPositionWithAggregatesFilter
@@ -152,15 +160,17 @@ export interface NexusGenInputs {
   AdsUncheckedCreateInput: { // input type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
+    image?: string | null; // String
     index?: number | null; // Int
     name: string; // String!
-    position?: NexusGenEnums['AdsPosition'] | null; // AdsPosition
+    position: NexusGenEnums['AdsPosition']; // AdsPosition!
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     url: string; // String!
   }
   AdsUncheckedUpdateInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    image?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     index?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     position?: NexusGenInputs['EnumAdsPositionFieldUpdateOperationsInput'] | null; // EnumAdsPositionFieldUpdateOperationsInput
@@ -170,6 +180,7 @@ export interface NexusGenInputs {
   AdsUncheckedUpdateManyInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    image?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     index?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     position?: NexusGenInputs['EnumAdsPositionFieldUpdateOperationsInput'] | null; // EnumAdsPositionFieldUpdateOperationsInput
@@ -178,6 +189,7 @@ export interface NexusGenInputs {
   }
   AdsUpdateInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    image?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     index?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     position?: NexusGenInputs['EnumAdsPositionFieldUpdateOperationsInput'] | null; // EnumAdsPositionFieldUpdateOperationsInput
@@ -186,6 +198,7 @@ export interface NexusGenInputs {
   }
   AdsUpdateManyMutationInput: { // input type
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
+    image?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     index?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     name?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     position?: NexusGenInputs['EnumAdsPositionFieldUpdateOperationsInput'] | null; // EnumAdsPositionFieldUpdateOperationsInput
@@ -198,6 +211,7 @@ export interface NexusGenInputs {
     OR?: Array<NexusGenInputs['AdsWhereInput'] | null> | null; // [AdsWhereInput]
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    image?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     index?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     position?: NexusGenInputs['EnumAdsPositionFilter'] | null; // EnumAdsPositionFilter
@@ -4174,8 +4188,8 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  AdsPosition: "BOTTOM" | "TOP" | "TOP_COMIC"
-  AdsScalarFieldEnum: "createdAt" | "id" | "index" | "name" | "position" | "updatedAt" | "url"
+  AdsPosition: "CHAPTER_BOTTOM" | "CHAPTER_TOP" | "COMIC_RECOMENDATION" | "HOME_TOP_COMIC"
+  AdsScalarFieldEnum: "createdAt" | "id" | "image" | "index" | "name" | "position" | "updatedAt" | "url"
   AuthorScalarFieldEnum: "createdAt" | "id" | "name" | "slug" | "updatedAt"
   ChapterBookmarkScalarFieldEnum: "chapterId" | "createdAt" | "id" | "updatedAt" | "userId"
   ChapterQuality: "HQ" | "LQ" | "NORMAL"
@@ -4211,6 +4225,7 @@ export interface NexusGenObjects {
   Ads: { // root type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: number; // Int!
+    image?: string | null; // String
     index: number; // Int!
     name: string; // String!
     position: NexusGenEnums['AdsPosition']; // AdsPosition!
@@ -4225,6 +4240,7 @@ export interface NexusGenObjects {
     _all: number; // Int!
     createdAt: number; // Int!
     id: number; // Int!
+    image: number; // Int!
     index: number; // Int!
     name: number; // Int!
     position: number; // Int!
@@ -4234,6 +4250,7 @@ export interface NexusGenObjects {
   AdsMaxAggregateOutputType: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
+    image?: string | null; // String
     index?: number | null; // Int
     name?: string | null; // String
     position?: NexusGenEnums['AdsPosition'] | null; // AdsPosition
@@ -4243,6 +4260,7 @@ export interface NexusGenObjects {
   AdsMinAggregateOutputType: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
+    image?: string | null; // String
     index?: number | null; // Int
     name?: string | null; // String
     position?: NexusGenEnums['AdsPosition'] | null; // AdsPosition
@@ -4927,6 +4945,7 @@ export interface NexusGenFieldTypes {
   Ads: { // field return type
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: number; // Int!
+    image: string | null; // String
     index: number; // Int!
     name: string; // String!
     position: NexusGenEnums['AdsPosition']; // AdsPosition!
@@ -4941,6 +4960,7 @@ export interface NexusGenFieldTypes {
     _all: number; // Int!
     createdAt: number; // Int!
     id: number; // Int!
+    image: number; // Int!
     index: number; // Int!
     name: number; // Int!
     position: number; // Int!
@@ -4950,6 +4970,7 @@ export interface NexusGenFieldTypes {
   AdsMaxAggregateOutputType: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: number | null; // Int
+    image: string | null; // String
     index: number | null; // Int
     name: string | null; // String
     position: NexusGenEnums['AdsPosition'] | null; // AdsPosition
@@ -4959,6 +4980,7 @@ export interface NexusGenFieldTypes {
   AdsMinAggregateOutputType: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: number | null; // Int
+    image: string | null; // String
     index: number | null; // Int
     name: string | null; // String
     position: NexusGenEnums['AdsPosition'] | null; // AdsPosition
@@ -5788,6 +5810,7 @@ export interface NexusGenFieldTypeNames {
   Ads: { // field return type name
     createdAt: 'DateTime'
     id: 'Int'
+    image: 'String'
     index: 'Int'
     name: 'String'
     position: 'AdsPosition'
@@ -5802,6 +5825,7 @@ export interface NexusGenFieldTypeNames {
     _all: 'Int'
     createdAt: 'Int'
     id: 'Int'
+    image: 'Int'
     index: 'Int'
     name: 'Int'
     position: 'Int'
@@ -5811,6 +5835,7 @@ export interface NexusGenFieldTypeNames {
   AdsMaxAggregateOutputType: { // field return type name
     createdAt: 'DateTime'
     id: 'Int'
+    image: 'String'
     index: 'Int'
     name: 'String'
     position: 'AdsPosition'
@@ -5820,6 +5845,7 @@ export interface NexusGenFieldTypeNames {
   AdsMinAggregateOutputType: { // field return type name
     createdAt: 'DateTime'
     id: 'Int'
+    image: 'String'
     index: 'Int'
     name: 'String'
     position: 'AdsPosition'

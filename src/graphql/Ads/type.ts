@@ -11,6 +11,7 @@ export const Ads = objectType({
     t.string('name')
     t.field('position', { type: 'AdsPosition' })
     t.string('url')
+    t.nullable.string('image')
     t.int('index')
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
