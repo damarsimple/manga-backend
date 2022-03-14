@@ -4147,6 +4147,7 @@ type Mutation {
   updateOnePerfomanceAnalytic(data: PerfomanceAnalyticUpdateInput!, where: PerfomanceAnalyticWhereUniqueInput!): PerfomanceAnalytic!
   updateOneReport(data: ReportUpdateInput!, where: ReportWhereUniqueInput!): Report!
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  uploadFile(file: Upload, path: String!): Boolean
   upsertOneAds(create: AdsCreateInput!, update: AdsUpdateInput!, where: AdsWhereUniqueInput!): Ads!
   upsertOneAuthor(create: AuthorCreateInput!, update: AuthorUpdateInput!, where: AuthorWhereUniqueInput!): Author!
   upsertOneChapter(create: ChapterCreateInput!, update: ChapterUpdateInput!, where: ChapterWhereUniqueInput!): Chapter!
@@ -5210,6 +5211,9 @@ input StringWithAggregatesFilter {
   notIn: [String]
   startsWith: String
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type User {
   _count: UserCountOutputType!

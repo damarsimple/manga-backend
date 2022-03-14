@@ -11,6 +11,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import express from 'express';
 import http from 'http';
+import { graphqlUploadExpress } from "graphql-upload";
 
 export const schema = makeSchema({
 
@@ -42,7 +43,7 @@ export const schema = makeSchema({
 
 async function startApolloServer() {
   const app = express();
-
+  app.use(graphqlUploadExpress());
   const httpServer = http.createServer(app);
 
   const server = new ApolloServer({

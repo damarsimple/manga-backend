@@ -14,6 +14,10 @@ declare global {
      */
     json<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Json";
     /**
+     * The `Upload` scalar type represents a file upload.
+     */
+    upload<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Upload";
+    /**
      * Decimal custom scalar type
      */
     decimal<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Decimal";
@@ -33,6 +37,10 @@ declare global {
      * Json custom scalar type
      */
     json<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Json";
+    /**
+     * The `Upload` scalar type represents a file upload.
+     */
+    upload<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Upload";
     /**
      * Decimal custom scalar type
      */
@@ -4196,6 +4204,7 @@ export interface NexusGenScalars {
   Decimal: any
   JSONObject: any
   Json: any
+  Upload: any
 }
 
 export interface NexusGenObjects {
@@ -5539,6 +5548,7 @@ export interface NexusGenFieldTypes {
     updateOnePerfomanceAnalytic: NexusGenRootTypes['PerfomanceAnalytic']; // PerfomanceAnalytic!
     updateOneReport: NexusGenRootTypes['Report']; // Report!
     updateOneUser: NexusGenRootTypes['User']; // User!
+    uploadFile: boolean | null; // Boolean
     upsertOneAds: NexusGenRootTypes['Ads']; // Ads!
     upsertOneAuthor: NexusGenRootTypes['Author']; // Author!
     upsertOneChapter: NexusGenRootTypes['Chapter']; // Chapter!
@@ -6399,6 +6409,7 @@ export interface NexusGenFieldTypeNames {
     updateOnePerfomanceAnalytic: 'PerfomanceAnalytic'
     updateOneReport: 'Report'
     updateOneUser: 'User'
+    uploadFile: 'Boolean'
     upsertOneAds: 'Ads'
     upsertOneAuthor: 'Author'
     upsertOneChapter: 'Chapter'
@@ -6909,6 +6920,10 @@ export interface NexusGenArgTypes {
     updateOneUser: { // args
       data: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+    uploadFile: { // args
+      file?: NexusGenScalars['Upload'] | null; // Upload
+      path: string; // String!
     }
     upsertOneAds: { // args
       create: NexusGenInputs['AdsCreateInput']; // AdsCreateInput!

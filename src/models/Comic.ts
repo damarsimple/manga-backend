@@ -1,11 +1,12 @@
 import { Chapter, Comic, Author } from '@prisma/client';
 import moment from 'moment';
-import { arg, extendType, list, nonNull, stringArg, objectType, intArg, booleanArg, floatArg } from 'nexus';
+import { arg, extendType, list, nonNull, stringArg, objectType, intArg, booleanArg, floatArg, asNexusMethod } from 'nexus';
 import BunnyCDN from '../modules/BunnyCDN';
 import { slugify } from '../modules/Helper';
 import { comicIncrementQueue, chapterIncrementQueue } from '../modules/Queue';
 import { updateDocumentIndex } from '../modules/Meilisearch';
 import { connection, resetComicSets } from '../modules/Redis';
+
 
 export const SanityCheck = objectType({
   name: 'SanityCheck',
@@ -58,6 +59,7 @@ export const GenreSearch = objectType({
     t.boolean('exhaustiveNbHits')
   }
 })
+
 
 
 export const ComicQueryRelated = extendType({
@@ -210,11 +212,59 @@ export const ComicQueryRelated = extendType({
   }
 })
 
+import { GraphQLUpload } from "graphql-upload";
+import { Stream } from 'stream';
+
+export const Upload = asNexusMethod(GraphQLUpload, 'upload')
+
+async function stream2buffer(stream: Stream): Promise<Buffer> {
+
+  return new Promise<Buffer>((resolve, reject) => {
+
+    const _buf = Array<any>();
+
+    stream.on("data", chunk => _buf.push(chunk));
+    stream.on("end", () => resolve(Buffer.concat(_buf)));
+    stream.on("error", err => reject(`error converting stream - ${err}`));
+
+  });
+}
 
 export const ComicMutationRelated = extendType({
   type: 'Mutation',
   definition(t) {
+    t.field('uploadFile', {
+      type: "Boolean",
+      args: {
+        file: arg({ type: 'Upload' }),
+        path: nonNull(stringArg()),
+      },
+      resolve: async (_, { file, path }, { }) => {
+        const {
+          filename,
+          mimetype,
+          encoding,
+          createReadStream
+        }: {
+          filename: string,
+          mimetype: string,
+          encoding: string,
+          createReadStream: () => NodeJS.ReadableStream
+        } = await file;
 
+        try {
+          const y = await stream2buffer(createReadStream());
+
+          const bunny = new BunnyCDN();
+
+          bunny.upload(y, path)
+
+          return true;
+        } catch (error) {
+          return false;
+        }
+      },
+    })
     t.field('reportMissing', {
       type: 'Boolean',
       args: {
