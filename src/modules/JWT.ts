@@ -4,7 +4,7 @@ import { sign, verify } from "jsonwebtoken"
 export const createToken = <T>(e: T) => {
 
 
-    return sign(e as unknown as object, SECRET_KEY, { expiresIn: '24h' });
+    return sign(e as unknown as object, SECRET_KEY, { expiresIn: '1d' });
 
 
 }
