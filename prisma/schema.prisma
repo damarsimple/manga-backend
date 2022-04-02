@@ -21,9 +21,10 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  reports          Report[]
-  comicbookmarks   ComicBookmark[]
-  chapterbookmarks ChapterBookmark[]
+  reports        Report[]
+  comicbookmarks ComicBookmark[]
+  viewedChapters ViewedChapter[]
+  changelogs     Changelog[]
 }
 
 model Author {
@@ -137,8 +138,8 @@ model Chapter {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  comicId          Int
-  chapterbookmarks ChapterBookmark[]
+  comicId     Int
+  userviewers ViewedChapter[]
 }
 
 model Missing {
@@ -182,14 +183,14 @@ model ComicBookmark {
   comic   Comic @relation(fields: [comicId], references: [id])
 
   userId Int
-  user  User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
 }
 
-model ChapterBookmark {
+model ViewedChapter {
 
   id Int @id @default(autoincrement())
 
@@ -197,7 +198,21 @@ model ChapterBookmark {
   chapter   Chapter @relation(fields: [chapterId], references: [id])
 
   userId Int
-  user  User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Changelog {
+  id Int @id @default(autoincrement())
+
+  version  String
+  features String[]
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
