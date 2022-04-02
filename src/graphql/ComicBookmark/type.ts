@@ -16,10 +16,10 @@ export const ComicBookmark = objectType({
       },
     })
     t.int('userId')
-    t.field('users', {
+    t.field('user', {
       type: 'User',
       resolve(root: any) {
-        return root.users
+        return root.user
       },
     })
     t.field('createdAt', { type: 'DateTime' })

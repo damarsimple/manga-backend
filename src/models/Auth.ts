@@ -12,9 +12,31 @@ export const AuthResponse = objectType({
     }
 })
 
+export const AuthQuery = extendType({
+    type: 'Query',
+    definition(t) {
+          t.nullable.field('me', {
+            type: 'User',
+            resolve: async (_, __, ctx) => {
+
+                if (!ctx.user) return null;
+
+                const user = await ctx.prisma.user.findFirst({
+                    where: {
+                        email : ctx.user.email
+                    }
+                })
+
+                return user;
+            }
+        })
+    }
+})
+
 export const AuthMutation = extendType({
     type: 'Mutation',
     definition(t) {
+
 
         t.field('login', {
             type: AuthResponse,
@@ -39,13 +61,12 @@ export const AuthMutation = extendType({
                 }
 
 
-                if (!verify(password, user.password)) {
+                if (! await verify(password, user.password)) {
                     return {
                         status: false,
                         message: "Password salah ...",
                     }
                 }
-
 
 
                 return {

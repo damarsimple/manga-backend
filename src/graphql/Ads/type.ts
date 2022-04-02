@@ -9,7 +9,7 @@ export const Ads = objectType({
   definition(t) {
     t.int('id')
     t.string('name')
-    t.field('position', { type: 'AdsPosition' })
+    t.list.field('position', { type: 'AdsPosition' })
     t.string('url')
     t.nullable.string('image')
     t.int('index')

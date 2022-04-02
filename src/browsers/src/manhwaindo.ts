@@ -5,14 +5,14 @@ import { slugify } from "../../modules/Helper";
 
 // SAME TEMPLATE AS MANHWAINDO
 
+const IGNORE = "https://cdn.imagesimple.co/img/manhwaindo/";
+
 export default class Manhwaindo extends Scrapper {
   public getPageRangeUrl(x: number): string[] {
-    const rets = []
+    const rets = [];
 
     for (let index = 1; index <= x; index++) {
-
       rets.push(`https://manhwaindo.id/series/?page=${index}&order=update`);
-
     }
 
     return rets;
@@ -20,15 +20,22 @@ export default class Manhwaindo extends Scrapper {
   public getDeclaration() {
     return {
       name: "Manhwaindo",
-      url: ["https://manhwaindo.id/", "https://manhwaindo.id/series/list-mode/"],
-      annoying: true
+      url: [
+        "https://manhwaindo.id/",
+        "https://manhwaindo.id/series/list-mode/",
+      ],
+      annoying: true,
     };
   }
   public getUpdates(): string[] {
     const links = new Set<string>();
     document.querySelectorAll("a").forEach((e) => {
       const link = e.getAttribute("href");
-      if (link && link.includes("https://manhwaindo.id/series/") && link !== "https://manhwaindo.id/series/list-mode/") {
+      if (
+        link &&
+        link.includes("https://manhwaindo.id/series/") &&
+        link !== "https://manhwaindo.id/series/list-mode/"
+      ) {
         links.add(link);
       }
     });
@@ -37,11 +44,25 @@ export default class Manhwaindo extends Scrapper {
     return values;
   }
   public parseComic(doc: Document): Comic {
-    const title = doc?.querySelector("h1")?.textContent?.replace("Komik ", "")?.trim();
-    const thumb = doc?.querySelector(".thumb")?.querySelector("img")?.getAttribute("src") ?? "";
-    const alt_title = doc?.querySelector("span, .alternative")?.textContent?.split(",");
-    const genres = Array.from(doc?.querySelector(".mgen")?.querySelectorAll("a") ?? [])?.map((e) => e.textContent ?? "");
-    const spans = Array.from(doc?.querySelector(".bixbox")?.querySelectorAll(".imptdt") ?? [])?.map((e) => e?.textContent?.trim());
+    const title = doc
+      ?.querySelector("h1")
+      ?.textContent?.replace("Komik ", "")
+      ?.trim();
+    const thumb =
+      doc
+        ?.querySelector(".thumb")
+        ?.querySelector("img")
+        ?.getAttribute("src")
+        ?.replace(IGNORE, "") ?? "";
+    const alt_title = doc
+      ?.querySelector("span, .alternative")
+      ?.textContent?.split(",");
+    const genres = Array.from(
+      doc?.querySelector(".mgen")?.querySelectorAll("a") ?? []
+    )?.map((e) => e.textContent ?? "");
+    const spans = Array.from(
+      doc?.querySelector(".bixbox")?.querySelectorAll(".imptdt") ?? []
+    )?.map((e) => e?.textContent?.trim());
     const info = spans?.reduce((e, c) => {
       const text = c?.split(" ");
       if (!text) return e;
@@ -51,20 +72,22 @@ export default class Manhwaindo extends Scrapper {
       };
     }, {} as Record<string, string>);
 
-
-    if (!info.author) info.author = "N/A"
+    if (!info.author) info.author = "N/A";
 
     let chapters: ChapterCandidate[] = [];
 
-    doc?.querySelector("#chapterlist")?.querySelectorAll("a")?.forEach((e) => {
-      const href = e.getAttribute("href");
-      if (!e.textContent) return;
-      if (href?.includes("chapter"))
-        chapters.push({
-          name: this.chapterGuesser(e?.textContent),
-          href,
-        });
-    });
+    doc
+      ?.querySelector("#chapterlist")
+      ?.querySelectorAll("a")
+      ?.forEach((e) => {
+        const href = e.getAttribute("href");
+        if (!e.textContent) return;
+        if (href?.includes("chapter"))
+          chapters.push({
+            name: this.chapterGuesser(e?.textContent),
+            href,
+          });
+      });
 
     chapters = uniq(chapters);
 
@@ -72,37 +95,30 @@ export default class Manhwaindo extends Scrapper {
       throw new Error("title not found");
     }
 
-
-
     const comic: Comic = {
-
       ...(info as unknown as Comic),
       thumb,
       name: title,
       alt_name: alt_title ?? [],
-      description: doc?.querySelector(".entry-content-single")?.textContent ?? "",
+      description:
+        doc?.querySelector(".entry-content-single")?.textContent ?? "",
       genres: genres ?? [],
       chapters,
-      slug: slugify(title)
-
+      slug: slugify(title),
     };
-
-
 
     return comic;
   }
   public parseChapter(doc: Document): Chapter {
-
-
     const imgDom = Array.from(doc?.querySelectorAll("img") ?? []);
 
-
-    const images = Array.from(imgDom.map((e) => e.getAttribute("src") ?? ""));
+    const images = Array.from(
+      imgDom.map((e) => e.getAttribute("src")?.replace(IGNORE, "") ?? "")
+    );
 
     const title = doc?.querySelector("h1")?.textContent ?? "";
 
     const name = this.chapterGuesser(title);
-
 
     return {
       name,
@@ -110,17 +126,14 @@ export default class Manhwaindo extends Scrapper {
       original_image_count: images.length,
       images,
       processed: true,
-      quality: this.checkQuality(title)
-    }
-
+      quality: this.checkQuality(title),
+    };
   }
   constructor() {
     super();
   }
 
-
   // public static async parseAndUpload(url: string): Promise<Comic | void> {
-
 
   //   try {
   //     const { chapterscandidate } = await gkInteractor.sanityCheck(

@@ -1,5 +1,5 @@
 if (process.env.WEBPACK != "true") {
-    require('dotenv').config();
+  require("dotenv").config();
 }
 
 export const SECRET_KEY = "lil bit sus isn't it";

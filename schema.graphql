@@ -8,7 +8,7 @@ type Ads {
   image: String
   index: Int!
   name: String!
-  position: AdsPosition!
+  position: [AdsPosition!]!
   updatedAt: DateTime!
   url: String!
 }
@@ -51,7 +51,7 @@ input AdsCreateInput {
   image: String
   index: Int
   name: String!
-  position: AdsPosition!
+  position: [AdsPosition]
   updatedAt: DateTime
   url: String!
 }
@@ -62,9 +62,13 @@ input AdsCreateManyInput {
   image: String
   index: Int
   name: String!
-  position: AdsPosition!
+  position: [AdsPosition]
   updatedAt: DateTime
   url: String!
+}
+
+input AdsCreatepositionInput {
+  set: AdsPosition!
 }
 
 type AdsMaxAggregateOutputType {
@@ -73,7 +77,6 @@ type AdsMaxAggregateOutputType {
   image: String
   index: Int
   name: String
-  position: AdsPosition
   updatedAt: DateTime
   url: String
 }
@@ -84,7 +87,6 @@ input AdsMaxOrderByAggregateInput {
   image: SortOrder
   index: SortOrder
   name: SortOrder
-  position: SortOrder
   updatedAt: SortOrder
   url: SortOrder
 }
@@ -95,7 +97,6 @@ type AdsMinAggregateOutputType {
   image: String
   index: Int
   name: String
-  position: AdsPosition
   updatedAt: DateTime
   url: String
 }
@@ -106,7 +107,6 @@ input AdsMinOrderByAggregateInput {
   image: SortOrder
   index: SortOrder
   name: SortOrder
-  position: SortOrder
   updatedAt: SortOrder
   url: SortOrder
 }
@@ -165,7 +165,7 @@ input AdsScalarWhereWithAggregatesInput {
   image: StringNullableWithAggregatesFilter
   index: IntWithAggregatesFilter
   name: StringWithAggregatesFilter
-  position: EnumAdsPositionWithAggregatesFilter
+  position: EnumAdsPositionNullableListFilter
   updatedAt: DateTimeWithAggregatesFilter
   url: StringWithAggregatesFilter
 }
@@ -186,7 +186,7 @@ input AdsUncheckedCreateInput {
   image: String
   index: Int
   name: String!
-  position: AdsPosition!
+  position: [AdsPosition]
   updatedAt: DateTime
   url: String!
 }
@@ -197,7 +197,7 @@ input AdsUncheckedUpdateInput {
   image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  position: EnumAdsPositionFieldUpdateOperationsInput
+  position: [AdsPosition]
   updatedAt: DateTimeFieldUpdateOperationsInput
   url: StringFieldUpdateOperationsInput
 }
@@ -208,7 +208,7 @@ input AdsUncheckedUpdateManyInput {
   image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  position: EnumAdsPositionFieldUpdateOperationsInput
+  position: [AdsPosition]
   updatedAt: DateTimeFieldUpdateOperationsInput
   url: StringFieldUpdateOperationsInput
 }
@@ -218,7 +218,7 @@ input AdsUpdateInput {
   image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  position: EnumAdsPositionFieldUpdateOperationsInput
+  position: [AdsPosition]
   updatedAt: DateTimeFieldUpdateOperationsInput
   url: StringFieldUpdateOperationsInput
 }
@@ -228,9 +228,14 @@ input AdsUpdateManyMutationInput {
   image: NullableStringFieldUpdateOperationsInput
   index: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  position: EnumAdsPositionFieldUpdateOperationsInput
+  position: [AdsPosition]
   updatedAt: DateTimeFieldUpdateOperationsInput
   url: StringFieldUpdateOperationsInput
+}
+
+input AdsUpdatepositionInput {
+  push: [AdsPosition]
+  set: [AdsPosition]
 }
 
 input AdsWhereInput {
@@ -242,7 +247,7 @@ input AdsWhereInput {
   image: StringNullableFilter
   index: IntFilter
   name: StringFilter
-  position: EnumAdsPositionFilter
+  position: EnumAdsPositionNullableListFilter
   updatedAt: DateTimeFilter
   url: StringFilter
 }
@@ -678,8 +683,8 @@ type ChapterBookmark {
   createdAt: DateTime!
   id: Int!
   updatedAt: DateTime!
+  user: User!
   userId: Int!
-  users: User!
 }
 
 type ChapterBookmarkAvgAggregateOutputType {
@@ -715,7 +720,7 @@ input ChapterBookmarkCreateInput {
   chapter: ChapterCreateNestedOneWithoutChapterbookmarksInput!
   createdAt: DateTime
   updatedAt: DateTime
-  users: UserCreateNestedOneWithoutChapterbookmarksInput!
+  user: UserCreateNestedOneWithoutChapterbookmarksInput!
 }
 
 input ChapterBookmarkCreateManyChapterInput {
@@ -738,15 +743,15 @@ input ChapterBookmarkCreateManyInput {
   userId: Int!
 }
 
-input ChapterBookmarkCreateManyUsersInput {
+input ChapterBookmarkCreateManyUserInput {
   chapterId: Int!
   createdAt: DateTime
   id: Int
   updatedAt: DateTime
 }
 
-input ChapterBookmarkCreateManyUsersInputEnvelope {
-  data: ChapterBookmarkCreateManyUsersInput!
+input ChapterBookmarkCreateManyUserInputEnvelope {
+  data: ChapterBookmarkCreateManyUserInput!
   skipDuplicates: Boolean
 }
 
@@ -757,11 +762,11 @@ input ChapterBookmarkCreateNestedManyWithoutChapterInput {
   createMany: ChapterBookmarkCreateManyChapterInputEnvelope
 }
 
-input ChapterBookmarkCreateNestedManyWithoutUsersInput {
+input ChapterBookmarkCreateNestedManyWithoutUserInput {
   connect: [ChapterBookmarkWhereUniqueInput]
-  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ChapterBookmarkCreateWithoutUsersInput]
-  createMany: ChapterBookmarkCreateManyUsersInputEnvelope
+  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUserInput]
+  create: [ChapterBookmarkCreateWithoutUserInput]
+  createMany: ChapterBookmarkCreateManyUserInputEnvelope
 }
 
 input ChapterBookmarkCreateOrConnectWithoutChapterInput {
@@ -769,18 +774,18 @@ input ChapterBookmarkCreateOrConnectWithoutChapterInput {
   where: ChapterBookmarkWhereUniqueInput!
 }
 
-input ChapterBookmarkCreateOrConnectWithoutUsersInput {
-  create: ChapterBookmarkUncheckedCreateWithoutUsersInput!
+input ChapterBookmarkCreateOrConnectWithoutUserInput {
+  create: ChapterBookmarkUncheckedCreateWithoutUserInput!
   where: ChapterBookmarkWhereUniqueInput!
 }
 
 input ChapterBookmarkCreateWithoutChapterInput {
   createdAt: DateTime
   updatedAt: DateTime
-  users: UserCreateNestedOneWithoutChapterbookmarksInput!
+  user: UserCreateNestedOneWithoutChapterbookmarksInput!
 }
 
-input ChapterBookmarkCreateWithoutUsersInput {
+input ChapterBookmarkCreateWithoutUserInput {
   chapter: ChapterCreateNestedOneWithoutChapterbookmarksInput!
   createdAt: DateTime
   updatedAt: DateTime
@@ -847,8 +852,8 @@ input ChapterBookmarkOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   updatedAt: SortOrder
+  user: UserOrderByWithRelationInput
   userId: SortOrder
-  users: UserOrderByWithRelationInput
 }
 
 enum ChapterBookmarkScalarFieldEnum {
@@ -908,11 +913,11 @@ input ChapterBookmarkUncheckedCreateNestedManyWithoutChapterInput {
   createMany: ChapterBookmarkCreateManyChapterInputEnvelope
 }
 
-input ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput {
+input ChapterBookmarkUncheckedCreateNestedManyWithoutUserInput {
   connect: [ChapterBookmarkWhereUniqueInput]
-  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ChapterBookmarkCreateWithoutUsersInput]
-  createMany: ChapterBookmarkCreateManyUsersInputEnvelope
+  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUserInput]
+  create: [ChapterBookmarkCreateWithoutUserInput]
+  createMany: ChapterBookmarkCreateManyUserInputEnvelope
 }
 
 input ChapterBookmarkUncheckedCreateWithoutChapterInput {
@@ -922,7 +927,7 @@ input ChapterBookmarkUncheckedCreateWithoutChapterInput {
   userId: Int!
 }
 
-input ChapterBookmarkUncheckedCreateWithoutUsersInput {
+input ChapterBookmarkUncheckedCreateWithoutUserInput {
   chapterId: Int!
   createdAt: DateTime
   id: Int
@@ -966,18 +971,18 @@ input ChapterBookmarkUncheckedUpdateManyWithoutChapterbookmarksInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input ChapterBookmarkUncheckedUpdateManyWithoutUsersInput {
+input ChapterBookmarkUncheckedUpdateManyWithoutUserInput {
   connect: [ChapterBookmarkWhereUniqueInput]
-  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ChapterBookmarkCreateWithoutUsersInput]
-  createMany: ChapterBookmarkCreateManyUsersInputEnvelope
+  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUserInput]
+  create: [ChapterBookmarkCreateWithoutUserInput]
+  createMany: ChapterBookmarkCreateManyUserInputEnvelope
   delete: [ChapterBookmarkWhereUniqueInput]
   deleteMany: [ChapterBookmarkScalarWhereInput]
   disconnect: [ChapterBookmarkWhereUniqueInput]
   set: [ChapterBookmarkWhereUniqueInput]
-  update: [ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput]
-  updateMany: [ChapterBookmarkUpdateManyWithWhereWithoutUsersInput]
-  upsert: [ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput]
+  update: [ChapterBookmarkUpdateWithWhereUniqueWithoutUserInput]
+  updateMany: [ChapterBookmarkUpdateManyWithWhereWithoutUserInput]
+  upsert: [ChapterBookmarkUpsertWithWhereUniqueWithoutUserInput]
 }
 
 input ChapterBookmarkUncheckedUpdateWithoutChapterInput {
@@ -987,7 +992,7 @@ input ChapterBookmarkUncheckedUpdateWithoutChapterInput {
   userId: IntFieldUpdateOperationsInput
 }
 
-input ChapterBookmarkUncheckedUpdateWithoutUsersInput {
+input ChapterBookmarkUncheckedUpdateWithoutUserInput {
   chapterId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -998,7 +1003,7 @@ input ChapterBookmarkUpdateInput {
   chapter: ChapterUpdateOneRequiredWithoutChapterbookmarksInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  users: UserUpdateOneRequiredWithoutChapterbookmarksInput
+  user: UserUpdateOneRequiredWithoutChapterbookmarksInput
 }
 
 input ChapterBookmarkUpdateManyMutationInput {
@@ -1011,7 +1016,7 @@ input ChapterBookmarkUpdateManyWithWhereWithoutChapterInput {
   where: ChapterBookmarkScalarWhereInput!
 }
 
-input ChapterBookmarkUpdateManyWithWhereWithoutUsersInput {
+input ChapterBookmarkUpdateManyWithWhereWithoutUserInput {
   data: ChapterBookmarkUncheckedUpdateManyWithoutChapterbookmarksInput!
   where: ChapterBookmarkScalarWhereInput!
 }
@@ -1030,18 +1035,18 @@ input ChapterBookmarkUpdateManyWithoutChapterInput {
   upsert: [ChapterBookmarkUpsertWithWhereUniqueWithoutChapterInput]
 }
 
-input ChapterBookmarkUpdateManyWithoutUsersInput {
+input ChapterBookmarkUpdateManyWithoutUserInput {
   connect: [ChapterBookmarkWhereUniqueInput]
-  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ChapterBookmarkCreateWithoutUsersInput]
-  createMany: ChapterBookmarkCreateManyUsersInputEnvelope
+  connectOrCreate: [ChapterBookmarkCreateOrConnectWithoutUserInput]
+  create: [ChapterBookmarkCreateWithoutUserInput]
+  createMany: ChapterBookmarkCreateManyUserInputEnvelope
   delete: [ChapterBookmarkWhereUniqueInput]
   deleteMany: [ChapterBookmarkScalarWhereInput]
   disconnect: [ChapterBookmarkWhereUniqueInput]
   set: [ChapterBookmarkWhereUniqueInput]
-  update: [ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput]
-  updateMany: [ChapterBookmarkUpdateManyWithWhereWithoutUsersInput]
-  upsert: [ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput]
+  update: [ChapterBookmarkUpdateWithWhereUniqueWithoutUserInput]
+  updateMany: [ChapterBookmarkUpdateManyWithWhereWithoutUserInput]
+  upsert: [ChapterBookmarkUpsertWithWhereUniqueWithoutUserInput]
 }
 
 input ChapterBookmarkUpdateWithWhereUniqueWithoutChapterInput {
@@ -1049,18 +1054,18 @@ input ChapterBookmarkUpdateWithWhereUniqueWithoutChapterInput {
   where: ChapterBookmarkWhereUniqueInput!
 }
 
-input ChapterBookmarkUpdateWithWhereUniqueWithoutUsersInput {
-  data: ChapterBookmarkUncheckedUpdateWithoutUsersInput!
+input ChapterBookmarkUpdateWithWhereUniqueWithoutUserInput {
+  data: ChapterBookmarkUncheckedUpdateWithoutUserInput!
   where: ChapterBookmarkWhereUniqueInput!
 }
 
 input ChapterBookmarkUpdateWithoutChapterInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  users: UserUpdateOneRequiredWithoutChapterbookmarksInput
+  user: UserUpdateOneRequiredWithoutChapterbookmarksInput
 }
 
-input ChapterBookmarkUpdateWithoutUsersInput {
+input ChapterBookmarkUpdateWithoutUserInput {
   chapter: ChapterUpdateOneRequiredWithoutChapterbookmarksInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -1072,9 +1077,9 @@ input ChapterBookmarkUpsertWithWhereUniqueWithoutChapterInput {
   where: ChapterBookmarkWhereUniqueInput!
 }
 
-input ChapterBookmarkUpsertWithWhereUniqueWithoutUsersInput {
-  create: ChapterBookmarkUncheckedCreateWithoutUsersInput!
-  update: ChapterBookmarkUncheckedUpdateWithoutUsersInput!
+input ChapterBookmarkUpsertWithWhereUniqueWithoutUserInput {
+  create: ChapterBookmarkUncheckedCreateWithoutUserInput!
+  update: ChapterBookmarkUncheckedUpdateWithoutUserInput!
   where: ChapterBookmarkWhereUniqueInput!
 }
 
@@ -1087,8 +1092,8 @@ input ChapterBookmarkWhereInput {
   createdAt: DateTimeFilter
   id: IntFilter
   updatedAt: DateTimeFilter
+  user: UserWhereInput
   userId: IntFilter
-  users: UserWhereInput
 }
 
 input ChapterBookmarkWhereUniqueInput {
@@ -1187,10 +1192,6 @@ input ChapterCreateManyInput {
   title: String
   updatedAt: DateTime
   views: Int
-}
-
-input ChapterCreateManyimageUrlsInput {
-  set: String!
 }
 
 input ChapterCreateNestedManyWithoutComicInput {
@@ -1801,8 +1802,8 @@ type ComicBookmark {
   createdAt: DateTime!
   id: Int!
   updatedAt: DateTime!
+  user: User!
   userId: Int!
-  users: User!
 }
 
 type ComicBookmarkAvgAggregateOutputType {
@@ -1838,7 +1839,7 @@ input ComicBookmarkCreateInput {
   comic: ComicCreateNestedOneWithoutUserbookmarksInput!
   createdAt: DateTime
   updatedAt: DateTime
-  users: UserCreateNestedOneWithoutComicbookmarksInput!
+  user: UserCreateNestedOneWithoutComicbookmarksInput!
 }
 
 input ComicBookmarkCreateManyComicInput {
@@ -1861,15 +1862,15 @@ input ComicBookmarkCreateManyInput {
   userId: Int!
 }
 
-input ComicBookmarkCreateManyUsersInput {
+input ComicBookmarkCreateManyUserInput {
   comicId: Int!
   createdAt: DateTime
   id: Int
   updatedAt: DateTime
 }
 
-input ComicBookmarkCreateManyUsersInputEnvelope {
-  data: ComicBookmarkCreateManyUsersInput!
+input ComicBookmarkCreateManyUserInputEnvelope {
+  data: ComicBookmarkCreateManyUserInput!
   skipDuplicates: Boolean
 }
 
@@ -1880,11 +1881,11 @@ input ComicBookmarkCreateNestedManyWithoutComicInput {
   createMany: ComicBookmarkCreateManyComicInputEnvelope
 }
 
-input ComicBookmarkCreateNestedManyWithoutUsersInput {
+input ComicBookmarkCreateNestedManyWithoutUserInput {
   connect: [ComicBookmarkWhereUniqueInput]
-  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ComicBookmarkCreateWithoutUsersInput]
-  createMany: ComicBookmarkCreateManyUsersInputEnvelope
+  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUserInput]
+  create: [ComicBookmarkCreateWithoutUserInput]
+  createMany: ComicBookmarkCreateManyUserInputEnvelope
 }
 
 input ComicBookmarkCreateOrConnectWithoutComicInput {
@@ -1892,18 +1893,18 @@ input ComicBookmarkCreateOrConnectWithoutComicInput {
   where: ComicBookmarkWhereUniqueInput!
 }
 
-input ComicBookmarkCreateOrConnectWithoutUsersInput {
-  create: ComicBookmarkUncheckedCreateWithoutUsersInput!
+input ComicBookmarkCreateOrConnectWithoutUserInput {
+  create: ComicBookmarkUncheckedCreateWithoutUserInput!
   where: ComicBookmarkWhereUniqueInput!
 }
 
 input ComicBookmarkCreateWithoutComicInput {
   createdAt: DateTime
   updatedAt: DateTime
-  users: UserCreateNestedOneWithoutComicbookmarksInput!
+  user: UserCreateNestedOneWithoutComicbookmarksInput!
 }
 
-input ComicBookmarkCreateWithoutUsersInput {
+input ComicBookmarkCreateWithoutUserInput {
   comic: ComicCreateNestedOneWithoutUserbookmarksInput!
   createdAt: DateTime
   updatedAt: DateTime
@@ -1970,8 +1971,8 @@ input ComicBookmarkOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   updatedAt: SortOrder
+  user: UserOrderByWithRelationInput
   userId: SortOrder
-  users: UserOrderByWithRelationInput
 }
 
 enum ComicBookmarkScalarFieldEnum {
@@ -2031,11 +2032,11 @@ input ComicBookmarkUncheckedCreateNestedManyWithoutComicInput {
   createMany: ComicBookmarkCreateManyComicInputEnvelope
 }
 
-input ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput {
+input ComicBookmarkUncheckedCreateNestedManyWithoutUserInput {
   connect: [ComicBookmarkWhereUniqueInput]
-  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ComicBookmarkCreateWithoutUsersInput]
-  createMany: ComicBookmarkCreateManyUsersInputEnvelope
+  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUserInput]
+  create: [ComicBookmarkCreateWithoutUserInput]
+  createMany: ComicBookmarkCreateManyUserInputEnvelope
 }
 
 input ComicBookmarkUncheckedCreateWithoutComicInput {
@@ -2045,7 +2046,7 @@ input ComicBookmarkUncheckedCreateWithoutComicInput {
   userId: Int!
 }
 
-input ComicBookmarkUncheckedCreateWithoutUsersInput {
+input ComicBookmarkUncheckedCreateWithoutUserInput {
   comicId: Int!
   createdAt: DateTime
   id: Int
@@ -2089,25 +2090,25 @@ input ComicBookmarkUncheckedUpdateManyWithoutComicbookmarksInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
+input ComicBookmarkUncheckedUpdateManyWithoutUserInput {
+  connect: [ComicBookmarkWhereUniqueInput]
+  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUserInput]
+  create: [ComicBookmarkCreateWithoutUserInput]
+  createMany: ComicBookmarkCreateManyUserInputEnvelope
+  delete: [ComicBookmarkWhereUniqueInput]
+  deleteMany: [ComicBookmarkScalarWhereInput]
+  disconnect: [ComicBookmarkWhereUniqueInput]
+  set: [ComicBookmarkWhereUniqueInput]
+  update: [ComicBookmarkUpdateWithWhereUniqueWithoutUserInput]
+  updateMany: [ComicBookmarkUpdateManyWithWhereWithoutUserInput]
+  upsert: [ComicBookmarkUpsertWithWhereUniqueWithoutUserInput]
+}
+
 input ComicBookmarkUncheckedUpdateManyWithoutUserbookmarksInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
   userId: IntFieldUpdateOperationsInput
-}
-
-input ComicBookmarkUncheckedUpdateManyWithoutUsersInput {
-  connect: [ComicBookmarkWhereUniqueInput]
-  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ComicBookmarkCreateWithoutUsersInput]
-  createMany: ComicBookmarkCreateManyUsersInputEnvelope
-  delete: [ComicBookmarkWhereUniqueInput]
-  deleteMany: [ComicBookmarkScalarWhereInput]
-  disconnect: [ComicBookmarkWhereUniqueInput]
-  set: [ComicBookmarkWhereUniqueInput]
-  update: [ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput]
-  updateMany: [ComicBookmarkUpdateManyWithWhereWithoutUsersInput]
-  upsert: [ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput]
 }
 
 input ComicBookmarkUncheckedUpdateWithoutComicInput {
@@ -2117,7 +2118,7 @@ input ComicBookmarkUncheckedUpdateWithoutComicInput {
   userId: IntFieldUpdateOperationsInput
 }
 
-input ComicBookmarkUncheckedUpdateWithoutUsersInput {
+input ComicBookmarkUncheckedUpdateWithoutUserInput {
   comicId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -2128,7 +2129,7 @@ input ComicBookmarkUpdateInput {
   comic: ComicUpdateOneRequiredWithoutUserbookmarksInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  users: UserUpdateOneRequiredWithoutComicbookmarksInput
+  user: UserUpdateOneRequiredWithoutComicbookmarksInput
 }
 
 input ComicBookmarkUpdateManyMutationInput {
@@ -2141,7 +2142,7 @@ input ComicBookmarkUpdateManyWithWhereWithoutComicInput {
   where: ComicBookmarkScalarWhereInput!
 }
 
-input ComicBookmarkUpdateManyWithWhereWithoutUsersInput {
+input ComicBookmarkUpdateManyWithWhereWithoutUserInput {
   data: ComicBookmarkUncheckedUpdateManyWithoutComicbookmarksInput!
   where: ComicBookmarkScalarWhereInput!
 }
@@ -2160,18 +2161,18 @@ input ComicBookmarkUpdateManyWithoutComicInput {
   upsert: [ComicBookmarkUpsertWithWhereUniqueWithoutComicInput]
 }
 
-input ComicBookmarkUpdateManyWithoutUsersInput {
+input ComicBookmarkUpdateManyWithoutUserInput {
   connect: [ComicBookmarkWhereUniqueInput]
-  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUsersInput]
-  create: [ComicBookmarkCreateWithoutUsersInput]
-  createMany: ComicBookmarkCreateManyUsersInputEnvelope
+  connectOrCreate: [ComicBookmarkCreateOrConnectWithoutUserInput]
+  create: [ComicBookmarkCreateWithoutUserInput]
+  createMany: ComicBookmarkCreateManyUserInputEnvelope
   delete: [ComicBookmarkWhereUniqueInput]
   deleteMany: [ComicBookmarkScalarWhereInput]
   disconnect: [ComicBookmarkWhereUniqueInput]
   set: [ComicBookmarkWhereUniqueInput]
-  update: [ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput]
-  updateMany: [ComicBookmarkUpdateManyWithWhereWithoutUsersInput]
-  upsert: [ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput]
+  update: [ComicBookmarkUpdateWithWhereUniqueWithoutUserInput]
+  updateMany: [ComicBookmarkUpdateManyWithWhereWithoutUserInput]
+  upsert: [ComicBookmarkUpsertWithWhereUniqueWithoutUserInput]
 }
 
 input ComicBookmarkUpdateWithWhereUniqueWithoutComicInput {
@@ -2179,18 +2180,18 @@ input ComicBookmarkUpdateWithWhereUniqueWithoutComicInput {
   where: ComicBookmarkWhereUniqueInput!
 }
 
-input ComicBookmarkUpdateWithWhereUniqueWithoutUsersInput {
-  data: ComicBookmarkUncheckedUpdateWithoutUsersInput!
+input ComicBookmarkUpdateWithWhereUniqueWithoutUserInput {
+  data: ComicBookmarkUncheckedUpdateWithoutUserInput!
   where: ComicBookmarkWhereUniqueInput!
 }
 
 input ComicBookmarkUpdateWithoutComicInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
-  users: UserUpdateOneRequiredWithoutComicbookmarksInput
+  user: UserUpdateOneRequiredWithoutComicbookmarksInput
 }
 
-input ComicBookmarkUpdateWithoutUsersInput {
+input ComicBookmarkUpdateWithoutUserInput {
   comic: ComicUpdateOneRequiredWithoutUserbookmarksInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -2202,9 +2203,9 @@ input ComicBookmarkUpsertWithWhereUniqueWithoutComicInput {
   where: ComicBookmarkWhereUniqueInput!
 }
 
-input ComicBookmarkUpsertWithWhereUniqueWithoutUsersInput {
-  create: ComicBookmarkUncheckedCreateWithoutUsersInput!
-  update: ComicBookmarkUncheckedUpdateWithoutUsersInput!
+input ComicBookmarkUpsertWithWhereUniqueWithoutUserInput {
+  create: ComicBookmarkUncheckedCreateWithoutUserInput!
+  update: ComicBookmarkUncheckedUpdateWithoutUserInput!
   where: ComicBookmarkWhereUniqueInput!
 }
 
@@ -2217,8 +2218,8 @@ input ComicBookmarkWhereInput {
   createdAt: DateTimeFilter
   id: IntFilter
   updatedAt: DateTimeFilter
+  user: UserWhereInput
   userId: IntFilter
-  users: UserWhereInput
 }
 
 input ComicBookmarkWhereUniqueInput {
@@ -2800,6 +2801,7 @@ input ComicUncheckedCreateInput {
   concept: String
   createdAt: DateTime
   description: String
+  genres: GenreUncheckedCreateNestedManyWithoutComicsInput
   id: Int
   isHentai: Boolean
   lastChapterUpdateAt: DateTime
@@ -2826,6 +2828,12 @@ input ComicUncheckedCreateNestedManyWithoutAuthorInput {
   createMany: ComicCreateManyAuthorInputEnvelope
 }
 
+input ComicUncheckedCreateNestedManyWithoutGenresInput {
+  connect: [ComicWhereUniqueInput]
+  connectOrCreate: [ComicCreateOrConnectWithoutGenresInput]
+  create: [ComicCreateWithoutGenresInput]
+}
+
 input ComicUncheckedCreateWithoutAuthorInput {
   age: String
   altName: Json
@@ -2833,6 +2841,7 @@ input ComicUncheckedCreateWithoutAuthorInput {
   concept: String
   createdAt: DateTime
   description: String
+  genres: GenreUncheckedCreateNestedManyWithoutComicsInput
   id: Int
   isHentai: Boolean
   lastChapterUpdateAt: DateTime
@@ -2859,6 +2868,7 @@ input ComicUncheckedCreateWithoutChaptersInput {
   concept: String
   createdAt: DateTime
   description: String
+  genres: GenreUncheckedCreateNestedManyWithoutComicsInput
   id: Int
   isHentai: Boolean
   lastChapterUpdateAt: DateTime
@@ -2913,6 +2923,7 @@ input ComicUncheckedCreateWithoutUserbookmarksInput {
   concept: String
   createdAt: DateTime
   description: String
+  genres: GenreUncheckedCreateNestedManyWithoutComicsInput
   id: Int
   isHentai: Boolean
   lastChapterUpdateAt: DateTime
@@ -2939,6 +2950,7 @@ input ComicUncheckedUpdateInput {
   concept: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  genres: GenreUncheckedUpdateManyWithoutComicsInput
   id: IntFieldUpdateOperationsInput
   isHentai: BoolFieldUpdateOperationsInput
   lastChapterUpdateAt: DateTimeFieldUpdateOperationsInput
@@ -3021,6 +3033,19 @@ input ComicUncheckedUpdateManyWithoutComicsInput {
   viewsWeek: IntFieldUpdateOperationsInput
 }
 
+input ComicUncheckedUpdateManyWithoutGenresInput {
+  connect: [ComicWhereUniqueInput]
+  connectOrCreate: [ComicCreateOrConnectWithoutGenresInput]
+  create: [ComicCreateWithoutGenresInput]
+  delete: [ComicWhereUniqueInput]
+  deleteMany: [ComicScalarWhereInput]
+  disconnect: [ComicWhereUniqueInput]
+  set: [ComicWhereUniqueInput]
+  update: [ComicUpdateWithWhereUniqueWithoutGenresInput]
+  updateMany: [ComicUpdateManyWithWhereWithoutGenresInput]
+  upsert: [ComicUpsertWithWhereUniqueWithoutGenresInput]
+}
+
 input ComicUncheckedUpdateWithoutAuthorInput {
   age: NullableStringFieldUpdateOperationsInput
   altName: Json
@@ -3028,6 +3053,7 @@ input ComicUncheckedUpdateWithoutAuthorInput {
   concept: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  genres: GenreUncheckedUpdateManyWithoutComicsInput
   id: IntFieldUpdateOperationsInput
   isHentai: BoolFieldUpdateOperationsInput
   lastChapterUpdateAt: DateTimeFieldUpdateOperationsInput
@@ -3054,6 +3080,7 @@ input ComicUncheckedUpdateWithoutChaptersInput {
   concept: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  genres: GenreUncheckedUpdateManyWithoutComicsInput
   id: IntFieldUpdateOperationsInput
   isHentai: BoolFieldUpdateOperationsInput
   lastChapterUpdateAt: DateTimeFieldUpdateOperationsInput
@@ -3108,6 +3135,7 @@ input ComicUncheckedUpdateWithoutUserbookmarksInput {
   concept: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  genres: GenreUncheckedUpdateManyWithoutComicsInput
   id: IntFieldUpdateOperationsInput
   isHentai: BoolFieldUpdateOperationsInput
   lastChapterUpdateAt: DateTimeFieldUpdateOperationsInput
@@ -3438,25 +3466,12 @@ input DateTimeWithAggregatesFilter {
 """Decimal custom scalar type"""
 scalar Decimal
 
-input EnumAdsPositionFieldUpdateOperationsInput {
-  set: AdsPosition
-}
-
-input EnumAdsPositionFilter {
-  equals: AdsPosition
-  in: [AdsPosition]
-  not: NestedEnumAdsPositionFilter
-  notIn: [AdsPosition]
-}
-
-input EnumAdsPositionWithAggregatesFilter {
-  _count: NestedIntFilter
-  _max: NestedEnumAdsPositionFilter
-  _min: NestedEnumAdsPositionFilter
-  equals: AdsPosition
-  in: [AdsPosition]
-  not: NestedEnumAdsPositionWithAggregatesFilter
-  notIn: [AdsPosition]
+input EnumAdsPositionNullableListFilter {
+  equals: [AdsPosition]
+  has: AdsPosition
+  hasEvery: [AdsPosition]
+  hasSome: [AdsPosition]
+  isEmpty: Boolean
 }
 
 input EnumChapterQualityFieldUpdateOperationsInput {
@@ -3700,11 +3715,18 @@ input GenreSumOrderByAggregateInput {
 }
 
 input GenreUncheckedCreateInput {
+  comics: ComicUncheckedCreateNestedManyWithoutGenresInput
   createdAt: DateTime
   id: Int
   name: String!
   slug: String!
   updatedAt: DateTime
+}
+
+input GenreUncheckedCreateNestedManyWithoutComicsInput {
+  connect: [GenreWhereUniqueInput]
+  connectOrCreate: [GenreCreateOrConnectWithoutComicsInput]
+  create: [GenreCreateWithoutComicsInput]
 }
 
 input GenreUncheckedCreateWithoutComicsInput {
@@ -3716,6 +3738,7 @@ input GenreUncheckedCreateWithoutComicsInput {
 }
 
 input GenreUncheckedUpdateInput {
+  comics: ComicUncheckedUpdateManyWithoutGenresInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -3729,6 +3752,19 @@ input GenreUncheckedUpdateManyInput {
   name: StringFieldUpdateOperationsInput
   slug: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input GenreUncheckedUpdateManyWithoutComicsInput {
+  connect: [GenreWhereUniqueInput]
+  connectOrCreate: [GenreCreateOrConnectWithoutComicsInput]
+  create: [GenreCreateWithoutComicsInput]
+  delete: [GenreWhereUniqueInput]
+  deleteMany: [GenreScalarWhereInput]
+  disconnect: [GenreWhereUniqueInput]
+  set: [GenreWhereUniqueInput]
+  update: [GenreUpdateWithWhereUniqueWithoutComicsInput]
+  updateMany: [GenreUpdateManyWithWhereWithoutComicsInput]
+  upsert: [GenreUpsertWithWhereUniqueWithoutComicsInput]
 }
 
 input GenreUncheckedUpdateManyWithoutGenresInput {
@@ -4219,23 +4255,6 @@ input NestedDateTimeWithAggregatesFilter {
   notIn: [DateTime]
 }
 
-input NestedEnumAdsPositionFilter {
-  equals: AdsPosition
-  in: [AdsPosition]
-  not: NestedEnumAdsPositionFilter
-  notIn: [AdsPosition]
-}
-
-input NestedEnumAdsPositionWithAggregatesFilter {
-  _count: NestedIntFilter
-  _max: NestedEnumAdsPositionFilter
-  _min: NestedEnumAdsPositionFilter
-  equals: AdsPosition
-  in: [AdsPosition]
-  not: NestedEnumAdsPositionWithAggregatesFilter
-  notIn: [AdsPosition]
-}
-
 input NestedEnumChapterQualityFilter {
   equals: ChapterQuality
   in: [ChapterQuality]
@@ -4711,6 +4730,7 @@ type Query {
   findUniqueReport(where: ReportWhereUniqueInput!): Report
   findUniqueUser(where: UserWhereUniqueInput!): User
   genreSearch(limit: Int, offset: Int, query: String!): AuthorSearch
+  me: User
   test: Boolean
 }
 
@@ -5287,8 +5307,8 @@ type UserCountOutputType {
 
 input UserCreateInput {
   allowHentai: Boolean
-  chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkCreateNestedManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutUserInput
+  comicbookmarks: ComicBookmarkCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   isAdmin: Boolean
@@ -5342,7 +5362,7 @@ input UserCreateOrConnectWithoutReportsInput {
 
 input UserCreateWithoutChapterbookmarksInput {
   allowHentai: Boolean
-  comicbookmarks: ComicBookmarkCreateNestedManyWithoutUsersInput
+  comicbookmarks: ComicBookmarkCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   isAdmin: Boolean
@@ -5353,7 +5373,7 @@ input UserCreateWithoutChapterbookmarksInput {
 
 input UserCreateWithoutComicbookmarksInput {
   allowHentai: Boolean
-  chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   isAdmin: Boolean
@@ -5364,8 +5384,8 @@ input UserCreateWithoutComicbookmarksInput {
 
 input UserCreateWithoutReportsInput {
   allowHentai: Boolean
-  chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkCreateNestedManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkCreateNestedManyWithoutUserInput
+  comicbookmarks: ComicBookmarkCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   isAdmin: Boolean
@@ -5480,8 +5500,8 @@ input UserSumOrderByAggregateInput {
 
 input UserUncheckedCreateInput {
   allowHentai: Boolean
-  chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutUserInput
+  comicbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   id: Int
@@ -5493,7 +5513,7 @@ input UserUncheckedCreateInput {
 
 input UserUncheckedCreateWithoutChapterbookmarksInput {
   allowHentai: Boolean
-  comicbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput
+  comicbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   id: Int
@@ -5505,7 +5525,7 @@ input UserUncheckedCreateWithoutChapterbookmarksInput {
 
 input UserUncheckedCreateWithoutComicbookmarksInput {
   allowHentai: Boolean
-  chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   id: Int
@@ -5517,8 +5537,8 @@ input UserUncheckedCreateWithoutComicbookmarksInput {
 
 input UserUncheckedCreateWithoutReportsInput {
   allowHentai: Boolean
-  chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUncheckedCreateNestedManyWithoutUserInput
+  comicbookmarks: ComicBookmarkUncheckedCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
   id: Int
@@ -5529,8 +5549,8 @@ input UserUncheckedCreateWithoutReportsInput {
 
 input UserUncheckedUpdateInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkUncheckedUpdateManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutUserInput
+  comicbookmarks: ComicBookmarkUncheckedUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -5552,7 +5572,7 @@ input UserUncheckedUpdateManyInput {
 
 input UserUncheckedUpdateWithoutChapterbookmarksInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  comicbookmarks: ComicBookmarkUncheckedUpdateManyWithoutUsersInput
+  comicbookmarks: ComicBookmarkUncheckedUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -5564,7 +5584,7 @@ input UserUncheckedUpdateWithoutChapterbookmarksInput {
 
 input UserUncheckedUpdateWithoutComicbookmarksInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -5576,8 +5596,8 @@ input UserUncheckedUpdateWithoutComicbookmarksInput {
 
 input UserUncheckedUpdateWithoutReportsInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkUncheckedUpdateManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUncheckedUpdateManyWithoutUserInput
+  comicbookmarks: ComicBookmarkUncheckedUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -5588,8 +5608,8 @@ input UserUncheckedUpdateWithoutReportsInput {
 
 input UserUpdateInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  chapterbookmarks: ChapterBookmarkUpdateManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkUpdateManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUpdateManyWithoutUserInput
+  comicbookmarks: ComicBookmarkUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
@@ -5635,7 +5655,7 @@ input UserUpdateOneWithoutReportsInput {
 
 input UserUpdateWithoutChapterbookmarksInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  comicbookmarks: ComicBookmarkUpdateManyWithoutUsersInput
+  comicbookmarks: ComicBookmarkUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
@@ -5646,7 +5666,7 @@ input UserUpdateWithoutChapterbookmarksInput {
 
 input UserUpdateWithoutComicbookmarksInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  chapterbookmarks: ChapterBookmarkUpdateManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
@@ -5657,8 +5677,8 @@ input UserUpdateWithoutComicbookmarksInput {
 
 input UserUpdateWithoutReportsInput {
   allowHentai: BoolFieldUpdateOperationsInput
-  chapterbookmarks: ChapterBookmarkUpdateManyWithoutUsersInput
-  comicbookmarks: ComicBookmarkUpdateManyWithoutUsersInput
+  chapterbookmarks: ChapterBookmarkUpdateManyWithoutUserInput
+  comicbookmarks: ComicBookmarkUpdateManyWithoutUserInput
   createdAt: DateTimeFieldUpdateOperationsInput
   email: StringFieldUpdateOperationsInput
   isAdmin: BoolFieldUpdateOperationsInput
