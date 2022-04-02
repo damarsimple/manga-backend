@@ -27,18 +27,18 @@ export const Chapter = objectType({
     t.field('createdAt', { type: 'DateTime' })
     t.field('updatedAt', { type: 'DateTime' })
     t.int('comicId')
-    t.list.field('chapterbookmarks', {
-      type: 'ChapterBookmark',
+    t.list.field('userviewers', {
+      type: 'ViewedChapter',
       args: {
-        where: 'ChapterBookmarkWhereInput',
-        orderBy: 'ChapterBookmarkOrderByWithRelationInput',
-        cursor: 'ChapterBookmarkWhereUniqueInput',
+        where: 'ViewedChapterWhereInput',
+        orderBy: 'ViewedChapterOrderByWithRelationInput',
+        cursor: 'ViewedChapterWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'ChapterBookmarkScalarFieldEnum',
+        distinct: 'ViewedChapterScalarFieldEnum',
       },
       resolve(root: any) {
-        return root.chapterbookmarks
+        return root.userviewers
       },
     })
     t.field('_count', {

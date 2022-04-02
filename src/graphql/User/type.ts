@@ -43,18 +43,32 @@ export const User = objectType({
         return root.comicbookmarks
       },
     })
-    t.list.field('chapterbookmarks', {
-      type: 'ChapterBookmark',
+    t.list.field('viewedChapters', {
+      type: 'ViewedChapter',
       args: {
-        where: 'ChapterBookmarkWhereInput',
-        orderBy: 'ChapterBookmarkOrderByWithRelationInput',
-        cursor: 'ChapterBookmarkWhereUniqueInput',
+        where: 'ViewedChapterWhereInput',
+        orderBy: 'ViewedChapterOrderByWithRelationInput',
+        cursor: 'ViewedChapterWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'ChapterBookmarkScalarFieldEnum',
+        distinct: 'ViewedChapterScalarFieldEnum',
       },
       resolve(root: any) {
-        return root.chapterbookmarks
+        return root.viewedChapters
+      },
+    })
+    t.list.field('changelogs', {
+      type: 'Changelog',
+      args: {
+        where: 'ChangelogWhereInput',
+        orderBy: 'ChangelogOrderByWithRelationInput',
+        cursor: 'ChangelogWhereUniqueInput',
+        take: 'Int',
+        skip: 'Int',
+        distinct: 'ChangelogScalarFieldEnum',
+      },
+      resolve(root: any) {
+        return root.changelogs
       },
     })
     t.field('_count', {

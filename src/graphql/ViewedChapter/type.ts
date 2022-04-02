@@ -1,11 +1,11 @@
 import { objectType } from 'nexus'
 
-export const ChapterBookmark = objectType({
+export const ViewedChapter = objectType({
   nonNullDefaults: {
     output: true,
     input: false,
   },
-  name: 'ChapterBookmark',
+  name: 'ViewedChapter',
   definition(t) {
     t.int('id')
     t.int('chapterId')
