@@ -1,1 +1,5 @@
-export const APP_ENDPOINT = "https://backend2.gudangkomik.com/graphql";
+if (process.env.WEBPACK != "true") {
+  require("dotenv").config();
+}
+
+export const APP_ENDPOINT = "https://backend.gudangkomik.com/graphql";
