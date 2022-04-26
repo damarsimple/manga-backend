@@ -5,7 +5,7 @@ import { slugify } from "../../modules/Helper";
 
 // SAME TEMPLATE AS MANHWAINDO
 
-const IGNORE = "https://cdn.imagesimple.co/img/manhwaindo/";
+const IGNORE = "imagesimple.co/img/manhwaindo/";
 
 export default class Manhwaindo extends Scrapper {
   public getPageRangeUrl(x: number): string[] {
@@ -113,7 +113,7 @@ export default class Manhwaindo extends Scrapper {
     const imgDom = Array.from(doc?.querySelectorAll("img") ?? []);
 
     const images = Array.from(
-      imgDom.map((e) => e.getAttribute("src")?.replace(IGNORE, "") ?? "")
+      imgDom.map((e) => e.getAttribute("src")?.replace("img.statically.io/img/manhwaindo/","")?.replace(IGNORE, "") ?? "")
     );
 
     const title = doc?.querySelector("h1")?.textContent ?? "";

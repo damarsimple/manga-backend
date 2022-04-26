@@ -96,7 +96,7 @@ export default class Manhwaland extends Scrapper {
 
     const imgDom = Array.from(doc?.querySelectorAll("img") ?? []);
 
-    const images = Array.from(imgDom.map((e) => e.getAttribute("src") ?? ""));
+    const images = Array.from(imgDom.map((e) => e.getAttribute("src")?.replace("img.statically.io/img/manhwaindo/", "") ?? ""));
 
     const title = doc?.querySelector("h1")?.textContent ?? "";
 

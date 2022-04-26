@@ -115,7 +115,8 @@ export abstract class Scrapper {
         const splits = e.split(" ");
         let idx = 0;
 
-        for (const x of splits) {
+        try {
+               for (const x of splits) {
 
             if (x.toLocaleLowerCase() == "chapter") {
                 const name = parseFloat(
@@ -124,8 +125,7 @@ export abstract class Scrapper {
 
                 if (isNaN(name)) {
                     // throw new Error(`nan Detected ${e}`)
-                    console.log(`nan Detected ${e}`)
-                    return 0;
+                    throw Error(`nan Detected ${e}`)
                 }
 
                 return name;
@@ -133,6 +133,20 @@ export abstract class Scrapper {
 
             idx++;
         }
+        } catch (error) {
+            for (const x of splits) {
+
+                const name = parseFloat(x);
+
+                if (isNaN(name)) continue;
+
+
+                return name;
+
+            }
+        }
+
+        
 
         throw new Error(`Chapter name cant be guessed ${e}`);
     }
@@ -174,8 +188,9 @@ export abstract class Scrapper {
         const prefix = `[${decl.name}]`
 
         if (!decl.url.includes(location.href)) {
-            this._logger.info(`not match ${location.href} ${decl.url}`)
             return;
+        } else {
+              this._logger.info(`match ${location.href} ${decl.url}`)
         }
 
 
@@ -212,6 +227,14 @@ export abstract class Scrapper {
         }
 
         const urls = [...new Set([...specials, ...this.getUpdates(document)]), ...xd];
+        // const urls = [];
+
+        // for (let index = 0; index < Math.floor(urls1.length / 3); index++) {
+            // const element = urls1[index];
+// 
+            // urls.push(element)
+            // 
+        // }
 
         let outer = 1;
 
