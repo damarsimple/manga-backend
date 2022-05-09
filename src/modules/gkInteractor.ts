@@ -1,10 +1,10 @@
 import axios from "axios";
 import { gql, GraphQLClient } from "graphql-request";
-import { host } from "./env";
-import { Comic, ChapterCandidate, Chapter as ChapterScrapepr } from './types';
-import { APP_ENDPOINT } from '../../modules/Env';
-import { SECRET_KEY } from '../../modules/Key';
-import { slugify } from '../../modules/Helper';
+import { host } from "../browsers/src/env";
+import { Comic, ChapterCandidate, Chapter as ChapterScrapepr } from '../browsers/src/types';
+import { APP_ENDPOINT } from './Env';
+import { SECRET_KEY } from './Key';
+import { slugify } from './Helper';
 import { Chapter } from '@prisma/client';
 
 

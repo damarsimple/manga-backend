@@ -1,6 +1,6 @@
 import axios, { Axios, AxiosInstance } from "axios";
 import BunnyCDN from "../../modules/BunnyCDN";
-import { gkInteractor } from "./gkInteractor";
+import { gkInteractor } from "../../modules/gkInteractor";
 import { Chapter, ChapterCandidate, Comic, ImageChapter } from './types';
 import Logger from "../../modules/Logger";
 import { slugify } from "../../modules/Helper";
