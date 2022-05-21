@@ -1,119 +1,169 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import Logger from "./Logger";
-
-const logger = new Logger();
-
-interface BunnyConstructor { log: boolean, axiosDefault?: AxiosRequestConfig; }
+import FormDataNode from "form-data";
+import fs, { ReadStream } from "fs";
+const isNode =
+  typeof process !== "undefined" && process.release.name === "node";
+interface BunnyConstructor {
+  log: boolean;
+  axiosDefault?: AxiosRequestConfig;
+}
 export default class BunnyCDN {
+  private start = new Date();
+  private end = new Date();
+  private axiosDown: AxiosInstance;
+  private axiosUp: AxiosInstance;
+  private log: boolean;
 
-    private start = new Date()
-    private end = new Date()
-    private axiosDown: AxiosInstance
-    private axiosUp: AxiosInstance
-    private log: boolean;
+  private BASE_URL = "http://144.91.99.36:4000/upload";
 
-    constructor(init?: BunnyConstructor) {
+  constructor(init?: BunnyConstructor) {
+    const { log, axiosDefault } = init || {};
 
+    this.log = log || false;
 
-        const { log, axiosDefault } = init || {};
+    // this.axios.interceptors.response.use((e) => {
+    //     logger.error(`SCRAPPER Error : 📁 ${e.config.url}, ${e.status} , ${e.statusText} `)
+    // });
 
-        this.log = log || false;
+    const headers = {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
+      AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
+      "Content-Type": "application/octet-stream",
+    };
 
-        // this.axios.interceptors.response.use((e) => {
-        //     logger.error(`SCRAPPER Error : 📁 ${e.config.url}, ${e.status} , ${e.statusText} `)
-        // });
+    this.axiosDown = axios.create({
+      ...axiosDefault,
+      headers,
+    });
 
-        const headers = {
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
-            AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
-            "Content-Type": "application/octet-stream",
-        }
+    this.axiosUp = axios.create({
+      headers,
+    });
 
-        this.axiosDown = axios.create({
-            ...axiosDefault,
-            headers
+    this.axiosDown.get("https://api.myip.com").then((e) => console.log(e.data));
+  }
+
+  private _time() {
+    this.start = new Date();
+  }
+
+  private _end() {
+    this.end = new Date();
+  }
+
+  private getElapsed() {
+    this._end();
+    return this.end.getTime() - this.start.getTime();
+  }
+
+  private filenameGueser(url: string) {
+    return url.substring(url.lastIndexOf("/") + 1);
+  }
+
+  public async download(url: string): Promise<ReadStream | Blob> {
+    const y = await this.axiosDown.get(url, {
+      responseType: isNode ? "stream" : "blob",
+    });
+
+    return y.data;
+  }
+
+  blobToFile = (theBlob: Blob, fileName: string): File => {
+    var b: any = theBlob;
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    b.lastModifiedDate = new Date();
+    b.name = fileName;
+
+    //Cast to a File() type
+    return <File>theBlob;
+  };
+
+  public async upload(file: ReadStream | Blob, saveToPath: string) {
+    this._time();
+    const filename = this.filenameGueser(saveToPath);
+    const path = saveToPath.replace(filename, "");
+
+    console.log(`${isNode ? "node" : "browser"} ${filename} ${path}`);
+
+    try {
+      let form;
+      let headers = {};
+      if (isNode) {
+        form = new FormDataNode();
+        form.append("file", file as ReadStream, {
+          filename: this.filenameGueser(path),
+        });
+        form.append("directory", path);
+        form.append("filename", filename);
+
+        headers = form.getHeaders ? form.getHeaders() : {};
+      } else {
+        form = new FormData();
+        headers = {};
+        form.append(
+          "file",
+          this.blobToFile(file as Blob, this.filenameGueser(path)),
+          this.filenameGueser(path)
+        );
+        form.append("directory", path);
+        form.append("filename", filename);
+      }
+
+      const res = await this.axiosUp
+        .post(this.BASE_URL, form, {
+          headers: {
+            ...headers,
+            // "Content-Length": bodyFormData.getLengthSync(),
+          },
         })
-
-        this.axiosUp = axios.create({
-            headers
+        .then((e) => {
+          console.log(e.data);
         })
-
-
-        this.axiosDown.get("https://api.myip.com").then((e) => console.log(e.data))
-    }
-
-    private _time() {
-        this.start = new Date()
-    }
-
-    private _end() {
-        this.end = new Date()
-    }
-
-    private getElapsed() {
-        this._end();
-        return this.end.getTime() - this.start.getTime();
-    }
-
-
-    private filenameGueser(url: string) {
-        return url.substring(url.lastIndexOf("/") + 1);
-    }
-
-    public async download(url: string): Promise<Buffer> {
-
-        const y = await this.axiosDown.get(url, {
-            responseType: "arraybuffer",
+        .catch(function (error) {
+          console.log(error.response.data);
+          console.log("Error", error.message);
         });
 
-        return y.data;
+      return true;
+    } catch (error) {
+      console.log(`${saveToPath} error upload ${error} `);
+      throw error;
     }
+  }
 
-    public async upload(file: ArrayBuffer, path: string) {
-        this._time();
+  public async downloadAndUpload(
+    url: string,
+    path: string,
+    pipe?: (e: Buffer) => Promise<Buffer>
+  ) {
+    this._time();
+    try {
+      const file = await this.download(url);
+      this._end();
+      const downloadElapsed = this.getElapsed();
+      this._time();
+      console.log(`${url} download ${downloadElapsed}ms`);
+      const result = await this.upload(file, path);
+      this._end();
+      this.log &&
+        console.log(
+          `[BUNNYCDN] 📁 Download ${
+            pipe ? "And Pipe" : ""
+          } finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://cdn.gudangkomik.com${path}`
+        );
+      return result;
+    } catch (error) {
+      console.log(
+        `[BUNNYCDN] 📁 [Error] Download ${url} and Uploading https://cdn.gudangkomik.com${path}`
+      );
 
-        try {
-            const tobeSaved = `https://sg.storage.bunnycdn.com/komikgudang${path}`;
-            const tobePurged = `https://cdn.gudangkomik.com${path}`;
-
-            const res = await this.axiosUp.put(tobeSaved, file);
-
-
-
-            return await res.data;
-
-
-        } catch (error) {
-            console.log(`${path} error upload ${error} `)
-            throw error;
-        }
-
+      throw error;
     }
+  }
 
-
-    public async downloadAndUpload(url: string, path: string, pipe?: (e: Buffer) => Promise<Buffer>) {
-        this._time();
-        try {
-            const file = await this.download(url)
-            this._end();
-            const downloadElapsed = this.getElapsed();
-            this._time();
-
-            const result = await this.upload(pipe ? await pipe(file) : file, path)
-            this._end();
-            this.log && console.log(`[BUNNYCDN] 📁 Download ${pipe ? "And Pipe" : ""} finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://cdn.gudangkomik.com${path}`)
-            return result
-
-        } catch (error) {
-            console.log(`[BUNNYCDN] 📁 [Error] Download ${url} and Uploading https://cdn.gudangkomik.com${path}`)
-
-            throw error;
-        }
-
-    }
-
-
-    public getAxios() {
-        return this.axiosDown
-    }
+  public getAxios() {
+    return this.axiosDown;
+  }
 }

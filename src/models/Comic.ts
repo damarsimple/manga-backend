@@ -1,122 +1,125 @@
-import { Chapter, Comic, Author } from '@prisma/client';
-import moment from 'moment';
-import { arg, extendType, list, nonNull, stringArg, objectType, intArg, booleanArg, floatArg, asNexusMethod } from 'nexus';
-import BunnyCDN from '../modules/BunnyCDN';
-import { slugify } from '../modules/Helper';
-import { comicIncrementQueue, chapterIncrementQueue } from '../modules/Queue';
-import { updateDocumentIndex } from '../modules/Meilisearch';
-import { connection, resetComicSets } from '../modules/Redis';
-
+import { Chapter, Comic, Author } from "@prisma/client";
+import moment from "moment";
+import {
+  arg,
+  extendType,
+  list,
+  nonNull,
+  stringArg,
+  objectType,
+  intArg,
+  booleanArg,
+  floatArg,
+  asNexusMethod,
+} from "nexus";
+import BunnyCDN from "../modules/BunnyCDN";
+import { slugify } from "../modules/Helper";
+import { comicIncrementQueue, chapterIncrementQueue } from "../modules/Queue";
+import { updateDocumentIndex } from "../modules/Meilisearch";
+import { connection, resetComicSets } from "../modules/Redis";
 
 export const SanityCheck = objectType({
-  name: 'SanityCheck',
+  name: "SanityCheck",
   definition(t) {
-    t.string('status')
-    t.list.field('chapters', { type: 'Chapter' })
-  }
-})
+    t.string("status");
+    t.list.field("chapters", { type: "Chapter" });
+  },
+});
 export const SanityEclipse = objectType({
-  name: 'SanityEclipse',
+  name: "SanityEclipse",
   definition(t) {
-    t.boolean('status')
-    t.nullable.string('message')
-  }
-})
-
+    t.boolean("status");
+    t.nullable.string("message");
+  },
+});
 
 export const ComicSearch = objectType({
-  name: 'ComicSearch',
+  name: "ComicSearch",
   definition(t) {
-    t.list.field('comics', { type: 'Comic' })
-    t.int('offset')
-    t.int('limit')
-    t.int('processingTimeMs')
-    t.int('total')
-    t.boolean('exhaustiveNbHits')
-  }
-})
+    t.list.field("comics", { type: "Comic" });
+    t.int("offset");
+    t.int("limit");
+    t.int("processingTimeMs");
+    t.int("total");
+    t.boolean("exhaustiveNbHits");
+  },
+});
 
 export const AuthorSearch = objectType({
-  name: 'AuthorSearch',
+  name: "AuthorSearch",
   definition(t) {
-    t.list.field('authors', { type: 'Author' })
-    t.int('offset')
-    t.int('limit')
-    t.int('processingTimeMs')
-    t.int('total')
-    t.boolean('exhaustiveNbHits')
-  }
-})
+    t.list.field("authors", { type: "Author" });
+    t.int("offset");
+    t.int("limit");
+    t.int("processingTimeMs");
+    t.int("total");
+    t.boolean("exhaustiveNbHits");
+  },
+});
 
 export const GenreSearch = objectType({
-  name: 'GenreSearch',
+  name: "GenreSearch",
   definition(t) {
-    t.list.field('authors', { type: 'Genre' })
-    t.int('offset')
-    t.int('limit')
-    t.int('processingTimeMs')
-    t.int('total')
-    t.boolean('exhaustiveNbHits')
-  }
-})
-
-
+    t.list.field("authors", { type: "Genre" });
+    t.int("offset");
+    t.int("limit");
+    t.int("processingTimeMs");
+    t.int("total");
+    t.boolean("exhaustiveNbHits");
+  },
+});
 
 export const ComicQueryRelated = extendType({
-  type: 'Query',
+  type: "Query",
   definition(t) {
-
-    t.field('test', {
-      type: 'Boolean',
+    t.field("test", {
+      type: "Boolean",
       resolve: async () => {
-        await resetComicSets()
-        return true
-      }
-    })
+        await resetComicSets();
+        return true;
+      },
+    });
 
-    t.field('comicSearch', {
+    t.field("comicSearch", {
       type: ComicSearch,
       args: {
         query: nonNull(stringArg()),
         offset: intArg(),
         limit: intArg(),
         type: stringArg(),
-        allowHentai: booleanArg({ default: false })
+        allowHentai: booleanArg({ default: false }),
       },
-      resolve: async (_, {
-        query, offset, limit, type,
-        allowHentai
-      }, { comicsIndex }) => {
-
-
-
-        console.log(`search called with liit of ${limit} and query of ${query} `)
+      resolve: async (
+        _,
+        { query, offset, limit, type, allowHentai },
+        { comicsIndex }
+      ) => {
+        console.log(
+          `search called with liit of ${limit} and query of ${query} `
+        );
 
         const filters = [];
 
         if (type) {
-          filters.push(`type = ${type}`)
+          filters.push(`type = ${type}`);
         }
 
         if (!allowHentai) {
-          filters.push(`isHentai = false`)
+          filters.push(`isHentai = false`);
         }
 
-        let filter = filters.join(" AND ")
-
+        let filter = filters.join(" AND ");
 
         if (limit == 10000) {
-          const key = `comicSearchAll`
+          const key = `comicSearchAll`;
 
-          const cache = await connection.get(key)
+          const cache = await connection.get(key);
 
           if (!cache) {
             const save = await comicsIndex.search<Comic>(query, {
               attributesToHighlight: ["name", "author", "description"],
               limit: limit,
-              sort: [
-                "lastChapterUpdatedAt:desc"
-              ]
+              sort: ["lastChapterUpdatedAt:desc"],
             });
 
             await connection.set(key, JSON.stringify(save));
@@ -124,18 +127,16 @@ export const ComicQueryRelated = extendType({
             return {
               ...save,
               total: save.nbHits,
-              comics: save.hits.map(e => e._formatted as Comic)
-            }
+              comics: save.hits.map((e) => e._formatted as Comic),
+            };
           }
-          const data = JSON.parse(cache)
+          const data = JSON.parse(cache);
           return {
             ...data,
             total: data.nbHits,
             //@ts-ignore
-            comics: data.hits.map(e => e._formatted as Comic)
-          }
-
-
+            comics: data.hits.map((e) => e._formatted as Comic),
+          };
         }
 
         const result = await comicsIndex.search<Comic>(query, {
@@ -143,33 +144,27 @@ export const ComicQueryRelated = extendType({
           offset: offset ?? 0,
           limit: limit ?? 10,
           filter: filter.length > 0 ? filter : undefined,
-          sort: [
-            "lastChapterUpdatedAt:desc"
-          ]
+          sort: ["lastChapterUpdatedAt:desc"],
         });
 
         return {
           ...result,
           total: result.nbHits,
-          comics: result.hits.map(e => e._formatted as Comic)
-        }
-
-      }
+          comics: result.hits.map((e) => e._formatted as Comic),
+        };
+      },
     });
 
-    t.field('genreSearch', {
+    t.field("genreSearch", {
       type: AuthorSearch,
       args: {
         query: nonNull(stringArg()),
         offset: intArg(),
         limit: intArg(),
       },
-      resolve: async (_, {
-        query, offset, limit
-      }, { authorsIndex }) => {
-
+      resolve: async (_, { query, offset, limit }, { authorsIndex }) => {
         const result = await authorsIndex.search<Author>(query, {
-          attributesToHighlight: ["name",],
+          attributesToHighlight: ["name"],
           offset: offset ?? 0,
           limit: limit ?? 10,
         });
@@ -177,25 +172,21 @@ export const ComicQueryRelated = extendType({
         return {
           ...result,
           total: result.nbHits,
-          comics: result.hits.map(e => e._formatted as Comic)
-        }
-
-      }
+          comics: result.hits.map((e) => e._formatted as Comic),
+        };
+      },
     });
 
-    t.field('authorSearch', {
+    t.field("authorSearch", {
       type: AuthorSearch,
       args: {
         query: nonNull(stringArg()),
         offset: intArg(),
         limit: intArg(),
       },
-      resolve: async (_, {
-        query, offset, limit
-      }, { authorsIndex }) => {
-
+      resolve: async (_, { query, offset, limit }, { authorsIndex }) => {
         const result = await authorsIndex.search<Author>(query, {
-          attributesToHighlight: ["name",],
+          attributesToHighlight: ["name"],
           offset: offset ?? 0,
           limit: limit ?? 10,
         });
@@ -203,188 +194,170 @@ export const ComicQueryRelated = extendType({
         return {
           ...result,
           total: result.nbHits,
-          comics: result.hits.map(e => e._formatted as Comic)
-        }
-
-      }
+          comics: result.hits.map((e) => e._formatted as Comic),
+        };
+      },
     });
-
-  }
-})
+  },
+});
 
 import { GraphQLUpload } from "graphql-upload";
-import { Stream } from 'stream';
+import { Stream } from "stream";
+import fs from "fs";
 
-export const Upload = asNexusMethod(GraphQLUpload, 'upload')
+export const Upload = asNexusMethod(GraphQLUpload, "upload");
 
 async function stream2buffer(stream: Stream): Promise<Buffer> {
-
   return new Promise<Buffer>((resolve, reject) => {
-
     const _buf = Array<any>();
 
-    stream.on("data", chunk => _buf.push(chunk));
+    stream.on("data", (chunk) => _buf.push(chunk));
     stream.on("end", () => resolve(Buffer.concat(_buf)));
-    stream.on("error", err => reject(`error converting stream - ${err}`));
-
+    stream.on("error", (err) => reject(`error converting stream - ${err}`));
   });
 }
 
 export const ComicMutationRelated = extendType({
-  type: 'Mutation',
+  type: "Mutation",
   definition(t) {
-    t.field('uploadFile', {
+    t.field("uploadFile", {
       type: "Boolean",
       args: {
-        file: arg({ type: 'Upload' }),
+        file: arg({ type: "Upload" }),
         path: nonNull(stringArg()),
       },
-      resolve: async (_, { file, path }, { }) => {
+      resolve: async (_, { file, path }, {}) => {
         const {
           filename,
           mimetype,
           encoding,
-          createReadStream
+          createReadStream,
         }: {
-          filename: string,
-          mimetype: string,
-          encoding: string,
-          createReadStream: () => NodeJS.ReadableStream
+          filename: string;
+          mimetype: string;
+          encoding: string;
+          createReadStream: () => fs.ReadStream;
         } = await file;
 
         try {
-          const y = await stream2buffer(createReadStream());
+          const y = createReadStream();
 
           const bunny = new BunnyCDN();
 
-          bunny.upload(y, path)
+          bunny.upload(y, path);
 
           return true;
         } catch (error) {
           return false;
         }
       },
-    })
-    t.field('reportMissing', {
-      type: 'Boolean',
+    });
+    t.field("reportMissing", {
+      type: "Boolean",
       args: {
         context: nonNull(stringArg()),
         data: nonNull(stringArg()),
       },
-      resolve: async (_, { context, data }, {
-        prisma
-      }) => {
-
+      resolve: async (_, { context, data }, { prisma }) => {
         let missing = await prisma.missing.findFirst({
           where: {
             context,
-            data
-          }
-        })
+            data,
+          },
+        });
 
         if (!missing) {
           missing = await prisma.missing.create({
             data: {
               context,
-              data
-            }
-          })
+              data,
+            },
+          });
         }
 
-        return true
-      }
-    })
+        return true;
+      },
+    });
 
-    t.field('reportView', {
-      type: 'Boolean',
+    t.field("reportView", {
+      type: "Boolean",
       args: {
         id: nonNull(intArg()),
-        context: nonNull(stringArg())
+        context: nonNull(stringArg()),
       },
       resolve: async (_, { id, context }, __) => {
-
-
         if (context == "comic") {
-          comicIncrementQueue.add('increment', { id })
+          comicIncrementQueue.add("increment", { id });
         } else {
-          chapterIncrementQueue.add('increment', { id })
+          chapterIncrementQueue.add("increment", { id });
         }
 
+        return true;
+      },
+    });
 
-        return true
-      }
-    })
-
-    t.field('sanityEclipse', {
-      type: 'SanityEclipse',
+    t.field("sanityEclipse", {
+      type: "SanityEclipse",
       authorize: (_, __, ctx) => ctx.gotKey,
       args: {
         slug: nonNull(stringArg()),
-        chapter: arg({ type: 'JSONObject' }),
+        chapter: arg({ type: "JSONObject" }),
       },
       resolve: async (_, { slug, chapter }, ctx) => {
         const comic = await ctx.prisma.comic.findFirst({
           where: {
-            slug: slugify(slug)
+            slug: slugify(slug),
           },
           include: {
-            chapters: true
-          }
+            chapters: true,
+          },
         });
 
         if (!comic) {
-
           return {
             status: false,
-            message: `${slugify(slug)} not found`
-          }
-        };
+            message: `${slugify(slug)} not found`,
+          };
+        }
 
-
-        const chaps = comic.chapters.map(e => e.name);
+        const chaps = comic.chapters.map((e) => e.name);
 
         if (chaps.includes(chapter.name)) {
           return {
             status: false,
-            message: `${slugify(slug)} chapter ${chapter.name} already exists`
-          }
+            message: `${slugify(slug)} chapter ${chapter.name} already exists`,
+          };
         }
-
 
         await ctx.prisma.chapter.create({
           data: {
             name: chapter.name,
             imageUrls: chapter.imageUrls,
             comicId: comic.id,
-            batchs: `${11}`
-          }
+            batchs: `${11}`,
+          },
         });
-
-
 
         const updateRes = await ctx.prisma.comic.update({
           where: {
-            id: comic.id
+            id: comic.id,
           },
           data: {
             lastChapterUpdateAt: new Date(),
+          },
+        });
 
-          }
-        })
-
-        await updateDocumentIndex(comic.id, "comics", updateRes)
+        await updateDocumentIndex(comic.id, "comics", updateRes);
 
         return {
           status: true,
-          message: `${slugify(slug)} chapter ${chapter.name} added`
-        }
-
-
+          message: `${slugify(slug)} chapter ${chapter.name} added`,
+        };
       },
-    })
+    });
 
-    t.field('sanityCheck', {
-      type: 'SanityCheck',
+    t.field("sanityCheck", {
+      type: "SanityCheck",
       args: {
         name: nonNull(stringArg()),
         thumb: nonNull(stringArg()),
@@ -400,18 +373,24 @@ export const ComicMutationRelated = extendType({
       resolve: async (_, comicData, ctx) => {
         let comic = await ctx.prisma.comic.findFirst({
           where: {
-            slug: slugify(comicData.name)
+            slug: slugify(comicData.name),
           },
           include: {
-            chapters: true
-          }
+            chapters: true,
+          },
         });
 
-
         if (!comic) {
-          const { genres, released: candidate, author, thumb, thumbWide, ...data } = comicData
+          const {
+            genres,
+            released: candidate,
+            author,
+            thumb,
+            thumbWide,
+            ...data
+          } = comicData;
 
-          const slug = slugify(comicData.name)
+          const slug = slugify(comicData.name);
 
           const bunny = new BunnyCDN();
 
@@ -423,13 +402,11 @@ export const ComicMutationRelated = extendType({
             released = moment().toDate();
           }
 
-
-
           try {
             const comicNew = await ctx.prisma.comic.create({
               data: {
                 //@ts-ignore
-                type: comicData.type == "" ? "n/a" : comicData.type as string,
+                type: comicData.type == "" ? "n/a" : (comicData.type as string),
                 ...data,
                 released,
                 slug,
@@ -444,47 +421,38 @@ export const ComicMutationRelated = extendType({
                       name: author,
                       slug: slugify(author),
                     },
-                  }
+                  },
                 },
                 genres: {
                   connectOrCreate: (genres ?? []).map((e: any) => ({
                     where: {
-                      slug: slugify(e ?? "N/A",),
+                      slug: slugify(e ?? "N/A"),
                     },
                     create: {
                       name: e ?? "N/A",
                       slug: slugify(e) ?? "N/A",
-                    }
-                  }))
+                    },
+                  })),
                 },
               },
-
-
             });
 
-            await updateDocumentIndex(comicNew.id, "comics", comicNew)
-
-
+            await updateDocumentIndex(comicNew.id, "comics", comicNew);
           } catch (error) {
-            console.error(error)
+            console.error(error);
           }
-
-
 
           return {
             status: "new",
-            chapters: []
-          }
-
+            chapters: [],
+          };
         }
 
         return {
           status: "old",
-          chapters: comic.chapters
-        }
-
-      }
-    })
-
-  }
-})
+          chapters: comic.chapters,
+        };
+      },
+    });
+  },
+});
