@@ -62,7 +62,17 @@ export default class BunnyCDN {
     return url.substring(url.lastIndexOf("/") + 1);
   }
 
-  public async download(url: string): Promise<ReadStream | Blob> {
+  public async download(u: string): Promise<ReadStream | Blob> {
+    let url: string;
+
+    if (u.includes("https://img.statically.io/img/manhwaindo/")) {
+      url = u
+        .replace("https://img.statically.io/img/manhwaindo/", "")
+        .replace("/f=auto", "");
+    } else {
+      url = u;
+    }
+
     const y = await this.axiosDown.get(url, {
       responseType: isNode ? "stream" : "blob",
     });

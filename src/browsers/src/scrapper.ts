@@ -171,7 +171,10 @@ export abstract class Scrapper {
     // }
 
     const decl = this.getDeclaration();
+
     const prefix = `[${decl.name}]`;
+
+    console.log(location.href);
 
     if (!decl.url.includes(location.href)) {
       return;
