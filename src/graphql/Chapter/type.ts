@@ -10,6 +10,7 @@ export const Chapter = objectType({
     t.int('id')
     t.float('name')
     t.nullable.string('title')
+    t.nullable.string('cdn')
     t.field('comic', {
       type: 'Comic',
       resolve(root: any) {
@@ -21,6 +22,8 @@ export const Chapter = objectType({
     t.int('imageCount')
     t.int('originalImageCount')
     t.boolean('processed')
+    t.boolean('needOptimize')
+    t.boolean('missing')
     t.nullable.string('batchs')
     t.list.string('imageUrls')
     t.nullable.json('imageDetails')

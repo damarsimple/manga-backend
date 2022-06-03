@@ -278,7 +278,7 @@ export abstract class Scrapper {
           } catch (error) {
             console.log("cannot donwload thumb, posibly v2 interfering");
 
-            comic.thumb = "https://cdn.gudangkomik.com/fallback.jpg";
+            comic.thumb = "https://cdn1.gudangkomik.com/fallback.jpg";
           }
         }
 
@@ -374,7 +374,7 @@ export abstract class Scrapper {
         chapter.imageUrls = downloadeds;
         //@ts-ignore
         chapter.imageUrls = chapter.imageUrls.map(
-          (e: string) => `https://cdn.gudangkomik.com${e}`
+          (e: string) => `https://cdn1.gudangkomik.com${e}`
         );
 
         if (downloadeds.length == chapter.images.length) {

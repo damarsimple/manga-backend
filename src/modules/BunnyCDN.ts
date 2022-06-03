@@ -15,7 +15,7 @@ export default class BunnyCDN {
   private axiosUp: AxiosInstance;
   private log: boolean;
 
-  private BASE_URL = "http://144.91.99.36:4000/upload";
+  private BASE_URL = "https://simplecdn1.damaral.my.id/upload";
 
   constructor(init?: BunnyConstructor) {
     const { log, axiosDefault } = init || {};
@@ -95,7 +95,8 @@ export default class BunnyCDN {
     const filename = this.filenameGueser(saveToPath);
     const path = saveToPath.replace(filename, "");
 
-    console.log(`${isNode ? "node" : "browser"} ${filename} ${path}`);
+    this.log &&
+      console.log(`${isNode ? "node" : "browser"} ${filename} ${path}`);
 
     try {
       let form;
@@ -129,7 +130,7 @@ export default class BunnyCDN {
           },
         })
         .then((e) => {
-          console.log(e.data);
+          this.log && console.log(e.data);
         })
         .catch(function (error) {
           console.log(error.response.data);
@@ -154,10 +155,11 @@ export default class BunnyCDN {
       this._end();
       const downloadElapsed = this.getElapsed();
       this._time();
-      console.log(`${url} download ${downloadElapsed}ms`);
+      this.log && console.log(`${url} download ${downloadElapsed}ms`);
       const result = await this.upload(file, path);
       this._end();
       this.log &&
+        this.log &&
         console.log(
           `[BUNNYCDN] 📁 Download ${
             pipe ? "And Pipe" : ""
@@ -165,9 +167,10 @@ export default class BunnyCDN {
         );
       return result;
     } catch (error) {
-      console.log(
-        `[BUNNYCDN] 📁 [Error] Download ${url} and Uploading https://cdn.gudangkomik.com${path}`
-      );
+      this.log &&
+        console.log(
+          `[BUNNYCDN] 📁 [Error] Download ${url} and Uploading https://cdn.gudangkomik.com${path}`
+        );
 
       throw error;
     }

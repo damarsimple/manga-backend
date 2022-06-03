@@ -410,8 +410,8 @@ export const ComicMutationRelated = extendType({
                 ...data,
                 released,
                 slug,
-                thumb: `https://cdn.gudangkomik.com/${slug}/thumb.jpg`,
-                thumbWide: `https://cdn.gudangkomik.com/${slug}/thumbWide.jpg`,
+                thumb: `https://cdn1.gudangkomik.com/${slug}/thumb.jpg`,
+                thumbWide: `https://cdn1.gudangkomik.com/${slug}/thumbWide.jpg`,
                 author: {
                   connectOrCreate: {
                     where: {

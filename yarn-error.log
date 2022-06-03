@@ -1,30 +1,20 @@
 Arguments: 
-  /usr/bin/node /usr/bin/yarn add @types/async-es
+  /root/.nvm/versions/node/v16.4.2/bin/node /root/.nvm/versions/node/v16.4.2/bin/yarn add socks-proxy-agent
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/snap/bin:/home/damar/.yarn/bin
+  /root/.local/share/pnpm:/root/.nvm/versions/node/v16.4.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 Yarn version: 
-  1.22.17
+  1.22.18
 
 Node version: 
-  17.5.0
+  16.4.2
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fasync-es: Not found
-      at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:67029:18)
-      at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140883:22)
-      at Request.emit (node:events:526:28)
-      at Request.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141855:10)
-      at Request.emit (node:events:526:28)
-      at IncomingMessage.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141777:12)
-      at Object.onceWrapper (node:events:645:28)
-      at IncomingMessage.emit (node:events:538:35)
-      at endReadableNT (node:internal/streams/readable:1342:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: ENOENT: no such file or directory, copyfile '/usr/local/share/.cache/yarn/v6/npm-pkg-dir-5.0.0-integrity/node_modules/pkg-dir/index.d.ts' -> '/var/www/manga-backend/node_modules/@paljs/cli/node_modules/pkg-dir/index.d.ts'
 
 npm manifest: 
   {
@@ -40,11 +30,14 @@ npm manifest:
           "index:sync": "ts-node-dev --transpile-only --no-notify prisma/meili.ts",
           "playground": "ts-node-dev --transpile-only --no-notify src/playground.ts",
           "worker": "ts-node-dev --transpile-only --no-notify src/modules/Worker.ts",
+          "scrap": "tsc && node dist/src/scrappers/runner.js",
           "start": "tsc && node  dist/src/server/graphql.js",
-          "testdo": "tsc && node  dist/src/scripts/jobs/migrate-to-do.js",
+          "testdo": "prisma generate && tsc && node  dist/src/scripts/jobs/migrate-to-do.js",
           "queuesize": "node  dist/src/scripts/jobs/check-size-migration.js",
           "build": "tsc",
-          "cron": "tsc && TS_NODE=true NODE_OPTIONS=\"-r ts-node/register\" node src/scripts/cron.ts"
+          "cron": "tsc && TS_NODE=true NODE_OPTIONS=\"-r ts-node/register\" node src/scripts/cron.ts",
+          "ext:compile": "WEBPACK=true webpack",
+          "ext:watch": "WEBPACK=true webpack --watch"
       },
       "dependencies": {
           "@aws-sdk/client-s3": "^3.52.0",
@@ -53,16 +46,20 @@ npm manifest:
           "@ladjs/graceful": "^1.1.5",
           "@paljs/cli": "^4.0.13",
           "@paljs/nexus": "^4.0.13",
-          "@prisma/client": "^3.9.1",
+          "@prisma/client": "^3.11.1",
+          "@types/axios": "^0.14.0",
+          "@types/graphql-upload": "^8.0.11",
           "@types/lodash": "^4.14.178",
           "@types/moment": "^2.13.0",
           "@types/node": "^17.0.18",
           "@types/sharp": "^0.29.5",
           "JSONStream": "^1.3.5",
           "apollo-server": "^3.6.2",
+          "apollo-server-express": "^3.6.3",
           "async": "^3.2.3",
           "async-es": "^3.2.3",
           "axios": "^0.25.0",
+          "axios-socks5-agent": "^1.0.5",
           "bcrypt": "^5.0.1",
           "bree": "^7.1.5",
           "bull": "^4.5.1",
@@ -70,10 +67,12 @@ npm manifest:
           "cabin": "^9.1.2",
           "dotenv": "^16.0.0",
           "dotenv-webpack": "^7.1.0",
+          "form-data": "^4.0.0",
           "graphql": "^16.3.0",
           "graphql-request": "^4.0.0",
           "graphql-scalars": "^1.14.1",
           "graphql-type-json": "^0.3.2",
+          "graphql-upload": "^13.0.0",
           "ioredis": "^4.28.5",
           "jsonwebtoken": "^8.5.1",
           "lodash": "^4.17.21",
@@ -84,6 +83,7 @@ npm manifest:
           "node-fetch": "^3.2.0",
           "os-browserify": "^0.3.0",
           "sharp": "^0.30.1",
+          "socks-proxy-agent": "^6.2.0",
           "stream-chain": "^2.2.4",
           "stream-json": "^1.7.3",
           "ts-loader": "^9.2.6",
@@ -101,7 +101,7 @@ npm manifest:
           "@types/glob": "^7.2.0",
           "@types/jsonwebtoken": "^8.5.8",
           "@types/node-cron": "^3.0.1",
-          "prisma": "^3.9.1",
+          "prisma": "^3.11.1",
           "webpack-cli": "^4.9.2"
       }
   }
@@ -1294,12 +1294,12 @@ Lockfile:
     resolved "https://registry.npmjs.org/@paljs/types/-/types-4.0.13.tgz"
     integrity sha512-5HQT0r01Jb020QHTdvkiGynzkSezAAY3ecj+33xWnVKezIz9Au4c2pqj6kxGcCAZkQqcyMSBVkiFuq1Msdws1g==
   
-  "@prisma/client@^3.9.1":
-    version "3.9.2"
-    resolved "https://registry.npmjs.org/@prisma/client/-/client-3.9.2.tgz"
-    integrity sha512-VlEIYVMyfFZHbVBOlunPl47gmP/Z0zzPjPj8I7uKEIaABqrUy50ru3XS0aZd8GFvevVwt7p91xxkUjNjrWhKAQ==
+  "@prisma/client@^3.11.1":
+    version "3.11.1"
+    resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.11.1.tgz#bde6dec71ae133d04ce1c6658e3d76627a3c6dc7"
+    integrity sha512-B3C7zQG4HbjJzUr2Zg9UVkBJutbqq9/uqkl1S138+keZCubJrwizx3RuIvGwI+s+pm3qbsyNqXiZgL3Ir0fSng==
     dependencies:
-      "@prisma/engines-version" "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
+      "@prisma/engines-version" "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
   
   "@prisma/debug@3.5.0":
     version "3.5.0"
@@ -1335,20 +1335,20 @@ Lockfile:
       terminal-link "2.1.1"
       undici "3.3.6"
   
-  "@prisma/engines-version@3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009":
-    version "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
-    resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009.tgz"
-    integrity sha512-5Dh+qTDhpPR66w6NNAnPs+/W/Qt4r1DSd+qhfPFcDThUK4uxoZKGlPb2IYQn5LL+18aIGnmteDf7BnVMmvBNSQ==
+  "@prisma/engines-version@3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9":
+    version "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
+    resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9.tgz#81a1835b495ad287ad7824dbd62f74e9eee90fb9"
+    integrity sha512-HkcsDniA4iNb/gi0iuyOJNAM7nD/LwQ0uJm15v360O5dee3TM4lWdSQiTYBMK6FF68ACUItmzSur7oYuUZ2zkQ==
+  
+  "@prisma/engines@3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9":
+    version "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
+    resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9.tgz#09ac23f8f615a8586d8d44538060ada199fe872c"
+    integrity sha512-MILbsGnvmnhCbFGa2/iSnsyGyazU3afzD7ldjCIeLIGKkNBMSZgA2IvpYsAXl+6qFHKGrS3B2otKfV31dwMSQw==
   
   "@prisma/engines@3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727":
     version "3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727"
     resolved "https://registry.npmjs.org/@prisma/engines/-/engines-3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727.tgz"
     integrity sha512-dRClHS7DsTVchDKzeG72OaEyeDskCv91pnZ72Fftn0mp4BkUvX2LvWup65hCNzwwQm5IDd6A88APldKDnMiEMA==
-  
-  "@prisma/engines@3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009":
-    version "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
-    resolved "https://registry.npmjs.org/@prisma/engines/-/engines-3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009.tgz"
-    integrity sha512-qM+uJbkelB21bnK44gYE049YTHIjHysOuj0mj5U2gDGyNLfmiazlggzFPCgEjgme4U5YB2tYs6Z5Hq08Kl8pjA==
   
   "@prisma/fetch-engine@3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727":
     version "3.6.0-24.dc520b92b1ebb2d28dc3161f9f82e875bd35d727"
@@ -1537,7 +1537,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/@tsconfig/node16/-/node16-1.0.2.tgz"
     integrity sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==
   
-  "@types/accepts@^1.3.5":
+  "@types/accepts@*", "@types/accepts@^1.3.5":
     version "1.3.5"
     resolved "https://registry.npmjs.org/@types/accepts/-/accepts-1.3.5.tgz"
     integrity sha512-jOdnI/3qTpHABjM5cx1Hc0sKsPoYCp+DP/GJRGtDlPd7fiV9oXGGIcjW/ZOxLIvjGz8MA+uMZI9metHlgqbgwQ==
@@ -1548,6 +1548,13 @@ Lockfile:
     version "3.2.12"
     resolved "https://registry.npmjs.org/@types/async/-/async-3.2.12.tgz"
     integrity sha512-4i4w4tfNDo73BOjk0qHcB2YJ8A2SjITCrU4BTsgdJFTsVr6atPDXa0T9r0QZTrX3axtWwkqpZqF4B3gR0TqBGw==
+  
+  "@types/axios@^0.14.0":
+    version "0.14.0"
+    resolved "https://registry.yarnpkg.com/@types/axios/-/axios-0.14.0.tgz#ec2300fbe7d7dddd7eb9d3abf87999964cafce46"
+    integrity sha1-7CMA++fX3d1+udOr+HmZlkyvzkY=
+    dependencies:
+      axios "*"
   
   "@types/bcrypt@^5.0.0":
     version "5.0.0"
@@ -1587,6 +1594,21 @@ Lockfile:
     resolved "https://registry.npmjs.org/@types/connect/-/connect-3.4.35.tgz"
     integrity sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==
     dependencies:
+      "@types/node" "*"
+  
+  "@types/content-disposition@*":
+    version "0.5.4"
+    resolved "https://registry.yarnpkg.com/@types/content-disposition/-/content-disposition-0.5.4.tgz#de48cf01c79c9f1560bcfd8ae43217ab028657f8"
+    integrity sha512-0mPF08jn9zYI0n0Q/Pnz7C4kThdSt+6LD4amsrYDDpgBfrVWa3TcCOxKX1zkGgYniGagRv8heN2cbh+CAn+uuQ==
+  
+  "@types/cookies@*":
+    version "0.7.7"
+    resolved "https://registry.yarnpkg.com/@types/cookies/-/cookies-0.7.7.tgz#7a92453d1d16389c05a5301eef566f34946cfd81"
+    integrity sha512-h7BcvPUogWbKCzBR2lY4oqaZbO3jXZksexYJVFvkrFeLgbZjQkU4x8pRq6eg2MHXQhY0McQdqmmsxRWlVAHooA==
+    dependencies:
+      "@types/connect" "*"
+      "@types/express" "*"
+      "@types/keygrip" "*"
       "@types/node" "*"
   
   "@types/cors@2.8.12":
@@ -1638,7 +1660,7 @@ Lockfile:
       "@types/qs" "*"
       "@types/range-parser" "*"
   
-  "@types/express@4.17.13":
+  "@types/express@*", "@types/express@4.17.13":
     version "4.17.13"
     resolved "https://registry.npmjs.org/@types/express/-/express-4.17.13.tgz"
     integrity sha512-6bSZTPaTIACxn48l50SR+axgrqm6qXFIxrdAKaG6PaJk3+zuUr35hBlgT7vOmJcum+OEaIBLtHV/qloEAFITeA==
@@ -1648,6 +1670,13 @@ Lockfile:
       "@types/qs" "*"
       "@types/serve-static" "*"
   
+  "@types/fs-capacitor@*":
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/@types/fs-capacitor/-/fs-capacitor-2.0.0.tgz#17113e25817f584f58100fb7a08eed288b81956e"
+    integrity sha512-FKVPOCFbhCvZxpVAMhdBdTfVfXUpsh15wFHgqOKxh9N9vzWZVuWCSijZ5T4U34XYNnuj2oduh6xcs1i+LPI+BQ==
+    dependencies:
+      "@types/node" "*"
+  
   "@types/glob@^7.2.0":
     version "7.2.0"
     resolved "https://registry.npmjs.org/@types/glob/-/glob-7.2.0.tgz"
@@ -1656,10 +1685,30 @@ Lockfile:
       "@types/minimatch" "*"
       "@types/node" "*"
   
+  "@types/graphql-upload@^8.0.11":
+    version "8.0.11"
+    resolved "https://registry.yarnpkg.com/@types/graphql-upload/-/graphql-upload-8.0.11.tgz#0fef061be3dfc1f370d86cbc28bcb6a968c6b003"
+    integrity sha512-AE8RWANHutpsQt945lQZKlkq0V/zBxU5R0xhKLZN3KkBMlW95/5uJzk01HUl8gbDkG7hGl8l8lJKbi91k0UnPw==
+    dependencies:
+      "@types/express" "*"
+      "@types/fs-capacitor" "*"
+      "@types/koa" "*"
+      graphql "0.13.1 - 16"
+  
+  "@types/http-assert@*":
+    version "1.5.3"
+    resolved "https://registry.yarnpkg.com/@types/http-assert/-/http-assert-1.5.3.tgz#ef8e3d1a8d46c387f04ab0f2e8ab8cb0c5078661"
+    integrity sha512-FyAOrDuQmBi8/or3ns4rwPno7/9tJTijVW6aQQjK02+kOQ8zmoNg2XJtAuQhvQcy1ASJq38wirX5//9J1EqoUA==
+  
   "@types/http-cache-semantics@*":
     version "4.0.1"
     resolved "https://registry.npmjs.org/@types/http-cache-semantics/-/http-cache-semantics-4.0.1.tgz"
     integrity sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==
+  
+  "@types/http-errors@*":
+    version "1.8.2"
+    resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-1.8.2.tgz#7315b4c4c54f82d13fa61c228ec5c2ea5cc9e0e1"
+    integrity sha512-EqX+YQxINb+MeXaIqYDASb6U6FCHbWjkj4a1CKDBks3d/QiB2+PqBLyO72vLDgAO1wUI4O+9gweRcQK11bTL/w==
   
   "@types/ioredis@*":
     version "4.28.8"
@@ -1685,11 +1734,37 @@ Lockfile:
     dependencies:
       "@types/node" "*"
   
+  "@types/keygrip@*":
+    version "1.0.2"
+    resolved "https://registry.yarnpkg.com/@types/keygrip/-/keygrip-1.0.2.tgz#513abfd256d7ad0bf1ee1873606317b33b1b2a72"
+    integrity sha512-GJhpTepz2udxGexqos8wgaBx4I/zWIDPh/KOGEwAqtuGDkOUJu5eFvwmdBX4AmB8Odsr+9pHCQqiAqDL/yKMKw==
+  
   "@types/keyv@*":
     version "3.1.3"
     resolved "https://registry.npmjs.org/@types/keyv/-/keyv-3.1.3.tgz"
     integrity sha512-FXCJgyyN3ivVgRoml4h94G/p3kY+u/B86La+QptcqJaWtBWtmc6TtkNfS40n9bIvyLteHh7zXOtgbobORKPbDg==
     dependencies:
+      "@types/node" "*"
+  
+  "@types/koa-compose@*":
+    version "3.2.5"
+    resolved "https://registry.yarnpkg.com/@types/koa-compose/-/koa-compose-3.2.5.tgz#85eb2e80ac50be95f37ccf8c407c09bbe3468e9d"
+    integrity sha512-B8nG/OoE1ORZqCkBVsup/AKcvjdgoHnfi4pZMn5UwAPCbhk/96xyv284eBYW8JlQbQ7zDmnpFr68I/40mFoIBQ==
+    dependencies:
+      "@types/koa" "*"
+  
+  "@types/koa@*":
+    version "2.13.4"
+    resolved "https://registry.yarnpkg.com/@types/koa/-/koa-2.13.4.tgz#10620b3f24a8027ef5cbae88b393d1b31205726b"
+    integrity sha512-dfHYMfU+z/vKtQB7NUrthdAEiSvnLebvBjwHtfFmpZmB7em2N3WVQdHgnFq+xvyVgxW5jKDmjWfLD3lw4g4uTw==
+    dependencies:
+      "@types/accepts" "*"
+      "@types/content-disposition" "*"
+      "@types/cookies" "*"
+      "@types/http-assert" "*"
+      "@types/http-errors" "*"
+      "@types/keygrip" "*"
+      "@types/koa-compose" "*"
       "@types/node" "*"
   
   "@types/lodash@^4.14.165", "@types/lodash@^4.14.178":
@@ -1982,7 +2057,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/acorn/-/acorn-8.7.0.tgz"
     integrity sha512-V/LGr1APy+PXIwKebEWrkZPwoeoF+w1jiOBUmuxuiUIaOHtob8Qc9BTrYo7VuI5fR8tqsy+buA2WFooR5olqvQ==
   
-  agent-base@6:
+  agent-base@6, agent-base@^6.0.2:
     version "6.0.2"
     resolved "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
     integrity sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==
@@ -2104,6 +2179,32 @@ Lockfile:
       sha.js "^2.4.11"
       uuid "^8.0.0"
   
+  apollo-server-core@^3.6.3:
+    version "3.6.3"
+    resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-3.6.3.tgz#6b12ffa1af8bc8799930f72360090834915033d1"
+    integrity sha512-TFJmAlI6vPp1MHOSXqYkE6leAyMekWv/D/3ma11uETkcd3EPjERGmxtTXPJElMVEkOK9BEElYKthCrH7bjYLuw==
+    dependencies:
+      "@apollographql/apollo-tools" "^0.5.1"
+      "@apollographql/graphql-playground-html" "1.6.29"
+      "@graphql-tools/mock" "^8.1.2"
+      "@graphql-tools/schema" "^8.0.0"
+      "@josephg/resolvable" "^1.0.0"
+      apollo-datasource "^3.3.1"
+      apollo-reporting-protobuf "^3.3.0"
+      apollo-server-caching "^3.3.0"
+      apollo-server-env "^4.2.1"
+      apollo-server-errors "^3.3.1"
+      apollo-server-plugin-base "^3.5.1"
+      apollo-server-types "^3.5.1"
+      async-retry "^1.2.1"
+      fast-json-stable-stringify "^2.1.0"
+      graphql-tag "^2.11.0"
+      lodash.sortby "^4.7.0"
+      loglevel "^1.6.8"
+      lru-cache "^6.0.0"
+      sha.js "^2.4.11"
+      uuid "^8.0.0"
+  
   apollo-server-env@^4.2.1:
     version "4.2.1"
     resolved "https://registry.npmjs.org/apollo-server-env/-/apollo-server-env-4.2.1.tgz"
@@ -2128,6 +2229,23 @@ Lockfile:
       "@types/express-serve-static-core" "4.17.28"
       accepts "^1.3.5"
       apollo-server-core "^3.6.2"
+      apollo-server-types "^3.5.1"
+      body-parser "^1.19.0"
+      cors "^2.8.5"
+      parseurl "^1.3.3"
+  
+  apollo-server-express@^3.6.3:
+    version "3.6.3"
+    resolved "https://registry.yarnpkg.com/apollo-server-express/-/apollo-server-express-3.6.3.tgz#5daf58bf0bdf0107ded7cd52c7e6ce6cd32c8b44"
+    integrity sha512-3CjahZ+n+1T7pHH1qW1B6Ns0BzwOMeupAp2u0+M8ruOmE/e7VKn0OSOQQckZ8Z2AcWxWeno9K89fIv3PoSYgYA==
+    dependencies:
+      "@types/accepts" "^1.3.5"
+      "@types/body-parser" "1.19.2"
+      "@types/cors" "2.8.12"
+      "@types/express" "4.17.13"
+      "@types/express-serve-static-core" "4.17.28"
+      accepts "^1.3.5"
+      apollo-server-core "^3.6.3"
       apollo-server-types "^3.5.1"
       body-parser "^1.19.0"
       cors "^2.8.5"
@@ -2276,6 +2394,22 @@ Lockfile:
       parse-app-info "^4.0.2"
       parse-err "^0.0.12"
       superagent "^7.0.2"
+  
+  axios-socks5-agent@^1.0.5:
+    version "1.0.5"
+    resolved "https://registry.yarnpkg.com/axios-socks5-agent/-/axios-socks5-agent-1.0.5.tgz#fca8118a6bb6a25bcd4f0f04995cb0ee90f3f5d7"
+    integrity sha512-n3GAyR38V2a35i3/ukVjYmCFXvOEAi7aOehztzgeWlAKQBhtrjIyfecXTvAg5uYImc0oWTdhqD+2YaZ5j4v+xw==
+    dependencies:
+      socks5-http-client "^1.0.4"
+      socks5-https-client "^1.2.1"
+  
+  axios@*:
+    version "0.27.2"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
+    integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+    dependencies:
+      follow-redirects "^1.14.9"
+      form-data "^4.0.0"
   
   axios@^0.25.0:
     version "0.25.0"
@@ -2460,6 +2594,13 @@ Lockfile:
       semver "^6.3.0"
       tslib "^1.14.1"
       uuid "^8.3.2"
+  
+  busboy@^0.3.1:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/busboy/-/busboy-0.3.1.tgz#170899274c5bf38aae27d5c62b71268cd585fd1b"
+    integrity sha512-y7tTxhGKXcyBxRKAni+awqx8uqaJKrSFSNFSeRG5CsWNdmy2BIK+6VGWEW7TZnIO/533mtMEA4rOevQV815YJw==
+    dependencies:
+      dicer "0.3.0"
   
   bytes@3.1.1:
     version "3.1.1"
@@ -2999,6 +3140,13 @@ Lockfile:
       asap "^2.0.0"
       wrappy "1"
   
+  dicer@0.3.0:
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/dicer/-/dicer-0.3.0.tgz#eacd98b3bfbf92e8ab5c2fdb71aaac44bb06b872"
+    integrity sha512-MdceRRWqltEG2dZqO769g27N/3PXfcKl04VhYnBlo2YhH7zPi88VebsjTKclaOyiuMaGU72hTfw3VkUitGcVCA==
+    dependencies:
+      streamsearch "0.1.2"
+  
   diff@^4.0.1:
     version "4.0.2"
     resolved "https://registry.npmjs.org/diff/-/diff-4.0.2.tgz"
@@ -3460,6 +3608,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.7.tgz"
     integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
   
+  follow-redirects@^1.14.9:
+    version "1.14.9"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.9.tgz#dd4ea157de7bfaf9ea9b3fbd85aa16951f78d8d7"
+    integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
+  
   form-data@^3.0.0:
     version "3.0.1"
     resolved "https://registry.npmjs.org/form-data/-/form-data-3.0.1.tgz"
@@ -3471,7 +3624,7 @@ Lockfile:
   
   form-data@^4.0.0:
     version "4.0.0"
-    resolved "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz"
+    resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
     integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
     dependencies:
       asynckit "^0.4.0"
@@ -3509,6 +3662,11 @@ Lockfile:
     version "0.5.2"
     resolved "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
     integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
+  
+  fs-capacitor@^6.2.0:
+    version "6.2.0"
+    resolved "https://registry.yarnpkg.com/fs-capacitor/-/fs-capacitor-6.2.0.tgz#fa79ac6576629163cb84561995602d8999afb7f5"
+    integrity sha512-nKcE1UduoSKX27NSZlg879LdQc94OtbOsEmKMN2MBNudXREvijRKx2GEBsTMTfws+BrbkJoEuynbGSVRSpauvw==
   
   fs-constants@^1.0.0:
     version "1.0.0"
@@ -3725,7 +3883,17 @@ Lockfile:
     resolved "https://registry.npmjs.org/graphql-type-json/-/graphql-type-json-0.3.2.tgz"
     integrity sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg==
   
-  graphql@^16.3.0:
+  graphql-upload@^13.0.0:
+    version "13.0.0"
+    resolved "https://registry.yarnpkg.com/graphql-upload/-/graphql-upload-13.0.0.tgz#1a255b64d3cbf3c9f9171fa62a8fb0b9b59bb1d9"
+    integrity sha512-YKhx8m/uOtKu4Y1UzBFJhbBGJTlk7k4CydlUUiNrtxnwZv0WigbRHP+DVhRNKt7u7DXOtcKZeYJlGtnMXvreXA==
+    dependencies:
+      busboy "^0.3.1"
+      fs-capacitor "^6.2.0"
+      http-errors "^1.8.1"
+      object-path "^0.11.8"
+  
+  "graphql@0.13.1 - 16", graphql@^16.3.0:
     version "16.3.0"
     resolved "https://registry.npmjs.org/graphql/-/graphql-16.3.0.tgz"
     integrity sha512-xm+ANmA16BzCT5pLjuXySbQVFwH3oJctUVdy81w1sV0vBU0KgDdBGtxQOUd5zqOBk/JayAFeG8Dlmeq74rjm/A==
@@ -3785,7 +3953,7 @@ Lockfile:
     resolved "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz"
     integrity sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==
   
-  http-errors@1.8.1:
+  http-errors@1.8.1, http-errors@^1.8.1:
     version "1.8.1"
     resolved "https://registry.npmjs.org/http-errors/-/http-errors-1.8.1.tgz"
     integrity sha512-Kpk9Sm7NmI+RHhnj6OIWDI1d6fIoFAtFt9RLaTMRlg/8w49juAStsrBgp0Dp4OdxdVbRIeKhtCUvoi/RuAhO4g==
@@ -3914,6 +4082,20 @@ Lockfile:
       redis-errors "^1.2.0"
       redis-parser "^3.0.0"
       standard-as-callback "^2.1.0"
+  
+  ip-address@~6.1.0:
+    version "6.1.0"
+    resolved "https://registry.yarnpkg.com/ip-address/-/ip-address-6.1.0.tgz#3c3335bc90f22b3545a6eca5bffefabeb2ea6fd2"
+    integrity sha512-u9YYtb1p2fWSbzpKmZ/b3QXWA+diRYPxc2c4y5lFB/MMk5WZ7wNZv8S3CFcIGVJ5XtlaCAl/FQy/D3eQ2XtdOA==
+    dependencies:
+      jsbn "1.1.0"
+      lodash "^4.17.15"
+      sprintf-js "1.1.2"
+  
+  ip@^1.1.5:
+    version "1.1.5"
+    resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
+    integrity sha1-vd7XARQpCCjAoDnnLvJfWq7ENUo=
   
   ipaddr.js@1.9.1:
     version "1.9.1"
@@ -4128,6 +4310,11 @@ Lockfile:
     version "4.0.0"
     resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
     integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
+  
+  jsbn@1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-1.1.0.tgz#b01307cb29b618a1ed26ec79e911f803c4da0040"
+    integrity sha1-sBMHyym2GKHtJux56RH4A8TaAEA=
   
   json-buffer@3.0.1:
     version "3.0.1"
@@ -4380,7 +4567,7 @@ Lockfile:
       lodash._baseiteratee "~4.7.0"
       lodash._baseuniq "~4.6.0"
   
-  lodash@4, lodash@^4.17.20, lodash@^4.17.21:
+  lodash@4, lodash@^4.17.15, lodash@^4.17.20, lodash@^4.17.21:
     version "4.17.21"
     resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
     integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -4815,6 +5002,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/object-keys/-/object-keys-1.1.1.tgz"
     integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
   
+  object-path@^0.11.8:
+    version "0.11.8"
+    resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.8.tgz#ed002c02bbdd0070b78a27455e8ae01fc14d4742"
+    integrity sha512-YJjNZrlXJFM42wTBn6zgOJVar9KFJvzx6sTWDte8sWZF//cnjl0BxHNpfZx+ZffXX63A9q0b1zsFiBX4g4X5KA==
+  
   on-finished@^2.3.0, on-finished@~2.3.0:
     version "2.3.0"
     resolved "https://registry.npmjs.org/on-finished/-/on-finished-2.3.0.tgz"
@@ -5098,12 +5290,12 @@ Lockfile:
     resolved "https://registry.npmjs.org/prettysize/-/prettysize-2.0.0.tgz"
     integrity sha512-VVtxR7sOh0VsG8o06Ttq5TrI1aiZKmC+ClSn4eBPaNf4SHr5lzbYW+kYGX3HocBL/MfpVrRfFZ9V3vCbLaiplg==
   
-  prisma@^3.9.1:
-    version "3.9.2"
-    resolved "https://registry.npmjs.org/prisma/-/prisma-3.9.2.tgz"
-    integrity sha512-i9eK6cexV74OgeWaH3+e6S07kvC9jEZTl6BqtBH398nlCU0tck7mE9dicY6YQd+euvMjjCtY89q4NgmaPnUsSg==
+  prisma@^3.11.1:
+    version "3.11.1"
+    resolved "https://registry.yarnpkg.com/prisma/-/prisma-3.11.1.tgz#fff9c0bcf83cb30c2e1d650882d5eb3c5565e028"
+    integrity sha512-aYn8bQwt1xwR2oSsVNHT4PXU7EhsThIwmpNB/MNUaaMx5OPLTro6VdNJe/sJssXFLxhamfWeMjwmpXjljo6xkg==
     dependencies:
-      "@prisma/engines" "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
+      "@prisma/engines" "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
   
   process-nextick-args@~2.0.0:
     version "2.0.1"
@@ -5571,6 +5763,49 @@ Lockfile:
       astral-regex "^2.0.0"
       is-fullwidth-code-point "^3.0.0"
   
+  smart-buffer@^4.2.0:
+    version "4.2.0"
+    resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
+    integrity sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==
+  
+  socks-proxy-agent@^6.2.0:
+    version "6.2.0"
+    resolved "https://registry.yarnpkg.com/socks-proxy-agent/-/socks-proxy-agent-6.2.0.tgz#f6b5229cc0cbd6f2f202d9695f09d871e951c85e"
+    integrity sha512-wWqJhjb32Q6GsrUqzuFkukxb/zzide5quXYcMVpIjxalDBBYy2nqKCFQ/9+Ie4dvOYSQdOk3hUlZSdzZOd3zMQ==
+    dependencies:
+      agent-base "^6.0.2"
+      debug "^4.3.3"
+      socks "^2.6.2"
+  
+  socks5-client@~1.2.3, socks5-client@~1.2.6:
+    version "1.2.8"
+    resolved "https://registry.yarnpkg.com/socks5-client/-/socks5-client-1.2.8.tgz#6470e4d781de254ee9f3b5ec9760a44c5df898da"
+    integrity sha512-js8WqQ/JjZS3IQwUxRwSThvXzcRIHE8sde8nE5q7nqxiFGb8EoHmNJ9SF2lXqn3ux6pUV3+InH7ng7mANK6XfA==
+    dependencies:
+      ip-address "~6.1.0"
+  
+  socks5-http-client@^1.0.4:
+    version "1.0.4"
+    resolved "https://registry.yarnpkg.com/socks5-http-client/-/socks5-http-client-1.0.4.tgz#cfaaa993f91df58542806b458372c6fb3c1a32bd"
+    integrity sha512-K16meYkltPtps6yDOqK9Mwlfz+pdD2kQQQ/TCO/gu2AImUmfO6nF2uXX1YWrPs4NCfClQNih19wqLXmuUcZCrA==
+    dependencies:
+      socks5-client "~1.2.6"
+  
+  socks5-https-client@^1.2.1:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/socks5-https-client/-/socks5-https-client-1.2.1.tgz#c8d4a000e39cdc1651d90245af04a735d75d8b09"
+    integrity sha512-FbZ/X/2Xq3DAMhuRA4bnN0jy1QxaPTVPLFvyv6CEj0QDKSTdWp9yRxo1JhqXmWKhPQeJyUMajHJB2UjT43pFcw==
+    dependencies:
+      socks5-client "~1.2.3"
+  
+  socks@^2.6.2:
+    version "2.6.2"
+    resolved "https://registry.yarnpkg.com/socks/-/socks-2.6.2.tgz#ec042d7960073d40d94268ff3bb727dc685f111a"
+    integrity sha512-zDZhHhZRY9PxRruRMR7kMhnf3I8hDs4S3f9RecfnGxvcBHQcKcIH/oUcEWffsfl1XxdYlA7nnlGbbTvPz9D8gA==
+    dependencies:
+      ip "^1.1.5"
+      smart-buffer "^4.2.0"
+  
   source-map-js@^1.0.1:
     version "1.0.2"
     resolved "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
@@ -5620,6 +5855,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.11.tgz"
     integrity sha512-Ctl2BrFiM0X3MANYgj3CkygxhRmr9mi6xhejbdO960nF6EDJApTYpn0BQnDKlnNBULKiCN1n3w9EBkHK8ZWg+g==
   
+  sprintf-js@1.1.2:
+    version "1.1.2"
+    resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.2.tgz#da1765262bf8c0f571749f2ad6c26300207ae673"
+    integrity sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==
+  
   standard-as-callback@^2.1.0:
     version "2.1.0"
     resolved "https://registry.npmjs.org/standard-as-callback/-/standard-as-callback-2.1.0.tgz"
@@ -5656,6 +5896,11 @@ Lockfile:
     integrity sha512-Y6dXn9KKWSwxOqnvHGcdZy1PK+J+7alBwHCeU3W9oRqm4ilLRA0XSPmd1tWwhg7tv9EIxJTMWh7KF15tYelKJg==
     dependencies:
       stream-chain "^2.2.4"
+  
+  streamsearch@0.1.2:
+    version "0.1.2"
+    resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
+    integrity sha1-gIudDlb8Jz2Am6VzOOkpkZoanxo=
   
   string-width@4.2.3, "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
     version "4.2.3"

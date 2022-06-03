@@ -120,6 +120,7 @@ model Chapter {
   id    Int     @id @default(autoincrement())
   name  Float
   title String?
+  cdn   String?
   comic Comic   @relation(fields: [comicId], references: [id])
 
   quality ChapterQuality @default(NORMAL)
@@ -129,8 +130,11 @@ model Chapter {
   imageCount         Int @default(0)
   originalImageCount Int @default(0)
 
-  processed Boolean @default(false)
-  batchs    String?
+  processed    Boolean @default(false)
+  needOptimize Boolean @default(false)
+  missing      Boolean @default(false)
+
+  batchs String?
 
   imageUrls    String[]
   imageDetails Json?
