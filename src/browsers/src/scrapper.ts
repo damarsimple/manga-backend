@@ -245,7 +245,7 @@ export abstract class Scrapper {
     const chaptersBatchJobs: ChapterJob[] = [];
 
     const ignoresS = [
-      "https://komikcast.com/komik/megami-no-kafeterasu-goddess-cafe-terrace/",
+      "https://komikcast.me/komik/megami-no-kafeterasu-goddess-cafe-terrace/",
     ];
 
     for (const x of urls) {

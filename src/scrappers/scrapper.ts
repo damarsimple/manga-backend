@@ -197,9 +197,9 @@ export abstract class Scrapper {
           try {
             const thumbNew = `/${slug}/thumb.jpg`;
 
-            const urlCandidate = thumb?.startsWith("https://komikcast.com")
-              ? `https://img.statically.io/img/kcast/komikcast.com/${thumb?.replace(
-                  "https://komikcast.com",
+            const urlCandidate = thumb?.startsWith("https://komikcast.me")
+              ? `https://img.statically.io/img/kcast/komikcast.me/${thumb?.replace(
+                  "https://komikcast.me",
                   ""
                 )}`
               : thumb;
@@ -212,10 +212,10 @@ export abstract class Scrapper {
 
             if (thumb_wide && thumb != thumb_wide) {
               const thumbWideCandidate = thumb_wide?.startsWith(
-                "https://komikcast.com"
+                "https://komikcast.me"
               )
-                ? `https://img.statically.io/img/kcast/komikcast.com/${thumb?.replace(
-                    "https://komikcast.com",
+                ? `https://img.statically.io/img/kcast/komikcast.me/${thumb?.replace(
+                    "https://komikcast.me",
                     ""
                   )}`
                 : thumb_wide;
