@@ -131,7 +131,14 @@ export default class Komicast extends Scrapper {
       doc?.querySelector(".main-reading-area")?.querySelectorAll("img") ?? []
     );
 
-    const images = Array.from(imgDom.map((e) => e.getAttribute("src") ?? ""));
+    const images = Array.from(
+      imgDom
+        .map((e) => e.getAttribute("src") ?? "")
+        ?.map((e) =>
+          e.includes("https://cdn.komikcast.com") ? 
+          e.replace("https://", "https://cdn.imagesimple.co/img/kcast/") : e
+        )
+    );
 
     const title = doc?.querySelector("h1")?.textContent ?? "";
 
