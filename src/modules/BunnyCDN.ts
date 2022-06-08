@@ -15,7 +15,7 @@ export default class BunnyCDN {
   private axiosUp: AxiosInstance;
   private log: boolean;
 
-  private BASE_URL = "https://simplecdn1.damaral.my.id/upload";
+  private BASE_URL = "http://simplecdn1.damaral.my.id:4000/upload";
   private BASE_CDN_URL = "https://cdn1.gudangkomik.com";
 
   constructor(init?: BunnyConstructor) {
@@ -67,8 +67,9 @@ export default class BunnyCDN {
     let url: string;
 
     if (u.includes("https://img.statically.io/img/manhwaindo/")) {
+      //https://img.statically.io/img/manhwaindo/cdn.kambingjantan.cc/f=auto/storage/drive/fxlX1F5ybiEwDk6gHMQ640ZVEbwSNy/4QFD8Yh3vQ8V8I3NLXfyZGW2Tl6A3m/8GUuMB9qXuMbNS8YsLlX50xl0zDoRq.jpg
       url = u
-        .replace("https://img.statically.io/img/manhwaindo/", "")
+        .replace("https://img.statically.io/img/manhwaindo/", "https://")
         .replace("/f=auto", "");
     } else {
       url = u;
