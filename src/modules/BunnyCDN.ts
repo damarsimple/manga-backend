@@ -70,7 +70,8 @@ export default class BunnyCDN {
       //https://img.statically.io/img/manhwaindo/cdn.kambingjantan.cc/f=auto/storage/drive/fxlX1F5ybiEwDk6gHMQ640ZVEbwSNy/4QFD8Yh3vQ8V8I3NLXfyZGW2Tl6A3m/8GUuMB9qXuMbNS8YsLlX50xl0zDoRq.jpg
       url = u
         .replace("https://img.statically.io/img/manhwaindo/", "https://")
-        .replace("/f=auto", "");
+        .replace("/f=auto", "")
+        .replace("https://cdn.manhwaindo.id", "https://cdn.kambingjantan.cc");
     } else {
       url = u;
     }
