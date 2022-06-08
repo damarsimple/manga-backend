@@ -16,6 +16,7 @@ export default class BunnyCDN {
   private log: boolean;
 
   private BASE_URL = "https://simplecdn1.damaral.my.id/upload";
+  private BASE_CDN_URL = "https://cdn1.gudangkomik.com";
 
   constructor(init?: BunnyConstructor) {
     const { log, axiosDefault } = init || {};
@@ -163,13 +164,13 @@ export default class BunnyCDN {
         console.log(
           `[BUNNYCDN] 📁 Download ${
             pipe ? "And Pipe" : ""
-          } finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} https://cdn.gudangkomik.com${path}`
+          } finish at ${downloadElapsed} & Uploaded finish at ${this.getElapsed()} ${this.BASE_CDN_URL}${path}`
         );
       return result;
     } catch (error) {
       this.log &&
         console.log(
-          `[BUNNYCDN] 📁 [Error] Download ${url} and Uploading https://cdn.gudangkomik.com${path}`
+          `[BUNNYCDN] 📁 [Error] Download ${url} and Uploading ${this.BASE_CDN_URL}${path}`
         );
 
       throw error;
