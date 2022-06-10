@@ -144,6 +144,9 @@ export default class Komicast extends Scrapper {
 
     const name = this.chapterGuesser(title);
 
+    console.log(imgDom)
+    console.log(images)
+
     return {
       name,
       image_count: images.length,
