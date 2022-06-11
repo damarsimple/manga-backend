@@ -12,6 +12,7 @@
         "playground": "ts-node-dev --transpile-only --no-notify src/playground.ts",
         "worker": "ts-node-dev --transpile-only --no-notify src/modules/Worker.ts",
         "scrap": "tsc && node dist/src/scrappers/runner.js",
+        "testscrap": "tsc && node dist/src/scrappers/test.js",
         "start": "tsc && node  dist/src/server/graphql.js",
         "testdo": "prisma generate && tsc && node  dist/src/scripts/jobs/migrate-to-do.js",
         "queuesize": "node  dist/src/scripts/jobs/check-size-migration.js",

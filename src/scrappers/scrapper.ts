@@ -10,13 +10,11 @@ import { gkInteractor } from "../modules/gkInteractor";
 import { slugify } from "../modules/Helper";
 import Logger from "../modules/Logger";
 
-import { SocksProxyAgent } from "socks-proxy-agent";
 import { mapLimit } from "async";
+import HttpsProxyAgent from "https-proxy-agent"
 
-const agent = new SocksProxyAgent({
-  hostname: "127.0.0.1",
-  port: 8191,
-});
+// const httpsAgent =  HttpsProxyAgent({host: "localhost", port: "8191"})
+
 
 interface ScrapperProps {
   axiosDefault?: AxiosRequestConfig;
@@ -34,16 +32,12 @@ export abstract class Scrapper {
     useProxyDownload,
     useProxyFetch,
   }: ScrapperProps) {
-    const socks5 = {
-      httpAgent: agent,
-      httpsAgent: agent,
-    };
 
     this._bunny = new BunnyCDN({
       // downloadResponseType: "blob",
       log: true,
       axiosDefault: {
-        ...(useProxyDownload ? socks5 : {}),
+        // httpsAgent
       },
     });
 
@@ -53,7 +47,7 @@ export abstract class Scrapper {
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
       },
       ...axiosDefault,
-      ...(useProxyFetch ? socks5 : {}),
+      // httpsAgent
     });
     this._logger = new Logger();
 
