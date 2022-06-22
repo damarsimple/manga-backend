@@ -2,4 +2,4 @@
 //   require("dotenv").config();
 // }
 
-export const APP_ENDPOINT = "https://backend.gudangkomik.com/graphql";
+export const APP_ENDPOINT = "http://localhost:4000/graphql";

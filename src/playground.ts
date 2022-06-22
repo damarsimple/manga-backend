@@ -33,7 +33,7 @@ async function main() {
 
           const newThumb = thumbWide?.replace(
             "https://backupcdn.gudangkomik.com",
-            "https://cdn1.gudangkomik.com"
+            "https://cdn3.gudangkomik.com"
           );
 
           await prisma.comic.update({
@@ -59,7 +59,7 @@ async function main() {
 
         const newThumb = thumb?.replace(
           "https://backupcdn.gudangkomik.com",
-          "https://cdn1.gudangkomik.com"
+          "https://cdn3.gudangkomik.com"
         );
 
         await prisma.comic.update({

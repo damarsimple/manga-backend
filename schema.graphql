@@ -997,6 +997,7 @@ input ChangelogWhereUniqueInput {
 type Chapter {
   _count: ChapterCountOutputType!
   batchs: String
+  cdn: String
   comic: Comic!
   comicId: Int!
   createdAt: DateTime!
@@ -1004,7 +1005,9 @@ type Chapter {
   imageCount: Int!
   imageDetails: Json
   imageUrls: [String!]!
+  missing: Boolean!
   name: Float!
+  needOptimize: Boolean!
   originalImageCount: Int!
   processed: Boolean!
   quality: ChapterQuality!
@@ -1035,13 +1038,16 @@ input ChapterAvgOrderByAggregateInput {
 type ChapterCountAggregateOutputType {
   _all: Int!
   batchs: Int!
+  cdn: Int!
   comicId: Int!
   createdAt: Int!
   id: Int!
   imageCount: Int!
   imageDetails: Int!
   imageUrls: Int!
+  missing: Int!
   name: Int!
+  needOptimize: Int!
   originalImageCount: Int!
   processed: Int!
   quality: Int!
@@ -1052,13 +1058,16 @@ type ChapterCountAggregateOutputType {
 
 input ChapterCountOrderByAggregateInput {
   batchs: SortOrder
+  cdn: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
   imageCount: SortOrder
   imageDetails: SortOrder
   imageUrls: SortOrder
+  missing: SortOrder
   name: SortOrder
+  needOptimize: SortOrder
   originalImageCount: SortOrder
   processed: SortOrder
   quality: SortOrder
@@ -1073,12 +1082,15 @@ type ChapterCountOutputType {
 
 input ChapterCreateInput {
   batchs: String
+  cdn: String
   comic: ComicCreateNestedOneWithoutChaptersInput!
   createdAt: DateTime
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1090,12 +1102,15 @@ input ChapterCreateInput {
 
 input ChapterCreateManyComicInput {
   batchs: String
+  cdn: String
   createdAt: DateTime
   id: Int
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1111,13 +1126,16 @@ input ChapterCreateManyComicInputEnvelope {
 
 input ChapterCreateManyInput {
   batchs: String
+  cdn: String
   comicId: Int!
   createdAt: DateTime
   id: Int
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1151,11 +1169,14 @@ input ChapterCreateOrConnectWithoutUserviewersInput {
 
 input ChapterCreateWithoutComicInput {
   batchs: String
+  cdn: String
   createdAt: DateTime
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1167,12 +1188,15 @@ input ChapterCreateWithoutComicInput {
 
 input ChapterCreateWithoutUserviewersInput {
   batchs: String
+  cdn: String
   comic: ComicCreateNestedOneWithoutChaptersInput!
   createdAt: DateTime
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1193,11 +1217,14 @@ input ChapterListRelationFilter {
 
 type ChapterMaxAggregateOutputType {
   batchs: String
+  cdn: String
   comicId: Int
   createdAt: DateTime
   id: Int
   imageCount: Int
+  missing: Boolean
   name: Float
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1208,11 +1235,14 @@ type ChapterMaxAggregateOutputType {
 
 input ChapterMaxOrderByAggregateInput {
   batchs: SortOrder
+  cdn: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
   imageCount: SortOrder
+  missing: SortOrder
   name: SortOrder
+  needOptimize: SortOrder
   originalImageCount: SortOrder
   processed: SortOrder
   quality: SortOrder
@@ -1223,11 +1253,14 @@ input ChapterMaxOrderByAggregateInput {
 
 type ChapterMinAggregateOutputType {
   batchs: String
+  cdn: String
   comicId: Int
   createdAt: DateTime
   id: Int
   imageCount: Int
+  missing: Boolean
   name: Float
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1238,11 +1271,14 @@ type ChapterMinAggregateOutputType {
 
 input ChapterMinOrderByAggregateInput {
   batchs: SortOrder
+  cdn: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
   imageCount: SortOrder
+  missing: SortOrder
   name: SortOrder
+  needOptimize: SortOrder
   originalImageCount: SortOrder
   processed: SortOrder
   quality: SortOrder
@@ -1262,13 +1298,16 @@ input ChapterOrderByWithAggregationInput {
   _min: ChapterMinOrderByAggregateInput
   _sum: ChapterSumOrderByAggregateInput
   batchs: SortOrder
+  cdn: SortOrder
   comicId: SortOrder
   createdAt: SortOrder
   id: SortOrder
   imageCount: SortOrder
   imageDetails: SortOrder
   imageUrls: SortOrder
+  missing: SortOrder
   name: SortOrder
+  needOptimize: SortOrder
   originalImageCount: SortOrder
   processed: SortOrder
   quality: SortOrder
@@ -1279,6 +1318,7 @@ input ChapterOrderByWithAggregationInput {
 
 input ChapterOrderByWithRelationInput {
   batchs: SortOrder
+  cdn: SortOrder
   comic: ComicOrderByWithRelationInput
   comicId: SortOrder
   createdAt: SortOrder
@@ -1286,7 +1326,9 @@ input ChapterOrderByWithRelationInput {
   imageCount: SortOrder
   imageDetails: SortOrder
   imageUrls: SortOrder
+  missing: SortOrder
   name: SortOrder
+  needOptimize: SortOrder
   originalImageCount: SortOrder
   processed: SortOrder
   quality: SortOrder
@@ -1309,13 +1351,16 @@ input ChapterRelationFilter {
 
 enum ChapterScalarFieldEnum {
   batchs
+  cdn
   comicId
   createdAt
   id
   imageCount
   imageDetails
   imageUrls
+  missing
   name
+  needOptimize
   originalImageCount
   processed
   quality
@@ -1329,13 +1374,16 @@ input ChapterScalarWhereInput {
   NOT: [ChapterScalarWhereInput]
   OR: [ChapterScalarWhereInput]
   batchs: StringNullableFilter
+  cdn: StringNullableFilter
   comicId: IntFilter
   createdAt: DateTimeFilter
   id: IntFilter
   imageCount: IntFilter
   imageDetails: JsonNullableFilter
   imageUrls: StringNullableListFilter
+  missing: BoolFilter
   name: FloatFilter
+  needOptimize: BoolFilter
   originalImageCount: IntFilter
   processed: BoolFilter
   quality: EnumChapterQualityFilter
@@ -1349,13 +1397,16 @@ input ChapterScalarWhereWithAggregatesInput {
   NOT: [ChapterScalarWhereWithAggregatesInput]
   OR: [ChapterScalarWhereWithAggregatesInput]
   batchs: StringNullableWithAggregatesFilter
+  cdn: StringNullableWithAggregatesFilter
   comicId: IntWithAggregatesFilter
   createdAt: DateTimeWithAggregatesFilter
   id: IntWithAggregatesFilter
   imageCount: IntWithAggregatesFilter
   imageDetails: JsonNullableWithAggregatesFilter
   imageUrls: StringNullableListFilter
+  missing: BoolWithAggregatesFilter
   name: FloatWithAggregatesFilter
+  needOptimize: BoolWithAggregatesFilter
   originalImageCount: IntWithAggregatesFilter
   processed: BoolWithAggregatesFilter
   quality: EnumChapterQualityWithAggregatesFilter
@@ -1384,13 +1435,16 @@ input ChapterSumOrderByAggregateInput {
 
 input ChapterUncheckedCreateInput {
   batchs: String
+  cdn: String
   comicId: Int!
   createdAt: DateTime
   id: Int
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1409,12 +1463,15 @@ input ChapterUncheckedCreateNestedManyWithoutComicInput {
 
 input ChapterUncheckedCreateWithoutComicInput {
   batchs: String
+  cdn: String
   createdAt: DateTime
   id: Int
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1426,13 +1483,16 @@ input ChapterUncheckedCreateWithoutComicInput {
 
 input ChapterUncheckedCreateWithoutUserviewersInput {
   batchs: String
+  cdn: String
   comicId: Int!
   createdAt: DateTime
   id: Int
   imageCount: Int
   imageDetails: Json
   imageUrls: [String]
+  missing: Boolean
   name: Float!
+  needOptimize: Boolean
   originalImageCount: Int
   processed: Boolean
   quality: ChapterQuality
@@ -1443,13 +1503,16 @@ input ChapterUncheckedCreateWithoutUserviewersInput {
 
 input ChapterUncheckedUpdateInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   comicId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1461,13 +1524,16 @@ input ChapterUncheckedUpdateInput {
 
 input ChapterUncheckedUpdateManyInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   comicId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1478,12 +1544,15 @@ input ChapterUncheckedUpdateManyInput {
 
 input ChapterUncheckedUpdateManyWithoutChaptersInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1508,12 +1577,15 @@ input ChapterUncheckedUpdateManyWithoutComicInput {
 
 input ChapterUncheckedUpdateWithoutComicInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1525,13 +1597,16 @@ input ChapterUncheckedUpdateWithoutComicInput {
 
 input ChapterUncheckedUpdateWithoutUserviewersInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   comicId: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1542,12 +1617,15 @@ input ChapterUncheckedUpdateWithoutUserviewersInput {
 
 input ChapterUpdateInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   comic: ComicUpdateOneRequiredWithoutChaptersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1559,11 +1637,14 @@ input ChapterUpdateInput {
 
 input ChapterUpdateManyMutationInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1606,11 +1687,14 @@ input ChapterUpdateWithWhereUniqueWithoutComicInput {
 
 input ChapterUpdateWithoutComicInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1622,12 +1706,15 @@ input ChapterUpdateWithoutComicInput {
 
 input ChapterUpdateWithoutUserviewersInput {
   batchs: NullableStringFieldUpdateOperationsInput
+  cdn: NullableStringFieldUpdateOperationsInput
   comic: ComicUpdateOneRequiredWithoutChaptersInput
   createdAt: DateTimeFieldUpdateOperationsInput
   imageCount: IntFieldUpdateOperationsInput
   imageDetails: Json
   imageUrls: [String]
+  missing: BoolFieldUpdateOperationsInput
   name: FloatFieldUpdateOperationsInput
+  needOptimize: BoolFieldUpdateOperationsInput
   originalImageCount: IntFieldUpdateOperationsInput
   processed: BoolFieldUpdateOperationsInput
   quality: EnumChapterQualityFieldUpdateOperationsInput
@@ -1657,6 +1744,7 @@ input ChapterWhereInput {
   NOT: [ChapterWhereInput]
   OR: [ChapterWhereInput]
   batchs: StringNullableFilter
+  cdn: StringNullableFilter
   comic: ComicWhereInput
   comicId: IntFilter
   createdAt: DateTimeFilter
@@ -1664,7 +1752,9 @@ input ChapterWhereInput {
   imageCount: IntFilter
   imageDetails: JsonNullableFilter
   imageUrls: StringNullableListFilter
+  missing: BoolFilter
   name: FloatFilter
+  needOptimize: BoolFilter
   originalImageCount: IntFilter
   processed: BoolFilter
   quality: EnumChapterQualityFilter

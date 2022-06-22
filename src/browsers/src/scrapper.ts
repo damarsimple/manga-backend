@@ -5,6 +5,8 @@ import { Chapter, ChapterCandidate, Comic, ImageChapter } from "./types";
 import Logger from "../../modules/Logger";
 import { slugify } from "../../modules/Helper";
 // import { DOSpaces } from "../../modules/DOSpaces";
+import kcAll from "../../scrappers/kc-all";
+import { mapLimit } from "async";
 export abstract class Scrapper {
   private _bunny: BunnyCDN;
   private _axios: AxiosInstance;
@@ -98,11 +100,13 @@ export abstract class Scrapper {
     return `/${slug}/${chapIndex}/${imgIndex}.${ext}`;
   }
   public async downloadsImages(urls: ImageChapter[]) {
-    const results = [];
-    for (const x of urls) {
+    const results :string[]= [];
+  
+    await mapLimit(urls, 10,async (x, d) => {
       await this._bunny.downloadAndUpload(x.url, x.path);
       results.push(x.path);
-    }
+    })
+
 
     return results;
   }
@@ -164,7 +168,7 @@ export abstract class Scrapper {
     // check gudang can be accessed
 
     // try {
-    //     await axios.get("https://backend.gudangkomik.com")
+    //     await axios.get("http://localhost:4000")
     // } catch (error) {
     //     this._logger.warn('cant access gudangkomik ! is v2 activated ?')
     //     return;
@@ -221,6 +225,7 @@ export abstract class Scrapper {
     const urls = [
       ...new Set([...specials, ...this.getUpdates(document)]),
       ...xd,
+      ...kcAll,
     ];
     // const urls = [];
 
@@ -249,7 +254,10 @@ export abstract class Scrapper {
     ];
 
     for (const x of urls) {
-      if (ignores.includes(x)) continue;
+    }
+
+    await mapLimit(urls, 30, async (x, d) => {
+      if (ignores.includes(x)) return;
       try {
         if ([...ignoresS, ...ignores].includes(x)) {
           this._logger.info(`${prefix} logger ignores ${x}`);
@@ -278,7 +286,7 @@ export abstract class Scrapper {
           } catch (error) {
             console.log("cannot donwload thumb, posibly v2 interfering");
 
-            comic.thumb = "https://cdn1.gudangkomik.com/fallback.jpg";
+            comic.thumb = "https://cdn3.gudangkomik.com/fallback.jpg";
           }
         }
 
@@ -310,7 +318,7 @@ export abstract class Scrapper {
         console.error(error);
       }
       outer++;
-    }
+    });
 
     this._logger.info(`${prefix} fetching chapters`);
 
@@ -320,6 +328,9 @@ export abstract class Scrapper {
     const chaptersExistMap = new Map<string, string[]>();
 
     for (const { chapter: x, comic } of chaptersBatchJobs) {
+    }
+
+    await mapLimit(chaptersBatchJobs, 20, async ({ chapter: x, comic }, d) => {
       try {
         const chapterExist = chaptersExistMap.get(comic.slug);
 
@@ -349,7 +360,7 @@ export abstract class Scrapper {
             `${prefix} ${comic.slug} chapter name ${x.name} ${chapter.name} already scrapped skipping ...`
           );
           chapIdx++;
-          continue;
+          return;
         }
 
         this._logger.info(
@@ -374,7 +385,7 @@ export abstract class Scrapper {
         chapter.imageUrls = downloadeds;
         //@ts-ignore
         chapter.imageUrls = chapter.imageUrls.map(
-          (e: string) => `https://cdn1.gudangkomik.com${e}`
+          (e: string) => `https://cdn3.gudangkomik.com${e}`
         );
 
         if (downloadeds.length == chapter.images.length) {
@@ -388,7 +399,7 @@ export abstract class Scrapper {
       } catch (error) {
         console.log(`error ${comic.name} ${x} ${error}`);
       }
-    }
+    });
 
     this._logger.info("[GK] done");
   }

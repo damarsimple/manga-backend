@@ -12,6 +12,7 @@ import Logger from "../modules/Logger";
 
 import { mapLimit } from "async";
 import HttpsProxyAgent from "https-proxy-agent"
+import kcAll from "./kc-all";
 
 // const httpsAgent =  HttpsProxyAgent({host: "localhost", port: "8191"})
 
@@ -35,7 +36,7 @@ export abstract class Scrapper {
 
     this._bunny = new BunnyCDN({
       // downloadResponseType: "blob",
-      log: true,
+      log: false,
       axiosDefault: {
         // httpsAgent
       },
@@ -77,11 +78,17 @@ export abstract class Scrapper {
     return `/${slug}/${chapIndex}/${imgIndex}.${ext}`;
   }
   public async downloadsImages(urls: ImageChapter[]) {
-    const results = [];
-    for (const x of urls) {
-      await this._bunny.downloadAndUpload(x.url, x.path);
-      results.push(x.path);
-    }
+    const results :string[ ]= [];
+
+    await mapLimit(urls, 3,async (x, d) => {
+      try {
+        await this._bunny.downloadAndUpload(x.url, x.path);
+        results.push(x.path);
+      } catch (e) {
+        await this._bunny.downloadAndUpload(x.url.replace("https://img.statically.io/img/kcast/", "https://"), x.path);
+        results.push(x.path);
+      }
+    })
 
     return results;
   }
@@ -151,7 +158,7 @@ export abstract class Scrapper {
 
     console.log(`found ${xd.length} title to scraps`);
 
-    const urls = [...new Set([...specials, ...xd])];
+    const urls = [...new Set([...specials, ...xd, ...kcAll.map(e => e.replace("https://komikcast.me/komik/", ""))])];
 
     let outer = 1;
 
@@ -168,7 +175,7 @@ export abstract class Scrapper {
 
     let totalComic = urls.length;
 
-    await mapLimit(urls, 10, async (x, done) => {
+    await mapLimit(urls, 50, async (x, done) => {
       if (ignores.includes(x)) {
         totalComic--;
         return;
@@ -191,9 +198,9 @@ export abstract class Scrapper {
           try {
             const thumbNew = `/${slug}/thumb.jpg`;
 
-            const urlCandidate = thumb?.startsWith("https://komikcast.me")
-              ? `https://img.statically.io/img/kcast/komikcast.me/${thumb?.replace(
-                  "https://komikcast.me",
+            const urlCandidate = thumb?.startsWith("https://")
+              ? `https://img.statically.io/img/kcast/${thumb?.replace(
+                  "https://",
                   ""
                 )}`
               : thumb;
@@ -202,14 +209,14 @@ export abstract class Scrapper {
               throw Error(`error thumb ${urlCandidate}`);
             });
 
-            comic.thumb = `https://cdn.gudangkomik.com${thumbNew}`;
+            comic.thumb = `https://cdn3.gudangkomik.com${thumbNew}`;
 
             if (thumb_wide && thumb != thumb_wide) {
               const thumbWideCandidate = thumb_wide?.startsWith(
-                "https://komikcast.me"
+                "https://"
               )
-                ? `https://img.statically.io/img/kcast/komikcast.me/${thumb?.replace(
-                    "https://komikcast.me",
+                ? `https://img.statically.io/img/kcast/${thumb?.replace(
+                    "https://",
                     ""
                   )}`
                 : thumb_wide;
@@ -219,12 +226,12 @@ export abstract class Scrapper {
                   throw Error(`error thumbWide ${thumbWideCandidate}`);
                 });
 
-              comic.thumb_wide = `https://cdn.gudangkomik.com${`/${slug}/thumbWide.jpg`}`;
+              comic.thumb_wide = `https://cdn3.gudangkomik.com${`/${slug}/thumbWide.jpg`}`;
             }
           } catch (error) {
             console.log("cannot donwload thumb, posibly v2 interfering");
 
-            comic.thumb = "https://cdn.gudangkomik.com/fallback.jpg";
+            comic.thumb = "https://cdn3.gudangkomik.com/fallback.jpg";
           }
         }
 
@@ -264,7 +271,7 @@ export abstract class Scrapper {
 
     await mapLimit(
       chaptersBatchJobs,
-      10,
+      30,
       async ({ chapter: x, comic }, done) => {
         try {
           const chapterExist = chaptersExistMap.get(comic.slug);
@@ -310,14 +317,14 @@ export abstract class Scrapper {
           chapter.imageUrls = downloadeds;
           //@ts-ignore
           chapter.imageUrls = chapter.imageUrls.map(
-            (e: string) => `https://cdn.gudangkomik.com${e}`
+            (e: string) => `https://cdn3.gudangkomik.com${e}`
           );
 
           if (downloadeds.length == chapter.images.length) {
-            // await gkInteractor.sanityEclipse(
-            //     comic.name,
-            //     chapter
-            // )
+            await gkInteractor.sanityEclipse(
+                comic.name,
+                chapter
+            )
             total--;
           } else {
             this._logger.info(

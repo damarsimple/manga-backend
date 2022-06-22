@@ -11,7 +11,7 @@ export default class Sitemap {
     private HEADING = `<?xml version="1.0" encoding="UTF-8"?>`
 
     public urls: URL[] = []
-    public host = "https://backend.gudangkomik.com"
+    public host = "http://localhost:4000"
 
 
     private WRAP(str: string) {

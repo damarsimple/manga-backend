@@ -18,6 +18,8 @@ import { comicIncrementQueue, chapterIncrementQueue } from "../modules/Queue";
 import { updateDocumentIndex } from "../modules/Meilisearch";
 import { connection, resetComicSets } from "../modules/Redis";
 
+const bunny = new BunnyCDN();
+
 export const SanityCheck = objectType({
   name: "SanityCheck",
   definition(t) {
@@ -242,9 +244,8 @@ export const ComicMutationRelated = extendType({
         try {
           const y = createReadStream();
 
-          const bunny = new BunnyCDN();
 
-          bunny.upload(y, path);
+          bunny.upload(await stream2buffer(y), path);
 
           return true;
         } catch (error) {
@@ -304,6 +305,9 @@ export const ComicMutationRelated = extendType({
         chapter: arg({ type: "JSONObject" }),
       },
       resolve: async (_, { slug, chapter }, ctx) => {
+
+        console.log(`Sanity Eclipse ${slug} ${chapter?.name}`)
+
         const comic = await ctx.prisma.comic.findFirst({
           where: {
             slug: slugify(slug),
@@ -392,7 +396,6 @@ export const ComicMutationRelated = extendType({
 
           const slug = slugify(comicData.name);
 
-          const bunny = new BunnyCDN();
 
           let released;
 
@@ -410,8 +413,8 @@ export const ComicMutationRelated = extendType({
                 ...data,
                 released,
                 slug,
-                thumb: `https://cdn1.gudangkomik.com/${slug}/thumb.jpg`,
-                thumbWide: `https://cdn1.gudangkomik.com/${slug}/thumbWide.jpg`,
+                thumb: `https://cdn3.gudangkomik.com/${slug}/thumb.jpg`,
+                thumbWide: `https://cdn3.gudangkomik.com/${slug}/thumbWide.jpg`,
                 author: {
                   connectOrCreate: {
                     where: {

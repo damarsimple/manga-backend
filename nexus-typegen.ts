@@ -679,13 +679,16 @@ export interface NexusGenInputs {
   }
   ChapterCountOrderByAggregateInput: { // input type
     batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    cdn?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageDetails?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageUrls?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    missing?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    needOptimize?: NexusGenEnums['SortOrder'] | null; // SortOrder
     originalImageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     processed?: NexusGenEnums['SortOrder'] | null; // SortOrder
     quality?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -695,12 +698,15 @@ export interface NexusGenInputs {
   }
   ChapterCreateInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comic: NexusGenInputs['ComicCreateNestedOneWithoutChaptersInput']; // ComicCreateNestedOneWithoutChaptersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -711,12 +717,15 @@ export interface NexusGenInputs {
   }
   ChapterCreateManyComicInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -730,13 +739,16 @@ export interface NexusGenInputs {
   }
   ChapterCreateManyInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comicId: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -765,11 +777,14 @@ export interface NexusGenInputs {
   }
   ChapterCreateWithoutComicInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -780,12 +795,15 @@ export interface NexusGenInputs {
   }
   ChapterCreateWithoutUserviewersInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comic: NexusGenInputs['ComicCreateNestedOneWithoutChaptersInput']; // ComicCreateNestedOneWithoutChaptersInput!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -803,11 +821,14 @@ export interface NexusGenInputs {
   }
   ChapterMaxOrderByAggregateInput: { // input type
     batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    cdn?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    missing?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    needOptimize?: NexusGenEnums['SortOrder'] | null; // SortOrder
     originalImageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     processed?: NexusGenEnums['SortOrder'] | null; // SortOrder
     quality?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -817,11 +838,14 @@ export interface NexusGenInputs {
   }
   ChapterMinOrderByAggregateInput: { // input type
     batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    cdn?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    missing?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    needOptimize?: NexusGenEnums['SortOrder'] | null; // SortOrder
     originalImageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     processed?: NexusGenEnums['SortOrder'] | null; // SortOrder
     quality?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -839,13 +863,16 @@ export interface NexusGenInputs {
     _min?: NexusGenInputs['ChapterMinOrderByAggregateInput'] | null; // ChapterMinOrderByAggregateInput
     _sum?: NexusGenInputs['ChapterSumOrderByAggregateInput'] | null; // ChapterSumOrderByAggregateInput
     batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    cdn?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageDetails?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageUrls?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    missing?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    needOptimize?: NexusGenEnums['SortOrder'] | null; // SortOrder
     originalImageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     processed?: NexusGenEnums['SortOrder'] | null; // SortOrder
     quality?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -855,6 +882,7 @@ export interface NexusGenInputs {
   }
   ChapterOrderByWithRelationInput: { // input type
     batchs?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    cdn?: NexusGenEnums['SortOrder'] | null; // SortOrder
     comic?: NexusGenInputs['ComicOrderByWithRelationInput'] | null; // ComicOrderByWithRelationInput
     comicId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -862,7 +890,9 @@ export interface NexusGenInputs {
     imageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageDetails?: NexusGenEnums['SortOrder'] | null; // SortOrder
     imageUrls?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    missing?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    needOptimize?: NexusGenEnums['SortOrder'] | null; // SortOrder
     originalImageCount?: NexusGenEnums['SortOrder'] | null; // SortOrder
     processed?: NexusGenEnums['SortOrder'] | null; // SortOrder
     quality?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -880,13 +910,16 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['ChapterScalarWhereInput'] | null> | null; // [ChapterScalarWhereInput]
     OR?: Array<NexusGenInputs['ChapterScalarWhereInput'] | null> | null; // [ChapterScalarWhereInput]
     batchs?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    cdn?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     comicId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     imageCount?: NexusGenInputs['IntFilter'] | null; // IntFilter
     imageDetails?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     imageUrls?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    missing?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     name?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+    needOptimize?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     originalImageCount?: NexusGenInputs['IntFilter'] | null; // IntFilter
     processed?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     quality?: NexusGenInputs['EnumChapterQualityFilter'] | null; // EnumChapterQualityFilter
@@ -899,13 +932,16 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['ChapterScalarWhereWithAggregatesInput'] | null> | null; // [ChapterScalarWhereWithAggregatesInput]
     OR?: Array<NexusGenInputs['ChapterScalarWhereWithAggregatesInput'] | null> | null; // [ChapterScalarWhereWithAggregatesInput]
     batchs?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
+    cdn?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
     comicId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     createdAt?: NexusGenInputs['DateTimeWithAggregatesFilter'] | null; // DateTimeWithAggregatesFilter
     id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     imageCount?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     imageDetails?: NexusGenInputs['JsonNullableWithAggregatesFilter'] | null; // JsonNullableWithAggregatesFilter
     imageUrls?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    missing?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
     name?: NexusGenInputs['FloatWithAggregatesFilter'] | null; // FloatWithAggregatesFilter
+    needOptimize?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
     originalImageCount?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     processed?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
     quality?: NexusGenInputs['EnumChapterQualityWithAggregatesFilter'] | null; // EnumChapterQualityWithAggregatesFilter
@@ -923,13 +959,16 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedCreateInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comicId: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -946,12 +985,15 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedCreateWithoutComicInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -962,13 +1004,16 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedCreateWithoutUserviewersInput: { // input type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comicId: number; // Int!
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: boolean | null; // Boolean
     name: number; // Float!
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -978,13 +1023,16 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedUpdateInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -995,13 +1043,16 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedUpdateManyInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1011,12 +1062,15 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedUpdateManyWithoutChaptersInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1039,12 +1093,15 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedUpdateWithoutComicInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1055,13 +1112,16 @@ export interface NexusGenInputs {
   }
   ChapterUncheckedUpdateWithoutUserviewersInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comicId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1071,12 +1131,15 @@ export interface NexusGenInputs {
   }
   ChapterUpdateInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutChaptersInput'] | null; // ComicUpdateOneRequiredWithoutChaptersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1087,11 +1150,14 @@ export interface NexusGenInputs {
   }
   ChapterUpdateManyMutationInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1129,11 +1195,14 @@ export interface NexusGenInputs {
   }
   ChapterUpdateWithoutComicInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1144,12 +1213,15 @@ export interface NexusGenInputs {
   }
   ChapterUpdateWithoutUserviewersInput: { // input type
     batchs?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    cdn?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     comic?: NexusGenInputs['ComicUpdateOneRequiredWithoutChaptersInput'] | null; // ComicUpdateOneRequiredWithoutChaptersInput
     createdAt?: NexusGenInputs['DateTimeFieldUpdateOperationsInput'] | null; // DateTimeFieldUpdateOperationsInput
     imageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls?: Array<string | null> | null; // [String]
+    missing?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     name?: NexusGenInputs['FloatFieldUpdateOperationsInput'] | null; // FloatFieldUpdateOperationsInput
+    needOptimize?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     originalImageCount?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     processed?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
     quality?: NexusGenInputs['EnumChapterQualityFieldUpdateOperationsInput'] | null; // EnumChapterQualityFieldUpdateOperationsInput
@@ -1175,6 +1247,7 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
     OR?: Array<NexusGenInputs['ChapterWhereInput'] | null> | null; // [ChapterWhereInput]
     batchs?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    cdn?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     comic?: NexusGenInputs['ComicWhereInput'] | null; // ComicWhereInput
     comicId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
@@ -1182,7 +1255,9 @@ export interface NexusGenInputs {
     imageCount?: NexusGenInputs['IntFilter'] | null; // IntFilter
     imageDetails?: NexusGenInputs['JsonNullableFilter'] | null; // JsonNullableFilter
     imageUrls?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    missing?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     name?: NexusGenInputs['FloatFilter'] | null; // FloatFilter
+    needOptimize?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     originalImageCount?: NexusGenInputs['IntFilter'] | null; // IntFilter
     processed?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
     quality?: NexusGenInputs['EnumChapterQualityFilter'] | null; // EnumChapterQualityFilter
@@ -4558,7 +4633,7 @@ export interface NexusGenEnums {
   AuthorScalarFieldEnum: "createdAt" | "id" | "name" | "slug" | "updatedAt"
   ChangelogScalarFieldEnum: "createdAt" | "features" | "id" | "updatedAt" | "userId" | "version"
   ChapterQuality: "HQ" | "LQ" | "NORMAL"
-  ChapterScalarFieldEnum: "batchs" | "comicId" | "createdAt" | "id" | "imageCount" | "imageDetails" | "imageUrls" | "name" | "originalImageCount" | "processed" | "quality" | "title" | "updatedAt" | "views"
+  ChapterScalarFieldEnum: "batchs" | "cdn" | "comicId" | "createdAt" | "id" | "imageCount" | "imageDetails" | "imageUrls" | "missing" | "name" | "needOptimize" | "originalImageCount" | "processed" | "quality" | "title" | "updatedAt" | "views"
   ComicBookmarkScalarFieldEnum: "comicId" | "createdAt" | "id" | "updatedAt" | "userId"
   ComicScalarFieldEnum: "age" | "altName" | "authorId" | "concept" | "createdAt" | "description" | "id" | "isHentai" | "lastChapterUpdateAt" | "name" | "rating" | "released" | "slug" | "status" | "thumb" | "thumbWide" | "type" | "updatedAt" | "views" | "viewsDaily" | "viewsHourly" | "viewsWeek"
   GenreScalarFieldEnum: "createdAt" | "id" | "name" | "slug" | "updatedAt"
@@ -4815,13 +4890,16 @@ export interface NexusGenObjects {
   }
   Chapter: { // root type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comicId: number; // Int!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: number; // Int!
     imageCount: number; // Int!
     imageDetails?: NexusGenScalars['Json'] | null; // Json
     imageUrls: string[]; // [String!]!
+    missing: boolean; // Boolean!
     name: number; // Float!
+    needOptimize: boolean; // Boolean!
     originalImageCount: number; // Int!
     processed: boolean; // Boolean!
     quality: NexusGenEnums['ChapterQuality']; // ChapterQuality!
@@ -4840,13 +4918,16 @@ export interface NexusGenObjects {
   ChapterCountAggregateOutputType: { // root type
     _all: number; // Int!
     batchs: number; // Int!
+    cdn: number; // Int!
     comicId: number; // Int!
     createdAt: number; // Int!
     id: number; // Int!
     imageCount: number; // Int!
     imageDetails: number; // Int!
     imageUrls: number; // Int!
+    missing: number; // Int!
     name: number; // Int!
+    needOptimize: number; // Int!
     originalImageCount: number; // Int!
     processed: number; // Int!
     quality: number; // Int!
@@ -4859,11 +4940,14 @@ export interface NexusGenObjects {
   }
   ChapterMaxAggregateOutputType: { // root type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comicId?: number | null; // Int
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
+    missing?: boolean | null; // Boolean
     name?: number | null; // Float
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -4873,11 +4957,14 @@ export interface NexusGenObjects {
   }
   ChapterMinAggregateOutputType: { // root type
     batchs?: string | null; // String
+    cdn?: string | null; // String
     comicId?: number | null; // Int
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: number | null; // Int
     imageCount?: number | null; // Int
+    missing?: boolean | null; // Boolean
     name?: number | null; // Float
+    needOptimize?: boolean | null; // Boolean
     originalImageCount?: number | null; // Int
     processed?: boolean | null; // Boolean
     quality?: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -5584,6 +5671,7 @@ export interface NexusGenFieldTypes {
   Chapter: { // field return type
     _count: NexusGenRootTypes['ChapterCountOutputType']; // ChapterCountOutputType!
     batchs: string | null; // String
+    cdn: string | null; // String
     comic: NexusGenRootTypes['Comic']; // Comic!
     comicId: number; // Int!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
@@ -5591,7 +5679,9 @@ export interface NexusGenFieldTypes {
     imageCount: number; // Int!
     imageDetails: NexusGenScalars['Json'] | null; // Json
     imageUrls: string[]; // [String!]!
+    missing: boolean; // Boolean!
     name: number; // Float!
+    needOptimize: boolean; // Boolean!
     originalImageCount: number; // Int!
     processed: boolean; // Boolean!
     quality: NexusGenEnums['ChapterQuality']; // ChapterQuality!
@@ -5611,13 +5701,16 @@ export interface NexusGenFieldTypes {
   ChapterCountAggregateOutputType: { // field return type
     _all: number; // Int!
     batchs: number; // Int!
+    cdn: number; // Int!
     comicId: number; // Int!
     createdAt: number; // Int!
     id: number; // Int!
     imageCount: number; // Int!
     imageDetails: number; // Int!
     imageUrls: number; // Int!
+    missing: number; // Int!
     name: number; // Int!
+    needOptimize: number; // Int!
     originalImageCount: number; // Int!
     processed: number; // Int!
     quality: number; // Int!
@@ -5630,11 +5723,14 @@ export interface NexusGenFieldTypes {
   }
   ChapterMaxAggregateOutputType: { // field return type
     batchs: string | null; // String
+    cdn: string | null; // String
     comicId: number | null; // Int
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: number | null; // Int
     imageCount: number | null; // Int
+    missing: boolean | null; // Boolean
     name: number | null; // Float
+    needOptimize: boolean | null; // Boolean
     originalImageCount: number | null; // Int
     processed: boolean | null; // Boolean
     quality: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -5644,11 +5740,14 @@ export interface NexusGenFieldTypes {
   }
   ChapterMinAggregateOutputType: { // field return type
     batchs: string | null; // String
+    cdn: string | null; // String
     comicId: number | null; // Int
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: number | null; // Int
     imageCount: number | null; // Int
+    missing: boolean | null; // Boolean
     name: number | null; // Float
+    needOptimize: boolean | null; // Boolean
     originalImageCount: number | null; // Int
     processed: boolean | null; // Boolean
     quality: NexusGenEnums['ChapterQuality'] | null; // ChapterQuality
@@ -6508,6 +6607,7 @@ export interface NexusGenFieldTypeNames {
   Chapter: { // field return type name
     _count: 'ChapterCountOutputType'
     batchs: 'String'
+    cdn: 'String'
     comic: 'Comic'
     comicId: 'Int'
     createdAt: 'DateTime'
@@ -6515,7 +6615,9 @@ export interface NexusGenFieldTypeNames {
     imageCount: 'Int'
     imageDetails: 'Json'
     imageUrls: 'String'
+    missing: 'Boolean'
     name: 'Float'
+    needOptimize: 'Boolean'
     originalImageCount: 'Int'
     processed: 'Boolean'
     quality: 'ChapterQuality'
@@ -6535,13 +6637,16 @@ export interface NexusGenFieldTypeNames {
   ChapterCountAggregateOutputType: { // field return type name
     _all: 'Int'
     batchs: 'Int'
+    cdn: 'Int'
     comicId: 'Int'
     createdAt: 'Int'
     id: 'Int'
     imageCount: 'Int'
     imageDetails: 'Int'
     imageUrls: 'Int'
+    missing: 'Int'
     name: 'Int'
+    needOptimize: 'Int'
     originalImageCount: 'Int'
     processed: 'Int'
     quality: 'Int'
@@ -6554,11 +6659,14 @@ export interface NexusGenFieldTypeNames {
   }
   ChapterMaxAggregateOutputType: { // field return type name
     batchs: 'String'
+    cdn: 'String'
     comicId: 'Int'
     createdAt: 'DateTime'
     id: 'Int'
     imageCount: 'Int'
+    missing: 'Boolean'
     name: 'Float'
+    needOptimize: 'Boolean'
     originalImageCount: 'Int'
     processed: 'Boolean'
     quality: 'ChapterQuality'
@@ -6568,11 +6676,14 @@ export interface NexusGenFieldTypeNames {
   }
   ChapterMinAggregateOutputType: { // field return type name
     batchs: 'String'
+    cdn: 'String'
     comicId: 'Int'
     createdAt: 'DateTime'
     id: 'Int'
     imageCount: 'Int'
+    missing: 'Boolean'
     name: 'Float'
+    needOptimize: 'Boolean'
     originalImageCount: 'Int'
     processed: 'Boolean'
     quality: 'ChapterQuality'
