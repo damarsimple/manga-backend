@@ -1,47 +1,49 @@
+import { Worker, Job } from "bullmq";
+import { Chapter, ChapterCandidate, ImageChapter } from '../browsers/src/types';
+import { prisma } from "./Context";
+import { connection } from "./Redis";
+import Logger from "./Logger";
+import { mapLimit } from "async";
+import BunnyCDN from "./BunnyCDN";
+import { slugify } from "./Helper";
+import { gkInteractor } from "./gkInteractor";
+import {  ComicJob } from "../scrappers/scrapper";
 
-
-import { Worker, Job } from 'bullmq';
-import { prisma } from './Context';
-import { connection } from './Redis';
-
-const comicWorker = new Worker<{ id: string }>('comic increment', async (job: Job) => {
-
-    await connection.lpush(`comic-views`, job.data.id)
+const comicWorker = new Worker<{ id: string }>(
+  "comic increment",
+  async (job: Job) => {
+    await connection.lpush(`comic-views`, job.data.id);
 
     // await updateDocumentIndex(job.data.id, "comics", update)
 
     return true;
-
-}, {
+  },
+  {
     concurrency: 10,
-    connection
-})
+    connection,
+  }
+);
 
-
-const chapterWorker = new Worker<{ id: string }>('chapter increment', async (job: Job) => {
-
-    await connection.lpush(`chapter-views`, job.data.id)
+const chapterWorker = new Worker<{ id: string }>(
+  "chapter increment",
+  async (job: Job) => {
+    await connection.lpush(`chapter-views`, job.data.id);
 
     return true;
-
-}, {
+  },
+  {
     concurrency: 10,
-    connection
-})
+    connection,
+  }
+);
 
-
-comicWorker.on('completed', (job: Job, returnvalue: any) => {
-    console.log(`job finished increment comic ${job.data.id}`);
+comicWorker.on("completed", (job: Job, returnvalue: any) => {
+  console.log(`job finished increment comic ${job.data.id}`);
 });
 
-chapterWorker.on('completed', (job: Job, returnvalue: any) => {
-    console.log(`job finished increment chapter ${job.data.id}`);
+chapterWorker.on("completed", (job: Job, returnvalue: any) => {
+  console.log(`job finished increment chapter ${job.data.id}`);
 });
-
-
-
-
-
 
 // const chapterMigrationWorker = new Worker<{ chapter: Chapter }>('chapter migration', join(__dirname, "../scripts/jobs", "process-chapter-migration.ts"), {
 //     lockDuration: 1000 * 60 * 3,
@@ -54,5 +56,93 @@ chapterWorker.on('completed', (job: Job, returnvalue: any) => {
 //     console.log(`job finished migration chapter ${returnvalue.name}`);
 // });
 
+const chapterDownloadsWorker = new Worker<{ id: string }>(
+  "chapter downloads",
+  async (job: Job) => {},
+  {
+    concurrency: 10,
+    connection,
+  }
+);
 
-console.log('worker starting .....');
+const _logger = new Logger();
+const _bunny = new BunnyCDN({
+  log: false,
+  axiosDefault: {
+    // httpsAgent
+  },
+});
+async function downloadsImages(urls: ImageChapter[]) {
+  const results: string[] = [];
+
+  await mapLimit(urls, 3, async (x, d) => {
+    try {
+      await _bunny.downloadAndUpload(x.url, x.path);
+      results.push(x.path);
+    } catch (e) {
+      await _bunny.downloadAndUpload(
+        x.url.replace("https://img.statically.io/img/kcast/", "https://"),
+        x.path
+      );
+      results.push(x.path);
+    }
+  });
+
+  return results;
+}
+
+function createImagePath(
+    slug: string,
+    chapIndex: number,
+    imgIndex: number,
+    ext: string
+  ) {
+    return `/${slug}/${chapIndex}/${imgIndex}.${ext}`;
+  }
+
+  export interface ChapterJob {
+  chapter: Chapter;
+  comic: ComicJob;
+}
+const  extExtractor = (url: string) =>
+    url.split(".")[url.split(".").length - 1];
+chapterDownloadsWorker.on("completed", async (job: Job, returnvalue: any) => {
+    console.log(`job finished increment comic ${job.data.id}`);
+    const { chapter, comic } = job.data as ChapterJob
+  try {
+    _logger.info(`downloading chapter ${chapter.name}`);
+
+    const downloadeds = await downloadsImages(
+      chapter.images.map((e, i: number) => {
+        return {
+          path: createImagePath(
+            comic.slug ?? slugify(comic.name),
+            chapter.name,
+            i,
+            extExtractor(e)
+          ),
+          url: e,
+        };
+      })
+    );
+
+    //@ts-ignore
+    chapter.imageUrls = downloadeds;
+    //@ts-ignore
+    chapter.imageUrls = chapter.imageUrls.map(
+      (e: string) => `https://cdn3.gudangkomik.com${e}`
+    );
+
+    if (downloadeds.length == chapter.images.length) {
+      await gkInteractor.sanityEclipse(comic.name, chapter);
+    } else {
+      _logger.info(
+        `${comic.slug}failed downloading chapter ${chapter.name} [number not match]`
+      );
+    }
+  } catch (error) {
+    console.log(`error ${comic.name}  ${error}`);
+  }
+});
+
+console.log("worker starting .....");
