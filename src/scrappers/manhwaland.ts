@@ -6,6 +6,7 @@ import { Scrapper } from "./scrapper";
 // SAME TEMPLATE AS MANHWAINDO
 
 export default class Manhwaland extends Scrapper {
+  private withAll = false;
   public getPageRangeUrl(x: number): string[] {
     const rets = [];
 
@@ -16,12 +17,19 @@ export default class Manhwaland extends Scrapper {
     return rets;
   }
   public getDeclaration() {
+
+    const url =  [
+      "https://manhwaland.mom/",
+      //,
+    ]
+
+    if (this.withAll) {
+      url.push("https://manhwaland.mom/series/list-mode/")
+  }
+
     return {
       name: "Manhwaland",
-      url: [
-        "https://manhwaland.mom/",
-        // "https://manhwaland.mom/series/list-mode/",
-      ],
+      url,
       annoying: false,
     };
   }
@@ -136,8 +144,11 @@ export default class Manhwaland extends Scrapper {
       quality: this.checkQuality(title),
     };
   }
-  constructor() {
+  constructor({
+    withAll = false,
+}) {
     super({});
+    this.withAll = withAll;
   }
 
   // public static async parseAndUpload(url: string): Promise<Comic | void> {

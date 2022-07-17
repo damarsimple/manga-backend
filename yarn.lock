@@ -2382,7 +2382,7 @@ axios-socks5-agent@^1.0.5:
     socks5-http-client "^1.0.4"
     socks5-https-client "^1.2.1"
 
-axios@*:
+axios@*, axios@^0.27.0:
   version "0.27.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
   integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
@@ -4677,6 +4677,20 @@ kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.npmjs.org/kind-of/-/kind-of-6.0.3.tgz"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
+
+kitsu-core@^10.0.0-alpha.25:
+  version "10.0.0-alpha.25"
+  resolved "https://registry.yarnpkg.com/kitsu-core/-/kitsu-core-10.0.0-alpha.25.tgz#dbdf6b8b9c4bbf6dd7e22bc871b2874377c70f1b"
+  integrity sha512-Zg9rPSfnGpHL7P1KtPvlK9eTsb9mzoU4Fb4O0NuXjXKzoSQwbIdEqyox4b2cirqPV1EleQ18KqER1NdAB4glMg==
+
+kitsu@^10.0.0-alpha.25:
+  version "10.0.0-alpha.25"
+  resolved "https://registry.yarnpkg.com/kitsu/-/kitsu-10.0.0-alpha.25.tgz#4bbb2bed892097404c0b0104b75bea2ca6e9df08"
+  integrity sha512-nNayWTgzTYdspP560VVp/3UK5HDtc7keR26EiiECKFvcoZ8MBgPJwRkksx2k55Di0zXX8UGFYjIn7uGziP0aiw==
+  dependencies:
+    axios "^0.27.0"
+    kitsu-core "^10.0.0-alpha.25"
+    pluralize "^8.0.0"
 
 last-commit-log@^3.1.1:
   version "3.1.1"

@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import { uniq } from "lodash";
 import { Chapter, ChapterCandidate, Comic } from "../browsers/src/types";
 import { slugify } from "../modules/Helper";
@@ -8,6 +9,8 @@ import { Scrapper } from "./scrapper";
 const IGNORE = "imagesimple.co/img/manhwaindo/";
 
 export default class Manhwaindo extends Scrapper {
+    private withAll = false;
+
     public getPageRangeUrl(x: number): string[] {
         const rets = [];
 
@@ -18,12 +21,19 @@ export default class Manhwaindo extends Scrapper {
         return rets;
     }
     public getDeclaration() {
+        
+
+        const url =  [
+            "https://manhwaindo.id/",
+        ]
+
+        if (this.withAll) {
+            url.push("https://manhwaindo.id/series/list-mode/")
+        }
+
         return {
             name: "Manhwaindo",
-            url: [
-                "https://manhwaindo.id/",
-                // "https://manhwaindo.id/series/list-mode/",
-            ],
+            url,
             annoying: true,
             customHeaders: {
                 "Referer": "https://manhwaindo.id/",
@@ -135,7 +145,12 @@ export default class Manhwaindo extends Scrapper {
             quality: this.checkQuality(title),
         };
     }
-    constructor() {
-        super({});
+    constructor({
+        withAll = false,
+    }) {
+        super({
+        });
+
+        this.withAll = withAll;
     }
 }

@@ -112,34 +112,6 @@ export const ComicQueryRelated = extendType({
 
         let filter = filters.join(" AND ");
 
-        if (limit == 10000) {
-          const key = `comicSearchAll`;
-
-          const cache = await connection.get(key);
-
-          if (!cache) {
-            const save = await comicsIndex.search<Comic>(query, {
-              attributesToHighlight: ["name", "author", "description"],
-              limit: limit,
-              sort: ["lastChapterUpdatedAt:desc"],
-            });
-
-            await connection.set(key, JSON.stringify(save));
-
-            return {
-              ...save,
-              total: save.nbHits,
-              comics: save.hits.map((e) => e._formatted as Comic),
-            };
-          }
-          const data = JSON.parse(cache);
-          return {
-            ...data,
-            total: data.nbHits,
-            //@ts-ignore
-            comics: data.hits.map((e) => e._formatted as Comic),
-          };
-        }
 
         const result = await comicsIndex.search<Comic>(query, {
           attributesToHighlight: ["name", "author", "description"],
@@ -286,11 +258,33 @@ export const ComicMutationRelated = extendType({
         id: nonNull(intArg()),
         context: nonNull(stringArg()),
       },
-      resolve: async (_, { id, context }, __) => {
+      resolve: async (_, { id, context }, {prisma}) => {
         if (context == "comic") {
-          comicIncrementQueue.add("increment", { id });
+
+           prisma.comic.update({
+            where: {
+              id,
+            },
+            data: {
+              views: {
+                increment: 1,
+              }
+            },
+          });
+
+          
+
         } else {
-          chapterIncrementQueue.add("increment", { id });
+          prisma.chapter.update({
+            where: {
+              id,
+            },
+            data: {
+              views: {
+                increment: 1,
+              }
+            },
+          });
         }
 
         return true;

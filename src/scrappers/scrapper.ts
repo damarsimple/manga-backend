@@ -96,7 +96,8 @@ export abstract class Scrapper {
     this.intervalId = setInterval(async () => {
       let queueLength = await connection.llen("scrapper-queue-chapters" + "-" + this.getDeclaration().name.toLowerCase());
       
-      for(const worker of this.workers.values()) {
+      for (const worker of this.workers.values()) {
+        
         const processed = this.workersProcessed.get(worker.id)
         this._logger.info(
           `[${this.getDeclaration().name}][THREAD-${worker.id}][LENGTH-${queueLength}] processed ${processed} chapters`
@@ -145,25 +146,13 @@ export abstract class Scrapper {
           break;
         }
 
-        worker.on("exit", (code, signal) => {
-          this._logger.error(`worker ${worker.id} died`);
-          this._logger.error(`code: ${code}`);
-          this._logger.error(`signal: ${signal}`);
-          this._logger.error(`forking new worker`);
-          cluster.fork();
-        });
-
-        worker.on("error", (err) => {
-          this._logger.error(`worker ${worker.id} error`);
-          this._logger.error(`error: ${err}`);
-          this._logger.error(`forking new worker`);
-          cluster.fork();
-        });
-
         worker.on("message", (msg) => {
           if (msg == "finished-job") {
             this.incrementWorker(worker.id);
-           }
+          }
+          if (msg == "suicide") {
+            worker.kill()
+          }
         });
 
         this.workers.set(worker.id, worker);
@@ -240,6 +229,13 @@ export abstract class Scrapper {
         process.send && process.send("finished-job");
       } else {
         this._logger.info(`no job`);
+
+        let queueLength = await connection.llen("scrapper-queue-chapters" + "-" + this.getDeclaration().name.toLowerCase());
+        
+        if (queueLength == 0) {
+          process.send && process.send("suicide");
+        }
+
       }
 
       queueLength = await connection.llen("scrapper-queue-chapters" + "-" + this.getDeclaration().name.toLowerCase());

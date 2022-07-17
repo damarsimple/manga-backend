@@ -60,6 +60,7 @@
         "ioredis": "^4.28.5",
         "jsdom": "^20.0.0",
         "jsonwebtoken": "^8.5.1",
+        "kitsu": "^10.0.0-alpha.25",
         "lodash": "^4.17.21",
         "meilisearch": "^0.24.0",
         "momentjs": "^2.0.0",

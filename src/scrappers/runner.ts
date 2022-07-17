@@ -5,9 +5,9 @@ import Manhwaland from './manhwaland';
 
 async function main() {
   const declarations = [
-    new Komikcast(),
-    new Manhwaland(),
-    new Manhwaindo()
+    new Komikcast({}),
+    new Manhwaland({}),
+    new Manhwaindo({})
   ];
 
   for (const x of declarations) {

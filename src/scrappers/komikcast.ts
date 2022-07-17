@@ -5,8 +5,15 @@ import { Scrapper } from "./scrapper";
 
 export default class Komicast extends Scrapper {
 
-    constructor() {
-        super({});
+    private withAll = false;
+
+    constructor({
+        withAll = false,
+    }) {
+        super({
+        });
+
+        this.withAll = withAll;
     }
     public getPageRangeUrl(x: number): string[] {
         const rets = [];
@@ -20,12 +27,19 @@ export default class Komicast extends Scrapper {
         return rets;
     }
     public getDeclaration() {
+
+        const url = [
+            "https://komikcast.me/",
+
+        ]
+
+        if (this.withAll) {
+            url.push("https://komikcast.me/daftar-komik/?list")
+        }
+
         return {
             name: "Komikcast",
-            url: [
-                "https://komikcast.me/",
-                // "https://komikcast.me/daftar-komik/?list"
-            ],
+            url,
         };
     }
     public getUpdates(doc: Document): string[] {
