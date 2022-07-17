@@ -1,9 +1,10 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders } from "axios"
+import { Agent } from "node:https";
 import Logger from "./Logger";
 
 const logger = new Logger();
 
-interface BunnyConstructor { log: boolean, axiosDefault?: AxiosRequestConfig; }
+interface BunnyConstructor { log: boolean, axiosDefault?: AxiosRequestConfig}
 export default class BunnyCDN {
 
     private start = new Date()
@@ -27,12 +28,15 @@ export default class BunnyCDN {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36 Statically-Komikcast-Apk",
             AccessKey: "77948c15-c80a-4cbb-8e6a810c693b-6889-47f6",
           "Content-Type": "application/octet-stream",
-            "Referer" : "https://komikcast.com/"
+            ...axiosDefault?.headers,
         }
 
         this.axiosDown = axios.create({
             ...axiosDefault,
-            headers
+            headers,
+            httpsAgent: new Agent({
+                rejectUnauthorized: false
+            })
         })
 
         this.axiosUp = axios.create({
@@ -40,7 +44,7 @@ export default class BunnyCDN {
         })
 
 
-        this.axiosDown.get("https://api.myip.com").then((e) => console.log(e.data))
+        // this.axiosDown.get("https://api.myip.com").then((e) => console.log(e.data))
     }
 
     private _time() {
@@ -63,7 +67,7 @@ export default class BunnyCDN {
 
     public async download(url: string): Promise<Buffer> {
 
-        const y = await this.axiosDown.get(url, {
+        const y = await this.axiosDown.get(encodeURI(url), {
             responseType: "arraybuffer",
         });
 

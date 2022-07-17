@@ -1,182 +1,164 @@
-import { Comic, Chapter } from "../browsers/src/types";
+import { uniq } from "lodash";
+import { Chapter, ChapterCandidate, Comic } from "../browsers/src/types";
 import { slugify } from "../modules/Helper";
 import { Scrapper } from "./scrapper";
 
-export class Komikcast extends Scrapper {
+export default class Komicast extends Scrapper {
 
     constructor() {
-        super({
-            axiosDefault: {
-                baseURL: "https://apk.nijisan.my.id",
-
-            },
-            useProxyDownload: true
-        });
-
-
-
-
+        super({});
     }
+    public getPageRangeUrl(x: number): string[] {
+        const rets = [];
 
-    public getUpdates() {
+        for (let index = 1; index <= x; index++) {
+            rets.push(
+                `https://komikcast.me/daftar-komik/page/${index}/?sortby=update`
+            );
+        }
 
-        return new Promise<string[]>(async (resolve, reject) => {
-            const slugs = [];
-
-            for (let index = 1; index <= 6; index++) {
-                for (let j = 1; j <= 6; j++) {
-                    try {
-
-                        const { data } = await this.axios.get<UpdateResponse.RootObject>(`/premium/home/latest/${index}/${j}`)
-
-                        for (const x of data.data) {
-                            slugs.push(x.linkId)
-                        }
-                    } catch (error) {
-
-                        reject(error)
-
-                    }
-
-                }
-
+        return rets;
+    }
+    public getDeclaration() {
+        return {
+            name: "Komikcast",
+            url: [
+                "https://komikcast.me/",
+                // "https://komikcast.me/daftar-komik/?list"
+            ],
+        };
+    }
+    public getUpdates(doc: Document): string[] {
+        const links = new Set<string>();
+        doc.querySelectorAll("a").forEach((e) => {
+            const link = e.getAttribute("href");
+            if (link && link.includes("https://komikcast.me/komik/")) {
+                links.add(link);
             }
-
-            resolve(slugs)
-
         });
 
+        const values = Array.from(links);
+        return values;
     }
-    public getComic(url: string) {
-        return new Promise<Comic>(async (resolve, reject) => {
+    public parseComic(doc: Document): Comic {
+        const title = doc
+            ?.querySelector("h1")
+            ?.textContent?.replace(" Bahasa Indonesia", "")
+            ?.trim();
+        const thumb =
+            doc
+                ?.querySelector(".komik_info-content-thumbnail-image ,wp-post-image")
+                ?.getAttribute("src") ?? "";
+        const alt_title = doc
+            ?.querySelector(".komik_info-content-native")
+            ?.textContent?.split(",");
+        const genres = Array.from(
+            doc?.querySelector(".komik_info-content-genre")?.querySelectorAll("a") ??
+            []
+        ).map((e) => e.textContent ?? "");
+        const spans = Array.from(
+            doc
+                ?.querySelector(".komik_info-content-meta")
+                ?.querySelectorAll("span") ?? []
+        );
+        const info = spans.reduce((e, c) => {
+            const text = c?.textContent?.split(":");
 
-            try {
-                const { data } = await this.axios.get<ComicResponse.RootObject>(`/komik/info/${url}`)
+            if (!text) return e;
 
-                const comic: Comic = {
-                    name: data.title?.replace("Bahasa Indonesia", "")?.trim(),
-                    alt_name: data.title_other?.split(",")?.map(e => e.trim()),
-                    slug: slugify(data?.title?.replace("Bahasa Indonesia", "")?.trim()),
-                    genres: data.genres?.map(e => e.trim()),
-                    rating: data.rating,
-                    thumb: data.image,
-                    thumb_wide: data.image2,
-                    isHentai: false,
-                    author: data.author,
-                    colored: false,
-                    chapters: data.list_chapter?.map(e => ({
-                        name: parseFloat(e.ch ?? 0),
-                        href: e.linkId
-                    })),
-                    type: data.type?.replace("Type: ", "")
-                };
+            return {
+                ...e,
+                thumb,
+                [text[0].trim().toLowerCase()]: text[1].trim(),
+            };
+        }, {} as Record<string, string>);
 
-                resolve(comic);
+        let chapters: ChapterCandidate[] = [];
+        let hqChapters: ChapterCandidate[] = [];
 
-            } catch (error) {
-                reject(error)
-            }
+        for (const e of Array.from(doc?.querySelectorAll("a")) ?? []) {
+            const href = e.getAttribute("href");
+            if (!href) continue;
 
+            if (!href.includes("https://komikcast.me/chapter/")) continue;
 
+            const text = e.textContent ?? "";
+            const name = this.chapterGuesser(text);
 
-        });
+            if (text.includes("HQ"))
+                hqChapters.push({
+                    name,
+                    href,
+                });
+        }
+
+        let hqChaptersStringMap: number[] = hqChapters.map((e) => e.name);
+
+        if (hqChaptersStringMap.length > 0) {
+            console.log(`found ${hqChaptersStringMap.length} HQ Chapter ${title}`);
+        }
+
+        for (const e of Array.from(doc?.querySelectorAll("a")) ?? []) {
+            const href = e.getAttribute("href");
+            if (!href) continue;
+            if (!href.includes("https://komikcast.me/chapter/")) continue;
+
+            const text = e.textContent ?? "";
+            const name = this.chapterGuesser(text);
+
+            if (!hqChaptersStringMap.includes(name))
+                chapters.push({
+                    name,
+                    href,
+                });
+        }
+
+        chapters = uniq([...chapters, ...hqChapters]);
+
+        if (!title) {
+            throw new Error("title not found");
+        }
+
+        const comic: Comic = {
+            ...(info as unknown as Comic),
+            name: title,
+            alt_name: alt_title ?? [],
+            description:
+                doc?.querySelector(".komik_info-description-sinopsis")?.textContent ??
+                "",
+            genres: genres ?? [],
+            chapters,
+            slug: slugify(title),
+        };
+
+        return comic;
     }
-    public getChapter(url: string) {
-        return new Promise<Chapter>(async (resolve, reject) => {
+    public parseChapter(doc: Document): Chapter {
+        const imgDom = Array.from(
+            doc?.querySelector(".main-reading-area")?.querySelectorAll("img") ?? []
+        );
 
-            try {
-                const { data } = await this.axios.get<ChapterResponse.RootObject>(`/komik/info/${url}`)
+        const images = Array.from(
+            imgDom
+                .map((e) => e.getAttribute("src") ?? "")
+                ?.map((e) =>
+                    e.includes("https://cdn.komikcast.com") ?
+                        e.replace("https://", "https://cdn.imagesimple.co/img/kcast/") : e
+                )
+        );
 
-                const comic: Chapter = {
-                    name: parseFloat(data.ch ?? 0),
-                    image_count: data.images.length,
-                    original_image_count: data.images.length,
-                    processed: false,
-                    images: data.images,
-                    quality: 0
-                };
+        const title = doc?.querySelector("h1")?.textContent ?? "";
 
-                resolve(comic);
+        const name = this.chapterGuesser(title);
 
-            } catch (error) {
-                reject(error)
-            }
-
-
-
-        });
-
-    }
-
-
-}
-
-declare module UpdateResponse {
-
-    export interface Datum {
-        title: string;
-        ch: string;
-        rating: string;
-        image: string;
-        image2: string;
-        type: string;
-        isCompleted: string;
-        link: string;
-        linkId: string;
-        isHot: string;
-        ch_id: string;
-        ch_time: string;
-    }
-
-    export interface RootObject {
-        total_page: number;
-        total_data: number;
-        data: Datum[];
-    }
-
-}
-
-declare module ComicResponse {
-
-    export interface ListChapter {
-        ch: string;
-        time_release: string;
-        linkId: string;
-    }
-
-    export interface RootObject {
-        linkid: string;
-        title: string;
-        title_other: string;
-        author: string;
-        image: string;
-        image2: string;
-        rating: string;
-        sinopsis: string;
-        type: string;
-        status: string;
-        released: string;
-        total_chapter: string;
-        updated_on: string;
-        genres: string[];
-        list_chapter: ListChapter[];
-    }
-
-}
-
-
-declare module ChapterResponse {
-
-    export interface RootObject {
-        title: string;
-        ch: string;
-        comic_title: string;
-        prev_ch: string;
-        next_ch: string;
-        prev_link_id: string;
-        next_link_id: string;
-        images: string[];
+        return {
+            name,
+            image_count: images.length,
+            original_image_count: images.length,
+            images,
+            processed: true,
+            quality: this.checkQuality(title),
+        };
     }
 
 }
-

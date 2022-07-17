@@ -1,87 +1,57 @@
 import { prisma } from "./modules/Context";
 import axios from "axios";
 import BunnyCDN from "./modules/BunnyCDN";
-
+import { writeFile } from "node:fs";
+import { Agent } from "node:https";
+import Manhwaindo from "./scrappers/manhwaindo";
+import { JSDOM } from 'jsdom';
+import { slugify } from "./modules/Helper";
+import Manhwaland from "./scrappers/manhwaland";
 async function main() {
-  const comics = await prisma.comic.findMany();
 
-  const notFounds = [];
+  const manhwaland = new Manhwaland()
 
-  const comicsD = comics.map((e) => ({
-    ...e,
-    thumb: e.thumb?.replace("cdn.gudangkomik.com", "backupcdn.gudangkomik.com"),
-    thumbWide: e.thumbWide?.replace(
-      "cdn.gudangkomik.com",
-      "backupcdn.gudangkomik.com"
-    ),
-  }));
+  let dom =  new JSDOM( await (await axios.get("https://manhwaland.mom/cheer-up-namjoo-chapter-20/")).data).window.document
 
-  const slugs = [];
 
-  const bunny = new BunnyCDN({ log: false });
-  let idx = 1;
-  for (const { id, slug, thumbWide, thumb } of comicsD) {
-    if (thumbWide) {
-      try {
-        const res = await axios.head(thumbWide);
+  const href =
+    dom
+      ?.querySelector("link[rel='alternate'][type='application/json']")
+      ?.getAttribute("href") ?? "";
 
-        if (res.status == 200) {
-          const succes = await bunny.downloadAndUpload(
-            thumbWide,
-            thumbWide?.replace("https://backupcdn.gudangkomik.com", "")
-          );
+  const jsonHtml = await (await axios.get(href)).data;
 
-          const newThumb = thumbWide?.replace(
-            "https://backupcdn.gudangkomik.com",
-            "https://cdn3.gudangkomik.com"
-          );
+  // dom = new JSDOM(`
+  // <h1>${jsonHtml.title.rendered}</h1>
+  // ${jsonHtml.content.rendered}`).window.document;
 
-          await prisma.comic.update({
-            where: { id: id },
-            data: { thumbWide: newThumb },
-          });
-        } else {
-          notFounds.push(thumbWide);
-        }
-      } catch (error: any) {
-        notFounds.push(thumbWide);
-      }
-    }
+  console.log(dom)
 
-    try {
-      const res = await axios.head(thumb);
+  const d = await manhwaland.parseChapter(
+   dom
+  )
+  
 
-      if (res.status == 200) {
-        const succes = await bunny.downloadAndUpload(
-          thumb,
-          thumb?.replace("https://backupcdn.gudangkomik.com", "")
-        );
+  console.log(d)
 
-        const newThumb = thumb?.replace(
-          "https://backupcdn.gudangkomik.com",
-          "https://cdn3.gudangkomik.com"
-        );
+  console.log(
+    await (await manhwaland.downloadsImages(
 
-        await prisma.comic.update({
-          where: { id: id },
-          data: { thumb: newThumb },
-        });
-      } else {
-        notFounds.push(thumb);
-      }
-    } catch (error: any) {
-      notFounds.push(thumb);
-      slugs.push(slug);
-    }
-    idx++;
-    console.log(
-      `[${idx}/${comicsD.length}] ${slug} Finish ${
-        slugs.includes(slug) ? "NOT FOUND" : "FOUND"
-      }`
-    );
-  }
-  console.log(notFounds);
-  console.log(slugs);
+      d.images.map((e, i: number) => {
+        return {
+          path: manhwaland.createImagePath(
+            "test",
+            0,
+            i,
+            manhwaland.extExtractor(e)
+          ),
+          url: e,
+        };
+      })
+
+    )).map(e => `https://cdn3.gudangkomik.com${e}`)
+  )
+
 }
 
 main();

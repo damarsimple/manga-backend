@@ -400,29 +400,32 @@ export const ComicMutationRelated = extendType({
           let released;
 
           try {
-            released = moment(candidate).toDate();
+            released = moment(candidate)
+
+            released = released.isValid() ? released.toDate() : moment().toDate();
           } catch (error) {
             released = moment().toDate();
           }
 
           try {
+
+            
             const comicNew = await ctx.prisma.comic.create({
               data: {
-                //@ts-ignore
-                type: comicData.type == "" ? "n/a" : (comicData.type as string),
                 ...data,
-                released,
+                type: typeof comicData.type == "string" ? comicData.type :  "n/a", 
+                // released : released.toISOString() ?? moment().toDate().toISOString(),
                 slug,
                 thumb: `https://cdn3.gudangkomik.com/${slug}/thumb.jpg`,
                 thumbWide: `https://cdn3.gudangkomik.com/${slug}/thumbWide.jpg`,
                 author: {
                   connectOrCreate: {
                     where: {
-                      slug: slugify(author),
+                      slug: slugify(author ?? "n/a"),
                     },
                     create: {
-                      name: author,
-                      slug: slugify(author),
+                      name: author ?? "n/a",
+                      slug: slugify(author ?? "n/a"),
                     },
                   },
                 },

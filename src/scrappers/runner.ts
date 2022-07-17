@@ -1,8 +1,14 @@
-import { Komikcast } from "./komikcast";
 import axios from "axios";
+import Komikcast from './komikcast';
+import Manhwaindo from "./manhwaindo";
+import Manhwaland from './manhwaland';
 
 async function main() {
-  const declarations = [new Komikcast()];
+  const declarations = [
+    new Komikcast(),
+    new Manhwaland(),
+    new Manhwaindo()
+  ];
 
   for (const x of declarations) {
     try {

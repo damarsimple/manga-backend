@@ -109,40 +109,7 @@ const  extExtractor = (url: string) =>
 chapterDownloadsWorker.on("completed", async (job: Job, returnvalue: any) => {
     console.log(`job finished increment comic ${job.data.id}`);
     const { chapter, comic } = job.data as ChapterJob
-  try {
-    _logger.info(`downloading chapter ${chapter.name}`);
-
-    const downloadeds = await downloadsImages(
-      chapter.images.map((e, i: number) => {
-        return {
-          path: createImagePath(
-            comic.slug ?? slugify(comic.name),
-            chapter.name,
-            i,
-            extExtractor(e)
-          ),
-          url: e,
-        };
-      })
-    );
-
-    //@ts-ignore
-    chapter.imageUrls = downloadeds;
-    //@ts-ignore
-    chapter.imageUrls = chapter.imageUrls.map(
-      (e: string) => `https://cdn3.gudangkomik.com${e}`
-    );
-
-    if (downloadeds.length == chapter.images.length) {
-      await gkInteractor.sanityEclipse(comic.name, chapter);
-    } else {
-      _logger.info(
-        `${comic.slug}failed downloading chapter ${chapter.name} [number not match]`
-      );
-    }
-  } catch (error) {
-    console.log(`error ${comic.name}  ${error}`);
-  }
+ 
 });
 
 console.log("worker starting .....");

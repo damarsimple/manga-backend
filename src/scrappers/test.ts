@@ -1,39 +1,32 @@
-import BunnyCDN from "../modules/BunnyCDN";
-import HttpsProxyAgent from "https-proxy-agent";
-import axios from "axios";
+import { JSDOM } from "jsdom";
+import { prisma } from "../modules/Context";
+import { gkInteractor } from "../modules/gkInteractor";
+import Manhwaland from "./manhwaland";
 
-// const httpsAgent = HttpsProxyAgent({ host: "localhost", port: "8191" });
+async function main() {
+ 
+  const manhwaland = new Manhwaland();
 
-const bunny = new BunnyCDN({
-  // downloadResponseType: "blob",
-  log: true,
-  //@ts-ignoresassassss
-  axiosDefault: {
-    // httpsAgent,
-  },
-});
+  const comic = await manhwaland.parseComic(
+    new JSDOM(await manhwaland.axios.get(`https://manhwaland.mom/series/swinging/`).then((e) => e.data)).window
+      .document
+  );
 
-const d = axios.create({
-  // httpsAgent,
-
-  headers: {
-    "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0"
-  }
-});
-
-async function name() {
-  console.log("nice");
-
-  const g =   {
-      "cmd": "request.get",
-      "url":"https://cdn.komikcast.com/wp-content/img/L/Leviathan/200/01.jpg",
-      "maxTimeout": 60000
-  }
+  const { chapterscandidate, status, chaptersList } =
+    await gkInteractor.sanityCheck(comic, comic.chapters);
   
-  await d.post("http://localhost:8191/v1", g)
-  .then((e) => console.log(e.data))
+  console.log(chapterscandidate);
+  console.log(status);
+  console.log(chaptersList);
 
-  console.log("nice");
+
+  console.log(await prisma.comic.findFirst({
+
+    where: {
+      slug: comic.slug
+    }
+  }))
+
 }
 
-name().then(() => console.log("finished"));
+main().then(() => console.log("finished"));

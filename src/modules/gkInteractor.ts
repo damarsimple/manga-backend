@@ -138,7 +138,7 @@ export class gkInteractor {
   public static async sanityEclipse(title: string, chapter: ChapterScrapepr) {
     //@ts-ignore
     if (chapter.image_count == 0) {
-      console.log("no image found");
+      console.log(`no image found for ${title} ${chapter.name} `);
       return;
     }
 
